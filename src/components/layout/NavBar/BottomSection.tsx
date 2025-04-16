@@ -1,4 +1,4 @@
-import Logo from "src/assets/logo.svg?react";
+import Logo from "src/assets/logo.svg";
 
 import { Icon } from "@iconify/react/dist/iconify.js";
 

@@ -4,9 +4,9 @@ import { Icon } from "@iconify/react/dist/iconify.js";
 const ProductCard = ({
   img,
   name,
-  stars,
+  // stars,
   price,
-  discountedPrice,
+  // discountedPrice,
 }: {
   img: string;
   name: string;
