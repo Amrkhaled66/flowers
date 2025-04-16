@@ -1,10 +1,10 @@
-import Logo from "src/assets/logo.svg";
+import { ReactComponent as Logo } from "src/assets/logo.svg";
 
 import { Icon } from "@iconify/react/dist/iconify.js";
 
 const BottomSection = () => {
   return (
-    <div className="sticky -top-1 z-50 w-screen bg-white  drop-shadow-md">
+    <div className="sticky -top-1 z-50 w-screen bg-white drop-shadow-md">
       <div className="container">
         <div className="flex items-center justify-between py-3">
           <div className="flex gap-x-6">
