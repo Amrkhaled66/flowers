@@ -2,24 +2,28 @@ import Header from "src/components/ui/SectionTitle";
 import Slider from "src/components/HomePage/CategoriesSlider/Slider";
 import ProductCard from "src/components/ui/ProductCard";
 import { SwiperSlide } from "swiper/react";
+import Button from "src/components/ui/Button";
 
-const CategoriesSlider = ({
+import Product from "src/types/product";
+const ProductsSlider = ({
   title,
   items,
   children,
 }: {
   title: string;
-  items: object[];
+  items: Product[];
   children?: React.ReactNode;
 }) => {
   return (
     <section className="font-main container text-center font-bold">
       <div className="space-y-10 lg:py-[40px]">
         <Header title={title} children={children} />
-        <Slider items={items}>
-          {items.map((item) => {
+        <Button text="Choose Gifts Now" className="bg-main-100 mx-auto w-fit" />
+
+        <Slider slidesPerGroup={4} items={items}>
+          {items.map((item, index) => {
             return (
-              <SwiperSlide className=" " key={item}>
+              <SwiperSlide className=" " key={index}>
                 <ProductCard
                   img={item.img}
                   name={item.name}
@@ -36,4 +40,4 @@ const CategoriesSlider = ({
   );
 };
 
-export default CategoriesSlider;
+export default ProductsSlider;

@@ -1,12 +1,14 @@
-import HeroSection from "src/sections/HomePage/HeroSection";
-import CategorySlider from "src/sections/HomePage/CategorySlider";
-import BestSellers from "src/sections/HomePage/BestSellers";
+import {
+  HeroSection,
+  CategorySlider,
+  BestSellers,
+  CTA,
+  ProductsSlider,
+  Ideas,
+  Brands,
+} from "src/sections/HomePage";
+import { products1, products2, products3 } from "src/data/products";
 import categories from "src/data/categories";
-import CTA from "src/sections/HomePage/CTA";
-// import CategoriesSlider from "src/sections/HomePage/CategoriesSlider";
-// import Button from "src/components/ui/Button";
-// import products from "src/data/products";
-
 const HomePage = () => {
   return (
     <>
@@ -15,9 +17,16 @@ const HomePage = () => {
       <BestSellers />
       <CategorySlider title="Categories" items={categories} />
       <CTA />
-      {/* <CategoriesSlider title="Best Sellers" items={products}>
-        <Button text="Choose Gifts Now" className="bg-main-100 mx-auto w-fit" />
-      </CategoriesSlider> */}
+      <ProductsSlider title="Latest & Loveliest" items={products1} />
+      <ProductsSlider
+        title="Elegant Brands, Luxury Perfumes"
+        items={products2}
+      />
+      <ProductsSlider title="Gifts for Every Moment" items={products3} />
+
+      <ProductsSlider title="An Extra Luxurious Touch" items={products1} />
+      <Ideas />
+      <Brands />
     </>
   );
 };
