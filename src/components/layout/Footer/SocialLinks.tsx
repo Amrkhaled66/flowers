@@ -1,4 +1,4 @@
-import appStore from "src/assets/appStore.svg";
+import appStore from "src/assets/appstore.svg";
 import googleplay from "src/assets/googleplay.svg";
 import { Icon } from "@iconify/react/dist/iconify.js";
 import { ReactNode } from "react";
