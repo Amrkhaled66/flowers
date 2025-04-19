@@ -13,7 +13,7 @@ const NavigationBtn = ({
   return (
     <button
       onClick={onClick}
-      className={`border-stroke z-20 hover:border-main absolute top-1/2 h-[52px] w-[52px] -translate-y-1/2 rounded-full border bg-white p-2.5 transition-all duration-300 ${className}`}
+      className={`border-stroke hover:border-main absolute top-1/2 z-20 hidden h-[52px] w-[52px] -translate-y-1/2 items-center justify-center rounded-full border bg-white p-2.5 transition-all duration-300 lg:flex ${className}`}
     >
       <Icon
         icon="prime:arrow-up"

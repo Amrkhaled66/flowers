@@ -8,8 +8,8 @@ const SectionTitle = ({
   children?: ReactNode;
 }) => {
   return (
-    <div className="flex flex-col space-y-4">
-      <h2 className="text-text-main font-bold lg:text-[32px]">{title}</h2>
+    <div className="flex flex-col h-fit space-y-4">
+      <h2 className="text-text-main font-bold text-xl text-left lg:text-center lg:text-[32px]">{title}</h2>
       {children}
     </div>
   );

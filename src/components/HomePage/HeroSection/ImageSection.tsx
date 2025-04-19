@@ -6,10 +6,10 @@ const ImageSection = ({
   images: string[];
 }) => {
   return (
-    <div className="flex h-full  relative items-end overflow-hidden">
+    <div className="relative flex h-full items-end overflow-hidden">
       <div className="relative flex size-full h-full items-end">
-        <div className="bg-main/80 h-[595px] w-[595px] rounded-full"></div>
-        <div className="absolute top-[67%] z-20 bottom-0 left-1/2 size-full -translate-x-1/2 -translate-y-1/2">
+        <div className="bg-main/80 h-[160px] w-[160px] sm:w-[224px] sm:h-[224px] -translate-y-5 sm:-translate-y-9 rounded-full lg:h-[595px] lg:w-[595px] lg:-translate-y-10"></div>
+        <div className="absolute -bottom-3 sm:-bottom-9 left-1/2 z-20 h-[60%] sm:h-[80%] w-full -translate-x-1/2 lg:top-[67%] lg:size-full lg:-translate-y-1/2">
           {images.map((img, index) => (
             <img
               key={img}
@@ -23,8 +23,7 @@ const ImageSection = ({
           ))}
         </div>
       </div>
-      <div className="bg-main/80 absolute bottom-3 right-0  h-[60px] w-[60px] -translate-x-1/2 rounded-full"></div>
-
+      <div className="bg-main/80 absolute right-0 bottom-3 hidden h-[60px] w-[60px] -translate-x-1/2 rounded-full lg:block"></div>
     </div>
   );
 };

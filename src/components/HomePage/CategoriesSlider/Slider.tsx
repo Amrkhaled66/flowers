@@ -1,94 +1,124 @@
-import { useState, useRef, ReactNode } from "react";
+import { useState, useRef, ReactNode, useCallback } from "react";
 import SliderPoints from "src/components/ui/SliderPoints";
 import NavigationBtn from "src/components/ui/NavigationBtn";
+import { Swiper } from "swiper/react";
+import { FreeMode, Navigation } from "swiper/modules";
+import { Swiper as SwiperType } from "swiper";
 
+// Styles
+import "swiper/css";
+import "swiper/css/navigation";
+
+// Types
 import Product from "src/types/product";
 import category from "src/types/category";
 
-import { Swiper } from "swiper/react";
-import { Navigation } from "swiper/modules";
-import { Swiper as SwiperType } from "swiper";
+// Constants
+const DEFAULT_SLIDES_PER_GROUP = 7;
+const DEFAULT_SLIDES_PER_Mob = 2.5;
+const DESKTOP_BREAKPOINT = 1024;
+const TABLET_BREAKPOINT = 744;
+const MOBILE_SLIDES_PER_VIEW = 1;
 
-import "swiper/css";
-import "swiper/css/effect-coverflow";
-import "swiper/css/pagination";
-import "swiper/css/navigation";
-
-const Slider = ({
-  items,
-  children,
-  slidesPerGroup = 7,
-}: {
-  items: category[] | Product[] | string[];
+interface SliderProps {
+  items?: category[] | Product[] | string[];
   children: ReactNode;
   slidesPerGroup?: number;
-}) => {
+  slidesPerGroupMob?: number;
+  isMenuSlider?: boolean;
+}
+
+const Slider = ({
+  items = [],
+  children,
+  slidesPerGroup = DEFAULT_SLIDES_PER_GROUP,
+  slidesPerGroupMob = DEFAULT_SLIDES_PER_Mob,
+  isMenuSlider = false,
+}: SliderProps) => {
   const swiperRef = useRef<SwiperType | null>(null);
   const [activeGroup, setActiveGroup] = useState(0);
 
   const totalGroups = Math.ceil(items.length / slidesPerGroup);
+  const shouldShowNavigation = totalGroups > 1;
 
   const handleSlideChange = (swiper: SwiperType) => {
-    const currentGroup = Math.floor(swiper.realIndex / slidesPerGroup);
+    const currentGroup = isMenuSlider
+      ? swiper.realIndex
+      : Math.ceil(swiper.realIndex / slidesPerGroup);
     setActiveGroup(currentGroup);
   };
 
   const handleDotClick = (groupIndex: number) => {
-    if (swiperRef.current) {
-      const targetSlideIndex = groupIndex * slidesPerGroup;
-      swiperRef.current.slideTo(targetSlideIndex);
-    }
+    if (!swiperRef.current) return;
+
+    const targetSlideIndex = isMenuSlider
+      ? groupIndex
+      : groupIndex * slidesPerGroup;
+
+    swiperRef.current.slideTo(targetSlideIndex);
+  };
+
+  const swiperConfig = {
+    speed: 800,
+    className: " z-50  lg:w-full",
+    loop: false,
+    modules: [Navigation],
+
+    onSwiper: (swiper: SwiperType) => {
+      swiperRef.current = swiper;
+    },
+    onSlideChange: handleSlideChange,
+
+    breakpoints: {
+      0: {
+        slidesPerGroup: 1,
+        slidesPerView: "auto",
+        spaceBetween: 16,
+      },
+      [TABLET_BREAKPOINT]: {
+        spaceBetween: 20,
+        slidesPerGroup: 1,
+        slidesPerView: "auto",
+      },
+      [DESKTOP_BREAKPOINT]: {
+        slidesPerView: isMenuSlider ? MOBILE_SLIDES_PER_VIEW : "auto",
+        slidesPerGroup: isMenuSlider ? MOBILE_SLIDES_PER_VIEW : slidesPerGroup,
+        spaceBetween: 25,
+      },
+    },
   };
 
   return (
-    <div className="space-y-8">
+    <div className="-mx-4 w-screen sm:-mx-6 lg:mx-0 lg:w-full lg:space-y-8">
       <div className="relative">
-        <Swiper
-          speed={800}
-          className="w-full"
-          spaceBetween={0}
-          onSwiper={(swiper) => {
-            swiperRef.current = swiper;
-          }}
-          breakpoints={{
-            // When window width is < 1024px
-            0: {
-              slidesPerView: 1,
-              // spaceBetween: 8,
-              slidesPerGroup: 1,
-            },
-            // When window width is >= 1024px
-            1024: {
-              slidesPerView: slidesPerGroup,
-              slidesPerGroup: slidesPerGroup,
-              spaceBetween: 25,
-            },
-          }}
-          loop={false}
-          // navigation={true}
-          modules={[Navigation]}
-          onSlideChange={handleSlideChange}
-        >
-          {children}
-        </Swiper>
+        <Swiper {...swiperConfig}>{children}</Swiper>
 
-        <NavigationBtn
-          dir="left"
-          className="!-left-14"
-          onClick={() => swiperRef.current?.slidePrev()}
-        />
-        <NavigationBtn
-          dir="right"
-          className="!-right-14"
-          onClick={() => swiperRef.current?.slideNext()}
-        />
+        {shouldShowNavigation && (
+          <>
+            <NavigationBtn
+              dir="left"
+              className={isMenuSlider ? "!-left-5" : "!-left-14"}
+              onClick={() => swiperRef.current?.slidePrev()}
+              aria-label="Previous slide"
+            />
+            <NavigationBtn
+              dir="right"
+              className={isMenuSlider ? "!-right-5" : "!-right-14"}
+              onClick={() => swiperRef.current?.slideNext()}
+              aria-label="Next slide"
+            />
+          </>
+        )}
       </div>
-      <SliderPoints
-        currentIndex={activeGroup}
-        onDotClick={handleDotClick}
-        length={totalGroups}
-        className="mx-auto !hidden lg:!flex"
-      />
+
+      {shouldShowNavigation && (
+        <SliderPoints
+          currentIndex={activeGroup}
+          onDotClick={handleDotClick}
+          length={totalGroups}
+          className="mx-auto !hidden lg:!flex"
+        />
+      )}
     </div>
   );
 };

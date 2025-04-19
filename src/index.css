@@ -46,17 +46,25 @@ input[type="checkbox"] {
     max-width: 43rem;
   }
   @media (width >= 48rem /* 768px */) {
-    max-width: 46rem;
-    /* padding-top: 60; */
+    max-width: 58rem;
   }
   @media (width >= 64rem /* 1024px */) {
-    max-width: 100rem /* 1024px */;
+    max-width: 64rem /* 1024 */;
   }
   @media (width >= 80rem /* 1280px */) {
-    padding: 0 100px !important ;
-    width: 100%;
+    max-width: 80rem /* 1280 */;
   }
   @media (width >= 96rem /* 1536px */) {
     max-width: 96rem /* 1536px */;
+    padding: 0 120px !important;
   }
+}
+
+.menu-bar::-webkit-scrollbar {
+  width: 9px;
+}
+
+.menu-bar::-webkit-scrollbar-thumb {
+  background-color: #b9b9b9;
+  border-radius: 10px;
 }

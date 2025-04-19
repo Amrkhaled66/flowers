@@ -16,14 +16,17 @@ const ProductsSlider = ({
 }) => {
   return (
     <section className="font-main container text-center font-bold">
-      <div className="space-y-10 lg:py-[40px]">
+      <div className="space-y-5 lg:space-y-10 lg:py-[40px]">
         <Header title={title} children={children} />
-        <Button text="Choose Gifts Now" className="bg-main-100 mx-auto w-fit" />
+        <Button
+          text="Choose Gifts Now"
+          className="bg-main-100 mx-auto hidden w-fit lg:block"
+        />
 
-        <Slider slidesPerGroup={4} items={items}>
+        <Slider  items={items}>
           {items.map((item, index) => {
             return (
-              <SwiperSlide className=" " key={index}>
+              <SwiperSlide className="!w-[140px] sm:!w-[240px] lg:!w-[282px] " key={index}>
                 <ProductCard
                   img={item.img}
                   name={item.name}
@@ -35,6 +38,10 @@ const ProductsSlider = ({
             );
           })}
         </Slider>
+        <Button
+          text="Choose Gifts Now"
+          className="bg-main-100 mx-auto w-full lg:hidden"
+        />
       </div>
     </section>
   );

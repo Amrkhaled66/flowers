@@ -5,19 +5,19 @@ import brands from "src/data/brands";
 import { SwiperSlide } from "swiper/react";
 const Brands = () => {
   return (
-    <HomePageSection className="bg-main-100">
-      <div className="lg:space-y-10">
+    <HomePageSection className="lg:bg-main-100 bg-white">
+      <div className="space-y-5 lg:space-y-10">
         <div className="space-y-4">
           <SectionTitle title="Brands" />
-          <button className="font-main mx-auto rounded-sm border-2 border-white !bg-transparent px-4 py-2.5 font-bold">
+          <button className="font-main mx-auto hidden rounded-sm border-2 border-white !bg-transparent px-4 py-2.5 font-bold lg:block">
             Show All
           </button>
         </div>
         <Slider slidesPerGroup={6} items={brands}>
           {brands.map((brand, index) => (
-            <SwiperSlide className="">
+            <SwiperSlide key={index} className="!w-[116px] !px-2 sm:!w-[180px]">
               <div
-                className="h-[77px] cursor-pointer rounded-sm bg-white py-2.5"
+                className="bg-main-100 h-[57px] !w-[116px] cursor-pointer rounded-sm py-2.5 sm:!w-[180px] lg:h-[77px] lg:bg-white"
                 key={index}
               >
                 <img
@@ -29,6 +29,9 @@ const Brands = () => {
             </SwiperSlide>
           ))}
         </Slider>
+        <button className="font-main bg-main-100 text-text-main mx-auto block w-full rounded-sm px-4 py-2.5 font-bold lg:hidden">
+          Show All
+        </button>
       </div>
     </HomePageSection>
   );

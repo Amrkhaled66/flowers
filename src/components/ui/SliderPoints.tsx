@@ -10,7 +10,7 @@ export default function SliderPoints({
   className?: string;
 }) {
   return (
-    <div className={`flex  w-fit gap-3 ${className}`}>
+    <div className={`flex w-fit gap-3 ${className}`}>
       {Array.from({ length }).map((_, index) => (
         <button
           key={index}

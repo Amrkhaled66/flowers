@@ -6,12 +6,13 @@ import {
   ProductsSlider,
   Ideas,
   Brands,
+  Gender,
 } from "src/sections/HomePage";
 import { products1, products2, products3 } from "src/data/products";
 import categories from "src/data/categories";
 const HomePage = () => {
   return (
-    <>
+    <div className="flex flex-col gap-y-8 lg:gap-y-0">
       <HeroSection />
       <CategorySlider title="Shop Trending Categories" items={categories} />
       <BestSellers />
@@ -27,7 +28,8 @@ const HomePage = () => {
       <ProductsSlider title="An Extra Luxurious Touch" items={products1} />
       <Ideas />
       <Brands />
-    </>
+      <Gender />
+    </div>
   );
 };
 
