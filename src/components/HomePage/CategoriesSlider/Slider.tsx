@@ -1,8 +1,8 @@
-import { useState, useRef, ReactNode, useCallback } from "react";
+import { useState, useRef, ReactNode } from "react";
 import SliderPoints from "src/components/ui/SliderPoints";
 import NavigationBtn from "src/components/ui/NavigationBtn";
 import { Swiper } from "swiper/react";
-import { FreeMode, Navigation } from "swiper/modules";
+import { Navigation } from "swiper/modules";
 import { Swiper as SwiperType } from "swiper";
 
 // Styles
@@ -15,7 +15,6 @@ import category from "src/types/category";
 
 // Constants
 const DEFAULT_SLIDES_PER_GROUP = 7;
-const DEFAULT_SLIDES_PER_Mob = 2.5;
 const DESKTOP_BREAKPOINT = 1024;
 const TABLET_BREAKPOINT = 744;
 const MOBILE_SLIDES_PER_VIEW = 1;
@@ -24,7 +23,6 @@ interface SliderProps {
   items?: category[] | Product[] | string[];
   children: ReactNode;
   slidesPerGroup?: number;
-  slidesPerGroupMob?: number;
   isMenuSlider?: boolean;
 }
 
@@ -32,7 +30,6 @@ const Slider = ({
   items = [],
   children,
   slidesPerGroup = DEFAULT_SLIDES_PER_GROUP,
-  slidesPerGroupMob = DEFAULT_SLIDES_PER_Mob,
   isMenuSlider = false,
 }: SliderProps) => {
   const swiperRef = useRef<SwiperType | null>(null);
@@ -58,40 +55,40 @@ const Slider = ({
     swiperRef.current.slideTo(targetSlideIndex);
   };
 
-  const swiperConfig = {
-    speed: 800,
-    className: " z-50  lg:w-full",
-    loop: false,
-    modules: [Navigation],
-
-    onSwiper: (swiper: SwiperType) => {
-      swiperRef.current = swiper;
-    },
-    onSlideChange: handleSlideChange,
-
-    breakpoints: {
-      0: {
-        slidesPerGroup: 1,
-        slidesPerView: "auto",
-        spaceBetween: 16,
-      },
-      [TABLET_BREAKPOINT]: {
-        spaceBetween: 20,
-        slidesPerGroup: 1,
-        slidesPerView: "auto",
-      },
-      [DESKTOP_BREAKPOINT]: {
-        slidesPerView: isMenuSlider ? MOBILE_SLIDES_PER_VIEW : "auto",
-        slidesPerGroup: isMenuSlider ? MOBILE_SLIDES_PER_VIEW : slidesPerGroup,
-        spaceBetween: 25,
-      },
-    },
-  };
-
   return (
     <div className="-mx-4 w-screen sm:-mx-6 lg:mx-0 lg:w-full lg:space-y-8">
       <div className="relative">
-        <Swiper {...swiperConfig}>{children}</Swiper>
+        <Swiper
+          speed={800}
+          loop={false}
+          modules={[Navigation]}
+          onSwiper={(swiper: SwiperType) => {
+            swiperRef.current = swiper;
+          }}
+          onSlideChange={handleSlideChange}
+          breakpoints={{
+            0: {
+              slidesPerGroup: 1,
+              slidesPerView: "auto",
+              spaceBetween: 16,
+            },
+            [TABLET_BREAKPOINT]: {
+              spaceBetween: 20,
+              slidesPerGroup: 1,
+              slidesPerView: "auto",
+            },
+            [DESKTOP_BREAKPOINT]: {
+              slidesPerView: isMenuSlider ? MOBILE_SLIDES_PER_VIEW : "auto",
+              slidesPerGroup: isMenuSlider
+                ? MOBILE_SLIDES_PER_VIEW
+                : slidesPerGroup,
+              spaceBetween: 25,
+            },
+          }}
+          className="z-50 lg:w-full"
+        >
+          {children}
+        </Swiper>
 
         {shouldShowNavigation && (
           <>
