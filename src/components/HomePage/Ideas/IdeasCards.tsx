@@ -8,7 +8,7 @@ import Button from "src/components/ui/Button";
 const IdeasCards = () => {
   return (
     <div className="space-y-5">
-      <Slider slidesPerGroupMob={1.5} slidesPerGroup={3}>
+      <Slider  slidesPerGroup={3}>
         {ideasArr.map((idea: Idea, index) => (
           <SwiperSlide className="!w-[260px] !pl-1 lg:!w-1/3" key={index}>
             <IdeaCard img={idea.img} title={idea.title} />
