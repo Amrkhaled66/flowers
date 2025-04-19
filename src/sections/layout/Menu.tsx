@@ -22,29 +22,35 @@ const CategoryGrid = ({ items }: { items: typeof categories }) => (
   </div>
 );
 
-const BrandGrid = ({
-  brands,
-  cols,
-}: {
-  brands: string[];
-  cols: number;
-}) => {
+const BrandGrid = ({ brands, cols }: { brands: string[]; cols: number }) => {
   const groupSize = cols === 3 ? 6 : 8;
   const groups = Array.from({ length: Math.ceil(brands.length / groupSize) });
 
+  console.log(groups, "groups");
   return (
     <Slider isMenuSlider slidesPerGroup={groupSize} items={brands}>
       {groups.map((_, i) => (
-        <SwiperSlide className="!w-full" key={i}>
-          <div className={`grid h-full grid-cols-${cols} gap-4 lg:gap-6`}>
-            {brands.slice(i * groupSize, i * groupSize + groupSize).map((brand, index) => (
-              <div
-                className="bg-main-100 h-[50px] lg:h-[77px] w-full cursor-pointer rounded-sm py-2.5"
-                key={index}
-              >
-                <img className="size-full object-cover" src={brand} alt="brand" />
-              </div>
-            ))}
+        <SwiperSlide className="" key={i}>
+          <div
+            style={{
+              gridTemplateColumns: `repeat( ${cols}, minmax(0,1fr)`,
+            }}
+            className={`grid h-full gap-4 lg:gap-6`}
+          >
+            {brands
+              .slice(i * groupSize, i * groupSize + groupSize)
+              .map((brand, index) => (
+                <div
+                  className="bg-main-100 h-[50px] w-full cursor-pointer rounded-sm py-2.5 lg:h-[77px]"
+                  key={index}
+                >
+                  <img
+                    className="size-full object-cover"
+                    src={brand}
+                    alt="brand"
+                  />
+                </div>
+              ))}
           </div>
         </SwiperSlide>
       ))}
@@ -63,7 +69,7 @@ const Menu = () => {
     >
       <button
         onClick={toggleMenu}
-        className="bg-main absolute top-6 right-4 sm:top-4 sm:right-8 lg:top-10 lg:right-8 rounded-full p-1"
+        className="bg-main absolute top-6 right-4 rounded-full p-1 sm:top-4 sm:right-8 lg:top-10 lg:right-8"
       >
         <Icon icon="ic:outline-close" width="18" height="18" />
       </button>
