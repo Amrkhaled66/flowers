@@ -10,19 +10,22 @@ import ProductCard from "src/components/ui/ProductCard";
 const BestSellers = () => {
   return (
     <section className="font-main container text-center">
-      <div className="space-y-5 lg:space-y-10 lg:py-[40px]">
+      <div className="flex flex-col gap-y-5 lg:gap-y-10 lg:py-[40px]">
         <div className="space-y-4">
           <SectionTitle title="Best Sellers" />
           <Button
             text="Choose Gifts Now"
-            className="bg-main-100 mx-auto hidden w-fit !py-2.5 !text-base lg:block"
+            className="bg-main-300 mx-auto hidden w-[240px] !py-3 !text-base text-white lg:block"
           />
         </div>
         <Products />
         <div className="lg:hidden">
           <Slider>
             {products1.map((product) => (
-              <SwiperSlide className="!w-[140px] sm:!w-[240px]" key={product.img}>
+              <SwiperSlide
+                className="!w-[140px] sm:!w-[282px]"
+                key={product.img}
+              >
                 <ProductCard {...product} />
               </SwiperSlide>
             ))}
@@ -30,7 +33,7 @@ const BestSellers = () => {
         </div>
         <Button
           text="Choose Gifts Now"
-          className="bg-main-100 mx-auto w-full !p-2.5 !text-base lg:hidden"
+          className="bg-main-300 mx-auto  w-full !p-2.5 !text-base text-white lg:hidden"
         />
       </div>
     </section>

@@ -19,7 +19,7 @@ const Gender = () => {
           {genders.map((brand, index) => (
             <SwiperSlide
               key={index}
-              className="!w-[140px] !px-2 sm:!w-[156px] lg:!w-[180px]"
+              className="!w-[140px] sm:!w-[156px] lg:!w-[180px]"
             >
               <div className="space-y-3">
                 <div

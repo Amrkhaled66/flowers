@@ -6,7 +6,7 @@ import Menu from "src/sections/layout/Menu";
 import Overlay from "src/components/ui/Overlay";
 
 import { useNavBarToggleBtns } from "src/context/NavBarToggleBtns";
-export const MainLayout = () => {
+const MainLayout = () => {
   const { openCart, openMenu } = useNavBarToggleBtns();
   return (
     <>
@@ -19,3 +19,4 @@ export const MainLayout = () => {
     </>
   );
 };
+export default MainLayout;

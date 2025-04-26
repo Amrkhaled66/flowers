@@ -9,7 +9,7 @@ const SectionTitle = ({
 }) => {
   return (
     <div className="flex flex-col h-fit space-y-4">
-      <h2 className="text-text-main font-bold text-xl text-left lg:text-center lg:text-[32px]">{title}</h2>
+      <h2 className="text-text-main font-bold text-xl text-center lg:text-[32px]">{title}</h2>
       {children}
     </div>
   );

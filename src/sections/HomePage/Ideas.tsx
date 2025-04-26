@@ -4,7 +4,7 @@ import IdeasCards from "src/components/HomePage/Ideas/IdeasCards";
 
 const Ideas = () => {
   return (
-    <HomePageSection>
+    <HomePageSection className="pb-8" >
       <div className=" space-y-5 lg:space-y-10">
         <SectionTitle title="Discover new ideas" />
         <IdeasCards />

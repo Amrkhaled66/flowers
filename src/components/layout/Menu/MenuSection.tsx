@@ -8,7 +8,7 @@ const MenuSection = ({
   children: ReactNode;
 }) => {
   return (
-    <div className="text-text-main font-main space-y-6">
+    <div className="text-text-main font-main flex flex-col gap-y-1">
       <p className="text-lg font-bold">{title}</p>
       {children}
     </div>

@@ -15,7 +15,7 @@ const Brands = () => {
         </div>
         <Slider slidesPerGroup={6} items={brands}>
           {brands.map((brand, index) => (
-            <SwiperSlide key={index} className="!w-[116px] !px-2 sm:!w-[180px]">
+            <SwiperSlide key={index} className="!w-[116px]  sm:!w-[180px]">
               <div
                 className="bg-main-100 h-[57px] !w-[116px] cursor-pointer rounded-sm py-2.5 sm:!w-[180px] lg:h-[77px] lg:bg-white"
                 key={index}

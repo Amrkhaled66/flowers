@@ -2,18 +2,32 @@
 
 /* Tailwind Config */
 @import "tailwindcss";
+
 @theme {
   --font-main: "Jost", sans-serif;
 
-  --color-main: #78cbf3;
+  --color-main: #534457;
+  --color-main-fade: #756979cc;
   --color-main-400: #93d5f5;
-  --color-main-100: #d5effb;
-  --color-hero-color: #f2fafe;
-  --color-text-main: #203d4b;
+  --color-main-300: #8C828E;
+  --color-main-600: #6db9dd;
+  --color-main-100: #cac5cb;
+  --color-hero-color: #f0e9df;
+  --color-text-main: #231d25;
   --color-stroke: #e0e0e0;
   --color-subTitle: #616161;
+  --color-red: #d00;
+  --color-footer-color: #3b303e;
 
   --margin-navbar-height: 124px;
+
+  --shadow-custom: "0px 4px 4px 0px rgba(0, 0, 0, 0.25)";
+}
+
+@layer base {
+  .animate {
+    @apply transition-all duration-300;
+  }
 }
 
 /* || reset */
@@ -34,6 +48,10 @@ input[type="checkbox"] {
   cursor: pointer;
 }
 
+input {
+  outline: none;
+}
+
 /* || Classes */
 .container {
   margin: auto;
@@ -43,13 +61,13 @@ input[type="checkbox"] {
     padding: 0 16px !important;
   }
   @media (width >= 40rem /* 640px */) {
-    max-width: 43rem;
+    max-width: 40rem;
   }
   @media (width >= 48rem /* 768px */) {
-    max-width: 58rem;
+    max-width: 46rem;
   }
   @media (width >= 64rem /* 1024px */) {
-    max-width: 64rem /* 1024 */;
+    max-width: 62rem /* 1024 */;
   }
   @media (width >= 80rem /* 1280px */) {
     max-width: 80rem /* 1280 */;
@@ -67,4 +85,8 @@ input[type="checkbox"] {
 .menu-bar::-webkit-scrollbar-thumb {
   background-color: #b9b9b9;
   border-radius: 10px;
+}
+
+.cart-menu::-webkit-scrollbar {
+  display: none;
 }

@@ -20,7 +20,10 @@ const CategorySlider = ({
         <Slider slidesPerGroup={7} items={items}>
           {items.map((item, index) => {
             return (
-              <SwiperSlide key={`${item.name} ${index}`} className="!w-[80px] lg:!w-[150px]">
+              <SwiperSlide
+                key={`${item.name} ${index}`}
+                className="!w-[80px] lg:!w-[150px]"
+              >
                 <CategoryCard img={item.img} name={item.name} />
               </SwiperSlide>
             );

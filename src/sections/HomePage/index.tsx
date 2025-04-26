@@ -6,3 +6,5 @@ export { default as CTA } from "./CTA";
 export { default as Ideas } from "./Ideas";
 export { default as Brands } from "./Brands";
 export { default as Gender } from "./Gender";
+export { default as MainCategories } from "./MainCategories";
+export { default as SubCategories } from "./SubCategories";

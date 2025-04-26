@@ -36,34 +36,6 @@ const categories: Category[] = [
     img: img7,
     name: "Wedding",
   },
-  {
-    img: img1,
-    name: "Love",
-  },
-  {
-    img: img2,
-    name: "Graduation",
-  },
-  {
-    img: img3,
-    name: "Newborn",
-  },
-  {
-    img: img4,
-    name: "Birthday",
-  },
-  {
-    img: img5,
-    name: "Thank You",
-  },
-  {
-    img: img6,
-    name: "Special occasions",
-  },
-  {
-    img: img7,
-    name: "Wedding",
-  },
 ];
 
 export default categories;

@@ -2,7 +2,6 @@ import appStore from "src/assets/appstore.svg";
 import googleplay from "src/assets/googleplay.svg";
 import { Icon } from "@iconify/react/dist/iconify.js";
 import { ReactNode } from "react";
-import Logo from "src/components/ui/Logo";
 
 const SocialIcon = ({ icon }: { icon: ReactNode }) => {
   return (
@@ -14,7 +13,6 @@ const SocialIcon = ({ icon }: { icon: ReactNode }) => {
 const SocialLinks = () => {
   return (
     <div className="font-main space-y-8 text-left text-white lg:w-[40%]">
-      <Logo textClass="text-white text-[40px] tracking-[3.2px] " />
       <div className="space-y-7">
         <div className="space-y-4">
           <p>Social Media</p>

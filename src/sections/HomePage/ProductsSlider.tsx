@@ -20,13 +20,16 @@ const ProductsSlider = ({
         <Header title={title} children={children} />
         <Button
           text="Choose Gifts Now"
-          className="bg-main-100 mx-auto hidden w-fit lg:block"
+          className="bg-main-100  mx-auto hidden w-fit lg:block"
         />
 
-        <Slider  items={items}>
+        <Slider items={items}>
           {items.map((item, index) => {
             return (
-              <SwiperSlide className="!w-[140px] sm:!w-[240px] lg:!w-[282px] " key={index}>
+              <SwiperSlide
+                className="!w-[140px] sm:!w-[240px] lg:!w-[282px]"
+                key={index}
+              >
                 <ProductCard
                   img={item.img}
                   name={item.name}

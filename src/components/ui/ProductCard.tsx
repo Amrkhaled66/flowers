@@ -1,6 +1,7 @@
-import Button from "./Button";
+import { Link } from "react-router-dom";
 
 import { Icon } from "@iconify/react/dist/iconify.js";
+
 const ProductCard = ({
   img,
   name,
@@ -15,65 +16,46 @@ const ProductCard = ({
   discountedPrice?: number;
 }) => {
   return (
-    <div className="border-stroke  w-full overflow-hidden rounded-[5px] border ">
-      <div className="h-[140px] sm:h-[200px] lg:h-[282px]">
-        <img
-          src={img}
-          loading="lazy"
-          alt="img"
-          className="size-full object-cover object-center"
-        />
-      </div>
-      <div className="space-y-1 p-2 lg:space-y-3 lg:p-4">
-        <div className="font-main">
-          <p className="text-text-main line-clamp-4 text-left text-xs font-bold lg:w-[90%] lg:text-base">
-            {name}
-          </p>
+    <Link to={`/product/${name}`}>
+      <div className="border-stroke w-full overflow-hidden rounded-2xl border">
+        <div className="h-[140px] sm:h-[310px] lg:h-[282px]">
+          <img
+            src={img}
+            loading="lazy"
+            alt="img"
+            className="size-full object-cover object-center"
+          />
         </div>
-        <div className="flex">
-          {Array.from({ length: stars }).map(() => (
-            <Icon
-              icon="radix-icons:star-filled"
-              color="#78cbf3"
-              width="16"
-              height="16"
-            />
-          ))}
-          {Array.from({ length: 5 - stars }).map(() => (
-            <Icon
-              icon="radix-icons:star"
-              color="#78cbf3"
-              width="16"
-              height="16"
-            />
-          ))}
-        </div>
-        <div className="flex flex-col items-center justify-between gap-y-3 lg:flex-row">
-          <div className="flex w-full justify-start">
-            <p className="text-text-main font-bold">
-              <span className="mr-1 text-left text-xs font-normal lg:text-center lg:text-base">
-                Egp
-              </span>
-              {price}
+        <div className="p-2 space-y-3 sm:p-3 lg:p-4">
+          <div className="font-main">
+            <p className="text-text-main line-clamp-4 text-left text-xs font-bold sm:text-xl lg:w-[90%] lg:text-base">
+              {name}
             </p>
-            {/* {discountedPrice && discountedPrice > 0 && (
+          </div>
+
+          <div className="flex flex-row items-center justify-between gap-y-3">
+            <div className="flex w-full justify-start">
+              <p className="text-text-main font-bold">
+                <span className="mr-1 text-left text-xs font-normal lg:text-center lg:text-base">
+                  AED
+                </span>
+                {price}
+              </p>
+              {/* {discountedPrice && discountedPrice > 0 && (
             <p className="text-text-main font-bold">{discountedPrice}</p>
           )} */}
-          </div>
-          <Button
-            text="Add"
-            icon={
+            </div>
+            <button className="hover:bg-main-300 animate bg-main flex place-items-center rounded-full p-2 sm:p-3 text-white lg:p-4">
               <Icon
                 icon="material-symbols:shopping-cart-outline-rounded"
                 width="24"
                 height="24"
               />
-            }
-            className="!h-fit !w-full lg:!w-fit !py-2 !text-sm"
-          />
+            </button>
+          </div>
         </div>
       </div>
-    </div>
+    </Link>
   );
 };
 

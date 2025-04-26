@@ -56,7 +56,7 @@ const Slider = ({
   };
 
   return (
-    <div className="-mx-4 w-screen sm:-mx-6 lg:mx-0 lg:w-full lg:space-y-8">
+    <div className="w-full lg:w-full lg:space-y-8">
       <div className="relative">
         <Swiper
           speed={800}
@@ -66,15 +66,16 @@ const Slider = ({
             swiperRef.current = swiper;
           }}
           onSlideChange={handleSlideChange}
+          watchOverflow={true}
           breakpoints={{
             0: {
-              slidesPerGroup: 1,
+              // slidesPerGroup: 1.5,
               slidesPerView: "auto",
               spaceBetween: 16,
             },
             [TABLET_BREAKPOINT]: {
               spaceBetween: 20,
-              slidesPerGroup: 1,
+              // slidesPerGroup: 1.5,
               slidesPerView: "auto",
             },
             [DESKTOP_BREAKPOINT]: {
@@ -85,7 +86,7 @@ const Slider = ({
               spaceBetween: 25,
             },
           }}
-          className="z-50 lg:w-full"
+          className="z-[10000] !overflow-visible last:mr-0 lg:w-full lg:!overflow-hidden"
         >
           {children}
         </Swiper>
