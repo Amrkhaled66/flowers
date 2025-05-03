@@ -1,4 +1,4 @@
-import { useEffect, useState, useRef } from "react";
+import {  useState, useRef } from "react";
 import { Icon } from "@iconify/react/dist/iconify.js";
 import {
   MapContainer,

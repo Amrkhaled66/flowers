@@ -1,4 +1,3 @@
-import { ReactNode } from "react";
 import { Icon } from "@iconify/react/dist/iconify.js";
 import ProfileSideBar from "src/types/ProfileSideBar";
 

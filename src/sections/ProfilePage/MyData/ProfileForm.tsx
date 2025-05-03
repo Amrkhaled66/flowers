@@ -6,7 +6,6 @@ import {
   validatePhoneNumber,
 } from "src/helpers/registerHelpers";
 
-import { Link } from "react-router-dom";
 interface RadioInputProps {
   label: string;
   name: string;
@@ -206,7 +205,7 @@ const ProfileForm = () => {
   return (
     <form onSubmit={handleSubmit} className="">
       <div className="!text-text-main space-y-5">
-        {formFields.map((fieldGroup, index) => (
+        {formFields.map((fieldGroup) => (
           <div className={`${fieldGroup.layout==="inline" ? "grid grid-cols-2 gap-x-4" : ""}`}>
             {fieldGroup.fields.map((field) => (
               <FormInput

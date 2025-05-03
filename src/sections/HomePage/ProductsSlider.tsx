@@ -33,7 +33,6 @@ const ProductsSlider = ({
                 <ProductCard
                   img={item.img}
                   name={item.name}
-                  stars={item.stars}
                   price={item.price}
                   discountedPrice={item.discountedPrice}
                 />

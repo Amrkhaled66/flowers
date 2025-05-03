@@ -1,11 +1,14 @@
-import Swal  from "sweetalert2";
+import Swal from 'sweetalert2';
+
+type AlertIcon = 'success' | 'error' | 'warning' | 'info' | 'question';
 
 interface AlertProps {
   title: string;
   text: string;
-  icon: string;
+  icon: AlertIcon;
   confirmButtonText: string;
 }
+
 const Alert = ({
   title,
   text,
@@ -16,7 +19,7 @@ const Alert = ({
     title,
     text,
     icon,
-    confirmButtonColor: "#534457",
+    confirmButtonColor: '#534457',
     confirmButtonText,
   });
 };

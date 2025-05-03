@@ -35,17 +35,9 @@ const SocialIcon = ({ icon }: { icon: ReactNode }) => {
 const Info = ({
   name,
   price,
-  stars,
-  reviews,
-  description,
-  category,
 }: {
   name: string | undefined;
   price: number | undefined;
-  stars: number | undefined;
-  reviews: number | undefined;
-  description: string | undefined;
-  category: string | undefined;
 }) => {
   return (
     <div className="font-main space-y-2 lg:w-[50%] lg:space-y-6">
@@ -77,7 +69,7 @@ const Info = ({
                   height="24"
                 />
               }
-              className="hover:bg-main-300 animate w-full  lg:!py-4 !text-lg text-white"
+              className="hover:bg-main-300 animate w-full !text-lg text-white lg:!py-4"
             />
             <button className="border-main text-main flex-1 rounded-xl border-2 !py-3 text-center text-lg font-bold">
               Buy Now

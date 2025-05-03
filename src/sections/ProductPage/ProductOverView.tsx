@@ -1,15 +1,10 @@
-import React from "react";
-
 import Images from "src/components/ProductPage/ProductOverView/Images";
 import Info from "src/components/ProductPage/ProductOverView/Info";
 const ProductOverView = ({
   images,
   name,
   price,
-  stars,
-  reviews,
-  description,
-  category,
+
 }: {
   images: string[] | undefined;
   name: string | undefined;
@@ -25,10 +20,6 @@ const ProductOverView = ({
       <Info
         name={name}
         price={price}
-        stars={stars}
-        reviews={reviews}
-        description={description}
-        category={category}
       />
     </div>
   );

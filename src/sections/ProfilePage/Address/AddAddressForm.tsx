@@ -1,4 +1,4 @@
-import { useState, FormEvent, ChangeEvent, useCallback } from "react";
+import { useState, FormEvent, ChangeEvent } from "react";
 import FormInput from "src/components/ui/register/FormInput";
 import Button from "src/components/ui/Button";
 import MapButton from "src/components/ui/AddressForm/MapModel/MapButton";
@@ -29,10 +29,8 @@ const initialFormErrors: FormErrors = {
 
 const AddAddressForm = ({
   FormData,
-  setShowAddAddressForm,
 }: {
   FormData?: Address;
-  setShowAddAddressForm?: (show: boolean) => void;
 }) => {
   const [formData, setFormData] = useState<Address>(
     FormData || initialFormData,

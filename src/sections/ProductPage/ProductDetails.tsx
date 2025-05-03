@@ -1,26 +1,4 @@
 import Description from "src/components/ProductPage/ProductDetails/Description";
-import CoreTips from "src/components/ProductPage/ProductDetails/CoreTips";
-import Reviews from "src/components/ProductPage/ProductDetails/Reviews";
-
-type Section = {
-  title: string;
-  component: React.ReactNode;
-};
-
-const sections: Section[] = [
-  {
-    title: "Description",
-    component: <Description />,
-  },
-  // {
-  //   title: "Core Tips",
-  //   component: <CoreTips />,
-  // },
-  // {
-  //   title: "Reviews",
-  //   component: <Reviews />,
-  // },
-];
 
 const ProductDetails = () => {
   return (

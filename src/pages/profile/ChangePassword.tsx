@@ -14,7 +14,6 @@ const PasswordInput = ({
   label,
   name,
   placeholder,
-  value,
   error,
   onChange,
 }: PasswordInputProps) => {

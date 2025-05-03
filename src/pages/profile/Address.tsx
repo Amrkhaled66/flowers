@@ -17,7 +17,6 @@ const Address = () => {
     return (
       <AddAddressForm
         FormData={editedAddress}
-        setShowAddAddressForm={setShowAddAddressForm}
       />
     );
   }

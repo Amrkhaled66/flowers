@@ -3,12 +3,11 @@ import { Icon } from "@iconify/react/dist/iconify.js";
 import reviews from "src/data/reviews";
 const Review = ({
   name,
-  stars,
+
   date,
   content,
 }: {
   name: string;
-  stars: number;
   date: string;
   content: string;
 }) => {
@@ -58,7 +57,6 @@ const Reviews = () => {
           <Review
             key={index}
             name={review.name}
-            stars={review.stars}
             date={review.date}
             content={review.content}
           />

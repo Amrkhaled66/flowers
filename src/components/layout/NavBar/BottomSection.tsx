@@ -9,7 +9,6 @@ import ProfileMenuButton from "./ProfileMenuButton";
 const BottomSection = () => {
   const { toggleMenu, toggleCart } = useNavBarToggleBtns();
   const isAuth = true;
-  const name = "Amr";
   return (
     <div className="z-50 w-screen bg-white py-3 drop-shadow-md">
       <div className="container">
