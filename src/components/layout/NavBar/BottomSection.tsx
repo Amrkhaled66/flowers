@@ -4,8 +4,12 @@ import { useNavBarToggleBtns } from "src/context/NavBarToggleBtns";
 
 import Logo1 from "src/assets/Logo1.webp";
 import { Link } from "react-router-dom";
+
+import ProfileMenuButton from "./ProfileMenuButton";
 const BottomSection = () => {
   const { toggleMenu, toggleCart } = useNavBarToggleBtns();
+  const isAuth = true;
+  const name = "Amr";
   return (
     <div className="z-50 w-screen bg-white py-3 drop-shadow-md">
       <div className="container">
@@ -34,12 +38,16 @@ const BottomSection = () => {
             </div>
           </Link>
           <div className="flex gap-x-6">
-            <Link to="/signin" className="flex gap-x-2">
-              <Icon icon="bi:person" width="24" height="24" />
-              <span className="text-text-main hidden font-bold lg:block">
-                My Account
-              </span>
-            </Link>
+            {isAuth ? (
+              <ProfileMenuButton />
+            ) : (
+              <Link to="/signin" className="flex gap-x-2">
+                <Icon icon="bi:person" width="24" height="24" />
+                <span className="text-text-main hidden font-bold lg:block">
+                  My Account
+                </span>
+              </Link>
+            )}
             <button onClick={toggleCart} className="flex gap-x-2">
               <Icon icon="carbon:shopping-cart" width="24" height="24" />{" "}
               <span className="text-text-main hidden font-bold lg:block">

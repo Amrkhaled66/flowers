@@ -8,10 +8,11 @@
 
   --color-main: #534457;
   --color-main-fade: #756979cc;
-  --color-main-400: #93d5f5;
-  --color-main-300: #8C828E;
-  --color-main-600: #6db9dd;
+  --color-main-50: #f4f4f4;
   --color-main-100: #cac5cb;
+  --color-main-300: #8c828e;
+  --color-main-400: #93d5f5;
+  --color-main-600: #6db9dd;
   --color-hero-color: #f0e9df;
   --color-text-main: #231d25;
   --color-stroke: #e0e0e0;
@@ -32,13 +33,15 @@
 
 /* || reset */
 html {
-  overflow-x: hidden !important ;
+  /* overflow-x: hidden !important ; */
   height: auto;
+  overflow-y: auto !important;
+  padding:0 !important;
 }
 body {
-  overflow: hidden !important ;
   height: auto;
 }
+
 
 button {
   cursor: pointer;
@@ -61,10 +64,10 @@ input {
     padding: 0 16px !important;
   }
   @media (width >= 40rem /* 640px */) {
-    max-width: 40rem;
+    max-width: 42rem;
   }
   @media (width >= 48rem /* 768px */) {
-    max-width: 46rem;
+    max-width: 47rem;
   }
   @media (width >= 64rem /* 1024px */) {
     max-width: 62rem /* 1024 */;
@@ -89,4 +92,47 @@ input {
 
 .cart-menu::-webkit-scrollbar {
   display: none;
+}
+
+.dashed-border {
+  background-image:
+    repeating-linear-gradient(
+      90deg,
+      #000000,
+      #000000 12px,
+      transparent 12px,
+      transparent 19px
+    ),
+    repeating-linear-gradient(
+      180deg,
+      #000000,
+      #000000 12px,
+      transparent 12px,
+      transparent 19px
+    ),
+    repeating-linear-gradient(
+      90deg,
+      #000000,
+      #000000 12px,
+      transparent 12px,
+      transparent 19px
+    ),
+    repeating-linear-gradient(
+      180deg,
+      #000000,
+      #000000 12px,
+      transparent 12px,
+      transparent 19px
+    );
+  background-position:
+    left top,
+    right top,
+    left bottom,
+    left top;
+  background-repeat: repeat-x, repeat-y, repeat-x, repeat-y;
+  background-size:
+    100% 1px,
+    1px 100%,
+    100% 1px,
+    1px 100%;
 }

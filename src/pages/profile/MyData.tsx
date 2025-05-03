@@ -5,7 +5,7 @@ const MyData = () => {
   const [isEditing, setIsEditing] = useState(false);
   const onEdit = () => setIsEditing(true);
   return (
-    <div className="font-main text-text-main">
+    <div className="font-main  text-text-main">
       {isEditing ? <ProfileForm /> : <ProfileInfo onEdit={onEdit} />}
     </div>
   );

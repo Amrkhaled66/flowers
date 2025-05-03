@@ -25,7 +25,7 @@ const Menu = () => {
 
   return (
     <div
-      className={`menu-bar fixed top-0 left-0 z-[60] flex h-screen w-full flex-col gap-y-6 overflow-x-hidden overflow-y-scroll bg-white px-4 py-6 transition-all duration-300 sm:px-8 sm:py-4 lg:w-[739px] lg:px-8 lg:py-10 ${
+      className={`menu-bar fixed top-0 left-0 z-[80] flex h-screen w-full flex-col gap-y-6 overflow-x-hidden overflow-y-scroll bg-white px-4 py-6 transition-all duration-300 sm:px-8 sm:py-4 lg:w-[739px] lg:px-8 lg:py-10 ${
         openMenu ? "translate-x-0" : "translate-x-[-100%]"
       }`}
     >

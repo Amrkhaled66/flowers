@@ -1,5 +1,5 @@
 import { useState, ChangeEvent, FormEvent } from "react";
-
+import Button from "src/components/ui/Button";
 // Reusable Password Input Component
 interface PasswordInputProps {
   label: string;
@@ -23,8 +23,8 @@ const PasswordInput = ({
   return (
     <div className="flex flex-col gap-y-3">
       <label htmlFor={name}>{label}</label>
-      <div className="border-stroke relative rounded-sm border py-2.5">
-        <div className="pointer-events-none absolute inset-y-0 start-0 flex items-center ps-3">
+      <div className="relative bg-white">
+        <div className="pointer-events-none absolute inset-y-0 start-0 flex h-full items-center ps-3">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             width="24"
@@ -45,12 +45,12 @@ const PasswordInput = ({
         <input
           placeholder={placeholder}
           onChange={onChange}
-          className="placeholder:text-subTitle w-full ps-10"
+          className="placeholder:text-subTitle border-stroke animate focus:border-main h-full w-full rounded-xl border py-2.5 ps-10"
           type={showPassword ? "text" : "password"}
           name={name}
         />
         <div
-          className="absolute inset-y-0 right-0 flex cursor-pointer items-center pr-3"
+          className="g absolute inset-y-0 right-0 flex cursor-pointer items-center pr-3"
           onClick={() => setShowPassword(!showPassword)}
         >
           {showPassword ? (
@@ -62,14 +62,7 @@ const PasswordInput = ({
               fill="none"
             >
               <path
-                d="M3.99902 8C5.25306 9.25404 8.01611 12 11.999 12C15.982 12 18.745 9.25404 19.999 8"
-                stroke="#616161"
-                strokeWidth="1.5"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              />
-              <path
-                d="M4 16L20 16"
+                d="M9.76379 5.29519C10.4662 5.10724 11.2121 5 11.9997 5C15.7571 5 18.5637 7.4404 20.2324 9.43934C21.4845 10.9394 21.4844 13.0609 20.2322 14.5609C20.0403 14.7907 19.8334 15.0264 19.6117 15.2635M12.4998 9.04148C13.756 9.25224 14.7475 10.2437 14.9583 11.5M2.99976 3L20.9998 21M11.4998 14.9585C10.4156 14.7766 9.5286 14.0132 9.17047 13M4.3489 8.77822C4.14189 9.00124 3.94797 9.22274 3.76737 9.43907C2.51518 10.9391 2.51498 13.0606 3.76715 14.5607C5.4358 16.5596 8.24239 19 11.9998 19C12.8019 19 13.5606 18.8888 14.2742 18.6944"
                 stroke="#616161"
                 strokeWidth="1.5"
                 strokeLinecap="round"
@@ -246,12 +239,11 @@ const ChangePassword = () => {
       </div>
 
       <div className="mt-8">
-        <button
-          type="submit"
-          className="bg-main w-full rounded-sm px-6 py-3 text-lg font-bold text-white transition-colors"
-        >
-          Update Password
-        </button>
+        <Button
+          text=" Update Password"
+          // type="submit"
+          className="bg-main w-full !py-3 text-lg font-bold text-white transition-colors"
+        ></Button>
       </div>
     </form>
   );

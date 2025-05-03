@@ -8,7 +8,7 @@ const Cart = () => {
   const { openCart, toggleCart } = useNavBarToggleBtns();
   return (
     <div
-      className={`font-main text-text-main fixed top-0 right-0 z-[60] flex h-screen flex-col justify-between gap-y-6 overflow-y-scroll bg-white px-4 py-10 transition-all duration-300 sm:w-[375px] lg:w-[446px] lg:px-8 ${
+      className={`font-main text-text-main fixed top-0 right-0 z-[80] flex h-screen flex-col justify-between gap-y-6 overflow-y-scroll bg-white px-4 py-10 transition-all duration-300 sm:w-[375px] lg:w-[446px] lg:px-8 ${
         openCart ? "translate-x-0" : "translate-x-[100%]"
       } `}
     >

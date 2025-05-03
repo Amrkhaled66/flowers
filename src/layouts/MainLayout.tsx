@@ -9,14 +9,14 @@ import { useNavBarToggleBtns } from "src/context/NavBarToggleBtns";
 const MainLayout = () => {
   const { openCart, openMenu } = useNavBarToggleBtns();
   return (
-    <>
+    <div  className="h-auto pt-[104px] lg:pt-[155px]" >
       <NavBar />
       <Outlet />
       <Footer />
       <Cart />
       <Menu />
       {(openCart || openMenu) && <Overlay />}
-    </>
+    </div>
   );
 };
 export default MainLayout;

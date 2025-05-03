@@ -1,6 +1,18 @@
 import { ChangeEvent } from "react";
 
-const FormInput = ({
+interface FormInputProps<T> {
+  label: string;
+  type: string;
+  name: string;
+  value: T;
+  error: string;
+  required?: boolean;
+  bgColor?: string;
+  onChange: (e: ChangeEvent<HTMLInputElement>) => void;
+  min?: string;
+}
+
+function FormInput<T>({
   label,
   type,
   name,
@@ -8,15 +20,9 @@ const FormInput = ({
   error,
   onChange,
   required = false,
-}: {
-  label: string;
-  type: string;
-  name: string;
-  value: string;
-  error: string;
-  required?: boolean;
-  onChange: (e: ChangeEvent<HTMLInputElement>) => void;
-}) => {
+  bgColor = "bg-white",
+  min,
+}: FormInputProps<T>) {
   return (
     <div className="flex flex-col items-start gap-y-3">
       <label htmlFor={name} className="text-text-main font-bold">
@@ -24,19 +30,20 @@ const FormInput = ({
       </label>
       <div className="w-full space-y-2">
         <input
+          min={min}
           required={required}
           type={type}
           name={name}
           id={name}
-          value={value}
+          value={String(value)}
           onChange={onChange}
           placeholder={label}
-          className={` ${error ? "border-[#D00]" : "border-stroke focus:border-main"} animate w-full rounded-sm border p-2.5`}
+          className={` ${error ? "border-[#D00]" : "border-stroke focus:border-main"} ${bgColor} animate w-full rounded-xl border p-2.5`}
         />
         {error && <p className="text-left text-xs text-[#D00]">{error}</p>}
       </div>
     </div>
   );
-};
+}
 
 export default FormInput;

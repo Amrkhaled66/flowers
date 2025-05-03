@@ -1,6 +1,7 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import MainLayout from "./layouts/MainLayout";
 import ProfilePageLayout from "./layouts/ProfilePageLayout";
+import ScrollToTop from "./components/ScroolToTop";
 
 import {
   HomePage,
@@ -12,10 +13,12 @@ import {
   ChangePassword,
   Occasions,
   Address,
+  Favorite,
 } from "./pages";
 const Paths = () => {
   return (
     <Router>
+      <ScrollToTop />
       <Routes>
         <Route path="/" element={<MainLayout />}>
           <Route path="/" element={<HomePage />} index></Route>
@@ -27,6 +30,7 @@ const Paths = () => {
             <Route path="change-password" element={<ChangePassword />} />
             <Route path="occasions" element={<Occasions />} />
             <Route path="addresses" element={<Address />} />
+            <Route path="favorites" element={<Favorite />} />
           </Route>
         </Route>
       </Routes>

@@ -77,7 +77,7 @@ const Info = ({
                   height="24"
                 />
               }
-              className="hover:bg-main-300 animate w-full !py-4 !text-lg text-white"
+              className="hover:bg-main-300 animate w-full  lg:!py-4 !text-lg text-white"
             />
             <button className="border-main text-main flex-1 rounded-xl border-2 !py-3 text-center text-lg font-bold">
               Buy Now

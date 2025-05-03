@@ -9,12 +9,12 @@ const QuantitySelector = ({
 }) => {
   const [quantity, setQuantity] = useState(currentQuantity);
   return (
-    <div className="space-y-3 border border-main rounded-xl">
+    <div className="space-y-3 rounded-xl">
       {!isCartMenu && (
         <p className="text-text-main font-main font-bold">Amount</p>
       )}
       <div
-        className={` ${isCartMenu ? "border-stroke" : "border-main"} flex h-[40px] w-fit items-center gap-x-1 lg:gap-x-3 rounded-xl border px-2`}
+        className={`border-main flex h-[40px] w-fit items-center gap-x-1 rounded-xl border px-2 lg:gap-x-3`}
       >
         <button onClick={() => setQuantity((prev) => (prev - 1) % 1)}>
           <Icon
@@ -28,7 +28,7 @@ const QuantitySelector = ({
           type="text"
           value={quantity}
           defaultValue={quantity}
-          className={`bg-main-100 text-text-main h-full w-[34px] lg:w-[46px] text-center   lg:text-xl font-bold`}
+          className={`bg-main-100 text-text-main h-full w-[34px] text-center font-bold lg:w-[46px] lg:text-xl`}
         />
         <button onClick={() => setQuantity((prev) => prev + 1)}>
           <Icon

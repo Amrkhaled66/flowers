@@ -5,19 +5,17 @@ import { Icon } from "@iconify/react/dist/iconify.js";
 const ProductCard = ({
   img,
   name,
-  stars,
   price,
   // discountedPrice,
 }: {
   img: string;
   name: string;
-  stars: number;
   price: number;
   discountedPrice?: number;
 }) => {
   return (
     <Link to={`/product/${name}`}>
-      <div className="border-stroke w-full overflow-hidden rounded-2xl border">
+      <div className="border-stroke w-full bg-white  overflow-hidden rounded-2xl border">
         <div className="h-[140px] sm:h-[310px] lg:h-[282px]">
           <img
             src={img}

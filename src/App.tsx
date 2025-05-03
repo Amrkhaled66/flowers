@@ -1,6 +1,5 @@
 import "./App.css";
 import Paths from "./paths";
-
 // providers
 import NavBarToggleBtnsProvider from "./context/NavBarToggleBtns";
 function App() {

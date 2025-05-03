@@ -3,7 +3,7 @@ import BottomSection from "src/components/layout/NavBar/BottomSection";
 
 const NavBar = () => {
   return (
-    <div className="sticky  top-0 z-50">
+    <div className="fixed top-0 w-screen z-[60]">
       <TopSection />
       <BottomSection />
     </div>

@@ -10,6 +10,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@headlessui/react": "^2.2.2",
     "@iconify/react": "^5.2.1",
     "@tailwindcss/vite": "^4.1.4",
     "leaflet": "^1.9.4",
@@ -20,12 +21,14 @@
     "react-leaflet": "^5.0.0",
     "react-router": "^7.5.0",
     "react-router-dom": "^7.5.0",
+    "sweetalert2": "^11.19.1",
     "swiper": "^11.2.6",
     "vite-tsconfig-paths": "^5.1.4"
   },
   "devDependencies": {
     "@eslint/js": "^9.21.0",
     "@types/leaflet": "^1.9.17",
+    "@types/node": "^22.15.3",
     "@types/react": "^19.0.10",
     "@types/react-dom": "^19.0.4",
     "@types/react-router-dom": "^5.3.3",

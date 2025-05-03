@@ -15,7 +15,7 @@ import usePageTitle from "src/hooks/useUpdatePageTitle";
 const HomePage = () => {
   usePageTitle("Ballora");
   return (
-    <div className="flex flex-col gap-y-8 lg:gap-y-0">
+    <div className="flex flex-col  gap-y-8 lg:gap-y-0">
       <HeroSection />
       <MainCategories />
       {/* <CategorySlider title="Shop Trending Categories" items={categories} /> */}
