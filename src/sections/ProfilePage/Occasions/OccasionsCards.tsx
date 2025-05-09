@@ -1,20 +1,11 @@
 import OccasionsCard from "src/components/ProfilePage/Occasions/OccasionsCard";
-import Occasion from "src/types/Occasion";
-
-const Occasions: Occasion[] = [
-  {
-    eventTitle: "Birthday",
-    eventDate: "1/8/2002",
-    type: "Birthday",
-    id: 1,
-    note: "",
-  },
-];
-
+import Occasion from "src/types/UserInfo/Occasion";
 const OccasionsCards = ({
+  Occasions,
   onEditOccasion,
 }: {
   onEditOccasion: (occasion: Occasion) => void;
+  Occasions: Occasion[];
 }) => {
   return (
     <div>

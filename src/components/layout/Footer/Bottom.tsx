@@ -1,8 +1,9 @@
 import { ReactNode } from "react";
 import { Icon } from "@iconify/react/dist/iconify.js";
+import applePay from "src/assets/paymentWays/applePay.svg";
 const PaymentWay = ({ icon }: { icon: ReactNode }) => {
   return (
-    <div className="border-stroke flex items-center rounded-sm border-2 bg-white px-2 lg:px-4 lg:py-1">
+    <div className="border-stroke flex items-center rounded-sm border-2 bg-white px-2 lg:px-4 ">
       {icon}
     </div>
   );
@@ -35,14 +36,7 @@ const Bottom = () => {
             />
           }
         />
-        <PaymentWay
-          icon={
-            <Icon
-              icon="logos:paypal"
-              className="h-[19px] w-[35px] lg:w-[35px]"
-            />
-          }
-        />
+        <PaymentWay icon={<img className="w-[50px] h-[50px]" src={applePay} />} />
         <PaymentWay
           icon={<Icon icon="logos:google-pay" width="40" height="40" />}
         />

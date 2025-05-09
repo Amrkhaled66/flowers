@@ -1,43 +1,35 @@
 import Button from "src/components/ui/Button";
 import AddressCards from "src/sections/ProfilePage/Address/AddressCards";
-import AddAddressForm from "src/sections/ProfilePage/Address/AddAddressForm";
+import AddAddressForm from "src/pages/profile/AddNewAddress";
 
 import { Icon } from "@iconify/react/dist/iconify.js";
 import { useState } from "react";
 
-import AddressType from "src/types/Address";
-
+import AddressType from "src/types/UserInfo/Address";
+import { Link } from "react-router-dom";
 const Address = () => {
-  const [showAddAddressForm, setShowAddAddressForm] = useState(false);
   const [editedAddress, setEditedAddress] = useState<AddressType | null>(null);
 
   const handleEditAddress = (address: AddressType) => setEditedAddress(address);
 
   if (editedAddress) {
-    return (
-      <AddAddressForm
-        FormData={editedAddress}
-      />
-    );
+    return <AddAddressForm FormData={editedAddress} />;
   }
 
   return (
     <div>
-      {showAddAddressForm ? (
-        <AddAddressForm />
-      ) : (
-        <div className="space-y-10">
+      <div className="flex flex-col gap-y-10">
+        <Link to="addNewAddress">
           <div className="dashed-border divide-dashed rounded-xl p-2">
             <Button
-              onClick={() => setShowAddAddressForm(true)}
               text="Add a new address"
               icon={<Icon icon="line-md:plus" width="24" height="24" />}
               className="bg-main-100 animate text-main w-full rounded-sm !py-3 text-center font-bold"
             ></Button>
           </div>
-          <AddressCards onEditAddress={handleEditAddress} />
-        </div>
-      )}
+        </Link>
+        <AddressCards onEditAddress={handleEditAddress} />
+      </div>
     </div>
   );
 };

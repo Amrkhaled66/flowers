@@ -5,7 +5,7 @@ const HeroSection = () => {
   return (
     <section className="bg-hero-color relative">
       <div className="container h-[300px] sm:h-[400px] lg:h-[732px]">
-        <div className="relative flex size-full items-center justify-end overflow-hidden ">
+        <div className="relative flex size-full items-center justify-between overflow-hidden ">
           <FloatingElements />
           <Content />
           <RightSection />

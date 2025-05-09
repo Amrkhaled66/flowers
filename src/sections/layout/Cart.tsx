@@ -2,7 +2,7 @@ import Summary from "src/components/layout/Cart/Summary";
 import Head from "src/components/layout/Cart/Head";
 import { Icon } from "@iconify/react/dist/iconify.js";
 import { useNavBarToggleBtns } from "src/context/NavBarToggleBtns";
-import CartMenuCard from "src/components/layout/Cart/CartMenuCard";
+import CartMenuCard from "src/components/ui/CartCard";
 import { products1 } from "src/data/products";
 const Cart = () => {
   const { openCart, toggleCart } = useNavBarToggleBtns();

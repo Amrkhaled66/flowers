@@ -112,10 +112,10 @@ const AddOccasionModal = ({
     <Model isOpen={isOpen} onClose={onClose}>
       <form
         onSubmit={handleSubmit}
-        className="space-y-5 rounded-2xl bg-white p-4"
+        className="mx-auto w-[90%] space-y-5 rounded-2xl bg-white p-4 lg:w-[900px]"
       >
-        <div className="h-fit w-[900px] space-y-4">
-          <div className="grid w-full grid-cols-2 gap-4">
+        <div className="h-fit space-y-4">
+          <div className="grid w-full grid-cols-1 lg:grid-cols-2 gap-4">
             <FormInput
               bgColor="bg-main-50"
               type="text"

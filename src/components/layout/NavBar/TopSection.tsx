@@ -1,6 +1,6 @@
 import { Icon } from "@iconify/react/dist/iconify.js";
 import { ReactNode } from "react";
-
+import { useTranslation } from "react-i18next";
 const ProsIcon = ({
   icon,
   text,
@@ -17,9 +17,11 @@ const ProsIcon = ({
     </div>
   );
 };
+
 const TopSection = () => {
+  const { t } = useTranslation("home");
   return (
-    <div className="bg-text-main">
+    <div className="bg-footer-color">
       <div className="container text-white">
         <div className="flex justify-between py-2">
           <div className="flex w-fit gap-x-6">
@@ -27,21 +29,21 @@ const TopSection = () => {
               icon={
                 <Icon icon="mdi:truck-check-outline" width="20" height="20" />
               }
-              text="Express Delivery"
+              text={t("navBar.pros")}
             />
             <ProsIcon
               className="hidden md:flex"
               icon={
                 <Icon icon="mdi:truck-check-outline" width="20" height="20" />
               }
-              text="Express Delivery"
+              text={t("navBar.pros")}
             />
             <ProsIcon
               className="hidden lg:flex"
               icon={
                 <Icon icon="mdi:truck-check-outline" width="20" height="20" />
               }
-              text="Express Delivery"
+              text={t("navBar.pros")}
             />
           </div>
           <div></div>

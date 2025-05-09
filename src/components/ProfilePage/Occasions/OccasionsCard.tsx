@@ -1,4 +1,4 @@
-import Occasion from "src/types/Occasion";
+import Occasion from "src/types/UserInfo/Occasion";
 import Row from "src/components/ui/ProfileCard/Row";
 import ProfileCard from "src/components/ui/ProfileCard/ProfileCard";
 import DeleteOccasionModel from "src/sections/ProfilePage/Occasions/DeleteOccasionModel";

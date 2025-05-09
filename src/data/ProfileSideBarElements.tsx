@@ -3,7 +3,7 @@ import ProfileSideBar from "src/types/ProfileSideBar";
 
 const Elements: ProfileSideBar[] = [
   {
-    name: "My data",
+    name: "Personal information",
     icon: <Icon icon="bi:person" width="24" height="24" />,
     link: "/profile/mydata",
   },
@@ -18,12 +18,17 @@ const Elements: ProfileSideBar[] = [
     link: "/profile/addresses",
   },
   {
+    name: "My Orders",
+    icon: <Icon icon="solar:delivery-outline" width="24" height="24" />,
+    link: "/profile/orders",
+  },
+  {
     name: "My Occasions",
     icon: <Icon icon="solar:calendar-linear" width="24" height="24" />,
     link: "/profile/occasions",
   },
   {
-    name: "Ballora Wallet",
+    name: "Ballora Points",
     icon: (
       <Icon
         icon="fluent:wallet-credit-card-16-regular"
@@ -31,17 +36,18 @@ const Elements: ProfileSideBar[] = [
         height="24"
       />
     ),
-    link: "/profile/wallet",
+    link: "/profile/points",
   },
   {
-    name: "Favourite",
+    name: "Add New Address",
+    icon: <Icon icon="mdi:favourite-border" width="24" height="24" />,
+    link: "/profile/addresses/addNewAddress",
+    show: false,
+  },
+  {
+    name: "Favorite",
     icon: <Icon icon="mdi:favourite-border" width="24" height="24" />,
     link: "/profile/favorites",
-  },
-  {
-    name: "Invoices",
-    icon: <Icon icon="stash:invoice-light" width="24" height="24" />,
-    link: "/profile/invoices",
   },
 ];
 

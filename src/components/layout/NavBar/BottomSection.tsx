@@ -1,13 +1,18 @@
 import { Icon } from "@iconify/react/dist/iconify.js";
 
 import { useNavBarToggleBtns } from "src/context/NavBarToggleBtns";
+import { useTranslation } from "react-i18next";
 
 import Logo1 from "src/assets/Logo1.webp";
 import { Link } from "react-router-dom";
 
 import ProfileMenuButton from "./ProfileMenuButton";
+import ProfileMenuButtonMobile from "./ProfileMenuButtonMobile";
+
 const BottomSection = () => {
   const { toggleMenu, toggleCart } = useNavBarToggleBtns();
+  const { t } = useTranslation("home");
+
   const isAuth = true;
   return (
     <div className="z-50 w-screen bg-white py-3 drop-shadow-md">
@@ -21,13 +26,13 @@ const BottomSection = () => {
                 height="24"
               />
               <span className="text-text-main hidden font-bold lg:block">
-                Menu
+                {t("navBar.menu")}
               </span>
             </button>
             <button className="flex gap-x-2">
               <Icon icon="ic:baseline-search" width="24" height="24" />
               <span className="text-text-main hidden font-bold lg:block">
-                Search
+                {t("navBar.search")}
               </span>
             </button>
           </div>
@@ -38,19 +43,22 @@ const BottomSection = () => {
           </Link>
           <div className="flex gap-x-6">
             {isAuth ? (
-              <ProfileMenuButton />
+              <>
+                <ProfileMenuButton />
+                <ProfileMenuButtonMobile />
+              </>
             ) : (
               <Link to="/signin" className="flex gap-x-2">
                 <Icon icon="bi:person" width="24" height="24" />
                 <span className="text-text-main hidden font-bold lg:block">
-                  My Account
+                {t("navBar.account")} 
                 </span>
               </Link>
             )}
             <button onClick={toggleCart} className="flex gap-x-2">
               <Icon icon="carbon:shopping-cart" width="24" height="24" />{" "}
               <span className="text-text-main hidden font-bold lg:block">
-                Cart
+              {t("navBar.cart")} 
               </span>
             </button>
           </div>

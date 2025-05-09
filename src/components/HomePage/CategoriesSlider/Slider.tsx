@@ -11,7 +11,7 @@ import "swiper/css/navigation";
 
 // Types
 import Product from "src/types/product";
-import category from "src/types/category";
+import category from "src/types/BaseItem";
 
 // Constants
 const DEFAULT_SLIDES_PER_GROUP = 7;

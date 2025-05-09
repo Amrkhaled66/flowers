@@ -34,7 +34,6 @@ const ProductsSlider = ({
                   img={item.img}
                   name={item.name}
                   price={item.price}
-                  discountedPrice={item.discountedPrice}
                 />
               </SwiperSlide>
             );

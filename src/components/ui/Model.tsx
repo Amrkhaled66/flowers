@@ -33,14 +33,14 @@ const Model = ({
   if (!isOpen) return null;
 
   return createPortal(
-    <div className="relative z-[80] flex w-full items-center justify-center">
+    <div className="relative z-[80]  flex  items-center justify-center">
       <div
-        className="bg-opacity-50 fixed top-0 left-0 h-full w-full"
+        className="  fixed top-0 left-0 h-full w-full"
         onClick={onClose}
       >
         <Overlay />
       </div>
-      <div className="font-main fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
+      <div className="font-main fixed w-full  top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
         {children}
       </div>
     </div>,

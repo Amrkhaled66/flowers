@@ -1,4 +1,4 @@
-import {  useState, useRef } from "react";
+import { useState, useRef } from "react";
 import { Icon } from "@iconify/react/dist/iconify.js";
 import {
   MapContainer,
@@ -10,7 +10,7 @@ import {
 import useFullscreen from "src/hooks/useFullscreen";
 import useDebounce from "src/hooks/utils/useDebounce";
 
-import MapSearchInput from "./MapSearchInput";
+import MapSearchInput from "../../SearchInput";
 import showAlert from "src/utils/showAlert";
 
 import "leaflet/dist/leaflet.css";

@@ -36,12 +36,11 @@ html {
   /* overflow-x: hidden !important ; */
   height: auto;
   overflow-y: auto !important;
-  padding:0 !important;
+  padding: 0 !important;
 }
 body {
   height: auto;
 }
-
 
 button {
   cursor: pointer;
@@ -52,6 +51,9 @@ input[type="checkbox"] {
 }
 
 input {
+  outline: none;
+}
+textarea {
   outline: none;
 }
 

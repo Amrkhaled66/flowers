@@ -10,6 +10,7 @@ interface FormInputProps<T> {
   bgColor?: string;
   onChange: (e: ChangeEvent<HTMLInputElement>) => void;
   min?: string;
+  placeholder?: string;
 }
 
 function FormInput<T>({
@@ -22,6 +23,7 @@ function FormInput<T>({
   required = false,
   bgColor = "bg-white",
   min,
+  placeholder,
 }: FormInputProps<T>) {
   return (
     <div className="flex flex-col items-start gap-y-3">
@@ -37,7 +39,7 @@ function FormInput<T>({
           id={name}
           value={String(value)}
           onChange={onChange}
-          placeholder={label}
+          placeholder={placeholder||label}
           className={` ${error ? "border-[#D00]" : "border-stroke focus:border-main"} ${bgColor} animate w-full rounded-xl border p-2.5`}
         />
         {error && <p className="text-left text-xs text-[#D00]">{error}</p>}

@@ -1,4 +1,4 @@
-import Address from "src/types/Address";
+import Address from "src/types/UserInfo/Address";
 import Row from "src/components/ui/ProfileCard/Row";
 import ProfileCard from "src/components/ui/ProfileCard/ProfileCard";
 

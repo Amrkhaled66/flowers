@@ -6,17 +6,19 @@ const ProductCard = ({
   img,
   name,
   price,
-  // discountedPrice,
+  isFavorite = false,
 }: {
   img: string;
   name: string;
   price: number;
-  discountedPrice?: number;
+  isFavorite?: boolean;
 }) => {
   return (
     <Link to={`/product/${name}`}>
-      <div className="border-stroke w-full bg-white  overflow-hidden rounded-2xl border">
-        <div className="h-[140px] sm:h-[310px] lg:h-[282px]">
+      <div className="border-stroke w-full overflow-hidden rounded-2xl border bg-white">
+        <div
+          className={`h-[140px] ${isFavorite && "h-[310px]  sm:!h-[195px] lg:!h-[282px]"} sm:h-[310px] lg:h-[282px]`}
+        >
           <img
             src={img}
             loading="lazy"
@@ -24,9 +26,11 @@ const ProductCard = ({
             className="size-full object-cover object-center"
           />
         </div>
-        <div className="p-2 space-y-3 sm:p-3 lg:p-4">
+        <div className="space-y-3 p-2 sm:p-3 lg:p-4">
           <div className="font-main">
-            <p className="text-text-main line-clamp-4 text-left text-xs font-bold sm:text-xl lg:w-[90%] lg:text-base">
+            <p
+              className={`text-text-main line-clamp-4 ${isFavorite && "!text-xl font-bold"} text-left text-xs font-bold sm:text-xl lg:w-[90%] lg:text-base`}
+            >
               {name}
             </p>
           </div>
@@ -43,7 +47,7 @@ const ProductCard = ({
             <p className="text-text-main font-bold">{discountedPrice}</p>
           )} */}
             </div>
-            <button className="hover:bg-main-300 animate bg-main flex place-items-center rounded-full p-2 sm:p-3 text-white lg:p-4">
+            <button className="hover:bg-main-300 animate bg-main flex place-items-center rounded-full p-2 text-white sm:p-3 lg:p-4">
               <Icon
                 icon="material-symbols:shopping-cart-outline-rounded"
                 width="24"

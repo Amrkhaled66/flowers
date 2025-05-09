@@ -3,40 +3,77 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 
 import profileElements from "src/data/ProfileSideBarElements";
-import ProfileSideBar from "src/types/ProfileSideBar";
+import LogOutButton from "src/components/ui/register/LogOutButton";
 
+import { useTranslation } from "react-i18next";
 const ProfileMenuButton = () => {
+  const { t } = useTranslation("home");
+
   const [openMenu, setOpenMenu] = useState(false);
   const name = "Amr";
 
+  const onCloseMenu = () => setOpenMenu(false);
+  const onOpenMenu = () => setOpenMenu(true);
+
+  const filteredElements = profileElements.filter(
+    (item) => item.name !== "Ballora Points" && item.show !== false,
+  );
+
   return (
     <div
-      onMouseEnter={() => setOpenMenu(true)}
-      onMouseLeave={() => setOpenMenu(false)}
-      onClick={() => setOpenMenu((prev) => !prev)}
+      onMouseEnter={onOpenMenu}
+      onMouseLeave={onCloseMenu}
+      className="relative hidden lg:block"
     >
-      <button className="relative flex gap-x-2">
+      <button className="relative flex items-center gap-x-2">
         <Icon icon="bi:person" width="24" height="24" />
         <span className="text-text-main hidden font-bold lg:block">
-          hello {name}
+          {t("navBar.authWelcome")} {name}
         </span>
-        {openMenu && (
-          <div className="absolute top-6 right-0 min-w-[300px] space-y-8 rounded-xl bg-white p-6 drop-shadow-xl">
-            {profileElements.map((item: ProfileSideBar) => (
+      </button>
+
+      {openMenu && (
+        <div
+          className="absolute top-full right-0 z-50 mt-1 w-[300px] rounded-xl bg-white p-6 drop-shadow-xl"
+          onMouseLeave={() => setOpenMenu(false)}
+        >
+          <div className="space-y-8 pb-4">
+            {filteredElements.map((item) => (
               <Link
-                onClick={() => setOpenMenu(false)}
+                key={item.name}
                 to={item.link}
-                className="animate flex items-center gap-x-3 hover:translate-x-4"
+                onClick={onCloseMenu}
+                className="animate flex items-center gap-x-3"
               >
-                {<span>{item.icon}</span>}
-                <span className="text-text-main hidden font-bold text-nowrap lg:block">
+                <span>{item.icon}</span>
+                <span className="text-text-main hidden font-medium text-nowrap lg:block">
                   {item.name}
                 </span>
               </Link>
             ))}
           </div>
-        )}
-      </button>
+
+          <div className="border-y-stroke flex items-center justify-between rounded-xl border-y py-4">
+            <div className="animate flex items-center gap-x-3">
+              <span>
+                <Icon
+                  icon="fluent:wallet-credit-card-32-regular"
+                  width="24"
+                  height="24"
+                />
+              </span>
+              <span className="text-text-main hidden font-medium text-nowrap lg:block">
+                Ballora Points
+              </span>
+            </div>
+            <div className="bg-main-100 rounded-xl px-6 py-1 font-medium">
+              0
+            </div>
+          </div>
+
+          <LogOutButton isMenuButton />
+        </div>
+      )}
     </div>
   );
 };

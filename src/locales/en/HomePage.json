@@ -1,0 +1,15 @@
+{
+  "navBar": {
+    "menu": "Menu",
+    "search": "Search",
+    "account": "My Account",
+    "authWelcome": "hello",
+    "cart": "cart",
+    "pros":"Express Delivery"
+  },
+  "hero": {
+    "title": "Gift Your Way On Siblings Days",
+    "description": "Love what you listen, listen to what you love. Music speaks when words don’t. Make it clear. Let music reach your heart.",
+    "cta": "Shop Now"
+  }
+}

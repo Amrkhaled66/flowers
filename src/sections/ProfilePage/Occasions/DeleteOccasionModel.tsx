@@ -11,7 +11,7 @@ const DeleteOccasionModel = ({
 }) => {
   return (
     <Model isOpen={isOpen} onClose={onClose}>
-      <div className="space-y-4 rounded-2xl bg-white p-4">
+      <div className="mx-auto w-[90%] space-y-4 rounded-2xl bg-white p-4 sm:w-[400px]">
         <button
           onClick={onClose}
           className="border-stroke ml-auto flex h-[36px] w-[36px] items-center justify-center rounded-xl border"
@@ -20,7 +20,7 @@ const DeleteOccasionModel = ({
         </button>
         <div className="space-y-6 text-center">
           <div className="space-y-2">
-            <h2 className="mx-auto w-[80%] text-[24px] font-bold">
+            <h2 className="mx-auto w-[90%] text-[24px] font-bold sm:w-full lg:w-[90%]">
               Are you sure you want to delete this event?
             </h2>
             <p>This occasion will be remembered forever.</p>

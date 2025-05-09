@@ -1,5 +1,5 @@
 import AddressCard from "src/components/ProfilePage/Address/AddressCard";
-import Address from "src/types/Address";
+import Address from "src/types/UserInfo/Address";
 
 const Addresses: Address[] = [
   {

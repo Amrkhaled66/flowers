@@ -3,18 +3,27 @@ import {
   BestSellers,
   CTA,
   Ideas,
-  MainCategories,
-  SubCategories,
+  Categories,
+  Occasions,
 } from "src/sections/HomePage";
 import usePageTitle from "src/hooks/useUpdatePageTitle";
+
+import { useQuery } from "@tanstack/react-query";
+import { getFullData } from "src/api/HomePage";
 const HomePage = () => {
   usePageTitle("Ballora");
+
+  const { data, isLoading } = useQuery({
+    queryKey: ["full-data"],
+    queryFn: getFullData,
+  });
+
   return (
     <div className="flex flex-col gap-y-8 lg:gap-y-0">
       <HeroSection />
-      <MainCategories />
+      <Categories data={isLoading ? [] : data.data.categories} />
       <BestSellers />
-      <SubCategories />
+      <Occasions data={isLoading ? [] : data.data.occasions} />
       <CTA />
       <Ideas />
     </div>

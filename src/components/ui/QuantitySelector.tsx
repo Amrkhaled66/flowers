@@ -9,33 +9,41 @@ const QuantitySelector = ({
 }) => {
   const [quantity, setQuantity] = useState(currentQuantity);
   return (
-    <div className="space-y-3 rounded-xl">
+    <div className="rounded-xl">
       {!isCartMenu && (
         <p className="text-text-main font-main font-bold">Amount</p>
       )}
       <div
-        className={`border-main flex h-[40px] w-fit items-center gap-x-1 rounded-xl border px-2 lg:gap-x-3`}
+        className={`border-main flex h-[28px] w-fit items-center overflow-hidden rounded-lg border lg:h-[40px] lg:rounded-xl`}
       >
-        <button onClick={() => setQuantity((prev) => (prev - 1) % 1)}>
+        <button
+          style={{
+            background: `${isCartMenu ? "transparent" : "#fff"}`,
+          }}
+          className="flex h-full w-full items-center justify-center px-1"
+          onClick={() => setQuantity((prev) => (prev - 1) % 1)}
+        >
           <Icon
             icon="ic:outline-minus"
-            width="24"
-            height="24"
-            className="text-text-main"
+            className="text-text-main h-[18px] w-[18px] lg:h-[24px] lg:w-[24px]"
           />
         </button>
         <input
           type="text"
           value={quantity}
           defaultValue={quantity}
-          className={`bg-main-100 text-text-main h-full w-[34px] text-center font-bold lg:w-[46px] lg:text-xl`}
+          className={`bg-main-100 text-text-main h-full w-[28px] text-center text-sm font-bold sm:w-[34px] lg:w-[46px] lg:text-xl`}
         />
-        <button onClick={() => setQuantity((prev) => prev + 1)}>
+        <button
+          style={{
+            background: `${isCartMenu ? "transparent" : "#fff"}`,
+          }}
+          className="flex h-full w-full items-center justify-center px-1"
+          onClick={() => setQuantity((prev) => prev + 1)}
+        >
           <Icon
             icon="ic:round-plus"
-            width="24"
-            height="24"
-            className="text-text-main"
+            className="text-text-main h-[18px] w-[18px] lg:h-[24px] lg:w-[24px]"
           />
         </button>
       </div>
