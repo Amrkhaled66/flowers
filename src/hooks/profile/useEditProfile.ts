@@ -1,7 +1,4 @@
-import {
-  validateEmail,
-  validatePhoneNumber,
-} from "src/helpers/registerHelpers";
+import { validateEmail, validatePhoneNumber } from "src/utils/register";
 import { useState, ChangeEvent, FormEvent } from "react";
 
 import { FormDataType, FormErrors } from "src/types/UserInfo/EditProfileForm";

@@ -1,8 +1,9 @@
-// import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import MainLayout from "./layouts/MainLayout";
 import ProfilePageLayout from "./layouts/ProfilePageLayout";
 import CartLayout from "./layouts/CartLayout";
 import CartSubLayout from "./layouts/CartSubLayout";
+
+import { OnlyGuestUser, ProtectedRoute } from "./middleware";
 
 import {
   HomePage,
@@ -29,6 +30,7 @@ import {
 
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
+
 const router = createBrowserRouter([
   {
     path: "/",
@@ -36,12 +38,30 @@ const router = createBrowserRouter([
     children: [
       { index: true, element: <HomePage /> },
       { path: "product/:id", element: <ProductPage /> },
-      { path: "signin", element: <SignInPage /> },
-      { path: "signup", element: <SignUpPage /> },
+      {
+        path: "signin",
+        element: (
+          <OnlyGuestUser>
+            <SignInPage />
+          </OnlyGuestUser>
+        ),
+      },
+      {
+        path: "signup",
+        element: (
+          <OnlyGuestUser>
+            <SignUpPage />
+          </OnlyGuestUser>
+        ),
+      },
       // Profile
       {
         path: "profile",
-        element: <ProfilePageLayout />,
+        element: (
+          <ProtectedRoute>
+            <ProfilePageLayout />
+          </ProtectedRoute>
+        ),
         children: [
           {
             index: true,
@@ -126,6 +146,7 @@ const router = createBrowserRouter([
 ]);
 
 const Paths = () => {
+
   return (
     <>
       <RouterProvider router={router} />

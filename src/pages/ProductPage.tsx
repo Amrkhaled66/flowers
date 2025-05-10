@@ -4,7 +4,7 @@ import { products1 } from "src/data/products";
 import NavigationBar from "src/sections/ProductPage/NavigationBar";
 import ProductOverView from "src/sections/ProductPage/ProductOverView";
 import ProductDetails from "src/sections/ProductPage/ProductDetails";
-import usePageTitle from "src/hooks/useUpdatePageTitle";
+import usePageTitle from "src/hooks/ui/useUpdatePageTitle";
 
 const ProductPage = () => {
   usePageTitle("Product");
@@ -13,7 +13,7 @@ const ProductPage = () => {
   const product = products1.find((product) => product.name === id);
   console.log(product);
   return (
-    <div className="min-h-screen h-auto py-[24px] lg:py-[40px]">
+    <div className="h-auto min-h-screen py-[24px] lg:py-[40px]">
       <div className="container space-y-[24px] lg:space-y-[80px]">
         <div className="space-y-6">
           <NavigationBar name={product?.name} />

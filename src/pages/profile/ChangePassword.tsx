@@ -1,5 +1,5 @@
 import Button from "src/components/ui/Button";
-import useChangePassword from "src/hooks/profileHooks/useChangePassword";
+import useChangePassword from "src/hooks/profile/useChangePassword";
 import PasswordInput from "src/components/ProfilePage/ChangePassword/PasswordInput";
 
 const ChangePassword = () => {

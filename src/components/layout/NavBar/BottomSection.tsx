@@ -9,11 +9,12 @@ import { Link } from "react-router-dom";
 import ProfileMenuButton from "./ProfileMenuButton";
 import ProfileMenuButtonMobile from "./ProfileMenuButtonMobile";
 
+import { useAuth } from "src/context/authCtx";
 const BottomSection = () => {
   const { toggleMenu, toggleCart } = useNavBarToggleBtns();
   const { t } = useTranslation("home");
+  const { isAuthenticated } = useAuth();
 
-  const isAuth = true;
   return (
     <div className="z-50 w-screen bg-white py-3 drop-shadow-md">
       <div className="container">
@@ -41,8 +42,8 @@ const BottomSection = () => {
               <img className="size-full object-cover" src={Logo1} alt="" />
             </div>
           </Link>
-          <div className="flex gap-x-6">
-            {isAuth ? (
+          <div className="flex items-center gap-x-6">
+            {isAuthenticated ? (
               <>
                 <ProfileMenuButton />
                 <ProfileMenuButtonMobile />
@@ -51,14 +52,14 @@ const BottomSection = () => {
               <Link to="/signin" className="flex gap-x-2">
                 <Icon icon="bi:person" width="24" height="24" />
                 <span className="text-text-main hidden font-bold lg:block">
-                {t("navBar.account")} 
+                  {t("navBar.account")}
                 </span>
               </Link>
             )}
             <button onClick={toggleCart} className="flex gap-x-2">
               <Icon icon="carbon:shopping-cart" width="24" height="24" />{" "}
               <span className="text-text-main hidden font-bold lg:block">
-              {t("navBar.cart")} 
+                {t("navBar.cart")}
               </span>
             </button>
           </div>

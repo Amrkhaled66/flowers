@@ -6,7 +6,7 @@ import {
   Categories,
   Occasions,
 } from "src/sections/HomePage";
-import usePageTitle from "src/hooks/useUpdatePageTitle";
+import usePageTitle from "src/hooks/ui/useUpdatePageTitle";
 
 import { useQuery } from "@tanstack/react-query";
 import { getFullData } from "src/api/HomePage";

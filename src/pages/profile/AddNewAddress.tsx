@@ -1,4 +1,4 @@
-import useAddressForm from "src/hooks/profileHooks/useAddressForm";
+import useAddressForm from "src/hooks/profile/useAddressForm";
 import FormInput from "src/components/ui/register/FormInput";
 import Button from "src/components/ui/Button";
 import MapButton from "src/components/ui/AddressForm/MapModel/MapButton";

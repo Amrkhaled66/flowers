@@ -1,4 +1,4 @@
-import useAddressForm from "src/hooks/profileHooks/useAddressForm";
+import useAddressForm from "src/hooks/profile/useAddressForm";
 import FormInput from "src/components/ui/register/FormInput";
 import MapButton from "src/components/ui/AddressForm/MapModel/MapButton";
 import Address from "src/types/UserInfo/Address";
@@ -8,7 +8,7 @@ import { Link } from "react-router-dom";
 
 import { useEffect } from "react";
 import { useOrderSummary } from "src/context/OrderSummaryContext";
-import usePageTitle from "src/hooks/useUpdatePageTitle";
+import usePageTitle from "src/hooks/ui/useUpdatePageTitle";
 
 const initialFormData: Address = {
   name: "",

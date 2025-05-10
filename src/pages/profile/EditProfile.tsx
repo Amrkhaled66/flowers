@@ -1,5 +1,5 @@
 import FormInput from "src/components/ui/register/FormInput";
-import useEditProfile from "src/hooks/profileHooks/useEditProfile";
+import useEditProfile from "src/hooks/profile/useEditProfile";
 import RadioButton from "src/components/ProfilePage/EditProfile/RadioButton";
 import { FormDataType, FormErrors } from "src/types/UserInfo/EditProfileForm";
 

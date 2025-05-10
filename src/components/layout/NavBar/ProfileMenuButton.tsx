@@ -6,12 +6,15 @@ import profileElements from "src/data/ProfileSideBarElements";
 import LogOutButton from "src/components/ui/register/LogOutButton";
 
 import { useTranslation } from "react-i18next";
+import { useAuth } from "src/context/authCtx";
 const ProfileMenuButton = () => {
   const { t } = useTranslation("home");
 
   const [openMenu, setOpenMenu] = useState(false);
-  const name = "Amr";
 
+  const {
+    authData: { user },
+  } = useAuth();
   const onCloseMenu = () => setOpenMenu(false);
   const onOpenMenu = () => setOpenMenu(true);
 
@@ -25,10 +28,12 @@ const ProfileMenuButton = () => {
       onMouseLeave={onCloseMenu}
       className="relative hidden lg:block"
     >
-      <button className="relative flex items-center gap-x-2">
+      <button
+        className={`hover:bg-main-100 animate relative flex items-center gap-x-2 rounded-xl p-2 ${openMenu && "bg-main-100"}`}
+      >
         <Icon icon="bi:person" width="24" height="24" />
         <span className="text-text-main hidden font-bold lg:block">
-          {t("navBar.authWelcome")} {name}
+          {t("navBar.authWelcome")} {user?.first_name}
         </span>
       </button>
 

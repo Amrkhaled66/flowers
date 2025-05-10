@@ -16,7 +16,7 @@ const validatePassword = (password: string) => {
 };
 
 const validatePhoneNumber = (phoneNumber: string) => {
-  const regex = /^(\+971)(50|52|54|55|56)\d{7}$/;
+  const regex = /^971(50|52|54|55|56)\d{7}$/;
   if (!phoneNumber.trim()) return "Phone number is required";
   if (!regex.test(phoneNumber.replace(/\s+/g, "")))
     return "Please enter a valid phone number";

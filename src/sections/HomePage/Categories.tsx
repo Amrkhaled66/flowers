@@ -4,7 +4,7 @@ import HomePageSection from "src/components/ui/HomePageSection";
 import SectionTitle from "src/components/ui/SectionTitle";
 
 import Category from "src/types/BaseItem";
-import { getLocalizedName } from "src/helpers/getLocalizedName";
+import { getLocalizedName } from "src/utils/getLocalizedName";
 const Categories = ({ data }: { data: Category[] }) => {
   return (
     <HomePageSection>

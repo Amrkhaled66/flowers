@@ -7,8 +7,8 @@ import {
   Popup,
   useMapEvents,
 } from "react-leaflet";
-import useFullscreen from "src/hooks/useFullscreen";
-import useDebounce from "src/hooks/utils/useDebounce";
+import useFullscreen from "src/hooks/ui/useFullscreen";
+import useDebounce from "src/hooks/shared/useDebounce";
 
 import MapSearchInput from "../../SearchInput";
 import showAlert from "src/utils/showAlert";

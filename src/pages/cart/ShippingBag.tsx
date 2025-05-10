@@ -5,7 +5,7 @@ import FreeDeliveryLine from "src/components/Cart/FreeDeliveryLine";
 
 import { useOrderSummary } from "src/context/OrderSummaryContext";
 import { useEffect } from "react";
-import usePageTitle from "src/hooks/useUpdatePageTitle";
+import usePageTitle from "src/hooks/ui/useUpdatePageTitle";
 import CartList from "src/components/Cart/CartList";
 const ShippingBag = () => {
   usePageTitle("Shipping Bag");

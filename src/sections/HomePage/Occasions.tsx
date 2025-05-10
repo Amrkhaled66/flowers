@@ -3,7 +3,7 @@ import HomePageSection from "src/components/ui/HomePageSection";
 import SectionTitle from "src/components/ui/SectionTitle";
 
 import Occasion from "src/types/BaseItem";
-import { getLocalizedName } from "src/helpers/getLocalizedName";
+import { getLocalizedName } from "src/utils/getLocalizedName";
 const Occasions = ({ data }: { data: Occasion[] }) => {
   return (
     <HomePageSection>

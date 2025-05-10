@@ -5,9 +5,11 @@ import Paths from "./paths";
 import NavBarToggleBtnsProvider from "./context/NavBarToggleBtns";
 import MessageGiftProvider from "./context/MessageGiftCtx";
 import OrderSummaryProvider from "./context/OrderSummaryContext";
+import { AuthProvider } from "./context/authCtx";
 
 import { useEffect } from "react";
 import { useTranslation } from "react-i18next";
+
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 
 const queryClient = new QueryClient();
@@ -20,13 +22,15 @@ function App() {
 
   return (
     <QueryClientProvider client={queryClient}>
-      <NavBarToggleBtnsProvider>
-        <OrderSummaryProvider>
-          <MessageGiftProvider>
-            <Paths />
-          </MessageGiftProvider>
-        </OrderSummaryProvider>
-      </NavBarToggleBtnsProvider>
+      <AuthProvider>
+        <NavBarToggleBtnsProvider>
+          <OrderSummaryProvider>
+            <MessageGiftProvider>
+              <Paths />
+            </MessageGiftProvider>
+          </OrderSummaryProvider>
+        </NavBarToggleBtnsProvider>
+      </AuthProvider>
     </QueryClientProvider>
   );
 }
