@@ -1,10 +1,10 @@
 import Occasion from "src/types/UserInfo/Occasion";
 import Row from "src/components/ui/ProfileCard/Row";
 import ProfileCard from "src/components/ui/ProfileCard/ProfileCard";
-import DeleteOccasionModel from "src/sections/ProfilePage/Occasions/DeleteOccasionModel";
+import DeleteOccasionModel from "src/components/ProfilePage/Occasions/DeleteOccasionModel";
 import { useState } from "react";
 const OccasionCard = ({
-  occasion: { eventTitle, eventDate, type, id, note },
+  occasion: { event_title, event_date, type, id, note },
   onEditOccasion,
 }: {
   occasion: Occasion;
@@ -13,7 +13,7 @@ const OccasionCard = ({
   const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
 
   const handleEditOccasion = () =>
-    onEditOccasion({ id, eventTitle, eventDate, type, note });
+    onEditOccasion({ id, event_title, event_date, type, note });
 
   const onDelete = () => setIsDeleteModalOpen(true);
 
@@ -21,14 +21,14 @@ const OccasionCard = ({
     <ProfileCard onDelete={onDelete} onEdit={handleEditOccasion}>
       {isDeleteModalOpen && (
         <DeleteOccasionModel
-          onConfirm={() => {}}
+          id={id}
           isOpen={isDeleteModalOpen}
           onClose={() => setIsDeleteModalOpen(false)}
         />
       )}
       <div>
-        <Row name="Event title" value={eventTitle} />
-        <Row name="Event date" value={eventDate} />
+        <Row name="Event title" value={event_title} />
+        <Row name="Event date" value={event_date} />
         <Row name="Type of occasion" value={type} />
       </div>
     </ProfileCard>

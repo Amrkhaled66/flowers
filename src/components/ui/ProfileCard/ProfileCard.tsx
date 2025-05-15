@@ -1,12 +1,13 @@
 import { Icon } from "@iconify/react/dist/iconify.js";
 import React from "react";
+
 const ProfileCard = ({
-  onDelete,
   onEdit,
   children,
+  onDelete,
 }: {
-  onDelete: () => void;
   onEdit: () => void;
+  onDelete: () => void;
   children: React.ReactNode;
 }) => {
   return (
@@ -20,7 +21,10 @@ const ProfileCard = ({
           <Icon icon="lucide:edit" width="24" height="24" />
           <p>Edit</p>
         </button>
-        <button onClick={onDelete} className="flex items-center gap-x-2 rounded-xl border border-[#F00] px-6 py-2 text-sm font-bold text-[#F00]">
+        <button
+          onClick={onDelete}
+          className="flex items-center gap-x-2 rounded-xl border border-[#F00] px-6 py-2 text-sm font-bold text-[#F00]"
+        >
           <Icon icon="qlementine-icons:trash-16" width="24" height="24" />
           <p>Delete</p>
         </button>

@@ -11,15 +11,15 @@ import ProfileMenuButtonMobile from "./ProfileMenuButtonMobile";
 
 import { useAuth } from "src/context/authCtx";
 const BottomSection = () => {
-  const { toggleMenu, toggleCart } = useNavBarToggleBtns();
-  const { t } = useTranslation("home");
+  const { toggleMenu, toggleCart, toggleSearch } = useNavBarToggleBtns();
+  const { t } = useTranslation("layout");
   const { isAuthenticated } = useAuth();
 
   return (
     <div className="z-50 w-screen bg-white py-3 drop-shadow-md">
       <div className="container">
         <div className="flex items-center justify-between">
-          <div className="flex gap-x-6">
+          <div className="flex items-center gap-x-6">
             <button onClick={toggleMenu} className="flex items-center gap-x-2">
               <Icon
                 icon="material-symbols:menu-rounded"
@@ -30,7 +30,7 @@ const BottomSection = () => {
                 {t("navBar.menu")}
               </span>
             </button>
-            <button className="flex gap-x-2">
+            <button onClick={toggleSearch} className="flex gap-x-2">
               <Icon icon="ic:baseline-search" width="24" height="24" />
               <span className="text-text-main hidden font-bold lg:block">
                 {t("navBar.search")}
@@ -49,14 +49,14 @@ const BottomSection = () => {
                 <ProfileMenuButtonMobile />
               </>
             ) : (
-              <Link to="/signin" className="flex gap-x-2">
+              <Link to="/signin" className="flex items-center gap-x-2">
                 <Icon icon="bi:person" width="24" height="24" />
                 <span className="text-text-main hidden font-bold lg:block">
                   {t("navBar.account")}
                 </span>
               </Link>
             )}
-            <button onClick={toggleCart} className="flex gap-x-2">
+            <button onClick={toggleCart} className="flex items-center gap-x-2">
               <Icon icon="carbon:shopping-cart" width="24" height="24" />{" "}
               <span className="text-text-main hidden font-bold lg:block">
                 {t("navBar.cart")}

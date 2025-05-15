@@ -1,23 +1,44 @@
 import Address from "src/types/UserInfo/Address";
 import Row from "src/components/ui/ProfileCard/Row";
 import ProfileCard from "src/components/ui/ProfileCard/ProfileCard";
+import DeleteAddressModel from "./DeleteAddreesModel";
 
+import { useState } from "react";
 const AddressCard = ({
-  address: { name, address, phoneNumber, id },
+  address: { recipient_name, address, recipient_phone, id, area },
   onEditAddress,
+  refetch,
 }: {
   address: Address;
   onEditAddress: (address: Address) => void;
+  refetch: () => void;
 }) => {
+  const [isDelete, setIsDelete] = useState(false);
+
+  const handleDeleteAddress = () => setIsDelete(true);
   const handleEditAddress = () =>
-    onEditAddress({ id, name, address, phoneNumber });
+    onEditAddress({
+      id,
+      recipient_name,
+      address,
+      recipient_phone,
+      area,
+    });
+
   return (
-    <ProfileCard onDelete={() => {}} onEdit={handleEditAddress}>
+    <ProfileCard onDelete={handleDeleteAddress} onEdit={handleEditAddress}>
       <div>
-        <Row name="Name" value={name} />
+        <Row name="Name" value={recipient_name} />
         <Row name="Address" value={address} />
-        <Row name="Phone Number" value={phoneNumber} />
+        <Row name="Phone Number" value={recipient_phone} />
+        <Row name="Area" value={area} />
       </div>
+      <DeleteAddressModel
+        refetch={refetch}
+        id={id}
+        isOpen={isDelete}
+        onClose={() => setIsDelete(false)}
+      />
     </ProfileCard>
   );
 };

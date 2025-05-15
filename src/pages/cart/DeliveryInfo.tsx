@@ -1,4 +1,4 @@
-import useAddressForm from "src/hooks/profile/useAddressForm";
+import useAddressForm from "src/hooks/profile/addresses/useAddressForm";
 import FormInput from "src/components/ui/register/FormInput";
 import MapButton from "src/components/ui/AddressForm/MapModel/MapButton";
 import Address from "src/types/UserInfo/Address";
@@ -43,7 +43,7 @@ const DeliveryInfo = () => {
   return (
     <div className="flex h-fit w-full flex-col gap-y-6 lg:w-[62%]">
       <div
-        className="font-main lg:!bg-main-50 space-y-4 rounded-xl bg-white lg:px-4 lg:py-6"
+        className="lg:!bg-main-50 space-y-4 rounded-xl bg-white lg:px-4 lg:py-6"
         onSubmit={handleSubmit}
       >
         <FormInput

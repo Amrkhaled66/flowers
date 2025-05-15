@@ -8,7 +8,7 @@ const RegisterPage = ({
   children: React.ReactNode;
 }) => {
   return (
-    <div className="font-main  w-full py-10">
+    <div className="w-full py-10">
       <div className="container">
         <div className="mx-auto space-y-7 lg:w-[600px]">
           <h1 className="text-text-main text-2xl font-bold">{title}</h1>

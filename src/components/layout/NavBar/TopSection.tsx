@@ -19,7 +19,11 @@ const ProsIcon = ({
 };
 
 const TopSection = () => {
-  const { t } = useTranslation("home");
+  const { t, i18n } = useTranslation("layout");
+
+  const changeLanguage = (lng: string) => {
+    i18n.changeLanguage(lng);
+  };
   return (
     <div className="bg-footer-color">
       <div className="container text-white">
@@ -46,7 +50,12 @@ const TopSection = () => {
               text={t("navBar.pros")}
             />
           </div>
-          <div></div>
+          <button
+            onClick={() => changeLanguage(i18n.language === "ar" ? "en" : "ar")}
+            className="rounded-sm border border-white px-2"
+          >
+            {i18n.language === "ar" ? "English" : "عربي"}
+          </button>
         </div>
       </div>
     </div>

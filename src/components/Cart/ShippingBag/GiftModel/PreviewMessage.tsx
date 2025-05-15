@@ -26,7 +26,7 @@ const PreviewMessage = ({
       </button>
       <div className="bg-main-50 flex flex-col items-center justify-center gap-y-5 rounded-xl py-4">
         <Icon icon="emojione-v1:love-letter" width="56" height="56" />
-        <div className="font-main text-text-main space-y-2 text-center">
+        <div className="text-text-main space-y-2 text-center">
           <p>{to}</p>
           <p className="mx-auto"> {message}</p>
           <p>{from}</p>

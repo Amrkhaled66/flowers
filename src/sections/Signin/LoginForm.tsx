@@ -30,10 +30,12 @@ const LoginForm = () => {
       </div>
 
       <div>
-        <div className="flex justify-between">
-          <p className="text-main font-bold"> forgot password?</p>
-        </div>
+        <Link to="/forgot-password/send-otp">
+          <p className="text-main text-end font-bold"> forgot password?</p>
+        </Link>
+
         <button
+          disabled={isPending}
           type="submit"
           className="bg-main text-text-main animate hover:bg-main-300 mt-8 w-full rounded-xl py-3 text-lg font-bold text-white"
         >

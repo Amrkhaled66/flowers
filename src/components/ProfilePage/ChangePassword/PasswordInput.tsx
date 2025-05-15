@@ -21,7 +21,7 @@ interface PasswordInputProps {
   
     return (
       <div className="flex flex-col gap-y-3">
-        <label className="font-bold" htmlFor={name}>
+        <label className="font-bold text-start" htmlFor={name}>
           {label}
         </label>
         <div className="relative bg-white">

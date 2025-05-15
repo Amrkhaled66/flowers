@@ -5,4 +5,14 @@ const getFullData = async () => {
   return data;
 };
 
-export { getFullData };
+const getOccasions = async () => {
+  const { data } = await axiosInstance.get("api/occasions");
+  return data;
+};
+
+const getCategories = async () => {
+  const { data } = await axiosInstance.get("api/categories");
+  return data;
+};
+
+export { getFullData, getOccasions, getCategories };

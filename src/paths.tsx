@@ -10,6 +10,11 @@ import {
   ProductPage,
   SignInPage,
   SignUpPage,
+  FilterPage,
+  // forget password
+  SendOtp,
+  SubmitOtp,
+  ResetPassword,
 
   // cart
   ShippingBag,
@@ -30,7 +35,6 @@ import {
 
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
-
 const router = createBrowserRouter([
   {
     path: "/",
@@ -38,6 +42,7 @@ const router = createBrowserRouter([
     children: [
       { index: true, element: <HomePage /> },
       { path: "product/:id", element: <ProductPage /> },
+      { path: "filter", element: <FilterPage /> },
       {
         path: "signin",
         element: (
@@ -54,6 +59,20 @@ const router = createBrowserRouter([
           </OnlyGuestUser>
         ),
       },
+      // forget password
+      {
+        path: "forgot-password/send-otp",
+        element: <SendOtp />,
+      },
+      {
+        path: "forgot-password/submit-otp",
+        element: <SubmitOtp />,
+      },
+      {
+        path: "forgot-password/reset-password",
+        element: <ResetPassword />,
+      },
+
       // Profile
       {
         path: "profile",
@@ -146,7 +165,6 @@ const router = createBrowserRouter([
 ]);
 
 const Paths = () => {
-
   return (
     <>
       <RouterProvider router={router} />

@@ -5,14 +5,30 @@ import Paths from "./paths";
 import NavBarToggleBtnsProvider from "./context/NavBarToggleBtns";
 import MessageGiftProvider from "./context/MessageGiftCtx";
 import OrderSummaryProvider from "./context/OrderSummaryContext";
-import { AuthProvider } from "./context/authCtx";
+import ResetProvider from "./context/resetCtx";
+import AuthProvider from "./context/authCtx";
 
 import { useEffect } from "react";
 import { useTranslation } from "react-i18next";
 
-import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import {
+  QueryCache,
+  QueryClient,
+  QueryClientProvider,
+} from "@tanstack/react-query";
 
-const queryClient = new QueryClient();
+import { toast, ToastContainer } from "react-toastify";
+
+const queryClient = new QueryClient({
+  queryCache: new QueryCache({
+    onError: (error) => {
+      console.log(error);
+      toast("Error ,please call support", {
+        type: "error",
+      });
+    },
+  }),
+});
 function App() {
   const { i18n } = useTranslation();
 
@@ -26,7 +42,10 @@ function App() {
         <NavBarToggleBtnsProvider>
           <OrderSummaryProvider>
             <MessageGiftProvider>
-              <Paths />
+              <ResetProvider>
+                <ToastContainer />
+                <Paths />
+              </ResetProvider>
             </MessageGiftProvider>
           </OrderSummaryProvider>
         </NavBarToggleBtnsProvider>

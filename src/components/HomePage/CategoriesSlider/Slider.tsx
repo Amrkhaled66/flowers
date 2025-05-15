@@ -1,6 +1,5 @@
 import { useState, useRef, ReactNode } from "react";
 import SliderPoints from "src/components/ui/SliderPoints";
-import NavigationBtn from "src/components/ui/NavigationBtn";
 import { Swiper } from "swiper/react";
 import { Navigation } from "swiper/modules";
 import { Swiper as SwiperType } from "swiper";
@@ -59,6 +58,7 @@ const Slider = ({
     <div className="w-full lg:w-full lg:space-y-8">
       <div className="relative">
         <Swiper
+          dir="ltr"
           speed={800}
           loop={false}
           modules={[Navigation]}
@@ -86,12 +86,12 @@ const Slider = ({
               spaceBetween: 25,
             },
           }}
-          className="z-[10000] !overflow-visible last:mr-0 lg:w-full lg:!overflow-hidden"
+          className="z-[10000] !overflow-visible last:ms-0 lg:w-full lg:!overflow-hidden"
         >
           {children}
         </Swiper>
 
-        {shouldShowNavigation && (
+        {/* {shouldShowNavigation && (
           <>
             <NavigationBtn
               dir="left"
@@ -106,7 +106,7 @@ const Slider = ({
               aria-label="Next slide"
             />
           </>
-        )}
+        )} */}
       </div>
 
       {shouldShowNavigation && (

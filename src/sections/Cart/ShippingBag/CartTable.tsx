@@ -35,9 +35,9 @@ const cards: CartEle[] = [
 
 const CartTable = () => {
   return (
-    <div className="h-auto hidden lg:block lg:w-[60%]">
+    <div className="hidden h-auto lg:block lg:w-[60%]">
       <div className="bg-main-50 w-full overflow-hidden rounded-xl p-4">
-        <table className="h-full  w-full">
+        <table className="h-full w-full">
           <thead className="hidden lg:block">
             <tr className="bg-main-100 grid grid-cols-[3fr_1fr_1fr_1fr] rounded-xl py-4">
               <th className="!ps-[70px] text-start">Product</th>
@@ -55,9 +55,7 @@ const CartTable = () => {
           </tbody>
           <tfoot className="">
             <div className="flex items-center justify-end gap-x-6 pt-4">
-              <button className="font-main font-bold">
-                Clear Shopping Cart
-              </button>
+              <button className="font-bold">Clear Shopping Cart</button>
             </div>
           </tfoot>
         </table>

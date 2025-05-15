@@ -1,10 +1,4 @@
-import {
-  createContext,
-  useContext,
-  useState,
-  ReactNode,
-  useEffect,
-} from "react";
+import { createContext, useContext, useState, ReactNode } from "react";
 import {
   setUser,
   setToken,
@@ -14,7 +8,6 @@ import {
   getUser,
 } from "src/services/authStorage";
 import type User from "src/types/auth/User";
-
 
 // 1. Define proper types
 type AuthData = {
@@ -36,10 +29,14 @@ const AuthContext = createContext<AuthContextType>({
   isAuthenticated: false,
 });
 
-const AuthProvider = ({ children }: { children: ReactNode }) => {
-  const [authData, setAuthData] = useState<AuthData>({
-    user: null,
-    token: null,
+export default function AuthProvider({ children }: { children: ReactNode }) {
+  const [authData, setAuthData] = useState<AuthData>(() => {
+    const user = getUser();
+    const token = getToken();
+    return {
+      user,
+      token,
+    };
   });
 
   const login = (user: User, token: string) => {
@@ -55,19 +52,6 @@ const AuthProvider = ({ children }: { children: ReactNode }) => {
 
   const isAuthenticated = !!authData.token;
 
-  useEffect(() => {
-    const initializeAuth = async () => {
-      const token = getToken();
-      const user = getUser();
-
-      if (token && user) {
-        setAuthData({ user, token });
-      }
-    };
-
-    initializeAuth();
-  }, []);
-
   const contextValue = {
     authData,
     login,
@@ -78,11 +62,11 @@ const AuthProvider = ({ children }: { children: ReactNode }) => {
   return (
     <AuthContext.Provider value={contextValue}>{children}</AuthContext.Provider>
   );
-};
+}
 
 const useAuth = () => {
   const context = useContext(AuthContext);
   return context;
 };
 
-export { AuthProvider, useAuth };
+export { useAuth };

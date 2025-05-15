@@ -1,7 +1,7 @@
 import ProfileInfo from "src/sections/ProfilePage/MyData/ProfileInfo";
 const MyData = () => {
   return (
-    <div className="font-main text-text-main">
+    <div className="text-text-main">
       <ProfileInfo />
     </div>
   );

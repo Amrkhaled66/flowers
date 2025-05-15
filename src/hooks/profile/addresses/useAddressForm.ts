@@ -1,24 +1,28 @@
 import { useState, ChangeEvent, FormEvent } from "react";
 import Address from "src/types/UserInfo/Address";
-
+import { validatePhoneNumber } from "src/utils/register";
 interface FormErrors {
   name: string;
   phoneNumber: string;
-  areaId: string;
+  area: string;
   address: string;
 }
 
 const initialFormErrors: FormErrors = {
   name: "",
   phoneNumber: "",
-  areaId: "",
+  area: "",
   address: "",
 };
 
-const useAddressForm = (initialData: Address) => {
+const useAddressForm = (
+  initialData: Address,
+  onSubmit: (formData: Address) => void,
+) => {
   const [formData, setFormData] = useState<Address>(initialData);
   const [formErrors, setFormErrors] = useState<FormErrors>(initialFormErrors);
 
+  console.log("formData");
   const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
     setFormData((prev) => ({ ...prev, [name]: value }));
@@ -26,6 +30,10 @@ const useAddressForm = (initialData: Address) => {
     if (formErrors[name as keyof FormErrors]) {
       setFormErrors((prev) => ({ ...prev, [name]: "" }));
     }
+  };
+
+  const handleSelectArea = (area: string) => {
+    setFormData((prev) => ({ ...prev, area }));
   };
 
   const handleLocationSelection = (location: string) => {
@@ -36,18 +44,20 @@ const useAddressForm = (initialData: Address) => {
     const errors = { ...initialFormErrors };
     let isValid = true;
 
-    if (!formData.name.trim()) {
+    if (!formData.recipient_name.trim()) {
       errors.name = "Recipient name is required";
       isValid = false;
-    } else if (formData.name.length < 3) {
+    } else if (formData.recipient_name.length < 3) {
       errors.name = "Name must be at least 3 characters";
       isValid = false;
     }
 
-    if (!formData.phoneNumber.trim()) {
+    if (!formData.recipient_phone.trim()) {
       errors.phoneNumber = "Recipient phone is required";
       isValid = false;
-    } else if (!/^\d{10,15}$/.test(formData.phoneNumber.replace(/\D/g, ""))) {
+    } else if (
+      !validatePhoneNumber(formData.recipient_phone.replace(/\s+/g, ""))
+    ) {
       errors.phoneNumber = "Please enter a valid phone number";
       isValid = false;
     }
@@ -67,7 +77,7 @@ const useAddressForm = (initialData: Address) => {
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
     if (!validateForm()) return;
-    console.log(formData);
+    onSubmit(formData);
   };
 
   return {
@@ -75,6 +85,7 @@ const useAddressForm = (initialData: Address) => {
     formErrors,
     handleInputChange,
     handleLocationSelection,
+    handleSelectArea,
     handleSubmit,
   };
 };

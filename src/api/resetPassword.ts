@@ -15,12 +15,21 @@ const submitOtp = async (phone_number: string, otp: string) => {
   return data;
 };
 
-const changePassword = async (phone_number: string, password: string) => {
+const changePassword = async (
+  new_password: string,
+  confirm_password: string,
+  token: string,
+) => {
   const { data } = await axiosInstance.post(
     "/api/forget-password/change-password",
     {
-      phone_number,
-      password,
+      new_password,
+      confirm_password,
+    },
+    {
+      headers: {
+        Authorization: "Bearer " + token,
+      },
     },
   );
   return data;

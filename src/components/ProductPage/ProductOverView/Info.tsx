@@ -40,7 +40,7 @@ const Info = ({
   price: number | undefined;
 }) => {
   return (
-    <div className="font-main space-y-2 lg:w-[50%] lg:space-y-6">
+    <div className="space-y-2 lg:w-[50%] lg:space-y-6">
       <NavigationBar className="flex lg:hidden" name={name} />
 
       <Section withBorder>

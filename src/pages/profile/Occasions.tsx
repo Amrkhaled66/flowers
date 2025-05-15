@@ -6,31 +6,25 @@ import OccasionsCards from "src/sections/ProfilePage/Occasions/OccasionsCards";
 import { Icon } from "@iconify/react/dist/iconify.js";
 
 import { useState } from "react";
+import { useGetOccasions } from "src/hooks/profile/OccasionsHooks";
+
 import Occasion from "src/types/UserInfo/Occasion";
-
-import OccasionType from "src/types/UserInfo/Occasion";
-
-const Occasionsarr: OccasionType[] = [
-  {
-    eventTitle: "Birthday",
-    eventDate: "1/8/2002",
-    type: "Birthday",
-    id: 1,
-    note: "",
-  },
-];
 
 const Occasions = () => {
   const [showOccasionForm, setShowOccasionForm] = useState(false);
   const [editedOccasion, setEditedOccasion] = useState<Occasion | null>(null);
+  const { data, isLoading, refetch, isError } = useGetOccasions();
 
   const onEditOccasion = (occasion: Occasion) => setEditedOccasion(occasion);
   const handleAddOccasion = () => setShowOccasionForm(true);
   const handleCloseModal = () => setShowOccasionForm(false);
 
+  if (isError) return;
+
+  if (!data || isLoading) return;
   return (
     <div className="space-y-6">
-      {Occasionsarr.length === 0 && <EmptyOccasions />}
+      {data.data.length === 0 && <EmptyOccasions />}
       <div className="dashed-border divide-dashed rounded-xl p-2">
         <Button
           onClick={handleAddOccasion}
@@ -40,11 +34,8 @@ const Occasions = () => {
         />
       </div>
       <AddOccasionModal isOpen={showOccasionForm} onClose={handleCloseModal} />
-      {Occasionsarr.length > 0 && (
-        <OccasionsCards
-          Occasions={Occasionsarr}
-          onEditOccasion={onEditOccasion}
-        />
+      {data.data.length > 0 && (
+        <OccasionsCards Occasions={data.data} onEditOccasion={onEditOccasion} />
       )}
       {editedOccasion && (
         <AddOccasionModal

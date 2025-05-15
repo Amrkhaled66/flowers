@@ -1,15 +1,21 @@
 {
-  "navBar": {
-    "menu": "Menu",
-    "search": "Search",
-    "account": "My Account",
-    "authWelcome": "hello",
-    "cart": "cart",
-    "pros":"Express Delivery"
-  },
   "hero": {
     "title": "Gift Your Way On Siblings Days",
     "description": "Love what you listen, listen to what you love. Music speaks when words don’t. Make it clear. Let music reach your heart.",
     "cta": "Shop Now"
+  },
+  "categoryTitle": "Celebrate Every Moment",
+  "bestSellersTitle": "Best Sellers",
+  "occasionTitle": "Every Moment Deserves a Gift",
+  "cta": "Choose Gifts Now",
+  "ctaSection": {
+    "title": "SPECIAL OFFER",
+    "description": "Home discover accessories",
+    "offer": "Sale 40% Off",
+    "ctaBtn": "Shop Now"
+  },
+  "ideas": {
+    "ideasTitle": "Discover New Ideas",
+    "ideasCta": "Gift Now"
   }
 }

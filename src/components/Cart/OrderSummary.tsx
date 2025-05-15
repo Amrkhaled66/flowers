@@ -15,7 +15,7 @@ const OrderSummary = () => {
     }
   };
   return (
-    <div className="text-text-main font-main space-y-4 lg:space-y-[28px] bg-main-50 rounded-xl p-4 text-sm lg:text-base">
+    <div className="text-text-main  space-y-4 lg:space-y-[28px] bg-main-50 rounded-xl p-4 text-sm lg:text-base">
       <div className="flex items-center gap-x-2">
         <Icon icon="basil:invoice-outline" width="24" height="24" />
         <p className=" text-sm lg:text-xl font-bold">Order Summary</p>

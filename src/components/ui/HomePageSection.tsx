@@ -8,7 +8,7 @@ const HomePageSection = ({
   className?: string;
 }) => {
   return (
-    <section className={`font-main  lg:py-[40px] text-center ${className}`}>
+    <section className={`text-center lg:py-[40px] ${className}`}>
       <div className="container">{children}</div>
     </section>
   );

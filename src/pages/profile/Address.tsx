@@ -1,19 +1,24 @@
 import Button from "src/components/ui/Button";
 import AddressCards from "src/sections/ProfilePage/Address/AddressCards";
-import AddAddressForm from "src/pages/profile/AddNewAddress";
+import EditAddressForm from "src/sections/ProfilePage/Address/EditAddressForm";
+import AddressType from "src/types/UserInfo/Address";
 
 import { Icon } from "@iconify/react/dist/iconify.js";
 import { useState } from "react";
-
-import AddressType from "src/types/UserInfo/Address";
 import { Link } from "react-router-dom";
+
 const Address = () => {
   const [editedAddress, setEditedAddress] = useState<AddressType | null>(null);
-
   const handleEditAddress = (address: AddressType) => setEditedAddress(address);
 
+  console.log(editedAddress);
   if (editedAddress) {
-    return <AddAddressForm FormData={editedAddress} />;
+    return (
+      <EditAddressForm
+        editedAddress={editedAddress}
+        onClose={() => setEditedAddress(null)}
+      />
+    );
   }
 
   return (

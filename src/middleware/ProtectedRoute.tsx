@@ -4,8 +4,10 @@ import { useAuth } from "src/context/authCtx";
 const ProtectedRoute = ({ children }: { children: ReactNode }) => {
   const { isAuthenticated } = useAuth();
 
+  console.log(isAuthenticated);
+
   if (!isAuthenticated) {
-    return <Navigate to="/login" replace />;
+    return <Navigate to="/signin" replace />;
   }
 
   return children;

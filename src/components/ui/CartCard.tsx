@@ -17,7 +17,7 @@ const CartMenuCard = ({
 }) => {
   return (
     <div
-      className={` ${isCartPage && "bg-main-50 p-3 lg:p-4"} border-b-stroke font-main text-text-main flex gap-x-3 rounded-xl border-b pb-4`}
+      className={` ${isCartPage && "bg-main-50 p-3 lg:p-4"} border-b-stroke text-text-main flex gap-x-3 rounded-xl border-b pb-4`}
     >
       <div className="h-20 w-20 overflow-hidden rounded-xl bg-red-800 lg:h-25 lg:w-25">
         <img
@@ -26,13 +26,12 @@ const CartMenuCard = ({
           className="size-full object-cover object-center"
         />
       </div>
-      <div className="flex flex-1 w-full flex-col justify-between">
+      <div className="flex w-full flex-1 flex-col justify-between">
         <div className="flex items-center justify-between">
           <p
-            className={`text-xs line-clamp-1 max-w-[90%]  text-wrap lg:text-sm ${isCartPage && "lg:font-bold"}`}
+            className={`line-clamp-1 max-w-[90%] text-xs text-wrap lg:text-sm ${isCartPage && "lg:font-bold"}`}
           >
-            {name} ddddddddddddddddddddddddddd
-            dddddddddddddddd
+            {name} ddddddddddddddddddddddddddd dddddddddddddddd
           </p>
           <button>
             <Icon

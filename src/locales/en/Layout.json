@@ -1,0 +1,25 @@
+{
+  "navBar": {
+    "menu": "Menu",
+    "search": "Search",
+    "account": "My Account",
+    "authWelcome": "hello",
+    "cart": "cart",
+    "pros": "Express Delivery"
+  },
+  "cart": {
+    "title": "Cart",
+    "remove": "Clear All",
+    "showCart": "Show Cart",
+    "pay": "Checkout",
+    "total": "Total"
+  },
+  "footer": {
+    "socialMedia": "Social Media",
+    "download": "Download App",
+    "customerSupport": "Customer Support",
+    "terms": "Terms & Conditions",
+    "privacy": "Privacy Policy",
+    "copyright": "All rights reserved"
+  }
+}

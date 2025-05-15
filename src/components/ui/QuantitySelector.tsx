@@ -10,9 +10,7 @@ const QuantitySelector = ({
   const [quantity, setQuantity] = useState(currentQuantity);
   return (
     <div className="rounded-xl">
-      {!isCartMenu && (
-        <p className="text-text-main font-main font-bold">Amount</p>
-      )}
+      {!isCartMenu && <p className="text-text-main font-bold">Amount</p>}
       <div
         className={`border-main flex h-[28px] w-fit items-center overflow-hidden rounded-lg border lg:h-[40px] lg:rounded-xl`}
       >

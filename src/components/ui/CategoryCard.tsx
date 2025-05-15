@@ -8,7 +8,7 @@ interface CategoryCardProps {
 
 const CategoryCard = ({ img, name, isMenuCard }: CategoryCardProps) => {
   const containerClasses = `
-    font-main text-text-main  space-y-3  
+     text-text-main  space-y-3  
     ${isMenuCard ? "  text-sm  lg:text-lg" : "text-sm   lg:text-lg"}
   `;
 

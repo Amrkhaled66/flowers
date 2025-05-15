@@ -18,7 +18,7 @@ const MessageGift = () => {
   return isValid ? (
     <div className="space-y-4 rounded-xl bg-white">
       <div className="flex items-center justify-between">
-        <div className="font-main flex items-center gap-x-2">
+        <div className="flex items-center gap-x-2">
           <Icon icon="bx:message-alt-edit" width="24" height="24" />
           <p className="text-text-main !text-xs font-bold lg:text-xl">
             Message Gift
@@ -31,7 +31,7 @@ const MessageGift = () => {
       <div className="dashed-border min-h-[164px] rounded-xl p-4">
         <div className="bg-main-50 flex w-full flex-col items-center justify-center gap-y-2 rounded-xl p-3">
           <Icon icon="emojione-v1:love-letter" width="40" height="40" />
-          <div className="font-main text-text-main space-y-2 text-center">
+          <div className="text-text-main space-y-2 text-center">
             <p>{to}</p>
             <p className="mx-auto"> {message}</p>
             <p>{from}</p>
@@ -42,7 +42,7 @@ const MessageGift = () => {
     </div>
   ) : (
     <div className="bg-main-50 space-y-4 rounded-xl p-4">
-      <div className="font-main flex items-center gap-x-2">
+      <div className="flex items-center gap-x-2">
         <Icon icon="bx:message-alt-edit" width="24" height="24" />
         <p className="text-text-main text-sm font-bold lg:text-xl">
           Message Gift

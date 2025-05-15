@@ -5,15 +5,18 @@ import img3 from "src/assets/ideas/3.webp";
 import Idea from "src/types/Idea";
 const ideas: Idea[] = [
   {
-    title: "Discover the perfect birthday gift!",
+    name_en: "Discover the perfect birthday gift!",
+    name_ar: "اكتشف هدية عيد الميلاد المثالية!",
     img: img2,
   },
   {
-    title: "Discover the perfect birthday gift!",
+    name_en: "Discover the perfect birthday gift!",
+    name_ar: "اكتشف هدية عيد الميلاد المثالية!",
     img: img1,
   },
   {
-    title: "Discover the perfect birthday gift!",
+    name_en: "Discover the perfect birthday gift!",
+    name_ar: "اكتشف هدية عيد الميلاد المثالية!",
     img: img3,
   },
 ];

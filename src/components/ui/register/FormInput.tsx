@@ -5,12 +5,13 @@ interface FormInputProps<T> {
   type: string;
   name: string;
   value: T;
-  error: string;
+  error?: string;
   required?: boolean;
   bgColor?: string;
   onChange: (e: ChangeEvent<HTMLInputElement>) => void;
   min?: string;
   placeholder?: string;
+  onBlur?: () => void;
 }
 
 function FormInput<T>({
@@ -24,14 +25,16 @@ function FormInput<T>({
   bgColor = "bg-white",
   min,
   placeholder,
+  onBlur,
 }: FormInputProps<T>) {
   return (
-    <div className="flex flex-col items-start gap-y-3">
+    <div className="flex w-full flex-col items-start gap-y-3">
       <label htmlFor={name} className="text-text-main font-bold">
         {label} {required && <span className="text-[#D00]">*</span>}
       </label>
       <div className="w-full space-y-2">
         <input
+          onBlur={onBlur}
           min={min}
           required={required}
           type={type}
@@ -39,7 +42,7 @@ function FormInput<T>({
           id={name}
           value={String(value)}
           onChange={onChange}
-          placeholder={placeholder||label}
+          placeholder={placeholder || label}
           className={` ${error ? "border-[#D00]" : "border-stroke focus:border-main"} ${bgColor} animate w-full rounded-xl border p-2.5`}
         />
         {error && <p className="text-left text-xs text-[#D00]">{error}</p>}

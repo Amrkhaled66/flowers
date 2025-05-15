@@ -15,9 +15,9 @@ const ProductCard = ({
 }) => {
   return (
     <Link to={`/product/${name}`}>
-      <div className="border-stroke w-full overflow-hidden rounded-2xl border bg-white">
+      <div className="border-stroke w-full overflow-hidden rounded-2xl border bg-white drop-shadow-sm">
         <div
-          className={`h-[140px] ${isFavorite && "h-[310px]  sm:!h-[195px] lg:!h-[282px]"} sm:h-[310px] lg:h-[282px]`}
+          className={`h-[140px] ${isFavorite && "h-[310px] sm:!h-[195px] lg:!h-[282px]"} sm:h-[310px] lg:h-[282px]`}
         >
           <img
             src={img}
@@ -27,7 +27,7 @@ const ProductCard = ({
           />
         </div>
         <div className="space-y-3 p-2 sm:p-3 lg:p-4">
-          <div className="font-main">
+          <div className="">
             <p
               className={`text-text-main line-clamp-4 ${isFavorite && "!text-xl font-bold"} text-left text-xs font-bold sm:text-xl lg:w-[90%] lg:text-base`}
             >

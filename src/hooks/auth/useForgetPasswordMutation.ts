@@ -1,12 +1,8 @@
-import { submitOtp, sendOtp, changePassword } from "src/api/resetPassword";
-
+import { sendOtp, changePassword, submitOtp } from "src/api/resetPassword";
 import { useMutation } from "@tanstack/react-query";
 
 const useSendOtp = () =>
-  useMutation({
-    mutationFn: (phone_number: string) => sendOtp(phone_number),
-  });
-
+  useMutation({ mutationFn: (phone_number: string) => sendOtp(phone_number) });
 const useSubmitOtp = () =>
   useMutation({
     mutationFn: ({
@@ -21,12 +17,14 @@ const useSubmitOtp = () =>
 const useChangePassword = () =>
   useMutation({
     mutationFn: ({
-      phone_number,
-      password,
+      new_password,
+      confirm_password,
+      token,
     }: {
-      phone_number: string;
-      password: string;
-    }) => changePassword(phone_number, password),
+      new_password: string;
+      confirm_password: string;
+      token: string;
+    }) => changePassword(new_password, confirm_password, token),
   });
 
 export { useSendOtp, useSubmitOtp, useChangePassword };

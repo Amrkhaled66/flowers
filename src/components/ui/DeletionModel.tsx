@@ -1,14 +1,29 @@
+// components/ui/DeletionModal.tsx
 import Model from "src/components/ui/Model";
-import { Icon } from "@iconify/react/dist/iconify.js";
-const DeleteOccasionModel = ({
-  isOpen,
-  onClose,
-  onConfirm,
-}: {
+import { Icon } from "@iconify/react";
+import Loader from "./Loader";
+
+interface DeletionModalProps {
   isOpen: boolean;
   onClose: () => void;
   onConfirm: () => void;
-}) => {
+  title: string;
+  message: string;
+  confirmText?: string;
+  cancelText?: string;
+  isPending: boolean;
+}
+
+const DeletionModal = ({
+  isOpen,
+  onClose,
+  onConfirm,
+  title,
+  message,
+  confirmText = "Yes, Delete",
+  cancelText = "Cancel",
+  isPending,
+}: DeletionModalProps) => {
   return (
     <Model isOpen={isOpen} onClose={onClose}>
       <div className="mx-auto w-[90%] space-y-4 rounded-2xl bg-white p-4 sm:w-[400px]">
@@ -21,23 +36,22 @@ const DeleteOccasionModel = ({
         <div className="space-y-6 text-center">
           <div className="space-y-2">
             <h2 className="mx-auto w-[90%] text-[24px] font-bold sm:w-full lg:w-[90%]">
-              Are you sure you want to delete this event?
+              {title}
             </h2>
-            <p>This occasion will be remembered forever.</p>
+            <p>{message}</p>
           </div>
-
           <div className="space-y-3">
             <button
               onClick={onConfirm}
               className="border-red text-red w-full rounded-xl border py-3 font-bold"
             >
-              Yes, Delete
+              {isPending ? <Loader /> : confirmText}
             </button>
             <button
               onClick={onClose}
               className="w-full rounded-xl border border-black py-3 font-bold text-black"
             >
-              Cancel
+              {cancelText}
             </button>
           </div>
         </div>
@@ -46,4 +60,4 @@ const DeleteOccasionModel = ({
   );
 };
 
-export default DeleteOccasionModel;
+export default DeletionModal;

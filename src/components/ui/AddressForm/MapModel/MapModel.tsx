@@ -16,12 +16,10 @@ const MapModel = ({
 
   return (
     <Model isOpen={isOpen} onClose={onClose}>
-      <div className=" w-[90%] mx-auto lg:w-[600px] space-y-5 bg-white px-4 py-5">
+      <div className="mx-auto w-[90%] space-y-5 bg-white px-4 py-5 lg:w-[600px]">
         {/* Header */}
         <div className="flex items-center justify-between bg-white">
-          <h1 className="text-text-main font-main text-xl font-semibold">
-            Map
-          </h1>
+          <h1 className="text-text-main text-xl font-semibold">Map</h1>
           {/* Close Button */}
           <button
             onClick={onClose}

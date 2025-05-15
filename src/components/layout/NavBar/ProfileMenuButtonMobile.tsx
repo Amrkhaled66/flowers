@@ -12,11 +12,11 @@ const ProfileMenuButtonMobile = () => {
 
   return (
     <div className="block lg:hidden">
-      <button onClick={() => setOpen((prev) => !prev)} className="">
+      <button  onClick={() => setOpen((prev) => !prev)} className="flex items-center">
         <Icon icon="bi:person" width="24" height="24" />
       </button>
       <div
-        className={`font-main text-text-main fixed inset-0 top-0 space-y-5 lg:hidden ${open ? "translate-x-0" : "-translate-x-[100%]"} animate h-screen w-full rounded-xl bg-white p-6 drop-shadow-xl`}
+        className={`text-text-main fixed inset-0 top-0 space-y-5  lg:hidden ${open ? "translate-x-0" : "-translate-x-[100%]"} animate h-screen w-full rounded-xl bg-white p-6 drop-shadow-xl`}
       >
         <div className="flex justify-between">
           <h1 className="text-xl font-bold">My Account</h1>

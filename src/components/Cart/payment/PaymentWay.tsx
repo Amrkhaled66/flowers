@@ -12,7 +12,7 @@ const PaymentWay = ({
   return (
     <div
       onClick={onClick}
-      className={`bg-main-50 hover:border-main animate font-main h-fit w-full cursor-pointer space-y-3 overflow-hidden rounded-xl border ${
+      className={`bg-main-50 hover:border-main animate h-fit w-full cursor-pointer space-y-3 overflow-hidden rounded-xl border ${
         isActive ? "border-main" : "border-transparent"
       }`}
     >

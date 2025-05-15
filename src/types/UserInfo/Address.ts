@@ -1,8 +1,10 @@
 interface Address {
   id: number;
-  name: string;
+  recipient_name: string;
   address: string;
-  phoneNumber: string;
+  recipient_phone: string;
+  area: string;
+  title?: string;
 }
 
 export default Address;

@@ -1,6 +1,6 @@
 import { useEffect, useCallback, useRef } from "react";
 import { useNavigate } from "react-router-dom";
-import useLogOutMutation from "./auth/useLogOutMutation";
+import useLogOutMutation from "src/hooks/auth/useLogOutMutation";
 import { getToken } from "src/services/authStorage";
 import Alert from "src/components/ui/Alert";
 import { axiosPrivate } from "src/api/axios";
@@ -37,7 +37,6 @@ const useAxiosSetup = () => {
       (config) => {
         if (!config.headers["Authorization"]) {
           const token = getToken();
-          console.log(token)
           if (token) {
             config.headers["Authorization"] = `Bearer ${token}`;
           }

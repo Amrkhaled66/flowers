@@ -11,7 +11,7 @@ const stripePromise = loadStripe(import.meta.env.VITE_STRIPE_PUBLISH_KEY);
 const Payment = () => {
   usePageTitle("Payment");
   return (
-    <div className="lg:!bg-main-50 font-main h-fit w-full space-y-3 rounded-xl bg-white lg:w-[63%] lg:p-4">
+    <div className="lg:!bg-main-50 h-fit w-full space-y-3 rounded-xl bg-white lg:w-[63%] lg:p-4">
       <div className="flex items-center gap-x-2">
         <Icon icon="ic:round-payment" width="24" height="24" />
         <h1 className="text-xl font-bold">Payment Options</h1>
@@ -29,7 +29,7 @@ const Payment = () => {
 export default Payment;
 
 {
-  /* <div className="bg-main-50 font-main h-fit w-[63%] space-y-3 rounded-xl p-4">
+  /* <div className="bg-main-50  h-fit w-[63%] space-y-3 rounded-xl p-4">
         <div className="flex items-center gap-x-2">
           <Icon icon="ic:round-payment" width="24" height="24" />
           <h1 className="text-xl font-bold">Payment Options</h1>

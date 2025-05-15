@@ -8,7 +8,7 @@ import LogOutButton from "src/components/ui/register/LogOutButton";
 import { useTranslation } from "react-i18next";
 import { useAuth } from "src/context/authCtx";
 const ProfileMenuButton = () => {
-  const { t } = useTranslation("home");
+  const { t } = useTranslation("layout");
 
   const [openMenu, setOpenMenu] = useState(false);
 

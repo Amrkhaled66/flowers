@@ -41,8 +41,9 @@ const SignUpForm = () => {
       </div>
       <div className="mt-8 flex flex-col justify-center gap-y-4">
         <button
+          disabled={isPending}
           type="submit"
-          className="bg-main hover:bg-main-300 text-text-main w-full rounded-xl py-3 font-bold text-white transition-colors"
+          className="bg-main hover:bg-main-300 w-full rounded-xl py-3 font-bold text-white transition-colors"
         >
           {isPending ? <Loader /> : "Create Account"}
         </button>

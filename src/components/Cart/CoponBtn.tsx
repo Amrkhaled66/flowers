@@ -1,6 +1,6 @@
 const CoponBtn = () => {
   return (
-    <div className="relative w-full flex pe-1.5 bg-main-50 items-center rounded-xl border border-stroke h-[60px] font-main ">
+    <div className="relative w-full flex pe-1.5 bg-main-50 items-center rounded-xl border border-stroke h-[60px]  ">
       <input
         placeholder="Coupon Code"
         className="placeholder:text-subTitle flex-1 px-4"

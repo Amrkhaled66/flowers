@@ -1,7 +1,7 @@
 import Section from "./Section";
 const Description = () => {
   return (
-    <div className="text-text-main font-main space-y-4 lg:space-y-8">
+    <div className="text-text-main space-y-4 lg:space-y-8">
       <div>
         Elevate their coffee experience with the Atom Nespresso premium package,
         featuring an elegant notebook, two black coffee cups, and a stylish
@@ -24,7 +24,6 @@ const Description = () => {
           impressions.
         </p>
       </Section>
-
     </div>
   );
 };

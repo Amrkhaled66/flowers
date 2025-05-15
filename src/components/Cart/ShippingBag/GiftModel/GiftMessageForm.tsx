@@ -16,7 +16,7 @@ const GiftMessageForm = ({
   } = useMessageGiftCtx();
 
   return (
-    <div className="font-main text-text-main mx-auto max-h-screen w-[90%] space-y-6 overflow-y-auto rounded-xl bg-white sm:p-8 lg:w-[500px] lg:p-4">
+    <div className="text-text-main mx-auto max-h-screen w-[90%] space-y-6 overflow-y-auto rounded-xl bg-white sm:p-8 lg:w-[500px] lg:p-4">
       <div className="flex justify-between">
         <p className="text-xl font-bold">Gift Message</p>
         <button

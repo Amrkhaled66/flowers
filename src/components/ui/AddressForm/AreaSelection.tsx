@@ -10,46 +10,40 @@ import {
 import { useState, useEffect } from "react";
 import { Icon } from "@iconify/react/dist/iconify.js";
 
-interface Area {
-  id: number;
-  name: string;
-}
+import areas from "src/data/UAEAreas";
+import Area from "src/types/UserInfo/Area";
 
 interface AreaSelectionProps {
   bgColor?: string;
-  onAreaSelected: (area: Area) => void;
+  onAreaSelected: (area: string) => void;
 }
 
-const areas = [
-  { id: 1, name: "Durward Reynolds" },
-  { id: 2, name: "Kenton Towne" },
-  { id: 3, name: "Therese Wunsch" },
-  { id: 4, name: "Benedict Kessler" },
-  { id: 5, name: "Katelyn Rohan" },
-];
-
-function AreaSelection({ bgColor = "bg-white", onAreaSelected }: AreaSelectionProps) {
+function AreaSelection({
+  bgColor = "bg-white",
+  onAreaSelected,
+}: AreaSelectionProps) {
   const [selectedArea, setSelectedArea] = useState<Area | null>(null);
   const [query, setQuery] = useState("");
 
   const filteredAreas =
     query === ""
       ? areas
-      : areas.filter((area) => {
+      : areas.filter((area: Area) => {
           return area.name.toLowerCase().includes(query.toLowerCase());
         });
 
-
   useEffect(() => {
     if (selectedArea) {
-      onAreaSelected(selectedArea);
+      onAreaSelected(selectedArea.name);
     }
-  }, [selectedArea, onAreaSelected]);
+  }, [selectedArea]);
 
   return (
     <div className={`w-full`}>
       <Field className="relative flex w-full flex-col space-y-3">
-        <Label className="text-text-main font-bold">Area: <span className="text-[#D00]">*</span></Label>
+        <Label className="text-text-main font-bold">
+          Area: <span className="text-[#D00]">*</span>
+        </Label>
         <Combobox
           as="div"
           className="relative w-full"
@@ -71,7 +65,7 @@ function AreaSelection({ bgColor = "bg-white", onAreaSelected }: AreaSelectionPr
               <Icon icon="iconamoon:arrow-down-2" width="24" height="24" />
             </ComboboxButton>
           </div>
-          <ComboboxOptions className="absolute mt-1 max-h-60 w-full overflow-auto rounded bg-white shadow-lg z-10">
+          <ComboboxOptions className="absolute z-10 mt-1 max-h-60 w-full overflow-auto rounded bg-white shadow-lg">
             {filteredAreas.map((area) => (
               <ComboboxOption
                 key={area.id}

@@ -2,8 +2,8 @@ import HeroImg from "src/assets/HeroImg.webp";
 
 const RightSection = () => {
   return (
-    <div className="flex h-full items-end sm:w-[40%] lg:w-fit">
-      <div className="absolute -end-9 -bottom-4 z-20 h-[186px] w-[243px] sm:-bottom-6 sm:h-[261px] sm:w-[341px] lg:-bottom-16 lg:h-[900px] lg:w-[741px]">
+    <div className="flex h-full items-end overflow-hidden sm:w-[40%] lg:w-fit">
+      <div className="absolute -end-0 -bottom-4 z-20 w-[243px] sm:-bottom-6 sm:w-[341px] lg:-bottom-16 lg:h-[900px] lg:w-[741px]">
         <img
           src={HeroImg}
           className="size-full object-cover object-bottom"

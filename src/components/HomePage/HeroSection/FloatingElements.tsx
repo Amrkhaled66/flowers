@@ -6,7 +6,7 @@ const FloatingElements = () => {
     <>
       {/* Center top circle */}
       <div
-        className={`${largeCircleBase} start-[25%] -top-[37px] h-[74px] w-[74px] lg:-top-[125px] lg:h-[250px] lg:w-[250px]`}
+        className={`${largeCircleBase} start-[25%] sm:start-[45%] -top-[37px] h-[74px] w-[74px] lg:-top-[125px] lg:h-[250px] lg:w-[250px]`}
       />
 
       {/* Middle small circle */}

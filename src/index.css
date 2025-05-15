@@ -1,11 +1,12 @@
 @import url("https://fonts.googleapis.com/css2?family=Jost:ital,wght@0,100..900;1,100..900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Cairo:wght@200..1000&display=swap");
 
 /* Tailwind Config */
 @import "tailwindcss";
 
 @theme {
-  --font-main: "Jost", sans-serif;
-
+  --font-en: "Jost", sans-serif;
+  --font-ar: "Cairo", sans-serif;
   --color-main: #534457;
   --color-main-fade: #756979cc;
   --color-main-50: #f4f4f4;

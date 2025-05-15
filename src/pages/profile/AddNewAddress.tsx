@@ -1,65 +1,31 @@
-import useAddressForm from "src/hooks/profile/useAddressForm";
-import FormInput from "src/components/ui/register/FormInput";
-import Button from "src/components/ui/Button";
-import MapButton from "src/components/ui/AddressForm/MapModel/MapButton";
+import AddressForm from "src/sections/ProfilePage/Address/AddressForm";
 import Address from "src/types/UserInfo/Address";
+import Alert from "src/components/ui/Alert";
+import { useNavigate } from "react-router";
+import { useAddAddress } from "src/hooks/profile/addresses/useAddressMutations";
 
-const initialFormData: Address = {
-  name: "",
-  phoneNumber: "",
-  address: "",
-  id: 0,
+const AddNewAddress = () => {
+  const navigate = useNavigate();
+  const { mutate, isPending } = useAddAddress();
+  const onSubmit = (formData: Address) => {
+    mutate(
+      { ...formData, title: "Delivery Request" },
+      {
+        onSuccess: () => {
+          Alert({
+            title: "Success",
+            text: "Address added successfully",
+            icon: "success",
+            confirmButtonText: "Okay",
+          }).then(() => {
+            navigate("/profile/addresses");
+          });
+        },
+      },
+    );
+  };
+
+  return <AddressForm onSubmit={onSubmit} isPending={isPending} />;
 };
 
-const AddAddressForm = ({ FormData }: { FormData?: Address }) => {
-  const {
-    formData,
-    formErrors,
-    handleInputChange,
-    handleLocationSelection,
-    handleSubmit,
-  } = useAddressForm(FormData || initialFormData);
-
-  return (
-    <form className="font-main w-full space-y-4 lg:p-4" onSubmit={handleSubmit}>
-      <FormInput
-        type="text"
-        name="name"
-        required
-        label="Recipient name"
-        value={formData.name}
-        onChange={handleInputChange}
-        error={formErrors.name}
-      />
-      <FormInput
-        type="text"
-        name="phoneNumber"
-        required
-        label="Recipient phone"
-        value={formData.phoneNumber}
-        onChange={handleInputChange}
-        error={formErrors.phoneNumber}
-      />
-
-      <MapButton onLocationSelected={handleLocationSelection} />
-
-      <FormInput
-        type="text"
-        name="address"
-        required
-        label="Address"
-        value={formData.address}
-        onChange={handleInputChange}
-        error={formErrors.address}
-      />
-
-      <Button
-        text="Save"
-        className="animate w-full !py-3 text-white"
-        onClick={undefined}
-      />
-    </form>
-  );
-};
-
-export default AddAddressForm;
+export default AddNewAddress;

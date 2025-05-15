@@ -5,12 +5,13 @@ import axios from "axios";
 const SocialLoginSection = () => {
   const googleLogin = useGoogleLogin({
     onSuccess: async (tokenResponse) => {
+      const access_token = (tokenResponse as any).access_token;
       try {
         const res = await axios.get(
           "https://www.googleapis.com/oauth2/v2/userinfo",
           {
             headers: {
-              Authorization: `Bearer ${tokenResponse.access_token}`,
+              Authorization: `Bearer ${access_token}`,
             },
           },
         );

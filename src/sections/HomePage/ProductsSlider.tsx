@@ -15,12 +15,12 @@ const ProductsSlider = ({
   children?: React.ReactNode;
 }) => {
   return (
-    <section className="font-main container text-center font-bold">
+    <section className="container text-center font-bold">
       <div className="space-y-5 lg:space-y-10 lg:py-[40px]">
         <Header title={title} children={children} />
         <Button
           text="Choose Gifts Now"
-          className="bg-main-100  mx-auto hidden w-fit lg:block"
+          className="bg-main-100 mx-auto hidden w-fit lg:block"
         />
 
         <Slider items={items}>

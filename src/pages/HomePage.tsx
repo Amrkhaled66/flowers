@@ -10,6 +10,7 @@ import usePageTitle from "src/hooks/ui/useUpdatePageTitle";
 
 import { useQuery } from "@tanstack/react-query";
 import { getFullData } from "src/api/HomePage";
+
 const HomePage = () => {
   usePageTitle("Ballora");
 
