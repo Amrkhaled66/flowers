@@ -1,7 +1,8 @@
-import { useState, ChangeEvent, FormEvent } from "react";
 import useLoginMutation from "src/hooks/auth/useLoginMutation";
+import { useState, ChangeEvent, FormEvent } from "react";
 import { useAuth } from "src/context/authCtx";
 import { useNavigate } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 
 import { validateEmail } from "src/utils/register";
 import Login from "src/types/auth/Longin";
@@ -19,9 +20,10 @@ const useLogin = () => {
   const { mutate, isPending } = useLoginMutation();
   const { login } = useAuth();
   const navigate = useNavigate();
+  const { t } = useTranslation("errors");
 
   const validatePassword = (password: string) => {
-    if (!password.trim()) return "Password is required";
+    if (!password.trim()) return t("requiredPassword");
     return "";
   };
 
@@ -36,7 +38,7 @@ const useLogin = () => {
     if (name === "email") {
       setErrors({
         ...errors,
-        email: validateEmail(value),
+        email: validateEmail(value, t),
       });
     } else if (name === "password") {
       setErrors({
@@ -49,7 +51,7 @@ const useLogin = () => {
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    const emailError = validateEmail(formData.email);
+    const emailError = validateEmail(formData.email, t);
     const passwordError = validatePassword(formData.password);
 
     setErrors({
@@ -68,7 +70,7 @@ const useLogin = () => {
         if (err.response.status === 400)
           setErrors((prev) => ({
             ...prev,
-            email: "Error in Email or Password",
+            email: t("register.invalidLogin"),
           }));
         return;
       },

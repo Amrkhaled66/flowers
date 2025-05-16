@@ -1,5 +1,7 @@
 import { Icon } from "@iconify/react/dist/iconify.js";
 import { useGoogleLogin } from "@react-oauth/google";
+import { useTranslation } from "react-i18next";
+
 import axios from "axios";
 
 const SocialLoginSection = () => {
@@ -27,9 +29,11 @@ const SocialLoginSection = () => {
     flow: "auth-code",
     scope: "openid profile email",
   });
+
+  const { t } = useTranslation("signIn");
   return (
     <div className="space-y-5">
-      <p className="text-text-main text-xl">Continue with one click</p>
+      <p className="text-text-main text-xl">{t("oneClick")}</p>
       <div className="space-x-4">
         <button
           onClick={() => googleLogin()}
@@ -41,7 +45,7 @@ const SocialLoginSection = () => {
           <Icon icon="logos:apple" width="32" height="32" />
         </button>
       </div>
-      <p className="text-subTitle">Or use your account</p>
+      <p className="text-subTitle">{t("useAccount")}</p>
     </div>
   );
 };

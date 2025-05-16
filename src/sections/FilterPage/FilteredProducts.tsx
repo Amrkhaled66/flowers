@@ -1,4 +1,4 @@
-import ProductCard from "src/components/ui/ProductCard";
+import ProductCard from "src/components/ui/ProductCard/ProductCard";
 
 export default function FilteredProducts({ Products, setSidebarOpen }) {
   return (

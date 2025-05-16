@@ -20,7 +20,6 @@ const Occasions = () => {
   const handleCloseModal = () => setShowOccasionForm(false);
 
   if (isError) return;
-
   if (!data || isLoading) return;
   return (
     <div className="space-y-6">
@@ -33,7 +32,11 @@ const Occasions = () => {
           className="bg-main-100 animate text-main w-full rounded-sm !py-2 text-center font-bold lg:!py-3"
         />
       </div>
-      <AddOccasionModal isOpen={showOccasionForm} onClose={handleCloseModal} />
+      <AddOccasionModal
+        refetch={() => refetch}
+        isOpen={showOccasionForm}
+        onClose={handleCloseModal}
+      />
       {data.data.length > 0 && (
         <OccasionsCards Occasions={data.data} onEditOccasion={onEditOccasion} />
       )}

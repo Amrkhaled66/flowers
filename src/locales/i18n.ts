@@ -4,18 +4,34 @@ import LanguageDetector from "i18next-browser-languagedetector";
 
 import HomeEn from "src/locales/en/HomePage.json";
 import LayoutEn from "src/locales/en/Layout.json";
+import SignInEn from "src/locales/en/signin.json";
+import SignUpEn from "src/locales/en/signup.json";
+import errorsEn from "src/locales/en/errors.json";
+import forgetPasswordEn from "src/locales/en/forgetPassword.json";
 
 import LayoutAr from "src/locales/ar/Layout.json";
 import HomeAr from "src/locales/ar/HomePage.json";
+import SignInAr from "src/locales/ar/signin.json";
+import SignUpAr from "src/locales/ar/signup.json";
+import errorsAr from "src/locales/ar/errors.json";
+import forgetPasswordAr from "src/locales/ar/forgetPassword.json";
 
 const resources = {
   en: {
     home: HomeEn,
     layout: LayoutEn,
+    signIn: SignInEn,
+    signUp: SignUpEn,
+    errors: errorsEn,
+    forgetPassword: forgetPasswordEn,
   },
   ar: {
     home: HomeAr,
     layout: LayoutAr,
+    signIn: SignInAr,
+    signUp: SignUpAr,
+    errors: errorsAr,
+    forgetPassword: forgetPasswordAr,
   },
 };
 

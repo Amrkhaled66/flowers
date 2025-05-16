@@ -1,9 +1,10 @@
 import { ChangeEvent } from "react";
+import { useTranslation } from "react-i18next";
 
 interface RadioInputProps {
   label: string;
   name: string;
-  options: { value: string; label: string }[];
+  options: { value: string; labelEn: string; labelAr: string }[];
   selectedValue: string;
   required?: boolean;
   error: string;
@@ -19,6 +20,10 @@ const GenderButton = ({
   error,
   onChange,
 }: RadioInputProps) => {
+  const {
+    i18n: { language },
+  } = useTranslation();
+
   return (
     <div className="mb-4 flex flex-col items-start gap-y-3">
       <label className="text-text-main mb-1 font-bold">
@@ -41,7 +46,7 @@ const GenderButton = ({
               htmlFor={`${name}-${option.value}`}
               className="text-text-main"
             >
-              {option.label}
+              {language === "en" ? option.labelEn : option.labelAr}
             </label>
           </div>
         ))}
@@ -51,5 +56,4 @@ const GenderButton = ({
   );
 };
 
-
-export default GenderButton
+export default GenderButton;

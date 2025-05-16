@@ -1,6 +1,6 @@
 import Header from "src/components/ui/SectionTitle";
 import Slider from "src/components/HomePage/CategoriesSlider/Slider";
-import ProductCard from "src/components/ui/ProductCard";
+import ProductCard from "src/components/ui/ProductCard/ProductCard";
 import { SwiperSlide } from "swiper/react";
 import Button from "src/components/ui/Button";
 

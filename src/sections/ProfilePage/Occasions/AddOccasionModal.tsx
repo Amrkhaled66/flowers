@@ -1,7 +1,8 @@
+import { useState } from "react";
+import { useAddOccasion } from "src/hooks/profile/OccasionsHooks";
+
 import Model from "src/components/ui/Model";
 import FormInput from "src/components/ui/register/FormInput";
-import { useState } from "react";
-
 import ComboBox from "src/components/ui/ComboBox";
 import Button from "src/components/ui/Button";
 
@@ -39,13 +40,16 @@ const AddOccasionModal = ({
   isOpen,
   onClose,
   Data,
+  refetch,
 }: {
   isOpen: boolean;
   onClose: () => void;
   Data?: Form;
+  refetch: () => void;
 }) => {
   const [formData, setFormData] = useState<Form>(Data || initialFormData);
   const [formErrors, setFormErrors] = useState<FormErrors>(initialFormErrors);
+  const { mutate, isPending } = useAddOccasion();
 
   const handleInputChange = (value: string, name: string) => {
     setFormData({
@@ -72,7 +76,8 @@ const AddOccasionModal = ({
       case "eventDate":
         return (
           (value.trim().length === 0 && "Event Date is required") ||
-          (new Date(value) < new Date() && "Event Date should be in future")
+          (!/^(0[1-9]|[12][0-9]|3[01])\/(0[1-9]|1[0-2])$/.test(value) &&
+            "Invalid date format Please Write As 05/12")
         );
       case "type":
         return value.trim().length === 0 && "Event type is required";
@@ -98,13 +103,22 @@ const AddOccasionModal = ({
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
 
-    if (!validateForm()) {
-      console.log("erererer");
-      return;
-    }
+    if (!validateForm()) return;
 
-    console.log("kkk", formData);
-    onClose();
+    mutate(
+      {
+        event_title: formData.eventTitle,
+        event_date: formData.eventDate,
+        type: formData.type,
+        note: formData.note,
+      },
+      {
+        onSuccess: () => {
+          refetch();
+          onClose();
+        },
+      },
+    );
     return;
   };
 
@@ -115,7 +129,7 @@ const AddOccasionModal = ({
         className="mx-auto w-[90%] space-y-5 rounded-2xl bg-white p-4 lg:w-[900px]"
       >
         <div className="h-fit space-y-4">
-          <div className="grid w-full grid-cols-1 lg:grid-cols-2 gap-4">
+          <div className="grid w-full grid-cols-1 gap-4 lg:grid-cols-2">
             <FormInput
               bgColor="bg-main-50"
               type="text"
@@ -129,13 +143,13 @@ const AddOccasionModal = ({
             <FormInput
               min={new Date().toISOString().split("T")[0]}
               bgColor="bg-main-50"
-              type="Date"
               error={formErrors.eventDate}
               onChange={(e) => handleInputChange(e.target.value, "eventDate")}
               label="Event Date"
               required
               value={formData.eventDate}
               name="eventDate"
+              placeholder="Enter date as Day/Month"
             />
           </div>
           <ComboBox
@@ -144,7 +158,13 @@ const AddOccasionModal = ({
             bgColor="bg-main-50"
             onSelected={(value) => handleInputChange(value, "type")}
             value={formData.type}
-            options={["d", "d", "ddd"]}
+            options={[
+              "Birthday",
+              "Anniversary",
+              "Valentine's Day",
+              "Mother's Day",
+              "New Year",
+            ]}
           />
           <label className="flex flex-col gap-y-3" htmlFor="">
             <span className="text-main font-bold"> Notes (optional)</span>

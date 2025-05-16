@@ -7,11 +7,11 @@ import {
 import { useState, ChangeEvent, FormEvent } from "react";
 import useRegisterMutation from "./useRegisterMutation";
 import { useNavigate } from "react-router";
-
 import { UserRegister } from "src/types/auth/User";
-import Alert from "src/components/ui/Alert";
 import { useAuth } from "src/context/authCtx";
+import { useTranslation } from "react-i18next";
 
+import Alert from "src/components/ui/Alert";
 export default function useRegister() {
   const [formData, setFormData] = useState<UserRegister>({
     first_name: "",
@@ -38,24 +38,26 @@ export default function useRegister() {
   const { login } = useAuth();
   const { mutate, isPending } = useRegisterMutation();
   const navigate = useNavigate();
+  const { t } = useTranslation("errors");
+
   const validateField = (name: string, value: string): string => {
     switch (name) {
-      case "firstName":
-        return value.trim() ? "" : "First name is required";
-      case "lastName":
-        return value.trim() ? "" : "Last name is required";
+      case "first_name":
+        return value.trim() ? "" : t("register.requiredFirstName");
+      case "last_name":
+        return value.trim() ? "" : t("register.requiredLastName");
       case "email":
-        return validateEmail(value);
+        return validateEmail(value,t);
       case "password":
-        return validatePassword(value);
-      case "confirmPassword":
-        if (!value.trim()) return "Please confirm your password";
-        if (value !== formData.password) return "Passwords do not match";
+        return validatePassword(value,t);
+      case "confirm_password":
+        if (!value.trim()) return t("register.confirmPassword");
+        if (value !== formData.password) return t("register.passwordMismatch");
         return "";
-      case "phoneNumber":
-        return validatePhoneNumber(value);
+      case "phone_number":
+        return validatePhoneNumber(value,t);
       case "gender":
-        return value ? "" : "Please select your gender";
+        return value ? "" : t("register.requiredGender");
       default:
         return "";
     }
@@ -80,7 +82,7 @@ export default function useRegister() {
         ...errors,
         [name]: validateField(name, value),
         confirm_password:
-          value !== formData.confirm_password ? "Passwords do not match" : "",
+          value !== formData.confirm_password ? t("register.passwordMismatch") : "",
       });
     }
   };
@@ -122,7 +124,7 @@ export default function useRegister() {
         if (err.response.status === 400)
           setErrors((prev) => ({
             ...prev,
-            email: "Error in Email or Password",
+            email: t("register.emailExists"),
           }));
         return;
       },

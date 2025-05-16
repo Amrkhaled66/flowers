@@ -3,13 +3,18 @@ import FavoritesCards from "src/sections/ProfilePage/Favorites/FavoritesCards";
 
 import { products1 } from "src/data/products";
 
+import { useGetFavorites } from "src/hooks/profile/favorites/FavoritesMutations";
+
 const Favorites = () => {
+  const { data, isLoading } = useGetFavorites();
+
+  if (isLoading) return null;
   return (
     <div>
-      {products1.length === 0 ? (
+      {data.data.length === 0 ? (
         <EmptyFavorites />
       ) : (
-        <FavoritesCards products={products1} />
+        <FavoritesCards products={data.data} />
       )}
     </div>
   );

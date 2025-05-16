@@ -11,7 +11,6 @@ const ProductPage = () => {
   const { id } = useParams();
 
   const product = products1.find((product) => product.name === id);
-  console.log(product);
   return (
     <div className="h-auto min-h-screen py-[24px] lg:py-[40px]">
       <div className="container space-y-[24px] lg:space-y-[80px]">

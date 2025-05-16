@@ -1,5 +1,5 @@
 interface Occasion {
-  id: number;
+  id?: number;
   event_title: string;
   event_date: string;
   type: string;

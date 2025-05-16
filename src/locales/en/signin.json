@@ -1,0 +1,11 @@
+{
+  "header": "Login",
+  "oneClick": "Continue with One Click",
+  "useAccount": "Or use your account",
+  "email": "Email",
+  "password": "Password",
+  "forgotPassword": "Forgot Password?",
+  "login": "Login",
+  "noAccount": "Don't have an account?",
+  "signUp": "Sign Up?"
+}

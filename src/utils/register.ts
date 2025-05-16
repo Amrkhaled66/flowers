@@ -1,25 +1,26 @@
-const validateEmail = (email: string) => {
+const validateEmail = (email: string, t: (key: string) => string) => {
   const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-  if (!email.trim()) return "Email is required";
-  if (!emailRegex.test(email)) return "Please enter a valid email address";
+  if (!email.trim()) return t("register.requiredEmail");
+  if (!emailRegex.test(email)) return t("register.emailFormat");
   return "";
 };
 
-const validatePassword = (password: string) => {
-  if (!password.trim()) return "Password is required";
-  if (password.length < 6) return "Password must be at least 8 characters";
-  if (!/(?=.*[A-Z])/.test(password))
-    return "Password must contain at least one uppercase letter";
-  if (!/(?=.*\d)/.test(password))
-    return "Password must contain at least one number";
+const validatePassword = (password: string, t: (key: string) => string) => {
+  if (!password.trim()) return t("register.requiredPassword");
+  if (password.length < 6) return t("register.passwordLength");
+  if (!/(?=.*[A-Z])/.test(password)) return t("register.passwordUppercase");
+  if (!/(?=.*\d)/.test(password)) return t("register.passwordNumber");
   return "";
 };
 
-const validatePhoneNumber = (phoneNumber: string) => {
+const validatePhoneNumber = (
+  phoneNumber: string,
+  t: (key: string) => string,
+) => {
   const regex = /^971(50|52|54|55|56)\d{7}$/;
-  if (!phoneNumber.trim()) return "Phone number is required";
+  if (!phoneNumber.trim()) return t("register.requiredPhone");
   if (!regex.test(phoneNumber.replace(/\s+/g, "")))
-    return "Please enter a valid phone number";
+    return t("register.phoneFormat");
   return "";
 };
 

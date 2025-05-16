@@ -6,7 +6,7 @@ import { SwiperSlide } from "swiper/react";
 
 import { useTranslation } from "react-i18next";
 import { products1 } from "src/data/products";
-import ProductCard from "src/components/ui/ProductCard";
+import ProductCard from "src/components/ui/ProductCard/ProductCard";
 
 const BestSellers = () => {
   const { t } = useTranslation("home");

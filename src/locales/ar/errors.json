@@ -1,0 +1,24 @@
+{
+    "register": {
+      "requiredPassword": "كلمة المرور مطلوبة",
+      "passwordLength": "يجب أن تكون كلمة المرور 8 أحرف على الأقل",
+      "passwordUppercase": "يجب أن تحتوي كلمة المرور على حرف كبير واحد على الأقل",
+      "passwordNumber": "يجب أن تحتوي كلمة المرور على رقم واحد على الأقل",
+  
+      "requiredEmail": "البريد الإلكتروني مطلوب",
+      "emailFormat": "يرجى إدخال بريد إلكتروني صالح",
+      "emailExists": "البريد الإلكتروني مستخدم بالفعل",
+  
+      "requiredPhone": "رقم الهاتف مطلوب",
+      "phoneFormat": "يرجى إدخال رقم هاتف صالح",
+  
+      "invalidLogin": "خطأ في البريد الإلكتروني أو كلمة المرور",
+  
+      "requiredFirstName": "الاسم الأول مطلوب",
+      "requiredLastName": "اسم العائلة مطلوب",
+      "confirmPassword": "يرجى تأكيد كلمة المرور",
+      "passwordMismatch": "كلمتا المرور غير متطابقتين",
+      "requiredGender": "يرجى اختيار الجنس"
+    }
+  }
+  

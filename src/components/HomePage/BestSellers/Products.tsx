@@ -1,5 +1,5 @@
 import { products1 } from "src/data/products";
-import ProductCard from "src/components/ui/ProductCard";
+import ProductCard from "src/components/ui/ProductCard/ProductCard";
 
 const Products = () => {
   return (

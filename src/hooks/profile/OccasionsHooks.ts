@@ -8,7 +8,7 @@ import {
 import Occasion from "src/types/UserInfo/Occasion";
 const useGetOccasions = () =>
   useQuery({
-    queryKey: ["occasions"],
+    queryKey: ["user-occasions"],
     queryFn: () => getOccasions(),
     retry: 2,
   });
@@ -24,7 +24,7 @@ const useDeleteOccasion = () =>
   });
 const useAddOccasion = () =>
   useMutation({
-    mutationFn: (occasion: any) => addOccasion(occasion),
+    mutationFn: (occasion: Occasion) => addOccasion(occasion),
   });
 
 export {

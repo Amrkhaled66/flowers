@@ -1,17 +1,19 @@
 import { ChangeEvent } from "react";
+import { useTranslation } from "react-i18next";
 
 interface FormInputProps<T> {
   label: string;
-  type: string;
+  type?: string;
   name: string;
   value: T;
   error?: string;
   required?: boolean;
   bgColor?: string;
   onChange: (e: ChangeEvent<HTMLInputElement>) => void;
+  onBlur?: () => void;
   min?: string;
   placeholder?: string;
-  onBlur?: () => void;
+  pattern?: string;
 }
 
 function FormInput<T>({
@@ -26,7 +28,11 @@ function FormInput<T>({
   min,
   placeholder,
   onBlur,
+  pattern,
 }: FormInputProps<T>) {
+  const {
+    i18n: { language },
+  } = useTranslation();
   return (
     <div className="flex w-full flex-col items-start gap-y-3">
       <label htmlFor={name} className="text-text-main font-bold">
@@ -34,6 +40,7 @@ function FormInput<T>({
       </label>
       <div className="w-full space-y-2">
         <input
+          dir={language === "ar" ? "rtl" : "ltr"}
           onBlur={onBlur}
           min={min}
           required={required}
@@ -43,9 +50,10 @@ function FormInput<T>({
           value={String(value)}
           onChange={onChange}
           placeholder={placeholder || label}
-          className={` ${error ? "border-[#D00]" : "border-stroke focus:border-main"} ${bgColor} animate w-full rounded-xl border p-2.5`}
+          pattern={pattern}
+          className={` ${error ? "border-[#D00]" : "border-stroke focus:border-main"} ${bgColor} animate w-full rounded-xl border p-2.5 !text-start`}
         />
-        {error && <p className="text-left text-xs text-[#D00]">{error}</p>}
+        {error && <p className="text-start text-xs text-[#D00]">{error}</p>}
       </div>
     </div>
   );

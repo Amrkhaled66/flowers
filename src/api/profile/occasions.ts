@@ -5,7 +5,7 @@ export const getOccasions = async () => {
   return data;
 };
 
-export const addOccasion = async (occasion: any) => {
+export const addOccasion = async (occasion: Occasion) => {
   const { data } = await axiosPrivate.post("/api/user-occasions", occasion);
   return data;
 };

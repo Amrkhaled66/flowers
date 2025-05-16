@@ -51,7 +51,7 @@ interface PasswordInputProps {
             name={name}
           />
           <div
-            className="g absolute inset-y-0 right-0 flex cursor-pointer items-center pr-3"
+            className="g absolute inset-y-0 end-0 flex cursor-pointer items-center pe-3"
             onClick={() => setShowPassword(!showPassword)}
           >
             {showPassword ? (
@@ -96,7 +96,7 @@ interface PasswordInputProps {
             )}
           </div>
         </div>
-        {error && <p className="mt-1 text-xs text-red-500">{error}</p>}
+        {error && <p className="mt-1 text-start text-xs text-red-500">{error}</p>}
       </div>
     );
 };
