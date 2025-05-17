@@ -37,7 +37,7 @@ const Model = ({
       <div className="fixed top-0 left-0 h-full w-full" onClick={onClose}>
         <Overlay />
       </div>
-      <div className="fixed top-1/2 left-1/2 w-full -translate-x-1/2 -translate-y-1/2">
+      <div className="fixed top-1/2 left-1/2 w-fit -translate-x-1/2 -translate-y-1/2">
         {children}
       </div>
     </div>,

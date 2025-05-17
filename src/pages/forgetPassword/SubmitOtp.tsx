@@ -40,7 +40,7 @@ const SubmitOtp = () => {
 
   return (
     <div className="flex items-center justify-center py-10">
-      <div className="border-stroke inline-flex w-[646px] flex-col items-center justify-start gap-5 rounded-xl border bg-zinc-100 p-8">
+      <div className="border-stroke inline-flex lg:w-[646px] flex-col items-center justify-start gap-5 rounded-xl border bg-zinc-100 p-4 lg:p-8">
         <div className="flex flex-col items-center justify-start gap-4 self-stretch">
           <div className="inline-flex items-center justify-center gap-2.5 self-stretch">
             <div className="text-text-main justify-start text-xl leading-7 font-bold">
@@ -49,7 +49,7 @@ const SubmitOtp = () => {
           </div>
           <div className="flex flex-col items-center justify-start gap-2">
             <div className="text-text-main justify-start text-center text-base font-normal">
-             {forgetPasswordTranslation("submitOtp.description")}
+              {forgetPasswordTranslation("submitOtp.description")}
             </div>
             <div className="relative inline-flex items-start justify-center gap-2">
               <div className="outline-Color-Primary absolute top-[18px] left-[125px] h-0 w-12 outline-offset-[-0.50px]"></div>

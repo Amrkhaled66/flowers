@@ -1,0 +1,46 @@
+{
+    "header": "My Account",
+    "info": {
+        "email": "Email",
+        "firstName": "First Name",
+        "lastName": "Last Name",
+        "phone": "Phone Number"
+    },
+    "changePassword": {
+        "currentPass": "Current Password",
+        "newPass": "New Password",
+        "confirmNewPass": "Confirm New Password",
+        "update": "Update Password"
+    },
+    "address": {
+        "add": "Add New Address",
+        "addressCard": {
+            "name": "Name",
+            "address": "Address",
+            "phone": "Phone Number",
+            "area": "area"
+        },
+        "form": {
+            "recipientName": "recipient name",
+            "recipientPhone": "recipient phone",
+            "address": "address",
+            "area": "area",
+            "submit": "save"
+        }
+    },
+    "occasion": {
+        "empty": "There are no special occasions.",
+        "add": "Add a new occasion",
+        "form": {
+            "title": "Event title",
+            "date": "Event date",
+            "datePlaceholder": "Enter date as Day/Month",
+            "type": "Occasion type",
+            "typePlacholder":"Select occasion type",
+            "note": "Note (Optional)",
+            "notesPlacholder":"Write your notes here",
+            "submit": "save"
+        }
+    },
+    "Edit": "edit"
+}

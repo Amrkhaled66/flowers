@@ -4,6 +4,7 @@ import ProfileCard from "src/components/ui/ProfileCard/ProfileCard";
 import DeleteAddressModel from "./DeleteAddreesModel";
 
 import { useState } from "react";
+import { useTranslation } from "react-i18next";
 const AddressCard = ({
   address: { recipient_name, address, recipient_phone, id, area },
   onEditAddress,
@@ -14,6 +15,7 @@ const AddressCard = ({
   refetch: () => void;
 }) => {
   const [isDelete, setIsDelete] = useState(false);
+  const { t } = useTranslation("profile");
 
   const handleDeleteAddress = () => setIsDelete(true);
   const handleEditAddress = () =>
@@ -28,10 +30,10 @@ const AddressCard = ({
   return (
     <ProfileCard onDelete={handleDeleteAddress} onEdit={handleEditAddress}>
       <div>
-        <Row name="Name" value={recipient_name} />
-        <Row name="Address" value={address} />
-        <Row name="Phone Number" value={recipient_phone} />
-        <Row name="Area" value={area} />
+        <Row name={t("address.addressCard.name")} value={recipient_name} />
+        <Row name={t("address.addressCard.address")} value={address} />
+        <Row name={t("address.addressCard.phone")} value={recipient_phone} />
+        <Row name={t("address.addressCard.area")} value={area} />
       </div>
       <DeleteAddressModel
         refetch={refetch}

@@ -3,10 +3,12 @@ import { Icon } from "@iconify/react/dist/iconify.js";
 import { useAuth } from "src/context/authCtx";
 import { useNavigate } from "react-router";
 import useLogOutMutation from "src/hooks/auth/useLogOutMutation";
+import { useTranslation } from "react-i18next";
 const LogOutButton = ({ isMenuButton = false }: { isMenuButton?: boolean }) => {
   const { logout } = useAuth();
   const navigate = useNavigate();
   const { mutate } = useLogOutMutation();
+  const { i18n: { language } } = useTranslation()
   return (
     <button
       onClick={() => {
@@ -26,7 +28,7 @@ const LogOutButton = ({ isMenuButton = false }: { isMenuButton?: boolean }) => {
         <span>
           <Icon icon="material-symbols:logout-rounded" width="24" height="24" />
         </span>
-        <span> Logout</span>
+        <span>{language === "ar" ? "تسجيل الخروج" : "Logout"}</span>
       </div>
     </button>
   );

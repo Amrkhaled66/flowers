@@ -1,0 +1,46 @@
+{
+    "header": "حسابي",
+    "info": {
+        "email": "البريد الالكتروني",
+        "firstName": "الاسم الاول",
+        "lastName": "الاسم الاخير",
+        "phone": "رقم الهاتف"
+    },
+    "changePassword": {
+        "currentPass": "كلمة المرور الحالية",
+        "newPass": "كلمة المرور الجديدة",
+        "confirmNewPass": "تاكيد كلمة المرور الجديدة",
+        "update": "حفظ التغييرات"
+    },
+    "address": {
+        "add": "أضافة عنوان جديد",
+        "addressCard": {
+            "name": "الاسم",
+            "address": "العنوان",
+            "phone": "رقم الهاتف",
+            "area": "المنطقة"
+        },
+        "form": {
+            "recipientName": "اسم المستلم",
+            "recipientPhone": "رقم المستلم",
+            "address": "العنوان",
+            "area": "المنطقة",
+            "submit": "حفظ"
+        }
+    },
+    "occasion": {
+        "empty": "لا توجد مناسبات خاصة.",
+        "add": "أضافة مناسبة جديدة",
+        "form": {
+            "title": "اسم المناسبة",
+            "date": "تاريخ المناسبة",
+            "datePlaceholder": "ادخل تاريخ المناسبة كـ يوم / شهر",
+            "type": "نوع المناسبة",
+            "typePlacholder": "اختر نوع المناسبة",
+            "note": "  ملاحظات (اخيتاري)  ",
+            "notesPlacholder":"اكتب ملاحظاتك هنا",
+            "submit": "حفظ"
+        }
+    },
+    "edit": "تعديل"
+}

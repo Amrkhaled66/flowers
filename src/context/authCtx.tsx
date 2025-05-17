@@ -24,8 +24,8 @@ type AuthContextType = {
 
 const AuthContext = createContext<AuthContextType>({
   authData: { user: null, token: null },
-  login: () => {},
-  logout: () => {},
+  login: () => { },
+  logout: () => { },
   isAuthenticated: false,
 });
 

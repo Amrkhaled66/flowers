@@ -15,7 +15,8 @@ interface ComboBoxProps {
   options: any[];
   label?: string;
   name: string;
-  value:string
+  value: string,
+  placeholder?: string
 }
 
 function ComboBox({
@@ -25,6 +26,7 @@ function ComboBox({
   label,
   name,
   value,
+  placeholder
 }: ComboBoxProps) {
   const [query, setQuery] = useState("");
 
@@ -32,14 +34,14 @@ function ComboBox({
     query === ""
       ? options
       : options.filter((option) => {
-          return option.name.toLowerCase().includes(query.toLowerCase());
-        });
+        return option.name.toLowerCase().includes(query.toLowerCase());
+      });
 
   return (
     <div className={`w-full`}>
       <Field className="relative flex w-full flex-col space-y-3">
         <Label className="text-text-main font-bold">
-          {label}: <span className="text-[#D00]">*</span>
+          {label} <span className="text-[#D00]">*</span>
         </Label>
         <Combobox
           as="div"
@@ -53,7 +55,7 @@ function ComboBox({
             className={`flex ${bgColor} focus:border-main animate gap-2 rounded-xl border border-transparent`}
           >
             <ComboboxInput
-              placeholder="Select Area"
+              placeholder={placeholder}
               className="border-stroke w-full rounded-xl border p-2"
               aria-label="Area"
               displayValue={(option: any) => option}
@@ -64,7 +66,7 @@ function ComboBox({
             </ComboboxButton>
           </div>
           <ComboboxOptions className="absolute z-10 mt-1 max-h-60 w-full overflow-auto rounded bg-white shadow-lg">
-            {filteredOptions.map((option,index) => (
+            {filteredOptions.map((option, index) => (
               <ComboboxOption
                 key={`option ${index}`}
                 value={option}

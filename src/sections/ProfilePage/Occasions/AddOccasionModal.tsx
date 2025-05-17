@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useAddOccasion } from "src/hooks/profile/OccasionsHooks";
+import { useTranslation } from "react-i18next";
 
 import Model from "src/components/ui/Model";
 import FormInput from "src/components/ui/register/FormInput";
@@ -50,6 +51,7 @@ const AddOccasionModal = ({
   const [formData, setFormData] = useState<Form>(Data || initialFormData);
   const [formErrors, setFormErrors] = useState<FormErrors>(initialFormErrors);
   const { mutate, isPending } = useAddOccasion();
+  const { t } = useTranslation("profile");
 
   const handleInputChange = (value: string, name: string) => {
     setFormData({
@@ -126,7 +128,7 @@ const AddOccasionModal = ({
     <Model isOpen={isOpen} onClose={onClose}>
       <form
         onSubmit={handleSubmit}
-        className="mx-auto w-[90%] space-y-5 rounded-2xl bg-white p-4 lg:w-[900px]"
+        className="mx-auto w-[90%] space-y-5  rounded-2xl bg-white p-4 lg:w-[900px]"
       >
         <div className="h-fit space-y-4">
           <div className="grid w-full grid-cols-1 gap-4 lg:grid-cols-2">
@@ -135,7 +137,7 @@ const AddOccasionModal = ({
               type="text"
               error={formErrors.eventTitle}
               onChange={(e) => handleInputChange(e.target.value, "eventTitle")}
-              label="Event title"
+              label={t("occasion.form.title")}
               required
               value={formData.eventTitle}
               name="eventTitle"
@@ -145,16 +147,17 @@ const AddOccasionModal = ({
               bgColor="bg-main-50"
               error={formErrors.eventDate}
               onChange={(e) => handleInputChange(e.target.value, "eventDate")}
-              label="Event Date"
+              label={t("occasion.form.date")}
               required
               value={formData.eventDate}
               name="eventDate"
-              placeholder="Enter date as Day/Month"
+              placeholder={t("occasion.form.datePlaceholder")}
             />
           </div>
           <ComboBox
+            placeholder={t("occasion.form.typePlacholder")}
             name="type"
-            label="Occasion type"
+            label={t("occasion.form.type")}
             bgColor="bg-main-50"
             onSelected={(value) => handleInputChange(value, "type")}
             value={formData.type}
@@ -167,10 +170,10 @@ const AddOccasionModal = ({
             ]}
           />
           <label className="flex flex-col gap-y-3" htmlFor="">
-            <span className="text-main font-bold"> Notes (optional)</span>
+            <span className="text-main font-bold">{t("occasion.form.note")}</span>
             <textarea
               onChange={(e) => handleInputChange(e.target.value, "note")}
-              placeholder="Notes"
+              placeholder={t("occasion.form.notesPlacholder")}
               name=""
               className="bg-main-50 animate border-stroke focus:outline-main h-[100px] rounded-xl border px-4 py-2.5 outline outline-transparent"
               id=""
@@ -178,7 +181,8 @@ const AddOccasionModal = ({
           </label>
         </div>
         <Button
-          text="Save changes"
+          loading={isPending}
+          text={t("occasion.form.submit")}
           className="animate w-full !py-3 text-white"
         />
       </form>

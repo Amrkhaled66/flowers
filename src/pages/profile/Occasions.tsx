@@ -9,11 +9,12 @@ import { useState } from "react";
 import { useGetOccasions } from "src/hooks/profile/OccasionsHooks";
 
 import Occasion from "src/types/UserInfo/Occasion";
-
+import { useTranslation } from "react-i18next";
 const Occasions = () => {
   const [showOccasionForm, setShowOccasionForm] = useState(false);
   const [editedOccasion, setEditedOccasion] = useState<Occasion | null>(null);
   const { data, isLoading, refetch, isError } = useGetOccasions();
+  const { t } = useTranslation("profile");
 
   const onEditOccasion = (occasion: Occasion) => setEditedOccasion(occasion);
   const handleAddOccasion = () => setShowOccasionForm(true);
@@ -27,7 +28,7 @@ const Occasions = () => {
       <div className="dashed-border divide-dashed rounded-xl p-2">
         <Button
           onClick={handleAddOccasion}
-          text="Add a new occasion"
+          text={t("occasion.add")}
           icon={<Icon icon="line-md:plus" width="24" height="24" />}
           className="bg-main-100 animate text-main w-full rounded-sm !py-2 text-center font-bold lg:!py-3"
         />

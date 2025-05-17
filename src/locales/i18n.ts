@@ -8,6 +8,7 @@ import SignInEn from "src/locales/en/signin.json";
 import SignUpEn from "src/locales/en/signup.json";
 import errorsEn from "src/locales/en/errors.json";
 import forgetPasswordEn from "src/locales/en/forgetPassword.json";
+import profileEn from "src/locales/en/profile.json"
 
 import LayoutAr from "src/locales/ar/Layout.json";
 import HomeAr from "src/locales/ar/HomePage.json";
@@ -15,6 +16,7 @@ import SignInAr from "src/locales/ar/signin.json";
 import SignUpAr from "src/locales/ar/signup.json";
 import errorsAr from "src/locales/ar/errors.json";
 import forgetPasswordAr from "src/locales/ar/forgetPassword.json";
+import profileAr from "src/locales/ar/profile.json"
 
 const resources = {
   en: {
@@ -24,6 +26,7 @@ const resources = {
     signUp: SignUpEn,
     errors: errorsEn,
     forgetPassword: forgetPasswordEn,
+    profile: profileEn
   },
   ar: {
     home: HomeAr,
@@ -32,6 +35,7 @@ const resources = {
     signUp: SignUpAr,
     errors: errorsAr,
     forgetPassword: forgetPasswordAr,
+    profile: profileAr
   },
 };
 

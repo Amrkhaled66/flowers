@@ -1,13 +1,14 @@
 import { useState } from "react";
 import mapImg from "src/assets/map.png";
 import MapModel from "./MapModel";
-
+import { useTranslation } from "react-i18next";
 interface MapButtonProps {
   onLocationSelected: (address: string) => void;
 }
 
 export default function MapButton({ onLocationSelected }: MapButtonProps) {
   const [isDialogOpen, setIsDialogOpen] = useState(false);
+  const { i18n: { language } } = useTranslation()
 
   const openDialog = (e?: React.MouseEvent) => {
     e?.preventDefault();
@@ -34,7 +35,7 @@ export default function MapButton({ onLocationSelected }: MapButtonProps) {
           onClick={openDialog}
           className="bg-main hover:bg-main-300 animate rounded-xl px-4 py-[12px] text-white"
         >
-          Change location
+          {language === "ar" ? "تغيير الموقع" : "Change location"}
         </button>
       </div>
 

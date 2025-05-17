@@ -3,13 +3,15 @@ import ProfileSideBar from "src/sections/ProfilePage/ProfileSideBar/ProfileSideB
 import { Link } from "react-router-dom";
 
 import ProfileNav from "src/components/layout/ProfileNav/ProfileNav";
+import { useTranslation } from "react-i18next";
 const ProfilePage = () => {
+  const { t } = useTranslation("profile");
   return (
     <div className="text-text-main h-fit py-6 lg:h-auto lg:min-h-dvh lg:py-10">
       <div className="container space-y-5 lg:space-y-6">
         <div className="flex items-center gap-x-1 font-bold lg:text-2xl">
           <Link to={"/profile/mydata"}>
-            <h1>My Account</h1>
+            <h1>{t("header")}</h1>
           </Link>
           <div className="block lg:hidden">
             <ProfileNav />

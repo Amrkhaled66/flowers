@@ -5,7 +5,7 @@ import { useState, ChangeEvent } from "react";
 interface PasswordInputProps {
     label: string;
     name: string;
-    placeholder: string;
+    placeholder?: string;
     value: string;
     error?: string;
     onChange: (e: ChangeEvent<HTMLInputElement>) => void;
@@ -44,7 +44,7 @@ interface PasswordInputProps {
             </svg>
           </div>
           <input
-            placeholder={placeholder}
+            placeholder={placeholder || label}
             onChange={onChange}
             className="placeholder:text-subTitle border-stroke animate focus:border-main h-full w-full rounded-xl border py-2.5 ps-10"
             type={showPassword ? "text" : "password"}

@@ -48,7 +48,7 @@ const SendOtp = () => {
 
   return (
     <div className="flex h-fit items-center justify-center py-10">
-      <div className="bg-main-50 border-stroke inline-flex w-[646px] flex-col items-center justify-start gap-5 rounded-xl border p-8">
+      <div className="bg-main-50 border-stroke inline-flex w-[90%] lg:w-[646px] flex-col items-center justify-start gap-5 rounded-xl border p-4 lg:p-8">
         <div className="flex flex-col items-center justify-start gap-2">
           <div className="text-text-main justify-start text-center text-xl font-bold">
             {forgetPasswordTranslation("sendOtp.header")}
@@ -89,7 +89,7 @@ const SendOtp = () => {
             </div>
           </div>
           <Link to="/signin">
-            <p className="text-text-main justify-start text-lg font-semibold">
+            <p className="text-text-main justify-start tracking-wider text-lg font-semibold">
               {forgetPasswordTranslation("sendOtp.back")}
             </p>
           </Link>

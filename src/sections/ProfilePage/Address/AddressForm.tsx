@@ -4,7 +4,9 @@ import Button from "src/components/ui/Button";
 import MapButton from "src/components/ui/AddressForm/MapModel/MapButton";
 import Address from "src/types/UserInfo/Address";
 import AreaSelection from "src/components/ui/AddressForm/AreaSelection";
+
 import { useMemo } from "react";
+import { useTranslation } from "react-i18next";
 
 const initialFormData: Address = {
   recipient_name: "",
@@ -24,6 +26,7 @@ const AddressForm = ({
   isPending?: boolean;
 }) => {
   const initialData = useMemo(() => FormData || initialFormData, [FormData]);
+  const { t } = useTranslation("profile");
 
   const {
     formData,
@@ -40,7 +43,7 @@ const AddressForm = ({
         type="text"
         name="recipient_name"
         required
-        label="Recipient name"
+        label={t("address.form.recipientName")}
         value={formData.recipient_name}
         onChange={handleInputChange}
         error={formErrors.name}
@@ -49,7 +52,7 @@ const AddressForm = ({
         type="text"
         name="recipient_phone"
         required
-        label="Recipient phone"
+        label={t("address.form.recipientPhone")}
         value={formData.recipient_phone}
         onChange={handleInputChange}
         error={formErrors.phoneNumber}
@@ -62,7 +65,7 @@ const AddressForm = ({
         type="text"
         name="address"
         required
-        label="Address"
+        label={t("address.form.address")}
         value={formData.address}
         onChange={handleInputChange}
         error={formErrors.address}
@@ -70,7 +73,7 @@ const AddressForm = ({
 
       <Button
         loading={isPending}
-        text="Save"
+        text={t("address.form.submit")}
         className="animate w-full !py-3 text-white"
         onClick={undefined}
       />

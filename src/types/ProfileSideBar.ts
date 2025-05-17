@@ -1,7 +1,8 @@
 import { ReactNode } from "react";
 
 type ElementItem = {
-  name: string;
+  nameEn: string;
+  nameAr: string;
   icon: ReactNode;
   link: string;
   show?: boolean;

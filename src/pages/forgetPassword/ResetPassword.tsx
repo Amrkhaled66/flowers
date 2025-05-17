@@ -49,7 +49,7 @@ const ResetPassword = () => {
 
   return (
     <div className="flex items-center justify-center py-8">
-      <div className="border-stroke bg-main-50 w-[600px] rounded-xl border p-8">
+      <div className="border-stroke bg-main-50 w-[90%] lg:w-[600px] rounded-xl border  p-4 lg:p-8">
         <div className="flex flex-col items-center gap-8 text-center">
           <div className="space-y-2">
             <h1 className="text-text-main text-2xl font-bold">
