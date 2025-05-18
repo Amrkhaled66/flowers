@@ -1,5 +1,6 @@
 import DeletionModal from "src/components/ui/DeletionModel";
 import { useDeleteAddress } from "src/hooks/profile/addresses/useAddressMutations";
+import { useTranslation } from "react-i18next";
 interface DeleteAddressProps {
   isOpen: boolean;
   onClose: () => void;
@@ -14,6 +15,7 @@ const DeleteAddressModel = ({
   refetch,
 }: DeleteAddressProps) => {
   const { mutate, isPending } = useDeleteAddress();
+  const { t } = useTranslation("profile");
   const onConfirm = () =>
     mutate(id, {
       onSuccess: () => {
@@ -27,10 +29,10 @@ const DeleteAddressModel = ({
       isOpen={isOpen}
       onClose={onClose}
       onConfirm={onConfirm}
-      title="Are you sure you want to delete this address?"
-      message="This address will be removed from your profile."
-      confirmText="Yes, Delete Address"
-      cancelText="Cancel"
+      title={t("address.deletionModel.title")}
+      message={t("address.deletionModel.message")}
+      confirmText={t("address.deletionModel.confirmText")}
+      cancelText={t("address.deletionModel.cancelText")}
     />
   );
 };

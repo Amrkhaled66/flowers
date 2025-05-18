@@ -11,7 +11,6 @@ const EditAddressForm = ({
 }) => {
   const { mutate, isPending } = useUpdateAddress();
 
-  console.log(editedAddress);
   const onSubmit = (formData: Address) => {
     mutate(
       { address: formData, id: editedAddress.id },

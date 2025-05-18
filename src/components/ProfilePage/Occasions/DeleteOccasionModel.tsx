@@ -1,6 +1,9 @@
 // components/profile/DeleteOccasion.tsx
 import DeletionModal from "src/components/ui/DeletionModel";
+
 import { useDeleteOccasion } from "src/hooks/profile/OccasionsHooks";
+import { useTranslation } from "react-i18next";
+
 interface DeleteOccasionProps {
   isOpen: boolean;
   onClose: () => void;
@@ -9,6 +12,8 @@ interface DeleteOccasionProps {
 
 const DeleteOccasion = ({ isOpen, onClose, id }: DeleteOccasionProps) => {
   const { mutate, isPending } = useDeleteOccasion();
+  const { t } = useTranslation("profile")
+
   const onConfirm = () => {
     mutate(id, {
       onSuccess: () => {
@@ -16,16 +21,17 @@ const DeleteOccasion = ({ isOpen, onClose, id }: DeleteOccasionProps) => {
       },
     });
   };
+
   return (
     <DeletionModal
       isPending={isPending}
       isOpen={isOpen}
       onClose={onClose}
       onConfirm={onConfirm}
-      title="Are you sure you want to delete this event?"
-      message="This occasion will be remembered forever."
-      confirmText="Yes, Delete"
-      cancelText="Cancel"
+      title={t("occasion.deletionModel.title")}
+      message={t("occasion.deletionModel.message")}
+      confirmText={t("occasion.deletionModel.confirmText")}
+      cancelText={t("occasion.deletionModel.cancelText")}
     />
   );
 };

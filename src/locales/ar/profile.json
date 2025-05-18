@@ -10,7 +10,14 @@
         "currentPass": "كلمة المرور الحالية",
         "newPass": "كلمة المرور الجديدة",
         "confirmNewPass": "تاكيد كلمة المرور الجديدة",
-        "update": "حفظ التغييرات"
+        "update": "حفظ التغييرات",
+        "formErros": {
+            "requiredOldPassword": "كلمة المرور القديمة مطلوبة",
+            "requiredNewPassword": "كلمة المرور الجديدة مطلوبة",
+            "requiredConfirmPassword": "يرجى تأكيد كلمة المرور",
+            "passwordSameAsOld": "يجب أن تكون كلمة المرور الجديدة مختلفة عن القديمة",
+            "passwordMismatch": "كلمتا المرور غير متطابقتين"
+        }
     },
     "address": {
         "add": "أضافة عنوان جديد",
@@ -18,7 +25,9 @@
             "name": "الاسم",
             "address": "العنوان",
             "phone": "رقم الهاتف",
-            "area": "المنطقة"
+            "area": "المنطقة",
+            "edit": "تعديل",
+            "delete": "حذف"
         },
         "form": {
             "recipientName": "اسم المستلم",
@@ -26,6 +35,26 @@
             "address": "العنوان",
             "area": "المنطقة",
             "submit": "حفظ"
+        },
+        "formErrors": {
+            "name": {
+                "required": "اسم المستلم مطلوب",
+                "minLength": "يجب أن يحتوي الاسم على 3 أحرف على الأقل"
+            },
+            "phoneNumber": {
+                "required": "رقم هاتف المستلم مطلوب",
+                "invalid": "يرجى إدخال رقم هاتف صالح"
+            },
+            "address": {
+                "required": "العنوان مطلوب",
+                "minLength": "يجب أن يحتوي العنوان على 5 أحرف على الأقل"
+            }
+        },
+        "deletionModel": {
+            "title": "هل تريد حذف هذا العنوان؟",
+            "message": "سوف يتم حذف هذا العنوان من حسابك",
+            "confirmText": "نعم، حذف",
+            "cancelText": "الغاء"
         }
     },
     "occasion": {
@@ -38,9 +67,27 @@
             "type": "نوع المناسبة",
             "typePlacholder": "اختر نوع المناسبة",
             "note": "  ملاحظات (اخيتاري)  ",
-            "notesPlacholder":"اكتب ملاحظاتك هنا",
+            "notesPlacholder": "اكتب ملاحظاتك هنا",
             "submit": "حفظ"
+        },
+        "deletionModel": {
+            "title": "هل أنت متأكد أنك تريد حذف هذا الحدث؟",
+            "mesage": "سوف يتم تذكر هذه المناسبة إلى الأبد.",
+            "confirmText": "نعم, احذف",
+            "cencelText": "الغاء"
         }
+    },
+    "orders": {
+        "searchPlaceholder": "ابحث عن العناصر",
+        "orderId": "رقم الطلب"
+    },
+    "points": {
+        "header": "الرصيد المتاح",
+        "point": "نقظة"
+    },
+    "favorite": {
+        "empty": "اختر المنتجات المفضلة لديك",
+        "cta": "اختر الان"
     },
     "edit": "تعديل"
 }

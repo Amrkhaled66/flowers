@@ -38,18 +38,18 @@ function App() {
 
   return (
     <QueryClientProvider client={queryClient}>
-      <AuthProvider>
-        <NavBarToggleBtnsProvider>
-          <OrderSummaryProvider>
-            <MessageGiftProvider>
-              <ResetProvider>
-                <ToastContainer />
-                <Paths />
-              </ResetProvider>
-            </MessageGiftProvider>
-          </OrderSummaryProvider>
-        </NavBarToggleBtnsProvider>
-      </AuthProvider>
+        <AuthProvider>
+          <NavBarToggleBtnsProvider>
+            <OrderSummaryProvider>
+              <MessageGiftProvider>
+                <ResetProvider>
+                  <ToastContainer />
+                  <Paths />
+                </ResetProvider>
+              </MessageGiftProvider>
+            </OrderSummaryProvider>
+          </NavBarToggleBtnsProvider>
+        </AuthProvider>
     </QueryClientProvider>
   );
 }

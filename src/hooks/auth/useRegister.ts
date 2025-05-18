@@ -47,15 +47,16 @@ export default function useRegister() {
       case "last_name":
         return value.trim() ? "" : t("register.requiredLastName");
       case "email":
-        return validateEmail(value,t);
+        return validateEmail(value, t);
       case "password":
-        return validatePassword(value,t);
+        return !value.trim() ? t("register.requiredPassword") :
+          validatePassword(value, t);
       case "confirm_password":
         if (!value.trim()) return t("register.confirmPassword");
         if (value !== formData.password) return t("register.passwordMismatch");
         return "";
       case "phone_number":
-        return validatePhoneNumber(value,t);
+        return validatePhoneNumber(value, t);
       case "gender":
         return value ? "" : t("register.requiredGender");
       default:

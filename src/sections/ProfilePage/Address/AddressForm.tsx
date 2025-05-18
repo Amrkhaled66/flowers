@@ -27,6 +27,7 @@ const AddressForm = ({
 }) => {
   const initialData = useMemo(() => FormData || initialFormData, [FormData]);
   const { t } = useTranslation("profile");
+  console.log(FormData)
 
   const {
     formData,
@@ -60,7 +61,7 @@ const AddressForm = ({
 
       <MapButton onLocationSelected={handleLocationSelection} />
 
-      <AreaSelection onAreaSelected={handleSelectArea} />
+      <AreaSelection defaultValue={formData.area} onAreaSelected={handleSelectArea} />
       <FormInput
         type="text"
         name="address"

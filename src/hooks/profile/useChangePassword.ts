@@ -1,7 +1,6 @@
 import { useState, ChangeEvent, FormEvent } from "react";
-
-
-
+import { validatePassword } from "src/utils/register";
+import { useTranslation } from "react-i18next";
 const useChangePassword = () => {
   const [formData, setFormData] = useState({
     oldPassword: "",
@@ -14,6 +13,9 @@ const useChangePassword = () => {
     newPassword: "",
     confirmPassword: "",
   });
+
+  const { t } = useTranslation("profile");
+  const { t: tError } = useTranslation("errors");
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
@@ -33,6 +35,7 @@ const useChangePassword = () => {
     if (name === "newPassword" && formData.confirmPassword) {
       validateConfirmPassword(value, formData.confirmPassword);
     }
+
     if (name === "confirmPassword") {
       validateConfirmPassword(formData.newPassword, value);
     }
@@ -61,29 +64,29 @@ const useChangePassword = () => {
 
     // Validate old password
     if (!formData.oldPassword.trim()) {
-      newErrors.oldPassword = "Old password is required";
+      newErrors.oldPassword = t("changePassword.formErros.requiredOldPassword");
       isValid = false;
     }
 
     // Validate new password
     if (!formData.newPassword.trim()) {
-      newErrors.newPassword = "New password is required";
+      newErrors.newPassword = t("changePassword.formErros.requiredNewPassword");
       isValid = false;
-    } else if (formData.newPassword.length < 8) {
-      newErrors.newPassword = "Password must be at least 8 characters";
+    } else if (validatePassword(formData.newPassword, t)) {
+      newErrors.newPassword = validatePassword(formData.newPassword, tError);
       isValid = false;
     } else if (formData.newPassword === formData.oldPassword) {
       newErrors.newPassword =
-        "New password must be different from old password";
+        t("changePassword.formErros.passwordSameAsOld");
       isValid = false;
     }
 
     // Validate confirm password
     if (!formData.confirmPassword.trim()) {
-      newErrors.confirmPassword = "Please confirm your password";
+      newErrors.confirmPassword = t("changePassword.formErros.requiredConfirmPassword");
       isValid = false;
     } else if (formData.newPassword !== formData.confirmPassword) {
-      newErrors.confirmPassword = "Passwords do not match";
+      newErrors.confirmPassword = t("changePassword.formErros.passwordMismatch");
       isValid = false;
     }
 

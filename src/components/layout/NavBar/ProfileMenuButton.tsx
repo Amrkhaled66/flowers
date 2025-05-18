@@ -8,7 +8,7 @@ import LogOutButton from "src/components/ui/register/LogOutButton";
 import { useTranslation } from "react-i18next";
 import { useAuth } from "src/context/authCtx";
 const ProfileMenuButton = () => {
-  const { t } = useTranslation("layout");
+  const { t, i18n: { language } } = useTranslation("layout");
 
   const [openMenu, setOpenMenu] = useState(false);
 
@@ -19,7 +19,7 @@ const ProfileMenuButton = () => {
   const onOpenMenu = () => setOpenMenu(true);
 
   const filteredElements = profileElements.filter(
-    (item) => item.name !== "Ballora Points" && item.show !== false,
+    (item) => item.nameEn !== "Ballora Points" && item.show !== false,
   );
 
   return (
@@ -39,20 +39,20 @@ const ProfileMenuButton = () => {
 
       {openMenu && (
         <div
-          className="absolute top-full right-0 z-50 mt-1 w-[300px] rounded-xl bg-white p-6 drop-shadow-xl"
+          className="absolute top-full right-0 z-50 mt-0 w-[300px] rounded-xl bg-white p-6 drop-shadow-xl"
           onMouseLeave={() => setOpenMenu(false)}
         >
           <div className="space-y-8 pb-4">
             {filteredElements.map((item) => (
               <Link
-                key={item.name}
+                key={item.nameEn}
                 to={item.link}
                 onClick={onCloseMenu}
                 className="animate flex items-center gap-x-3"
               >
                 <span>{item.icon}</span>
                 <span className="text-text-main hidden font-medium text-nowrap lg:block">
-                  {item.name}
+                  {language === "en" ? item.nameEn : item.nameAr}
                 </span>
               </Link>
             ))}
@@ -68,7 +68,7 @@ const ProfileMenuButton = () => {
                 />
               </span>
               <span className="text-text-main hidden font-medium text-nowrap lg:block">
-                Ballora Points
+                {language === "en" ? "Ballora Points" : "نقاط بلورا"}
               </span>
             </div>
             <div className="bg-main-100 rounded-xl px-6 py-1 font-medium">

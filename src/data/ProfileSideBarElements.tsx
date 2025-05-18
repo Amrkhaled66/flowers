@@ -16,7 +16,7 @@ const Elements: ProfileSideBar[] = [
   },
   {
     nameEn: "Addresses",
-    nameAr: "العنواين",
+    nameAr: "العناوين",
     icon: <Icon icon="mdi:location" width="24" height="24" />,
     link: "/profile/addresses",
   },

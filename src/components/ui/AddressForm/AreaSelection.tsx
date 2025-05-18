@@ -13,36 +13,47 @@ import { Icon } from "@iconify/react/dist/iconify.js";
 import areas from "src/data/UAEAreas";
 import Area from "src/types/UserInfo/Area";
 
+import { useTranslation } from "react-i18next";
 interface AreaSelectionProps {
   bgColor?: string;
   onAreaSelected: (area: string) => void;
+  defaultValue?: string;
 }
 
 function AreaSelection({
   bgColor = "bg-white",
   onAreaSelected,
+  defaultValue
 }: AreaSelectionProps) {
-  const [selectedArea, setSelectedArea] = useState<Area | null>(null);
+  const { i18n: { language } } = useTranslation();
+  const [selectedArea, setSelectedArea] = useState<string | null>(null);
   const [query, setQuery] = useState("");
 
   const filteredAreas =
     query === ""
       ? areas
       : areas.filter((area: Area) => {
-          return area.name.toLowerCase().includes(query.toLowerCase());
-        });
+        return area.name.toLowerCase().includes(query.toLowerCase());
+      });
 
   useEffect(() => {
     if (selectedArea) {
-      onAreaSelected(selectedArea.name);
+      onAreaSelected(selectedArea);
     }
   }, [selectedArea]);
 
+  useEffect(() => {
+    if (defaultValue) {
+      setSelectedArea(defaultValue);
+    }
+  }, [defaultValue]);
+
+  console.log(defaultValue);
   return (
     <div className={`w-full`}>
       <Field className="relative flex w-full flex-col space-y-3">
         <Label className="text-text-main font-bold">
-          Area: <span className="text-[#D00]">*</span>
+          {language === "ar" ? "المنطقة" : "Area"} : <span className="text-[#D00]">*</span>
         </Label>
         <Combobox
           as="div"
@@ -55,10 +66,10 @@ function AreaSelection({
             className={`flex ${bgColor} focus:border-main animate gap-2 rounded-xl border border-transparent`}
           >
             <ComboboxInput
-              placeholder="Select Area"
+              placeholder={language === "ar" ? "اختر المنطقة" : "Select Area"}
               className="w-full p-2"
               aria-label="Area"
-              displayValue={(area: Area) => area?.name || ""}
+              displayValue={(area: string) => area || ""}
               onChange={(event) => setQuery(event.target.value)}
             />
             <ComboboxButton className="absolute flex h-full w-full items-center justify-end rounded px-3">
@@ -69,7 +80,7 @@ function AreaSelection({
             {filteredAreas.map((area) => (
               <ComboboxOption
                 key={area.id}
-                value={area}
+                value={area.name}
                 className="ui-active:bg-blue-100 hover:bg-main-100 w-full cursor-pointer px-4 py-2"
               >
                 {area.name}

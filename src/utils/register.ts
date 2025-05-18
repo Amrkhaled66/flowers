@@ -6,7 +6,6 @@ const validateEmail = (email: string, t: (key: string) => string) => {
 };
 
 const validatePassword = (password: string, t: (key: string) => string) => {
-  if (!password.trim()) return t("register.requiredPassword");
   if (password.length < 6) return t("register.passwordLength");
   if (!/(?=.*[A-Z])/.test(password)) return t("register.passwordUppercase");
   if (!/(?=.*\d)/.test(password)) return t("register.passwordNumber");

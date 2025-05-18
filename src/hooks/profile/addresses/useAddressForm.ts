@@ -1,7 +1,9 @@
 import { useState, ChangeEvent, FormEvent } from "react";
 import Address from "src/types/UserInfo/Address";
 import { validatePhoneNumber } from "src/utils/register";
+
 import { useTranslation } from "react-i18next";
+
 interface FormErrors {
   name: string;
   phoneNumber: string;
@@ -23,10 +25,11 @@ const useAddressForm = (
   const [formData, setFormData] = useState<Address>(initialData);
   const [formErrors, setFormErrors] = useState<FormErrors>(initialFormErrors);
   const { t } = useTranslation("errors");
+  const { t: tProfile } = useTranslation("profile");
   const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
     setFormData((prev) => ({ ...prev, [name]: value }));
-    
+
     if (formErrors[name as keyof FormErrors]) {
       setFormErrors((prev) => ({ ...prev, [name]: "" }));
     }
@@ -45,28 +48,28 @@ const useAddressForm = (
     let isValid = true;
 
     if (!formData.recipient_name.trim()) {
-      errors.name = "Recipient name is required";
+      errors.name = tProfile("address.formErrors.name.required");
       isValid = false;
     } else if (formData.recipient_name.length < 3) {
-      errors.name = "Name must be at least 3 characters";
+      errors.name = tProfile("address.formErrors.name.minLength");
       isValid = false;
     }
 
     if (!formData.recipient_phone.trim()) {
-      errors.phoneNumber = "Recipient phone is required";
+      errors.phoneNumber = tProfile("address.formErrors.phoneNumber.required");
       isValid = false;
     } else if (
-      !validatePhoneNumber(formData.recipient_phone.replace(/\s+/g, ""), t)
+      validatePhoneNumber(formData.recipient_phone.replace(/\s+/g, ""), t)
     ) {
-      errors.phoneNumber = "Please enter a valid phone number";
+      errors.phoneNumber = tProfile("address.formErrors.phoneNumber.invalid");
       isValid = false;
     }
 
     if (!formData.address.trim()) {
-      errors.address = "Address is required";
+      errors.address = tProfile("address.formErrors.address.required");
       isValid = false;
     } else if (formData.address.length < 5) {
-      errors.address = "Address must be at least 5 characters";
+      errors.address = tProfile("address.formErrors.address.minLength");
       isValid = false;
     }
 

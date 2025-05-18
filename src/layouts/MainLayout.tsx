@@ -10,27 +10,29 @@ import Search from "./Search";
 import ScrollToTop from "src/components/ScroolToTop";
 
 import { useTranslation } from "react-i18next";
-import useAxiosPrivate from "src/hooks/shared/useAxiosPrivate";
+import { AxiosProvider } from "src/context/axiosProvider";
 
 const MainLayout = () => {
-  useAxiosPrivate();
   const { openCart, openMenu, openSearch } = useNavBarToggleBtns();
   const { i18n } = useTranslation();
 
   return (
-    <div
-      dir={`${i18n.language === "ar" ? "rtl" : "ltr"}`}
-      className={`h-auto pt-[104px] lg:pt-[155px] ${i18n.language === "ar" ? "font-ar" : "font-en"} `}
-    >
-      <ScrollToTop />
-      <Search />
-      <NavBar />
-      <Outlet />
-      <Footer />
-      <Cart />
-      <Menu />
-      {(openCart || openMenu || openSearch) && <Overlay />}
-    </div>
+    <AxiosProvider>
+
+      <div
+        dir={`${i18n.language === "ar" ? "rtl" : "ltr"}`}
+        className={`h-auto pt-[104px] lg:pt-[155px] ${i18n.language === "ar" ? "font-ar" : "font-en"} `}
+      >
+        <ScrollToTop />
+        <Search />
+        <NavBar />
+        <Outlet />
+        <Footer />
+        <Cart />
+        <Menu />
+        {(openCart || openMenu || openSearch) && <Overlay />}
+      </div>
+    </AxiosProvider>
   );
 };
 export default MainLayout;
