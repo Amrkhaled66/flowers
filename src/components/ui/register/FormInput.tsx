@@ -36,7 +36,7 @@ function FormInput<T>({
   return (
     <div className="flex w-full flex-col items-start gap-y-3">
       <label htmlFor={name} className="text-text-main font-bold">
-        {label} {required && <span className="text-[#D00]">*</span>}
+        {label} {required && <span className="text-red">*</span>}
       </label>
       <div className="w-full space-y-2">
         <input
@@ -51,9 +51,9 @@ function FormInput<T>({
           onChange={onChange}
           placeholder={placeholder || label}
           pattern={pattern}
-          className={` ${error ? "border-[#D00]" : "border-stroke focus:border-main"} ${bgColor} animate w-full rounded-xl border p-2.5 !text-start`}
+          className={` ${error ? "border-red" : "border-stroke focus:border-main"} ${bgColor} animate w-full rounded-xl border p-2.5 text-start`}
         />
-        {error && <p className="text-start text-xs text-[#D00]">{error}</p>}
+        {error && <p className="text-start text-xs text-red">{error}</p>}
       </div>
     </div>
   );

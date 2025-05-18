@@ -1,4 +1,6 @@
 {
     "edit": "Edit",
-    "delete": "Delete"
+    "delete": "Delete",
+    "success": "Success",
+    "error": "Error"
 }

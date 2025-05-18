@@ -1,17 +1,11 @@
 interface FormDataType {
-  firstName: string;
-  lastName: string;
+  first_name: string;
+  last_name: string;
   email: string;
-  phoneNumber: string;
+  phone_number: string;
+  birth_date: string;
   gender: string;
 }
 
-interface FormErrors {
-  firstName: string;
-  lastName: string;
-  email: string;
-  phoneNumber: string;
-  gender: string;
-}
 
-export type { FormDataType, FormErrors };
+export type { FormDataType };

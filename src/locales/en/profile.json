@@ -4,7 +4,11 @@
         "email": "Email",
         "firstName": "First Name",
         "lastName": "Last Name",
-        "phone": "Phone Number"
+        "phone": "Phone Number",
+        "editForm": {
+            "success": "Profile updated successfully",
+            "save":"Save Changes"
+        }
     },
     "changePassword": {
         "currentPass": "Current Password",

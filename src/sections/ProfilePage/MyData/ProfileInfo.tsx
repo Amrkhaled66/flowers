@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 
 import { useTranslation } from "react-i18next";
 import { useAuth } from "src/context/authCtx";
+
 const Row = ({ name, value }: { name: string; value: string | undefined }) => {
   return (
     <div className="flex py-2 lg:px-3">
@@ -16,6 +17,8 @@ const Row = ({ name, value }: { name: string; value: string | undefined }) => {
 const ProfileInfo = () => {
   const { authData: { user } } = useAuth();
   const { t } = useTranslation("profile");
+
+
   return (
     <div className="space-y-3">
       <div className="space-y-3">

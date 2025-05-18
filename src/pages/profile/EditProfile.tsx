@@ -1,28 +1,37 @@
 import FormInput from "src/components/ui/register/FormInput";
 import useEditProfile from "src/hooks/profile/useEditProfile";
-import RadioButton from "src/components/ProfilePage/EditProfile/RadioButton";
-import { FormDataType, FormErrors } from "src/types/UserInfo/EditProfileForm";
+import GenderButton from "src/components/SignUp/GenderButton";
+import Button from "src/components/ui/Button";
+import { FormDataType } from "src/types/UserInfo/EditProfileForm";
+
+import { useTranslation } from "react-i18next";
 
 const formFields = [
   {
     layout: "block",
-    fields: [{ label: "Email", type: "email", name: "email" }],
+    fields: [{ labelEn: "Email", labelAr: "البريد الإلكتروني", type: "email", name: "email" }],
   },
   {
     layout: "inline",
     fields: [
-      { label: "First Name", type: "text", name: "firstName" },
-      { label: "Last Name", type: "text", name: "lastName" },
+      { labelEn: "First Name", labelAr: "الاسم الأول", type: "text", name: "first_name" },
+      { labelEn: "Last Name", labelAr: "الاسم الأخير", type: "text", name: "last_name" },
     ],
   },
   {
     layout: "block",
-    fields: [{ label: "Phone Number", type: "text", name: "phoneNumber" }],
+    fields: [{ labelEn: "Birth Date", labelAr: "تاريخ الميلاد ", type: "date", name: "birth_date" }],
+  },
+  {
+    layout: "block",
+    fields: [{ labelEn: "Phone Number", labelAr: "رقم الهاتف", type: "text", name: "phone_number" }],
   },
 ];
 
 const EditProfile = () => {
-  const { formData, errors, handleChange, handleSubmit } = useEditProfile();
+  const { formData, errors, handleChange, handleSubmit, isPending } = useEditProfile();
+
+  const { i18n: { language }, t } = useTranslation("profile");
 
   return (
     <form onSubmit={handleSubmit} className="">
@@ -33,23 +42,23 @@ const EditProfile = () => {
           >
             {fieldGroup.fields.map((field) => (
               <FormInput
-                label={field.label}
+                label={language === "en" ? field.labelEn : field.labelAr}
                 type={field.type}
                 name={field.name}
                 value={formData[field.name as keyof FormDataType]}
-                error={errors[field.name as keyof FormErrors]}
+                error={errors[field.name as keyof FormDataType]}
                 onChange={handleChange}
               />
             ))}
           </div>
         ))}
 
-        <RadioButton
-          label="Gender"
+         <GenderButton
+          label={language === "en" ? "Gender" : "النوع"}
           name="gender"
           options={[
-            { value: "male", label: "Male" },
-            { value: "female", label: "Female" },
+            { value: "male", labelEn: "Male", labelAr: "ذكر" },
+            { value: "female", labelEn: "Female" , labelAr: "انثى"},
           ]}
           selectedValue={formData.gender}
           error={errors.gender}
@@ -57,12 +66,11 @@ const EditProfile = () => {
         />
       </div>
       <div className="mt-8 flex flex-col justify-center gap-y-4">
-        <button
-          type="submit"
+        <Button
+          text={t("info.editForm.save")}
+          loading={isPending}
           className="bg-main hover:bg-main-300 text-text-main w-full rounded-xl py-3 font-bold text-white transition-colors"
-        >
-          Save changes
-        </button>
+        />
       </div>
     </form>
   );
