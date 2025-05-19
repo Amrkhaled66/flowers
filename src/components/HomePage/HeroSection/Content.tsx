@@ -1,6 +1,8 @@
 import Button from "src/components/ui/Button";
 
 import { useTranslation } from "react-i18next";
+
+import { Link } from "react-router-dom";
 const Content = () => {
   const { t } = useTranslation("home");
 
@@ -13,10 +15,12 @@ const Content = () => {
         <p className="text-subTitle mx-auto hidden w-[78%] text-center leading-[20px] lg:block">
           {t("hero.description")}
         </p>
-        <Button
-          className="animate hover:bg-main-fade mx-auto text-white lg:h-[60px] lg:w-[200px]"
-          text={t("hero.cta")}
-        />
+        <Link to="/filter">
+          <Button
+            className="animate hover:bg-main-fade mx-auto text-white lg:h-[60px] lg:w-[200px]"
+            text={t("hero.cta")}
+          />
+        </Link>
       </div>
     </div>
   );

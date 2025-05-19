@@ -8,8 +8,10 @@ import SignInEn from "src/locales/en/signin.json";
 import SignUpEn from "src/locales/en/signup.json";
 import errorsEn from "src/locales/en/errors.json";
 import forgetPasswordEn from "src/locales/en/forgetPassword.json";
-import profileEn from "src/locales/en/profile.json"
-import sharedEn from "src/locales/en/shared.json"
+import profileEn from "src/locales/en/profile.json";
+import sharedEn from "src/locales/en/shared.json";
+import filterEn from "src/locales/en/filter.json";
+import siccessOrderEn from "src/locales/en/successOrder.json";
 
 import LayoutAr from "src/locales/ar/Layout.json";
 import HomeAr from "src/locales/ar/HomePage.json";
@@ -17,8 +19,10 @@ import SignInAr from "src/locales/ar/signin.json";
 import SignUpAr from "src/locales/ar/signup.json";
 import errorsAr from "src/locales/ar/errors.json";
 import forgetPasswordAr from "src/locales/ar/forgetPassword.json";
-import profileAr from "src/locales/ar/profile.json"
-import sharedAr from "src/locales/ar/shared.json"
+import profileAr from "src/locales/ar/profile.json";
+import sharedAr from "src/locales/ar/shared.json";
+import filterAr from "src/locales/ar/filter.json";
+import siccessOrderAr from "src/locales/ar/successOrder.json";
 
 const resources = {
   en: {
@@ -29,7 +33,9 @@ const resources = {
     errors: errorsEn,
     forgetPassword: forgetPasswordEn,
     profile: profileEn,
-    shared: sharedEn
+    shared: sharedEn,
+    filter: filterEn,
+    successOrder: siccessOrderEn,
   },
   ar: {
     home: HomeAr,
@@ -39,7 +45,9 @@ const resources = {
     errors: errorsAr,
     forgetPassword: forgetPasswordAr,
     profile: profileAr,
-    shared: sharedAr
+    shared: sharedAr,
+    filter: filterAr,
+    successOrder: siccessOrderAr,
   },
 };
 

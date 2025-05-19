@@ -1,18 +1,27 @@
 import ProductCard from "src/components/ui/ProductCard/ProductCard";
-
-export default function FilteredProducts({ Products, setSidebarOpen }) {
+import Product from "src/types/product";
+import { Icon } from "@iconify/react/dist/iconify.js";
+import { useTranslation } from "react-i18next";
+export default function FilteredProducts({
+  Products,
+  openSidebar,
+}: {
+  Products: Product[];
+  openSidebar: () => void;
+}) {
+  const { t } = useTranslation("filter");
   return (
     <div className="flex h-fit flex-1 flex-col gap-y-6">
       <button
-        onClick={() => setSidebarOpen(true)}
-        className="bg-main flex w-fit items-center gap-2 rounded-2xl px-4 py-2 text-white lg:hidden"
+        onClick={openSidebar}
+        className="text-main border-main flex w-full items-center justify-center gap-2 rounded-xl border py-2 font-bold lg:hidden"
       >
-        {/* <FaFilter /> */}
-        Filter
+        <Icon icon="mingcute:filter-fill" width="24" height="24" />
+        {t("filter")}
       </button>
-      <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3 lg:gap-6">
-        {Products.map((product) => (
-          <ProductCard key={product.name} {...product} />
+      <div className="grid grid-cols-2 gap-4 sm:gap-5 sm:grid-cols-3 lg:grid-cols-3 lg:gap-6">
+        {Products.map((product: Product) => (
+          <ProductCard isFilterCard key={product.id} product={product} />
         ))}
       </div>
     </div>

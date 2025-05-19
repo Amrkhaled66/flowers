@@ -1,13 +1,18 @@
+import { on } from "events";
 import { useNavBarToggleBtns } from "src/context/NavBarToggleBtns";
 
-const Overlay = () => {
+const Overlay = ({ bgColor = "#d9d9d94d", onClick }: { bgColor?: string, onClick?: () => void }) => {
   const { reset } = useNavBarToggleBtns();
   return (
     <div
       onClick={() => {
         reset();
+        onClick && onClick();
       }}
-      className={`fixed top-0 right-0 bottom-0 left-0 z-[70] bg-[#d9d9d94d]`}
+      style={{
+        backgroundColor: bgColor,
+      }}
+      className={`fixed top-0 right-0 bottom-0 left-0 z-70`}
     ></div>
   );
 };

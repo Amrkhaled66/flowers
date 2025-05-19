@@ -3,9 +3,8 @@ import MenuSection from "src/components/layout/Menu/MenuSection";
 import CategoryCard from "src/components/ui/CategoryCard";
 
 import { useNavBarToggleBtns } from "src/context/NavBarToggleBtns";
-import { useQuery } from "@tanstack/react-query";
 import { useTranslation } from "react-i18next";
-import { getCategories, getOccasions } from "src/api/HomePage";
+import { useGetCategories, useGetOccasions } from "src/hooks/category/categoryQueries";
 
 import IdeasCards from "src/components/HomePage/Ideas/IdeasCards";
 import BaseItem from "src/types/BaseItem";
@@ -24,25 +23,18 @@ const CategoryGrid = ({ items }: { items: BaseItem[] }) => (
   </div>
 );
 
+
 const Menu = () => {
   const { openMenu, toggleMenu } = useNavBarToggleBtns();
   const { t } = useTranslation("home");
 
-  const { data: categories, isLoading: categoriesLoading } = useQuery({
-    queryKey: ["categories"],
-    queryFn: getCategories,
-  });
-
-  const { data: occasions, isLoading: occasionsLoading } = useQuery({
-    queryKey: ["occasions"],
-    queryFn: getOccasions,
-  });
+  const { data: categories, isLoading: categoriesLoading } = useGetCategories();
+  const { data: occasions, isLoading: occasionsLoading } = useGetOccasions();
 
   return (
     <div
-      className={`menu-bar fixed start-0 top-0 z-[80] flex h-screen w-full flex-col gap-y-6 overflow-x-hidden overflow-y-scroll bg-white px-4 py-6 transition-all duration-300 sm:px-8 sm:py-4 lg:w-[739px] lg:px-8 lg:py-10 ${
-        openMenu ? "translate-x-0" : "start-[-100%]"
-      }`}
+      className={`menu-bar fixed start-0 top-0 z-[80] flex h-screen w-full flex-col gap-y-6 overflow-x-hidden overflow-y-scroll bg-white px-4 py-6 transition-all duration-300 sm:px-8 sm:py-4 lg:w-[739px] lg:px-8 lg:py-10 ${openMenu ? "translate-x-0" : "start-[-100%]"
+        }`}
     >
       <button
         onClick={toggleMenu}

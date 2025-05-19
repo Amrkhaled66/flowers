@@ -7,12 +7,13 @@ import ProfileSideBar from "src/types/ProfileSideBar";
 import LogOutButton from "src/components/ui/register/LogOutButton";
 import DeleteAccount from "src/components/ui/register/DeleteAccount";
 
+import { getLocalizedName } from "src/utils/getLocalizedName";
 const ProfileMenuButtonMobile = () => {
   const [open, setOpen] = useState(false);
 
   return (
     <div className="block lg:hidden">
-      <button  onClick={() => setOpen((prev) => !prev)} className="flex items-center">
+      <button onClick={() => setOpen((prev) => !prev)} className="flex items-center">
         <Icon icon="bi:person" width="24" height="24" />
       </button>
       <div
@@ -34,16 +35,16 @@ const ProfileMenuButtonMobile = () => {
         <div className="space-y-4">
           <div className="bg-main-50 rounded-xl p-4">
             {profileElements.map((item: ProfileSideBar, index: number) => {
-              if (item.name === "Ballora Points" || item.show === false)
+              if (item.nameEn === "Ballora Points" || item.show === false)
                 return null;
               return (
-                <Link onClick={() => setOpen(false)} to={item.link}>
+                <Link key={item.nameEn} onClick={() => setOpen(false)} to={item.link}>
                   <div
                     className={`flex ${index !== profileElements.length - 1 && "border-b"} border-b-stroke items-center justify-between py-2`}
                   >
                     <div className="flex gap-x-3">
                       {item.icon}
-                      <p className="text-text-main font-medium">{item.name}</p>
+                      <p className="text-text-main font-medium">{getLocalizedName({ name_en: item.nameEn, name_ar: item.nameAr })}</p>
                     </div>
                     <Icon icon="jam:chevron-right" width="24" height="24" />
                   </div>

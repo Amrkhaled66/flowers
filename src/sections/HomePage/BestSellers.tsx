@@ -4,12 +4,22 @@ import Products from "src/components/HomePage/BestSellers/Products";
 import Slider from "src/components/HomePage/CategoriesSlider/Slider";
 import { SwiperSlide } from "swiper/react";
 
-import { useTranslation } from "react-i18next";
 import { products1 } from "src/data/products";
 import ProductCard from "src/components/ui/ProductCard/ProductCard";
 
+import { useTranslation } from "react-i18next";
+import { useQuery } from "@tanstack/react-query";
+import { getProducts } from "src/api/products";
 const BestSellers = () => {
   const { t } = useTranslation("home");
+
+  const { data: products, isLoading: productsLoading } = useQuery({
+    queryKey: ["products"],
+    queryFn: () => getProducts(),
+  })
+
+if (productsLoading) return <div>Loading...</div>
+
   return (
     <section className="container text-center">
       <div className="flex flex-col gap-y-5 lg:gap-y-10 lg:py-[40px]">
@@ -20,15 +30,15 @@ const BestSellers = () => {
             className="bg-main-300 mx-auto hidden w-[240px] !py-3 !text-base text-white lg:block"
           />
         </div>
-        <Products />
+        <Products products={products} />
         <div className="lg:hidden">
           <Slider>
             {products1.map((product) => (
               <SwiperSlide
                 className="!w-[140px] sm:!w-[282px]"
-                key={product.img}
+                key={product.id}
               >
-                <ProductCard {...product} />
+                <ProductCard product={product} />
               </SwiperSlide>
             ))}
           </Slider>

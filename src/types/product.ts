@@ -1,13 +1,17 @@
-type Product = {
-  img: string;
-  name: string;
-  stars: number;
-  price: number;
-  discountedPrice?: number;
-  reviews?: number;
-  description?: string;
-  category?: string;
-  images?: string[] ;
-};
+interface Product {
+  id: number;
+  nameAr: string;
+  nameEn: string;
+  descriptionAr: string;
+  descriptionEn: string;
+  beforeDiscount: number;
+  discountPercentage: number;
+  afterDiscount: number;
+  stock: number;
+  bestSelling: boolean;
+  slug: string;
+  categoryId: number;
+  occasionId: number;
+}
 
 export default Product;

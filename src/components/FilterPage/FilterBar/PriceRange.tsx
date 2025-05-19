@@ -1,13 +1,30 @@
 import { Range } from "react-range";
+import { useState } from "react";
+import { useTranslation } from "react-i18next";
+import useDebounce from "src/hooks/shared/useDebounce";
+const PriceRange = ({
+  handlePriceRangeChange,
+}: {
+  handlePriceRangeChange: (value: number[]) => void;
+}) => {
+  const { t } = useTranslation("filter");
+  const [priceRange, setPriceRange] = useState<number[]>([0, 9999]);
 
-const PriceRange = () => {
-  let price = [6, 7];
+  const depouncedChange = useDebounce(
+    () => handlePriceRangeChange(priceRange),
+    1000,
+  );
+  const handleChange = (value: number[]) => {
+    setPriceRange(value);
+    depouncedChange();
+  };
+
   return (
     <div className="space-y-3">
       <div className="flex gap-x-2 text-sm">
-        Price Range:
+        {t("price")}
         <span className="mr-l text-main block font-semibold">
-          ${0} - ${99999}
+          ${priceRange[0]} - ${priceRange[1]}
         </span>
       </div>
 
@@ -15,10 +32,10 @@ const PriceRange = () => {
         step={1}
         min={0}
         max={9999}
-        values={price}
-        onChange={() => {}}
+        values={priceRange}
+        onChange={handleChange}
         renderTrack={({ props, children }) => {
-          const [minVal, maxVal] = price;
+          const [minVal, maxVal] = priceRange;
           const percentageLeft = (minVal / 9999) * 100;
           const percentageRight = (maxVal / 9999) * 100;
 

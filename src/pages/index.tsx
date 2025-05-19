@@ -3,6 +3,7 @@ export { default as ProductPage } from "./ProductPage";
 export { default as SignInPage } from "./SignInPage";
 export { default as SignUpPage } from "./SignUpPage";
 export { default as FilterPage } from "./FilterPage";
+export { default as SucessOrder } from "./SucessOrder";
 
 // forget password
 export { default as SendOtp } from "./forgetPassword/SendOtp";

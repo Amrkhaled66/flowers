@@ -6,12 +6,14 @@ const ProductCardUI = ({
   name,
   price,
   isFavorite = false,
+  isFilterCard = false,
   children,
 }: {
   img: string;
   name: string;
   price: number;
   isFavorite?: boolean;
+  isFilterCard?: boolean;
   children?: React.ReactNode;
 }) => {
   return (
@@ -19,7 +21,7 @@ const ProductCardUI = ({
       <div className="border-stroke w-full overflow-hidden rounded-2xl border bg-white drop-shadow-sm">
         {children}
         <div
-          className={`h-[140px] ${isFavorite && "h-[310px] sm:!h-[195px] lg:!h-[282px]"} sm:h-[310px] lg:h-[282px]`}
+          className={` bg-main ${isFilterCard && "lg:!h-[310px]"} ${(isFilterCard || isFavorite) && "sm:!h-[195px]"} ${isFavorite && "h-[310px]"} h-[140px] sm:h-[310px] lg:h-[282px]`}
         >
           <img
             src={img}

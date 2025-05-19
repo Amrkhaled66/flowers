@@ -125,20 +125,19 @@
 
 import ProductCardUI from "./ProductCardUI";
 import FavoriteButton from "./FavoriteButton";
-
+import Product from "src/types/product";
+import { getLocalizedName } from "src/utils/getLocalizedName";
 const ProductCard = ({
-  img,
-  name,
-  price,
+  product,
   isFavorite = false,
+  isFilterCard = false,
 }: {
-  img: string;
-  name: string;
-  price: number;
+  product: Product;
   isFavorite?: boolean;
+  isFilterCard?: boolean;
 }) => {
   return (
-    <ProductCardUI img={img} name={name} price={price} isFavorite={isFavorite}>
+    <ProductCardUI isFilterCard={isFilterCard} img="https://" name={getLocalizedName({ name_ar: product.nameAr, name_en: product.nameEn })} price={product.beforeDiscount} isFavorite={isFavorite}>
       <FavoriteButton isFavorite={isFavorite} productId={"d"} />
     </ProductCardUI>
   );

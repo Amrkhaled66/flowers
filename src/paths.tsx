@@ -11,6 +11,7 @@ import {
   SignInPage,
   SignUpPage,
   FilterPage,
+  SucessOrder,
   // forget password
   SendOtp,
   SubmitOtp,
@@ -159,6 +160,10 @@ const router = createBrowserRouter([
             ],
           },
         ],
+      },
+      {
+        path: "success",
+        element: <SucessOrder />,
       },
     ],
   },

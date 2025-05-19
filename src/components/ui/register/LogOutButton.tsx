@@ -17,7 +17,10 @@ const LogOutButton = ({ isMenuButton = false }: { isMenuButton?: boolean }) => {
             logout();
             navigate("/signin");
           },
-          onError: (error) => { console.error(error); },
+          onError: (error) => {
+            logout();
+            navigate("/signin");
+          },
         });
       }}
       className={`animate w-full rounded-xl ${isMenuButton && "pt-4"} ${!isMenuButton && "hover:lg:bg-main-100 bg-main-50 p-4"} `}

@@ -1,0 +1,17 @@
+const transformProduct = (product: any) => ({
+  id: product.id,
+  nameAr: product.name_ar,
+  nameEn: product.name_en,
+  descriptionAr: product.description_ar,
+  descriptionEn: product.description_en,
+  beforeDiscount: parseFloat(product.before_discount),
+  discountPercentage: product.discount_percentage,
+  afterDiscount: parseFloat(product.after_discount),
+  stock: product.stock,
+  bestSelling: Boolean(product.best_selling),
+  slug: product.slug,
+  categoryId: product.category_id,
+  occasionId: product.occasion_id,
+});
+
+export default transformProduct;

@@ -5,14 +5,5 @@ const getFullData = async () => {
   return data;
 };
 
-const getOccasions = async () => {
-  const { data } = await axiosInstance.get("api/occasions");
-  return data;
-};
 
-const getCategories = async () => {
-  const { data } = await axiosInstance.get("api/categories");
-  return data;
-};
-
-export { getFullData, getOccasions, getCategories };
+export { getFullData, };
