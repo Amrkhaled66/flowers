@@ -1,0 +1,67 @@
+.loader-container {
+  position:  fixed;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 30px;
+  justify-content: center;
+  /* background: #f6f1e9; */
+  
+}
+
+.flower-loader {
+  position: relative;
+  width: 120px;
+  height: 120px;
+}
+
+.center-circle {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 20px;
+  height: 20px;
+  background: linear-gradient(45deg, #bba1c7, #c69ed8);
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 10;
+}
+
+.center-circle::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 8px;
+  height: 8px;
+  background: #fff8dc;
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.petal {
+  position: absolute;
+  width: 40px;
+  height: 20px;
+  background: linear-gradient(to bottom, #a293a9, #665a6f);
+  border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+  top: 50%;
+  left: 50%;
+  transform-origin: 50% 100%;
+  opacity: 0;
+  transition: opacity 0.3s ease-in-out;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.petal:nth-child(1) { transform: translate(-50%, -100%) rotate(0deg); }
+.petal:nth-child(2) { transform: translate(-50%, -100%) rotate(45deg); }
+.petal:nth-child(3) { transform: translate(-50%, -100%) rotate(90deg); }
+.petal:nth-child(4) { transform: translate(-50%, -100%) rotate(135deg); }
+.petal:nth-child(5) { transform: translate(-50%, -100%) rotate(180deg); }
+.petal:nth-child(6) { transform: translate(-50%, -100%) rotate(225deg); }
+.petal:nth-child(7) { transform: translate(-50%, -100%) rotate(270deg); }
+.petal:nth-child(8) { transform: translate(-50%, -100%) rotate(315deg); }
+
+.petal.show {
+  opacity: 1;
+}

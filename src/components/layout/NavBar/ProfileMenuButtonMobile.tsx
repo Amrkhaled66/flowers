@@ -44,7 +44,7 @@ const ProfileMenuButtonMobile = () => {
                   >
                     <div className="flex gap-x-3">
                       {item.icon}
-                      <p className="text-text-main font-medium">{getLocalizedName({ name_en: item.nameEn, name_ar: item.nameAr })}</p>
+                      <p className="text-text-main font-medium">{getLocalizedName(item)}</p>
                     </div>
                     <Icon icon="jam:chevron-right" width="24" height="24" />
                   </div>

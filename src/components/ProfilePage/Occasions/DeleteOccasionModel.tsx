@@ -1,25 +1,33 @@
 // components/profile/DeleteOccasion.tsx
 import DeletionModal from "src/components/ui/DeletionModel";
 
-import { useDeleteOccasion } from "src/hooks/profile/OccasionsHooks";
+import { useDeleteOccasion } from "src/hooks/profile/occastions/OccasionsMutations";
 import { useTranslation } from "react-i18next";
 
 interface DeleteOccasionProps {
   isOpen: boolean;
   onClose: () => void;
-  id: number;
+  id: number | undefined;
+  refetch: () => void;
 }
 
-const DeleteOccasion = ({ isOpen, onClose, id }: DeleteOccasionProps) => {
+const DeleteOccasion = ({
+  isOpen,
+  onClose,
+  id,
+  refetch,
+}: DeleteOccasionProps) => {
   const { mutate, isPending } = useDeleteOccasion();
-  const { t } = useTranslation("profile")
+  const { t } = useTranslation("profile");
 
   const onConfirm = () => {
-    mutate(id, {
-      onSuccess: () => {
-        onClose();
-      },
-    });
+    id &&
+      mutate(id, {
+        onSuccess: () => {
+          onClose();
+          refetch();
+        },
+      });
   };
 
   return (

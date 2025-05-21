@@ -2,11 +2,11 @@ import i18next from "i18next";
 
 export const getLocalizedName = (
   item: {
-    name_en: string;
-    name_ar: string;
+    nameAr: string;
+    nameEn: string;
   },
   language?: string,
 ): string => {
   const lang = language || i18next.language;
-  return lang === "ar" ? item.name_ar : item.name_en;
+  return lang === "ar" ? item.nameAr : item.nameEn;
 };

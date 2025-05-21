@@ -2,14 +2,14 @@ import SectionTitle from "src/components/ui/SectionTitle";
 import Button from "src/components/ui/Button";
 import Products from "src/components/HomePage/BestSellers/Products";
 import Slider from "src/components/HomePage/CategoriesSlider/Slider";
-import { SwiperSlide } from "swiper/react";
-
-import { products1 } from "src/data/products";
 import ProductCard from "src/components/ui/ProductCard/ProductCard";
 
+import { SwiperSlide } from "swiper/react";
 import { useTranslation } from "react-i18next";
 import { useQuery } from "@tanstack/react-query";
 import { getProducts } from "src/api/products";
+
+import Product from "src/types/product";
 const BestSellers = () => {
   const { t } = useTranslation("home");
 
@@ -33,7 +33,7 @@ if (productsLoading) return <div>Loading...</div>
         <Products products={products} />
         <div className="lg:hidden">
           <Slider>
-            {products1.map((product) => (
+            {products.map((product:Product) => (
               <SwiperSlide
                 className="!w-[140px] sm:!w-[282px]"
                 key={product.id}

@@ -44,6 +44,6 @@ export const useFavoriteHandler = (productId: string) => {
 
 // Optional helper:
 const isFavorite = (productId: string) => {
-  // use context or prop
+
   return true;
 };

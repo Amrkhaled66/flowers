@@ -9,10 +9,23 @@ import Overlay from "src/components/ui/Overlay";
 const FilterPage = () => {
   usePageTitle("Products");
 
-  const { options, handleOptionChange, handlePriceRangeChange } =
-    useFilterOptions();
+  const {
+    options,
+    handleOptionChange,
+    handlePriceRangeChange,
+    appliedOptions,
+    setAppliedOptions,
+  } = useFilterOptions();
   const { sidebarOpen, closeSidebar, toggleSidebar } = useSidebar();
-  const { categories, occasions, products, isLoading } = useFilterPageData();
+  const { categories, occasions, products, isLoading, refetchProducts } =
+    useFilterPageData(appliedOptions);
+
+  const onApllyFilter = () => {
+    setAppliedOptions(options);
+    refetchProducts();
+  };
+
+  console.log(products)
 
   if (isLoading) {
     return (
@@ -25,10 +38,11 @@ const FilterPage = () => {
   return (
     <div className="container flex h-auto min-h-dvh gap-x-6 !py-10">
       <FilterBar
+        onSubmit={onApllyFilter}
         sidebarOpen={sidebarOpen}
         closeSidebar={closeSidebar}
-        categories={categories}
-        occasions={occasions}
+        categories={categories || []}
+        occasions={occasions || []}
         colors={[{ hex: "#FF0000" }]}
         onOptionChange={handleOptionChange}
         handlePriceRangeChange={handlePriceRangeChange}
@@ -36,7 +50,7 @@ const FilterPage = () => {
 
       {sidebarOpen && <Overlay onClick={closeSidebar} bgColor="#00000066" />}
 
-      <FilteredProducts openSidebar={toggleSidebar} Products={products} />
+      <FilteredProducts openSidebar={toggleSidebar} Products={products || []} />
     </div>
   );
 };

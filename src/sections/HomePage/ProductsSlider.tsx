@@ -30,11 +30,7 @@ const ProductsSlider = ({
                 className="!w-[140px] sm:!w-[240px] lg:!w-[282px]"
                 key={index}
               >
-                <ProductCard
-                  img={item.img}
-                  name={item.name}
-                  price={item.price}
-                />
+                <ProductCard product={item} />
               </SwiperSlide>
             );
           })}

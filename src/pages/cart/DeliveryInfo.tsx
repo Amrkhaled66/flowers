@@ -11,9 +11,10 @@ import { useOrderSummary } from "src/context/OrderSummaryContext";
 import usePageTitle from "src/hooks/ui/useUpdatePageTitle";
 
 const initialFormData: Address = {
-  name: "",
-  phoneNumber: "",
+  recipient_name: "",
+  recipient_phone: "",
   address: "",
+  area: "",
   id: 0,
 };
 
@@ -27,7 +28,7 @@ const DeliveryInfo = () => {
     handleInputChange,
     handleLocationSelection,
     handleSubmit,
-  } = useAddressForm(initialFormData);
+  } = useAddressForm(initialFormData, () => {});
 
   useEffect(() => {
     setConfig({
@@ -52,7 +53,7 @@ const DeliveryInfo = () => {
           name="name"
           required
           label="Recipient name"
-          value={formData.name}
+          value={formData.recipient_name}
           onChange={handleInputChange}
           error={formErrors.name}
         />
@@ -62,7 +63,7 @@ const DeliveryInfo = () => {
           name="phoneNumber"
           required
           label="Recipient phone"
-          value={formData.phoneNumber}
+          value={formData.recipient_phone}
           onChange={handleInputChange}
           error={formErrors.phoneNumber}
         />

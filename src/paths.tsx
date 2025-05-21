@@ -12,6 +12,7 @@ import {
   SignUpPage,
   FilterPage,
   SucessOrder,
+  TrackOrderPage,
   // forget password
   SendOtp,
   SubmitOtp,
@@ -165,6 +166,10 @@ const router = createBrowserRouter([
         path: "success",
         element: <SucessOrder />,
       },
+      {
+        path: "track-order",
+        element: <TrackOrderPage />,
+      }
     ],
   },
 ]);

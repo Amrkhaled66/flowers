@@ -4,6 +4,7 @@ export { default as SignInPage } from "./SignInPage";
 export { default as SignUpPage } from "./SignUpPage";
 export { default as FilterPage } from "./FilterPage";
 export { default as SucessOrder } from "./SucessOrder";
+export { default as TrackOrderPage } from "./TrackOrderPage";
 
 // forget password
 export { default as SendOtp } from "./forgetPassword/SendOtp";

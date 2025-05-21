@@ -17,7 +17,7 @@ const LogOutButton = ({ isMenuButton = false }: { isMenuButton?: boolean }) => {
             logout();
             navigate("/signin");
           },
-          onError: (error) => {
+          onError: () => {
             logout();
             navigate("/signin");
           },

@@ -10,10 +10,12 @@ import ProfileMenuButton from "./ProfileMenuButton";
 import ProfileMenuButtonMobile from "./ProfileMenuButtonMobile";
 
 import { useAuth } from "src/context/authCtx";
+import { useCart } from "src/context/user/cartCtx";
 const BottomSection = () => {
   const { toggleMenu, toggleCart, toggleSearch } = useNavBarToggleBtns();
   const { t } = useTranslation("layout");
   const { isAuthenticated } = useAuth();
+  const { cartLength } = useCart();
 
   return (
     <div className="z-50 w-screen bg-white py-3 drop-shadow-md">
@@ -57,7 +59,12 @@ const BottomSection = () => {
               </Link>
             )}
             <button onClick={toggleCart} className="flex items-center gap-x-2">
-              <Icon icon="carbon:shopping-cart" width="24" height="24" />{" "}
+              <div className="relative">
+                <Icon icon="lineicons:cart-1" width="24" height="24" />
+                <span className="bg-main absolute right-0 -top-2 flex h-4 w-4 items-center justify-center rounded-full bg-red-700 text-xs text-white">
+                  {cartLength || 0}
+                </span>
+              </div>
               <span className="text-text-main hidden font-bold lg:block">
                 {t("navBar.cart")}
               </span>

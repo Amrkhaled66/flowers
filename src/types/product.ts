@@ -1,5 +1,6 @@
 interface Product {
   id: number;
+  img: string;
   nameAr: string;
   nameEn: string;
   descriptionAr: string;

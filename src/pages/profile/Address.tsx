@@ -13,7 +13,6 @@ const Address = () => {
   const handleEditAddress = (address: AddressType) => setEditedAddress(address);
   const { t } = useTranslation("profile")
 
-  console.log(editedAddress);
   if (editedAddress) {
     return (
       <EditAddressForm

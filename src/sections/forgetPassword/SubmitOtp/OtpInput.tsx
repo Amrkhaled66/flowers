@@ -39,7 +39,7 @@ export default function OtpInput({
     const { target } = e;
     const index = inputRefs.current.indexOf(target);
     if (target.value) {
-      setOtp((prevOtp: number[]) => [
+      setOtp((prevOtp: string[]) => [
         ...prevOtp.slice(0, index),
         target.value,
         ...prevOtp.slice(index + 1),
@@ -78,16 +78,14 @@ export default function OtpInput({
             onKeyDown={handleKeyDown}
             onFocus={handleFocus}
             onPaste={handlePaste}
-            ref={(el) => (inputRefs.current[index] = el)}
+            ref={(el) => {
+              inputRefs.current[index] = el;
+            }}
             className="border-stroke text-gray-5 focus:border-main animate flex h-16 w-16 items-center justify-center rounded-xl border bg-white text-center text-2xl font-medium shadow-xs outline-none sm:text-4xl"
           />
         ))}
       </form>
-      {error && (
-        <p className="text-red text-center text-sm">
-          {error}
-        </p>
-      )}
+      {error && <p className="text-red text-center text-sm">{error}</p>}
     </div>
   );
 }

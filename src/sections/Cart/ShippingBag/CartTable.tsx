@@ -1,39 +1,8 @@
-import img from "src/assets/products/1.webp";
-import img2 from "src/assets/products/2.webp";
 import CartTableCard from "src/components/Cart/ShippingBag/CartTable/CartTableCard";
-import CartEle from "src/types/CartEle";
-const cards: CartEle[] = [
-  {
-    id: 1,
-    img: img,
-    title: "Ballora Floward",
-    price: 1000,
-    quantity: 2,
-  },
-  {
-    id: 2,
-    img: img,
-    title: "Ballora Floward",
-    price: 1000,
-    quantity: 2,
-  },
-  {
-    id: 2,
-    img: img2,
-    title: "Ballora Floward",
-    price: 1000,
-    quantity: 2,
-  },
-  {
-    id: 2,
-    img: img2,
-    title: "Ballora Floward",
-    price: 1000,
-    quantity: 2,
-  },
-];
+import { useCart } from "src/context/user/cartCtx";
 
 const CartTable = () => {
+  const { cart } = useCart();
   return (
     <div className="hidden h-auto lg:block lg:w-[60%]">
       <div className="bg-main-50 w-full overflow-hidden rounded-xl p-4">
@@ -48,9 +17,10 @@ const CartTable = () => {
           </thead>
           <tbody>
             <div className="lg:pt-6">
-              {cards.map((card, index) => (
-                <CartTableCard key={index} ele={card} />
-              ))}
+              {cart &&
+                cart.map((product, index) => (
+                  <CartTableCard key={index} product={product} />
+                ))}
             </div>
           </tbody>
           <tfoot className="">

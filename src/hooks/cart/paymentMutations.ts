@@ -1,4 +1,0 @@
-const useGetPaymentIntent = () => { };
-
-
-export { useGetPaymentIntent }; 

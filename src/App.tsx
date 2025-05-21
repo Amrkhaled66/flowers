@@ -7,6 +7,7 @@ import MessageGiftProvider from "./context/MessageGiftCtx";
 import OrderSummaryProvider from "./context/OrderSummaryContext";
 import ResetProvider from "./context/resetCtx";
 import AuthProvider from "./context/authCtx";
+import { CartProvider } from "./context/user/cartCtx";
 
 import { useEffect } from "react";
 import { useTranslation } from "react-i18next";
@@ -38,6 +39,7 @@ function App() {
 
   return (
     <QueryClientProvider client={queryClient}>
+      <CartProvider>
         <AuthProvider>
           <NavBarToggleBtnsProvider>
             <OrderSummaryProvider>
@@ -50,6 +52,7 @@ function App() {
             </OrderSummaryProvider>
           </NavBarToggleBtnsProvider>
         </AuthProvider>
+      </CartProvider>
     </QueryClientProvider>
   );
 }

@@ -3,17 +3,21 @@ import Occasion from "src/types/UserInfo/Occasion";
 const OccasionsCards = ({
   Occasions,
   onEditOccasion,
+  refetch,
 }: {
   onEditOccasion: (occasion: Occasion) => void;
   Occasions: Occasion[];
+  refetch: () => void;
 }) => {
+  console.log(Occasions);
   return (
-    <div>
+    <div className="space-y-6">
       {Occasions.map((occasion) => (
         <OccasionsCard
           occasion={occasion}
           key={occasion.id}
           onEditOccasion={onEditOccasion}
+          refetch={refetch}
         />
       ))}
     </div>

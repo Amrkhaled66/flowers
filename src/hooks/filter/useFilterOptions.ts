@@ -22,7 +22,9 @@ const STRING_ARRAY_KEYS: (keyof FilterOptions)[] = [
 
 export const useFilterOptions = () => {
   const [options, setOptions] = useState<FilterOptions>(INITIAL_FILTER_OPTIONS);
-
+  const [appliedOptions, setAppliedOptions] = useState<FilterOptions>(
+    INITIAL_FILTER_OPTIONS,
+  );
   const handleOptionChange = useCallback((key: string, value: string) => {
     if (!STRING_ARRAY_KEYS.includes(key as keyof FilterOptions)) {
       console.warn(`Invalid filter key: ${key}`);
@@ -53,6 +55,8 @@ export const useFilterOptions = () => {
     options,
     handleOptionChange,
     handlePriceRangeChange,
+    appliedOptions,
+    setAppliedOptions,
     resetFilters: () => setOptions(INITIAL_FILTER_OPTIONS),
   };
 };

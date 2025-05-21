@@ -1,51 +1,59 @@
-import Button from "src/components/ui/Button";
+// src/sections/ProfilePage/Occasions/Occasions.tsx
+import { useTranslation } from "react-i18next";
+import { useOccasionsManager } from "src/hooks/profile/occastions/useOccasionsManager";
+import { useGetOccasions } from "src/hooks/profile/occastions/OccasionsMutations";
+import { AddOccasionButton } from "src/components/ProfilePage/Occasions/AddOccasionButton";
 import EmptyOccasions from "src/sections/ProfilePage/Occasions/EmptyOccasions";
 import AddOccasionModal from "src/sections/ProfilePage/Occasions/AddOccasionModal";
 import OccasionsCards from "src/sections/ProfilePage/Occasions/OccasionsCards";
-
-import { Icon } from "@iconify/react/dist/iconify.js";
-
-import { useState } from "react";
-import { useGetOccasions } from "src/hooks/profile/OccasionsHooks";
-
-import Occasion from "src/types/UserInfo/Occasion";
-import { useTranslation } from "react-i18next";
+import EditOccasionModal from "src/sections/ProfilePage/Occasions/EditOccasionModal";
+import { transformOccasionFrom } from "src/utils/transformas/transformOccasion";
 const Occasions = () => {
-  const [showOccasionForm, setShowOccasionForm] = useState(false);
-  const [editedOccasion, setEditedOccasion] = useState<Occasion | null>(null);
-  const { data, isLoading, refetch, isError } = useGetOccasions();
   const { t } = useTranslation("profile");
+  const {
+    showAddModal,
+    editedOccasion,
+    handleAddClick,
+    handleCloseAddModal,
+    handleCloseEditModal,
+    setEditedOccasion,
+  } = useOccasionsManager();
 
-  const onEditOccasion = (occasion: Occasion) => setEditedOccasion(occasion);
-  const handleAddOccasion = () => setShowOccasionForm(true);
-  const handleCloseModal = () => setShowOccasionForm(false);
+  const { data, isLoading, refetch, isError } = useGetOccasions();
 
-  if (isError) return;
-  if (!data || isLoading) return;
+  if (isError) return null;
+  if (isLoading || !data) return null;
+
+  const hasOccasions = data.data.length > 0;
+
+  const transforedmOccasions =
+    hasOccasions && data.data.map(transformOccasionFrom);
+
   return (
     <div className="space-y-6">
-      {data.data.length === 0 && <EmptyOccasions />}
-      <div className="dashed-border divide-dashed rounded-xl p-2">
-        <Button
-          onClick={handleAddOccasion}
-          text={t("occasion.add")}
-          icon={<Icon icon="line-md:plus" width="24" height="24" />}
-          className="bg-main-100 animate text-main w-full rounded-sm !py-2 text-center font-bold lg:!py-3"
-        />
-      </div>
+      {!hasOccasions && <EmptyOccasions />}
+
+      <AddOccasionButton onClick={handleAddClick} label={t("occasion.add")} />
+
       <AddOccasionModal
-        refetch={() => refetch}
-        isOpen={showOccasionForm}
-        onClose={handleCloseModal}
+        isOpen={showAddModal}
+        onClose={handleCloseAddModal}
+        refetch={refetch}
       />
-      {data.data.length > 0 && (
-        <OccasionsCards Occasions={data.data} onEditOccasion={onEditOccasion} />
+
+      {hasOccasions && (
+        <OccasionsCards
+          Occasions={transforedmOccasions}
+          refetch={refetch}
+          onEditOccasion={setEditedOccasion}
+        />
       )}
+
       {editedOccasion && (
-        <AddOccasionModal
-          Data={editedOccasion}
-          isOpen={true}
-          onClose={() => setEditedOccasion(null)}
+        <EditOccasionModal
+          editedOccasion={editedOccasion}
+          onClose={handleCloseEditModal}
+          refetch={refetch}
         />
       )}
     </div>

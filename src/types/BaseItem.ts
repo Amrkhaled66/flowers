@@ -1,7 +1,7 @@
 type BaseItem = {
   id: number;
-  name_en: string;
-  name_ar: string;
+  nameEn: string;
+  nameAr: string;
   slug: string;
   image: string;
 };

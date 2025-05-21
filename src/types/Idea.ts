@@ -1,6 +1,6 @@
 type idea = {
-  name_en: string;
-  name_ar: string;
+  nameEn: string;
+  nameAr: string;
   img: string;
 };
 

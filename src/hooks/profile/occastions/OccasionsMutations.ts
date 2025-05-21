@@ -9,13 +9,15 @@ import Occasion from "src/types/UserInfo/Occasion";
 const useGetOccasions = () =>
   useQuery({
     queryKey: ["user-occasions"],
-    queryFn: () => getOccasions(),
+    queryFn: async () => {
+      const { data } = await getOccasions();
+    },
     retry: 2,
   });
 
 const useUpdateOccasion = () =>
   useMutation({
-    mutationFn: ({ occasion, id }: { occasion: Occasion; id: number }) =>
+    mutationFn: ({ occasion, id }: { occasion: Occasion; id: number | null }) =>
       updateOccasion(occasion, id),
   });
 const useDeleteOccasion = () =>

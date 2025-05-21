@@ -4,10 +4,11 @@ import { Icon } from "@iconify/react/dist/iconify.js";
 import CartMenuCard from "src/components/ui/CartCard";
 
 import { useNavBarToggleBtns } from "src/context/NavBarToggleBtns";
-import { products1 } from "src/data/products";
+import { useCart } from "src/context/user/cartCtx";
 
 const Cart = () => {
   const { openCart, toggleCart } = useNavBarToggleBtns();
+  const { cart } = useCart();
   return (
     <div
       className={`text-text-main menu-bar fixed end-0 top-0 z-[80] flex h-screen flex-col justify-between gap-y-6 overflow-y-scroll bg-white px-4 py-[50px] transition-all duration-300 sm:w-[375px] lg:w-[446px] lg:px-8 ${
@@ -23,15 +24,13 @@ const Cart = () => {
       <Head />
       <div className="flex flex-1 flex-col">
         <div className="cart-menu flex-1 space-y-6">
-          {products1.slice(0, 5).map((product, index) => (
-            <CartMenuCard
-              key={index}
-              img={product.img}
-              name={product.name}
-              price={product.price}
-              quantity={2}
-            />
-          ))}
+          {cart ? (
+            cart.map((product, index) => (
+              <CartMenuCard key={index} product={product} />
+            ))
+          ) : (
+            <p className="font-main text-text-main">Your cart is empty</p>
+          )}
         </div>
         <Summary />
       </div>

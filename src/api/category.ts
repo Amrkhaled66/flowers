@@ -1,5 +1,4 @@
 import axiosInstance from "./axios";
-
 const getOccasions = async () => {
     const { data } = await axiosInstance.get("api/occasions");
     return data;

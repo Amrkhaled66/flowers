@@ -16,6 +16,7 @@ type SidebarProps = {
   colors: { hex: string }[];
   onOptionChange: (key: string, value: string) => void;
   handlePriceRangeChange: (value: number[]) => void;
+  onSubmit: () => void;
 };
 
 const FilterBar = ({
@@ -26,6 +27,7 @@ const FilterBar = ({
   colors,
   onOptionChange,
   handlePriceRangeChange,
+  onSubmit,
 }: SidebarProps) => {
   const { t } = useTranslation("filter");
   const [openSections, setOpenSections] = useState<string[]>([
@@ -92,7 +94,10 @@ const FilterBar = ({
           <ColorSelector colors={colors} />
         </BarSection>
 
-        <button className="bg-main animate hover:bg-main-300 h-[43px] w-full rounded-xl text-lg font-semibold text-white lg:h-[60px]">
+        <button
+          onClick={onSubmit}
+          className="bg-main animate hover:bg-main-300 h-[43px] w-full rounded-xl text-lg font-semibold text-white lg:h-[60px]"
+        >
           {t("apply")}
         </button>
       </div>
