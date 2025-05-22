@@ -27,7 +27,6 @@ const AddressForm = ({
 }) => {
   const initialData = useMemo(() => FormData || initialFormData, [FormData]);
   const { t } = useTranslation("profile");
-  console.log(FormData)
 
   const {
     formData,

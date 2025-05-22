@@ -1,0 +1,28 @@
+{
+    "bar":{
+        "orderId":"Order ID",
+        "paymentMethode":"Payment Method",
+        "deliveryDate":"Estimated Delivery Date",
+        "downloadInvoice":"Download Invoice"
+    },
+    "summary":{
+        "title":"Order Summary",
+        "subtotal":"Subtotal",
+        "deliveryCharges":"Delivery Charges",
+        "chargeNote":"Please note that specific regions and express delivery may incur extra delivery fees",
+        "total":"Total"
+    },
+    "orderDetails":{
+        "title":"Order Details",
+        "expectedDeliveryDate":"Expected Delivery Date",
+        "trackingId":"Tracking ID"
+    },
+    "deliveryInfo":{
+        "title":"Delivery Information",
+        "address":"Delivery Address",
+        "userInfo":"User Information"
+    },
+    "timeLine":{
+        "title":"Order Status"
+    }
+}

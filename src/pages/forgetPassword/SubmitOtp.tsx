@@ -31,7 +31,6 @@ const SubmitOtp = () => {
           setToken(data.token);
         },
         onError: (err: any) => {
-          console.log(err);
           setError(err.response.data.message);
         },
       },

@@ -1,9 +1,12 @@
 import { useQuery, useMutation } from "@tanstack/react-query";
 import {
   getFavorites,
+  getFavoritesIds,
   addFavorite,
   removeFavorite,
 } from "src/api/profile/favorite";
+import { useAuth } from "src/context/authCtx";
+import { useFavorites } from "src/context/user/favoritesCtx";
 
 const useGetFavorites = () =>
   useQuery({
@@ -12,14 +15,44 @@ const useGetFavorites = () =>
     retry: 2,
   });
 
-const useAddFavorite = () =>
-  useMutation({
-    mutationFn: (id: string) => addFavorite(id),
+const useGetFavoritesIds = () => {
+  const { isAuthenticated } = useAuth();
+  const { storeFavorites } = useFavorites();
+  return useQuery({
+    queryKey: ["user-favorites-ids"],
+    queryFn: async () => {
+      const data = await getFavoritesIds();
+      storeFavorites(data.data);
+      return data;
+    },
+    retry: 2,
+    enabled: isAuthenticated,
   });
+};
 
-const useRemoveFavorite = () =>
-  useMutation({
-    mutationFn: (id: string) => removeFavorite(id),
+const useAddFavorite = (productId: number) => {
+  const { favorites, storeFavorites } = useFavorites();
+  return useMutation({
+    mutationFn: () => addFavorite(productId),
+    onSuccess: () => {
+      storeFavorites([...favorites, productId]);
+    },
   });
+};
 
-export { useGetFavorites, useAddFavorite, useRemoveFavorite };
+const useRemoveFavorite = (productId: number) => {
+  const { favorites, storeFavorites } = useFavorites();
+
+  return useMutation({
+    mutationFn: () => removeFavorite(productId),
+    onSuccess: () => {
+      storeFavorites(favorites.filter((id) => id !== productId));
+    },
+  });
+};
+export {
+  useGetFavorites,
+  useAddFavorite,
+  useGetFavoritesIds,
+  useRemoveFavorite,
+};

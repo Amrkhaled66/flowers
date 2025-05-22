@@ -57,7 +57,6 @@ export default function OtpInput({
   const handlePaste = (e: React.ClipboardEvent) => {
     e.preventDefault();
     const text = e.clipboardData.getData("text");
-    console.log(text);
     if (!new RegExp(`^[0-9]{${otp.length}}$`).test(text)) {
       return;
     }

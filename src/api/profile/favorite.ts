@@ -5,18 +5,23 @@ const getFavorites = async () => {
   return data;
 };
 
-const addFavorite = async (id: string) => {
+const addFavorite = async (id: number) => {
   const { data } = await axiosPrivate.post(`/api/user-favourites`, {
-    productId: id,
+    product_id: id,
   });
   return data;
 };
 
-const removeFavorite = async (id: string) => {
-  const { data } = await axiosPrivate.delete(`/api/user-favourites`, {
-    data: { product_id: id },
-  });
+const getFavoritesIds = async () => {
+  const { data } = await axiosPrivate.get(
+    "/api/user-favourites/all-products-ids",
+  );
   return data;
 };
 
-export { getFavorites, addFavorite, removeFavorite };
+const removeFavorite = async (id: number) => {
+  const { data } = await axiosPrivate.delete(`/api/user-favourites/${id}`);
+  return data;
+};
+
+export { getFavorites, addFavorite, getFavoritesIds, removeFavorite };

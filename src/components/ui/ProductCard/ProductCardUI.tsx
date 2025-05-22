@@ -4,6 +4,7 @@ import { getLocalizedName } from "src/utils/getLocalizedName";
 
 import { useAddToCart, useUpdateCart } from "src/hooks/cart/useCartMutations";
 import { useCart } from "src/context/user/cartCtx";
+import { useTranslation } from "react-i18next";
 
 import Product from "src/types/product";
 
@@ -19,9 +20,10 @@ const ProductCardUI = ({
   isFilterCard?: boolean;
   children?: React.ReactNode;
 }) => {
-  const {  isProductInCart } = useCart();
+  const { isProductInCart } = useCart();
   const { mutate: addToCart } = useAddToCart();
   const { mutate: updateCart } = useUpdateCart();
+  const { i18n:{language} } = useTranslation();
 
   const handelAddToCart = () => {
     isProductInCart(product.id)
@@ -30,12 +32,12 @@ const ProductCardUI = ({
   };
   return (
     <div className="border-stroke w-full overflow-hidden rounded-2xl border bg-white drop-shadow-sm">
-      <Link to={`/product/${product.id}`}>
-        {children}
+      {children}
+      <Link className="z-0" to={`/product/${product.id}`}>
         <div
           className={`bg-main ${isFilterCard && "lg:!h-[310px]"} ${
             (isFilterCard || isFavorite) && "sm:!h-[195px]"
-          } ${isFavorite && "h-[310px]"} lg:h-[282px]" h-[140px] sm:h-[310px]`}
+          } ${isFavorite && "!h-[310px] lg:!h-[310px]"} lg:h-[282px] h-[140px] sm:h-[310px]`}
         >
           <img
             src={product.img}
@@ -49,7 +51,7 @@ const ProductCardUI = ({
             <p
               className={`text-text-main line-clamp-4 text-left text-xs font-bold sm:text-xl lg:w-[90%] lg:text-base`}
             >
-              {getLocalizedName(product)}
+              {getLocalizedName(product,language)}
             </p>
           </div>
         </div>

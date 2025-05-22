@@ -15,15 +15,12 @@ const QuantitySelector = ({
   currentQuantity?: number;
 }) => {
   const [quantity, setQuantity] = useState(currentQuantity);
-  const { mutate: updateCart } = useUpdateCart();
+  const { mutate } = useUpdateCart();
   const { t } = useTranslation("shared");
-  const debouncedQuantity = useDebounce(() => {
-    updateCart({ id, quantity });
-  }, 500);
-
-  useEffect(() => {
-    debouncedQuantity();
-  }, [quantity]);
+  
+  const handleCart = () => {
+    mutate({ quantity, id });
+  };
 
   return (
     <div className="rounded-xl">
@@ -39,7 +36,10 @@ const QuantitySelector = ({
           }}
           disabled={quantity <= 1}
           className="flex h-full w-full items-center justify-center px-1 disabled:cursor-not-allowed"
-          onClick={() => setQuantity((prev) => prev - 1)}
+          onClick={() => {
+            handleCart();
+            setQuantity((prev) => prev - 1);
+          }}
         >
           <Icon
             icon="ic:outline-minus"
@@ -49,7 +49,7 @@ const QuantitySelector = ({
         <input
           type="text"
           value={quantity}
-          defaultValue={quantity}
+          readOnly
           className={`bg-main-100 text-text-main h-full w-[28px] text-center text-sm font-bold sm:w-[34px] lg:w-[46px] lg:text-xl`}
         />
         <button
@@ -57,7 +57,10 @@ const QuantitySelector = ({
             background: `${isCartMenu ? "transparent" : "#fff"}`,
           }}
           className="flex h-full w-full items-center justify-center px-1"
-          onClick={() => setQuantity((prev) => prev + 1)}
+          onClick={() => {
+            handleCart();
+            setQuantity((prev) => prev + 1);
+          }}
         >
           <Icon
             icon="ic:round-plus"

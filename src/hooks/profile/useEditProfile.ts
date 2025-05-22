@@ -14,7 +14,9 @@ const useEditProfile = () => {
   const { t: tErrors } = useTranslation("errors");
   const { t: tShared } = useTranslation("shared");
   const { t: tProfile } = useTranslation("profile");
-  const { authData: { user } } = useAuth();
+  const {
+    authData: { user },
+  } = useAuth();
   const [formData, setFormData] = useState<FormDataType>({
     first_name: user?.first_name || "",
     last_name: user?.last_name || "",
@@ -41,7 +43,7 @@ const useEditProfile = () => {
         text: tProfile("info.editForm.success"),
         icon: "success",
         confirmButtonText: "Okay",
-      })
+      });
     },
     onError: (err: any) => {
       Alert({
@@ -49,9 +51,9 @@ const useEditProfile = () => {
         text: err.response.data.message,
         icon: "error",
         confirmButtonText: "Okay",
-      })
-    }
-  })
+      });
+    },
+  });
 
   const validateField = (name: string, value: string): string => {
     switch (name) {
@@ -103,11 +105,8 @@ const useEditProfile = () => {
 
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    if (validateForm()) {
-      mutate();
-    } else {
-      console.log("Form has errors, please correct them");
-    }
+    if (!validateForm()) return;
+    mutate();
   };
 
   return {
@@ -116,7 +115,7 @@ const useEditProfile = () => {
     handleChange,
     handleSubmit,
     FormData,
-    isPending
+    isPending,
   };
 };
 

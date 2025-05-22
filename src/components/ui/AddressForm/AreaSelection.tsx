@@ -48,7 +48,6 @@ function AreaSelection({
     }
   }, [defaultValue]);
 
-  console.log(defaultValue);
   return (
     <div className={`w-full`}>
       <Field className="relative flex w-full flex-col space-y-3">

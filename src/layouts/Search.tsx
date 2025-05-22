@@ -37,6 +37,8 @@ const Search = () => {
       <div className={headerClasses}>
         <div className="w-[90%] lg:w-[70%]">
           <SearchInput
+            onChange={() => {}}
+            value="asdf"
             placeholder="Find Items"
             bgColor="bg-main-50"
             textSize="text-lg"
@@ -53,8 +55,8 @@ const Search = () => {
 
       {/* Search Options */}
       <div className={optionsContainerClasses}>
-        {searchOptions.map((option) => (
-          <SearchOption key={option} value={option} onClick={toggleSearch} />
+        {searchOptions.map((option,index) => (
+          <SearchOption key={index} value={option} onClick={toggleSearch} />
         ))}
       </div>
     </div>

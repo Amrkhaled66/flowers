@@ -1,15 +1,16 @@
+import OrderOverViewBar from "src/sections/TrackOrderPage/OrderOverViewBar";
+import OrderTimeLine from "src/sections/TrackOrderPage/OrderTimeLine";
+import OrderTrackingDetails from "src/sections/TrackOrderPage/OrderTrackingDetails";
+
+
 const TrackOrderPage = () => {
   return (
-    <div className="h-dvh py-10">
-      <div className="container">
-        {/* orderOverViewBar */}
-        <div className="flex">
-          {/* orderTimeLine */}
-          <div className="flex flex-col gap-6">
-            {/* orderSummray */}
-            {/* orderDetails */}
-            {/* orderInfo */}
-          </div>
+    <div className="min-h-dvh h-auto py-6 lg:py-10">
+      <div className="container space-y-4 lg:space-y-10">
+        <OrderOverViewBar />
+        <div className="flex gap-x-6 gap-y-4 flex-col lg:flex-row">
+          <OrderTimeLine />
+          <OrderTrackingDetails />
         </div>
       </div>
     </div>

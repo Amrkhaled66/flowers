@@ -98,7 +98,6 @@ const useChangePassword = () => {
     e.preventDefault();
 
     if (validateForm()) {
-      console.log("Password change form submitted:", formData);
       // Here you would typically call an API to update the password
       alert("Password changed successfully!");
       // Reset form

@@ -25,7 +25,6 @@ const CreditCard = ({ isActive, onClick }: CreditCardProps) => {
 
     if (!stripe || !elements) return;
 
-    console.log("submit");
     // const  paymentIntent = await stripe.createPaymentIntent()
 
     // const { error } = await stripe.confirmCardPayment(paymentIntent, {

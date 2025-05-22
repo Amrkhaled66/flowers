@@ -2,6 +2,7 @@ import usePageTitle from "src/hooks/ui/useUpdatePageTitle";
 import { useFilterOptions } from "src/hooks/filter/useFilterOptions";
 import { useSidebar } from "src/hooks/filter/useSidebar";
 import { useFilterPageData } from "src/hooks/filter/useFilterPageData";
+
 import FilterBar from "src/sections/FilterPage/FilterBar";
 import FilteredProducts from "src/sections/FilterPage/FilteredProducts";
 import Overlay from "src/components/ui/Overlay";
@@ -20,13 +21,12 @@ const FilterPage = () => {
   const { categories, occasions, products, isLoading, refetchProducts } =
     useFilterPageData(appliedOptions);
 
-  const onApllyFilter = () => {
+  const onApplyFilter = () => {
+    if (JSON.stringify(options) === JSON.stringify(appliedOptions)) return;
     setAppliedOptions(options);
     refetchProducts();
   };
-
-  console.log(products)
-
+  
   if (isLoading) {
     return (
       <div className="container flex h-screen items-center justify-center">
@@ -38,7 +38,7 @@ const FilterPage = () => {
   return (
     <div className="container flex h-auto min-h-dvh gap-x-6 !py-10">
       <FilterBar
-        onSubmit={onApllyFilter}
+        onSubmit={onApplyFilter}
         sidebarOpen={sidebarOpen}
         closeSidebar={closeSidebar}
         categories={categories || []}

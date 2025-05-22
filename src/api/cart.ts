@@ -1,7 +1,6 @@
 import { axiosPrivate } from "./axios";
 
 const getCart = async () => {
-  console.log("getCart");
   const { data } = await axiosPrivate.get("/api/user-carts");
   return data;
 };

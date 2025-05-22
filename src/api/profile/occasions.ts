@@ -1,6 +1,6 @@
 import { axiosPrivate } from "../axios";
 import Occasion from "src/types/UserInfo/Occasion";
-import { transformOccasionTo } from "src/utils/transformas/transformOccasion";
+import { transformOccasionTo } from "src/utils/transforms/transformUserOccasion";
 export const getOccasions = async () => {
   const { data } = await axiosPrivate.get("/api/user-occasions");
   return data;

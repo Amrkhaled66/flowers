@@ -9,7 +9,6 @@ const OccasionsCards = ({
   Occasions: Occasion[];
   refetch: () => void;
 }) => {
-  console.log(Occasions);
   return (
     <div className="space-y-6">
       {Occasions.map((occasion) => (

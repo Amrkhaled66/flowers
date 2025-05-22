@@ -53,11 +53,11 @@ const Menu = () => {
       ) : (
         <>
           <MenuSection title={t("categoryTitle")}>
-            <CategoryGrid items={categories.data} />
+            <CategoryGrid items={categories} />
           </MenuSection>
 
           <MenuSection title={t("occasionTitle")}>
-            <CategoryGrid items={occasions.data} />
+            <CategoryGrid items={occasions} />
           </MenuSection>
         </>
       )}

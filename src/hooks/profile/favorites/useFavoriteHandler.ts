@@ -7,12 +7,12 @@ import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import Alert from "src/components/ui/Alert";
 
-export const useFavoriteHandler = (productId: string) => {
+export const useFavoriteHandler = (isProductFavorite: boolean, productId: number) => {
   const { isAuthenticated } = useAuth();
   const navigate = useNavigate();
-  const { mutate: addFavorite, isPending: isAddPending } = useAddFavorite();
+  const { mutate: addFavorite, isPending: isAddPending } = useAddFavorite(productId);
   const { mutate: removeFavorite, isPending: isRemovePending } =
-    useRemoveFavorite();
+    useRemoveFavorite(productId);
 
   const isPending = isAddPending || isRemovePending;
 
@@ -28,11 +28,11 @@ export const useFavoriteHandler = (productId: string) => {
       return;
     }
 
-    const action = isFavorite(productId) ? removeFavorite : addFavorite;
+    const action = isProductFavorite ? removeFavorite : addFavorite;
 
-    action(productId, {
+    action(undefined, {
       onSuccess: () => {
-        toast(`Favorite ${isFavorite(productId) ? "removed" : "added"}`, {
+        toast(`Favorite ${isProductFavorite ? "removed" : "added"}`, {
           type: "success",
         });
       },
@@ -40,10 +40,4 @@ export const useFavoriteHandler = (productId: string) => {
   };
 
   return { handleToggleFavorite, isPending };
-};
-
-// Optional helper:
-const isFavorite = (productId: string) => {
-
-  return true;
 };

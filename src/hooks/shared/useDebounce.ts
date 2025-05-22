@@ -18,7 +18,6 @@ function useDebounce<T extends (...args: any[]) => void>(
     [func, delay],
   );
 
-  // Optional: Clear timeout if the component unmounts
   useEffect(() => {
     return () => {
       if (timeoutRef.current) {

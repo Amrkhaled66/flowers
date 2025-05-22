@@ -1,7 +1,7 @@
 import React, { createContext, useContext, useState } from "react";
 import { CartItem } from "src/types/cart";
 import getMainPrice from "src/utils/getMainPrice";
-import transformProduct from "src/utils/transformas/transformProduct";
+import transformProduct from "src/utils/transforms/transformProduct";
 
 import { useCallback } from "react";
 interface CartContextType {

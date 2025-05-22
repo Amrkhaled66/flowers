@@ -7,6 +7,7 @@ import MessageGiftProvider from "./context/MessageGiftCtx";
 import OrderSummaryProvider from "./context/OrderSummaryContext";
 import ResetProvider from "./context/resetCtx";
 import AuthProvider from "./context/authCtx";
+import { FavoritesProvider } from "./context/user/favoritesCtx";
 import { CartProvider } from "./context/user/cartCtx";
 
 import { useEffect } from "react";
@@ -23,12 +24,18 @@ import { toast, ToastContainer } from "react-toastify";
 const queryClient = new QueryClient({
   queryCache: new QueryCache({
     onError: (error) => {
-      console.log(error);
       toast("Error ,please call support", {
         type: "error",
       });
     },
   }),
+  defaultOptions: {
+    queries: {
+      refetchOnWindowFocus: false,
+      staleTime: 1000 * 60 * 5,
+      gcTime: 1000 * 60 * 5,
+    },
+  },
 });
 function App() {
   const { i18n } = useTranslation();
@@ -39,20 +46,22 @@ function App() {
 
   return (
     <QueryClientProvider client={queryClient}>
-      <CartProvider>
-        <AuthProvider>
-          <NavBarToggleBtnsProvider>
-            <OrderSummaryProvider>
-              <MessageGiftProvider>
-                <ResetProvider>
-                  <ToastContainer />
-                  <Paths />
-                </ResetProvider>
-              </MessageGiftProvider>
-            </OrderSummaryProvider>
-          </NavBarToggleBtnsProvider>
-        </AuthProvider>
-      </CartProvider>
+      <FavoritesProvider>
+        <CartProvider>
+          <AuthProvider>
+            <NavBarToggleBtnsProvider>
+              <OrderSummaryProvider>
+                <MessageGiftProvider>
+                  <ResetProvider>
+                    <ToastContainer />
+                    <Paths />
+                  </ResetProvider>
+                </MessageGiftProvider>
+              </OrderSummaryProvider>
+            </NavBarToggleBtnsProvider>
+          </AuthProvider>
+        </CartProvider>
+      </FavoritesProvider>
     </QueryClientProvider>
   );
 }

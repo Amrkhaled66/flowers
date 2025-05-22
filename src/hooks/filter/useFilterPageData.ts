@@ -13,7 +13,7 @@ export const useFilterPageData = (appliedOptions: any) => {
     isLoading: productsLoading,
     refetch: refetchProducts,
   } = useQuery({
-    queryKey: ["products", appliedOptions],
+    queryKey: ["products"],
     queryFn: () => getProducts(appliedOptions),
     enabled: false,
   });
@@ -25,8 +25,8 @@ export const useFilterPageData = (appliedOptions: any) => {
   const isLoading = categoriesLoading || occasionsLoading || productsLoading;
 
   return {
-    categories: categories?.data || [],
-    occasions: occasions?.data || [],
+    categories: categories || [],
+    occasions: occasions || [],
     products,
     isLoading,
     refetchProducts,

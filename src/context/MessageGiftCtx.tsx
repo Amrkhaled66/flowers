@@ -24,7 +24,6 @@ export default function MessageGiftProvider({
   };
 
   const onChange = (e: any) => {
-    console.log(e);
     setMessageParts({
       ...messageParts,
       [e.target.name]: e.target.value,

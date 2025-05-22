@@ -7,7 +7,7 @@ import EmptyOccasions from "src/sections/ProfilePage/Occasions/EmptyOccasions";
 import AddOccasionModal from "src/sections/ProfilePage/Occasions/AddOccasionModal";
 import OccasionsCards from "src/sections/ProfilePage/Occasions/OccasionsCards";
 import EditOccasionModal from "src/sections/ProfilePage/Occasions/EditOccasionModal";
-import { transformOccasionFrom } from "src/utils/transformas/transformOccasion";
+import { transformOccasionFrom } from "src/utils/transforms/transformUserOccasion";
 const Occasions = () => {
   const { t } = useTranslation("profile");
   const {

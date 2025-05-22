@@ -1,5 +1,5 @@
 import axiosInstance from "./axios";
-import transformProduct from "src/utils/transformas/transformProduct";
+import transformProduct from "src/utils/transforms/transformProduct";
 
 const getProducts = async (filters?: any) => {
   const { data } = await axiosInstance.get(`api/products`, {

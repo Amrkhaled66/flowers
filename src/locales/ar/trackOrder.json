@@ -1,0 +1,26 @@
+{
+    "bar":{
+        "orderId":"رقم الطلب",
+        "paymentMethode":"طريقة الدفع",
+        "deliveryDate":"تاريخ التوصيل المتوقع",
+        "downloadInvoice":"تحميل الفاتورة"
+    },
+    "summary":{
+        "title":"ملخص الطلب",
+        "subtotal":"المجموع الفرعي",
+        "deliveryCharges":"رسوم التوصيل",
+        "chargeNote":"ملاحظة: يمكن أن يكون التوصيل في منطقة محددة ويؤدي إلى رسوم إضافية للتوصيل",
+        "total":"المجموع"
+
+    },
+    "orderDetails":{
+        "title":"تفاصيل الطلب",
+        "expectedDeliveryDate":"تاريخ التوصيل المتوقع",
+        "trackingId":"رقم التتبع"
+    },
+    "deliveryInfo":{
+        "title":"معلومات التوصيل",
+        "address":"عنوان التوصيل",
+        "userInfo":"معلومات المستخدم"
+    }
+}
