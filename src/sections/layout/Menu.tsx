@@ -4,25 +4,39 @@ import CategoryCard from "src/components/ui/CategoryCard";
 
 import { useNavBarToggleBtns } from "src/context/NavBarToggleBtns";
 import { useTranslation } from "react-i18next";
-import { useGetCategories, useGetOccasions } from "src/hooks/category/categoryQueries";
+import {
+  useGetCategories,
+  useGetOccasions,
+} from "src/hooks/category/categoryQueries";
 
 import IdeasCards from "src/components/HomePage/Ideas/IdeasCards";
 import BaseItem from "src/types/BaseItem";
 import { getLocalizedName } from "src/utils/getLocalizedName";
 
-const CategoryGrid = ({ items }: { items: BaseItem[] }) => (
+import { Link } from "react-router-dom";
+const CategoryGrid = ({
+  items,
+  searchQuery,
+  toggleMenu,
+}: {
+  items: BaseItem[];
+  searchQuery: string;
+  toggleMenu: () => void;
+}) => (
   <div className="grid grid-cols-4 gap-4 sm:grid-cols-7 sm:gap-5 lg:grid-cols-4 lg:gap-6">
-    {items.map((category, index) => (
-      <CategoryCard
-        isMenuCard
-        key={index}
-        name={getLocalizedName(category)}
-        img={category.image}
-      />
+    {items.map((item) => (
+      <Link key={item.id} to={`/filter?${searchQuery}=${item.id}`}>
+        <button onClick={toggleMenu}>
+          <CategoryCard
+            isMenuCard
+            name={getLocalizedName(item)}
+            img={item.image}
+          />
+        </button>
+      </Link>
     ))}
   </div>
 );
-
 
 const Menu = () => {
   const { openMenu, toggleMenu } = useNavBarToggleBtns();
@@ -33,8 +47,9 @@ const Menu = () => {
 
   return (
     <div
-      className={`menu-bar fixed start-0 top-0 z-[80] flex h-screen w-full flex-col gap-y-6 overflow-x-hidden overflow-y-scroll bg-white px-4 py-6 transition-all duration-300 sm:px-8 sm:py-4 lg:w-[739px] lg:px-8 lg:py-10 ${openMenu ? "translate-x-0" : "start-[-100%]"
-        }`}
+      className={`menu-bar fixed start-0 top-0 z-[80] flex h-screen w-full flex-col gap-y-6 overflow-x-hidden overflow-y-scroll bg-white px-4 py-6 transition-all duration-300 sm:px-8 sm:py-4 lg:w-[739px] lg:px-8 lg:py-10 ${
+        openMenu ? "translate-x-0" : "start-[-100%]"
+      }`}
     >
       <button
         onClick={toggleMenu}
@@ -53,11 +68,19 @@ const Menu = () => {
       ) : (
         <>
           <MenuSection title={t("categoryTitle")}>
-            <CategoryGrid items={categories} />
+            <CategoryGrid
+              toggleMenu={toggleMenu}
+              searchQuery="category_id"
+              items={categories}
+            />
           </MenuSection>
 
           <MenuSection title={t("occasionTitle")}>
-            <CategoryGrid items={occasions} />
+            <CategoryGrid
+              toggleMenu={toggleMenu}
+              searchQuery={"occasion_id"}
+              items={occasions}
+            />
           </MenuSection>
         </>
       )}

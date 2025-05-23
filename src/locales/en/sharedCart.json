@@ -1,0 +1,18 @@
+{
+  "orderSummary": {
+    "title": "Order Summary",
+    "subtotal": "Subtotal",
+    "deliveryCharges": "Delivery charges",
+    "deliveryNote": "Please note that specific regions and express delivery may incur extra delivery fees",
+    "total": "Total",
+    "buttonText": "Proceed to Checkout"
+  },
+  "copon":{
+    "placeholder":"Enter Coupon Code",
+    "apply":"Apply"
+  },
+  "payment":{
+    "title":"Payment Options" ,
+    "subTitle":"All transactions are secure and encrypted"
+  }
+}

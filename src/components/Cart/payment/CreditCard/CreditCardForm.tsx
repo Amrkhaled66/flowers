@@ -26,11 +26,11 @@ const IconInput = ({
   element: React.ReactNode;
   icon: string;
 }) => (
-  <div className="relative">
+  <div  className="relative">
     {element}
     <Icon
       icon={icon}
-      className="absolute end-3 top-1/2 -translate-y-1/2"
+      className="absolute right-3 top-1/2 -translate-y-1/2"
       width="24"
       height="24"
     />

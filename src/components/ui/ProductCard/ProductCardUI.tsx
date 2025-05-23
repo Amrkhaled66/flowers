@@ -5,9 +5,8 @@ import { getLocalizedName } from "src/utils/getLocalizedName";
 import { useAddToCart, useUpdateCart } from "src/hooks/cart/useCartMutations";
 import { useCart } from "src/context/user/cartCtx";
 import { useTranslation } from "react-i18next";
-
 import Product from "src/types/product";
-
+import Loader from "../Loader";
 import priceFormatter from "src/utils/priceFormatter";
 const ProductCardUI = ({
   product,
@@ -21,15 +20,18 @@ const ProductCardUI = ({
   children?: React.ReactNode;
 }) => {
   const { isProductInCart } = useCart();
-  const { mutate: addToCart } = useAddToCart();
-  const { mutate: updateCart } = useUpdateCart();
-  const { i18n:{language} } = useTranslation();
+  const { mutate: addToCart, isPending: isAddPending } = useAddToCart();
+  const { mutate: updateCart, isPending: isUpdatePending } = useUpdateCart();
+  const {
+    i18n: { language },
+  } = useTranslation();
 
   const handelAddToCart = () => {
     isProductInCart(product.id)
       ? updateCart({ quantity: 3, id: product.id })
       : addToCart(product.id);
   };
+
   return (
     <div className="border-stroke w-full overflow-hidden rounded-2xl border bg-white drop-shadow-sm">
       {children}
@@ -37,10 +39,10 @@ const ProductCardUI = ({
         <div
           className={`bg-main ${isFilterCard && "lg:!h-[310px]"} ${
             (isFilterCard || isFavorite) && "sm:!h-[195px]"
-          } ${isFavorite && "!h-[310px] lg:!h-[310px]"} lg:h-[282px] h-[140px] sm:h-[310px]`}
+          } ${isFavorite && "!h-[310px] lg:!h-[310px]"} h-[140px] sm:h-[310px] lg:h-[282px]`}
         >
           <img
-            src={product.img}
+            src={product.images && product.images[0]}
             loading="lazy"
             alt="img"
             className="size-full object-cover object-center"
@@ -49,9 +51,9 @@ const ProductCardUI = ({
         <div className="space-y-3 p-2 sm:p-3 lg:p-4">
           <div>
             <p
-              className={`text-text-main line-clamp-4 text-left text-xs font-bold sm:text-xl lg:w-[90%] lg:text-base`}
+              className={`text-text-main line-clamp-4 text-start text-xs font-bold sm:text-xl lg:w-[90%] lg:text-base`}
             >
-              {getLocalizedName(product,language)}
+              {getLocalizedName(product, language)}
             </p>
           </div>
         </div>
@@ -67,14 +69,19 @@ const ProductCardUI = ({
       )} */}
         </div>
         <button
+          disabled={isAddPending || isUpdatePending}
           onClick={handelAddToCart}
-          className="hover:bg-main-300 animate bg-main flex place-items-center rounded-full p-2 text-white sm:p-3 lg:p-4"
+          className="hover:bg-main-300 animate bg-main flex place-items-center rounded-full p-2 text-white disabled:cursor-not-allowed sm:p-3 lg:p-4"
         >
-          <Icon
-            icon="material-symbols:shopping-cart-outline-rounded"
-            width="24"
-            height="24"
-          />
+          {isAddPending || isUpdatePending ? (
+            <Loader />
+          ) : (
+            <Icon
+              icon="material-symbols:shopping-cart-outline-rounded"
+              width="24"
+              height="24"
+            />
+          )}
         </button>
       </div>
     </div>

@@ -2,6 +2,7 @@ import usePageTitle from "src/hooks/ui/useUpdatePageTitle";
 import { useFilterOptions } from "src/hooks/filter/useFilterOptions";
 import { useSidebar } from "src/hooks/filter/useSidebar";
 import { useFilterPageData } from "src/hooks/filter/useFilterPageData";
+import { useEffect } from "react";
 
 import FilterBar from "src/sections/FilterPage/FilterBar";
 import FilteredProducts from "src/sections/FilterPage/FilteredProducts";
@@ -18,15 +19,24 @@ const FilterPage = () => {
     setAppliedOptions,
   } = useFilterOptions();
   const { sidebarOpen, closeSidebar, toggleSidebar } = useSidebar();
-  const { categories, occasions, products, isLoading, refetchProducts } =
-    useFilterPageData(appliedOptions);
+  const {
+    categories,
+    occasions,
+    products,
+    isLoading,
+    refetchProducts,
+    productsLoading,
+  } = useFilterPageData(appliedOptions);
 
   const onApplyFilter = () => {
     if (JSON.stringify(options) === JSON.stringify(appliedOptions)) return;
     setAppliedOptions(options);
-    refetchProducts();
   };
-  
+  useEffect(() => {
+    if (appliedOptions === null) return;
+    refetchProducts({ cancelRefetch: true });
+  }, [appliedOptions]);
+
   if (isLoading) {
     return (
       <div className="container flex h-screen items-center justify-center">
@@ -46,6 +56,7 @@ const FilterPage = () => {
         colors={[{ hex: "#FF0000" }]}
         onOptionChange={handleOptionChange}
         handlePriceRangeChange={handlePriceRangeChange}
+        options={options}
       />
 
       {sidebarOpen && <Overlay onClick={closeSidebar} bgColor="#00000066" />}

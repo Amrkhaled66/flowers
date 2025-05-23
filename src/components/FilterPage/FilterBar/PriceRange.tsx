@@ -29,6 +29,7 @@ const PriceRange = ({
       </div>
 
       <Range
+        
         step={1}
         min={0}
         max={9999}
@@ -41,6 +42,7 @@ const PriceRange = ({
 
           return (
             <div
+            dir="ltr"
               {...props}
               className="relative h-2 w-full rounded"
               style={{

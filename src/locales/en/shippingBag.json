@@ -1,0 +1,28 @@
+{
+    "freeDelivery":{
+        "only":"Only",
+        "toGet":"left to get free delivery!"
+    },
+    "messageGift":{
+        "title":"Message Gift",
+        "addMessage":"Tab To add Message",
+        "form":{
+            "to":"To",
+            "from":"From",
+            "or":"Or",
+            "work":"How it work?",
+            "workText":"Paste a link of video or photo from the internet",
+            "messagePlaceholder":"Write your message here",
+            "linkPlaceHolder":"Paste a Link to a Song or Video",
+            "review":"Review",
+            "save":"Save & Continue"
+        }
+    },
+    "cartTable":{
+        "product":"Product",
+        "price":"Price",
+        "quantity":"Quantity",
+        "total":"Total",
+        "clearCart":"Clear Shopping Cart"
+    }
+}

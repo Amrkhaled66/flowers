@@ -9,6 +9,8 @@ import { Link } from "react-router-dom";
 import { useEffect } from "react";
 import { useOrderSummary } from "src/context/OrderSummaryContext";
 import usePageTitle from "src/hooks/ui/useUpdatePageTitle";
+import { useTranslation } from "react-i18next";
+import AreaSelection from "src/components/ui/AddressForm/AreaSelection";
 
 const initialFormData: Address = {
   recipient_name: "",
@@ -20,6 +22,7 @@ const initialFormData: Address = {
 
 const DeliveryInfo = () => {
   usePageTitle("Delivery Info");
+  const { t } = useTranslation("profile");
 
   const { setConfig } = useOrderSummary();
   const {
@@ -28,6 +31,7 @@ const DeliveryInfo = () => {
     handleInputChange,
     handleLocationSelection,
     handleSubmit,
+    handleSelectArea,
   } = useAddressForm(initialFormData, () => {});
 
   useEffect(() => {
@@ -52,39 +56,35 @@ const DeliveryInfo = () => {
           type="text"
           name="name"
           required
-          label="Recipient name"
+          label={t("address.form.recipientName")}
           value={formData.recipient_name}
           onChange={handleInputChange}
           error={formErrors.name}
         />
         <FormInput
-          bgColor=" bg-main-50 lg:bg-white"
+          bgColor="bg-main-50 lg:bg-white"
           type="text"
-          name="phoneNumber"
+          name="recipient_phone"
           required
-          label="Recipient phone"
+          label={t("address.form.recipientPhone")}
           value={formData.recipient_phone}
           onChange={handleInputChange}
           error={formErrors.phoneNumber}
         />
 
         <MapButton onLocationSelected={handleLocationSelection} />
-
+        <AreaSelection onAreaSelected={handleSelectArea} />
         <div className="space-y-3">
-          <label className="text-text-main t font-bold">Full Address</label>
+          <label className="text-text-main t font-bold">
+            {t("address.form.address")}
+          </label>
           <textarea
-            className="bg-main-50 placeholder:text-subTitle animate border-stroke h-[100px] w-full rounded-xl border p-3 placeholder:text-sm"
-            placeholder="Enter your apartment/villa number, floor, building name and street"
+            className="bg-main-50 placeholder:text-subTitle animate border-stroke h-[100px] w-full rounded-xl border p-3 placeholder:text-sm lg:bg-white"
+            placeholder={t("address.form.addressPlaceholder")}
           />
         </div>
         <DeliveryTime />
       </div>
-      <Link to="/cart/payment">
-        <Button
-          text="Continue to Checkout"
-          className="hover:bg-main-50 animate bg-main block w-full !py-3 !text-base text-white lg:hidden"
-        />
-      </Link>
     </div>
   );
 };

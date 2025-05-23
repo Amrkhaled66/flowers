@@ -12,16 +12,9 @@ const addFavorite = async (id: number) => {
   return data;
 };
 
-const getFavoritesIds = async () => {
-  const { data } = await axiosPrivate.get(
-    "/api/user-favourites/all-products-ids",
-  );
-  return data;
-};
-
 const removeFavorite = async (id: number) => {
   const { data } = await axiosPrivate.delete(`/api/user-favourites/${id}`);
   return data;
 };
 
-export { getFavorites, addFavorite, getFavoritesIds, removeFavorite };
+export { getFavorites, addFavorite, removeFavorite };

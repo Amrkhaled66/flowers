@@ -3,8 +3,10 @@ import Button from "../ui/Button";
 
 import { useOrderSummary } from "src/context/OrderSummaryContext";
 import { useNavigate } from "react-router";
+import { useTranslation } from "react-i18next";
 import { Icon } from "@iconify/react/dist/iconify.js";
 const OrderSummary = () => {
+  const { t } = useTranslation("sharedCart");
   const { config } = useOrderSummary();
   const navigate = useNavigate();
   const handleClick = () => {
@@ -15,34 +17,46 @@ const OrderSummary = () => {
     }
   };
   return (
-    <div className="text-text-main  space-y-4 lg:space-y-[28px] bg-main-50 rounded-xl p-4 text-sm lg:text-base">
+     <div 
+      className="text-text-main space-y-4 lg:space-y-[28px] bg-main-50 rounded-xl p-4 text-sm lg:text-base"
+    >
+      {/* Header */}
       <div className="flex items-center gap-x-2">
         <Icon icon="basil:invoice-outline" width="24" height="24" />
-        <p className=" text-sm lg:text-xl font-bold">Order Summary</p>
+        <p className="text-sm lg:text-xl font-bold">
+          {t('orderSummary.title')}
+        </p>
       </div>
+
       <div className="space-y-4">
+        {/* Subtotal */}
         <div className="border-b-stroke flex justify-between border-b pb-4">
-          <p>Subtotal</p>
+          <p>{t('orderSummary.subtotal')}</p>
           <p>{priceFormatter(50)}</p>
         </div>
+
+        {/* Delivery Charges */}
         <div className="border-b-stroke space-y-2.5 border-b pb-4">
           <div className="flex justify-between">
-            <p>Delivery charges</p>
+            <p>{t('orderSummary.deliveryCharges')}</p>
             <p>{priceFormatter(1000)}</p>
           </div>
           <p className="text-subTitle">
-            Please note that specific regions and express delivery may incur
-            extra delivery fees
+            {t('orderSummary.deliveryNote')}
           </p>
         </div>
+
+        {/* Total */}
         <div className="border-b-stroke flex justify-between border-b pb-4 font-bold">
-          <p>Total</p>
+          <p>{t('orderSummary.total')}</p>
           <p>{priceFormatter(50)}</p>
         </div>
+
+        {/* Button */}
         <div className="pt-4">
           <Button
             onClick={handleClick}
-            text={config.buttonText || ""}
+            text={t('orderSummary.buttonText')}
             className="animate w-full !py-3 text-white"
           />
         </div>
@@ -50,5 +64,6 @@ const OrderSummary = () => {
     </div>
   );
 };
+
 
 export default OrderSummary;

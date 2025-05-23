@@ -2,11 +2,17 @@ import { getLocalizedName } from "src/utils/getLocalizedName";
 import { useTranslation } from "react-i18next";
 type CheckboxListProps = {
   items: any[];
-  onOptionChange: (key: string, value: string) => void;
+  onOptionChange: (key: string, value: number) => void;
   field: string;
+  selectedValues?: number[];
 };
 
-const CheckboxList = ({ onOptionChange, items, field }: CheckboxListProps) => {
+const CheckboxList = ({
+  onOptionChange,
+  items,
+  field,
+  selectedValues = [],
+}: CheckboxListProps) => {
   const {
     i18n: { language },
   } = useTranslation();
@@ -20,6 +26,7 @@ const CheckboxList = ({ onOptionChange, items, field }: CheckboxListProps) => {
             </span>
             <label className="relative flex cursor-pointer items-center">
               <input
+                checked={selectedValues.includes(item.id)}
                 onChange={() => onOptionChange(field, item.id)}
                 type="checkbox"
                 className="peer checked:border-main checked:bg-main border-main h-5 w-5 cursor-pointer appearance-none rounded-sm border shadow transition-all hover:shadow-md"
@@ -31,7 +38,7 @@ const CheckboxList = ({ onOptionChange, items, field }: CheckboxListProps) => {
                   viewBox="0 0 20 20"
                   fill="currentColor"
                   stroke="currentColor"
-                  stroke-width="1"
+                  strokeWidth="1"
                 >
                   <path
                     fillRule="evenodd"

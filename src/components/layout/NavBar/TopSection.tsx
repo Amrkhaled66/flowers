@@ -1,6 +1,8 @@
 import { Icon } from "@iconify/react/dist/iconify.js";
 import { ReactNode } from "react";
 import { useTranslation } from "react-i18next";
+
+import ChangeLngButton from "src/components/ui/ChangeLngButton";
 const ProsIcon = ({
   icon,
   text,
@@ -19,11 +21,7 @@ const ProsIcon = ({
 };
 
 const TopSection = () => {
-  const { t, i18n } = useTranslation("layout");
-
-  const changeLanguage = (lng: string) => {
-    i18n.changeLanguage(lng);
-  };
+  const { t } = useTranslation("layout");
   return (
     <div className="bg-footer-color">
       <div className="container text-white">
@@ -50,12 +48,7 @@ const TopSection = () => {
               text={t("navBar.pros")}
             />
           </div>
-          <button
-            onClick={() => changeLanguage(i18n.language === "ar" ? "en" : "ar")}
-            className="rounded-sm border border-white px-2"
-          >
-            {i18n.language === "ar" ? "English" : "عربي"}
-          </button>
+        <ChangeLngButton/>
         </div>
       </div>
     </div>

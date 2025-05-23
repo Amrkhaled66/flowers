@@ -32,11 +32,12 @@
             "area": "area"
         },
         "form": {
-            "recipientName": "recipient name",
-            "recipientPhone": "recipient phone",
-            "address": "address",
-            "area": "area",
-            "submit": "save"
+            "recipientName": "Recipient name",
+            "recipientPhone": "Recipient phone",
+            "address": "Full Address",
+            "addressPlaceholder": "Enter your apartment/villa number, floor, building name and street",
+            "area": "Area",
+            "submit": "Save"
         },
         "formErrors": {
             "name": {
@@ -85,7 +86,8 @@
     },
     "points": {
         "header": "Available Points",
-        "point": "Point"
+        "point": "Point",
+        "name":"Ballora Points"
     },
     "favorite": {
         "empty": "Choose your favorite flowers",

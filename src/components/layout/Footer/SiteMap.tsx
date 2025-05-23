@@ -1,38 +1,78 @@
-import { Link } from "react-router-dom";
-import footerLinks from "src/data/footerLinks";
-
-import { Icon } from "@iconify/react/dist/iconify.js";
 import { useState } from "react";
-const SiteMap = () => {
+import { memo } from "react";
+import {
+  useGetCategories,
+  useGetOccasions,
+} from "src/hooks/category/categoryQueries";
+import { useTranslation } from "react-i18next";
+
+import { SiteMapSection } from "./SiteMapSection";
+import { DynamicSectionLinks } from "./DynamicSectionLinks";
+
+const sectionKeys = {
+  categories: "categories",
+  occasions: "occasions",
+  support: "support",
+};
+
+const SiteMap = memo(() => {
   const [activeList, setActiveList] = useState<string | null>(null);
+  const { data: categories } = useGetCategories();
+  const { data: occasions } = useGetOccasions();
+  const { t } = useTranslation("layout");
+
+  const onActiveList = (title: string | null) => {
+    setActiveList(activeList === title ? null : title);
+  };
   return (
-    <div className="flex flex-1 flex-col justify-between  text-left text-white lg:flex-row">
-      {footerLinks.map((link) => (
-        <div className="space-y-7" key={link.title}>
-          <div
-            onClick={() => {
-              setActiveList(activeList === link.title ? null : link.title);
-            }}
-            className={`flex justify-between border-b border-white lg:border-none ${activeList === link.title && "border-none"}`}
-          >
-            <p className="pb-3 font-bold">{link.title}</p>
-            <div className="block lg:hidden">
-              <Icon icon="iconamoon:arrow-down-2-bold" width="24" height="24" />
-            </div>
-          </div>
-          <div
-            className={` ${activeList === link.title ? "max-h-[200px] mb-7" : "max-h-0"} lg:max-h-[200px]  flex flex-col space-y-3 overflow-hidden transition-all duration-300`}
-          >
-            {link.links.map((subLink) => (
-              <Link to={subLink.to || "/"} key={subLink.name}>
-                {subLink.name}
-              </Link>
-            ))}
-          </div>
+    <div className="flex flex-1 flex-col justify-between text-left text-white lg:flex-row">
+      <SiteMapSection
+        onToggle={() => onActiveList(sectionKeys.categories)}
+        isActive={activeList === sectionKeys.categories}
+        title={t("footer.categoryTitle")}
+      >
+        <DynamicSectionLinks
+          isActive={activeList === sectionKeys.categories}
+          items={categories || []}
+          searchParam="category_id"
+        />
+      </SiteMapSection>
+      <SiteMapSection
+        onToggle={() => onActiveList(sectionKeys.occasions)}
+        isActive={activeList === sectionKeys.occasions}
+        title={t("footer.occasionTitle")}
+      >
+        <DynamicSectionLinks
+          isActive={activeList === sectionKeys.occasions}
+          items={occasions || []}
+          searchParam="occasion_id"
+        />
+      </SiteMapSection>
+      <SiteMapSection
+        onToggle={() => onActiveList(sectionKeys.support)}
+        isActive={activeList === sectionKeys.support}
+        title={t("footer.customerSupport")}
+      >
+        <div
+          className={`${
+            activeList === sectionKeys.support
+              ? "mb-7 max-h-[200px]"
+              : "max-h-0"
+          } flex flex-col space-y-3 overflow-hidden text-start transition-all duration-300 lg:max-h-[200px]`}
+        >
+          <p className="hover:text-main-100 animate text-sm">
+            {t("footer.contactUs")}
+          </p>
+          <p className="hover:text-main-100 animate text-sm">
+            {t("footer.faq")}
+          </p>
+          <p className="hover:text-main-100 animate text-sm">
+            {t("footer.privacy")}
+          </p>
         </div>
-      ))}
+      </SiteMapSection>
     </div>
   );
-};
+});
 
 export default SiteMap;

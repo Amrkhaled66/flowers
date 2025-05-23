@@ -20,14 +20,12 @@ const Occasions = () => {
   } = useOccasionsManager();
 
   const { data, isLoading, refetch, isError } = useGetOccasions();
-
   if (isError) return null;
   if (isLoading || !data) return null;
 
-  const hasOccasions = data.data.length > 0;
+  const hasOccasions = data.length > 0;
 
-  const transforedmOccasions =
-    hasOccasions && data.data.map(transformOccasionFrom);
+  const transforedmOccasions = hasOccasions && data.map(transformOccasionFrom);
 
   return (
     <div className="space-y-6">

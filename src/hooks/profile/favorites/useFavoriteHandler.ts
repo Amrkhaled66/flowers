@@ -5,14 +5,15 @@ import {
 import { useAuth } from "src/context/authCtx";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
+
 import Alert from "src/components/ui/Alert";
 
-export const useFavoriteHandler = (isProductFavorite: boolean, productId: number) => {
+export const useFavoriteHandler = (favoriteId: number, productId: number) => {
   const { isAuthenticated } = useAuth();
   const navigate = useNavigate();
   const { mutate: addFavorite, isPending: isAddPending } = useAddFavorite(productId);
   const { mutate: removeFavorite, isPending: isRemovePending } =
-    useRemoveFavorite(productId);
+    useRemoveFavorite(favoriteId);
 
   const isPending = isAddPending || isRemovePending;
 
@@ -28,11 +29,11 @@ export const useFavoriteHandler = (isProductFavorite: boolean, productId: number
       return;
     }
 
-    const action = isProductFavorite ? removeFavorite : addFavorite;
+    const action = favoriteId ? removeFavorite : addFavorite;
 
     action(undefined, {
       onSuccess: () => {
-        toast(`Favorite ${isProductFavorite ? "removed" : "added"}`, {
+        toast(`Favorite ${favoriteId ? "removed" : "added"}`, {
           type: "success",
         });
       },

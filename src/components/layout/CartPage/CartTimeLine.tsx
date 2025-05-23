@@ -1,30 +1,40 @@
 import { useLocation, useNavigate } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 import clsx from "clsx";
+import { getLocalizedName } from "src/utils/getLocalizedName";
+
 import { Icon } from "@iconify/react/dist/iconify.js";
 
 const steps = [
-  { label: "Shopping Bag", path: "/cart" },
-  { label: "Delivery Info", path: "/cart/delivery-info" },
-  { label: "Payment", path: "/cart/payment" },
+  { nameEn: "Shopping Bag", nameAr: "سلة التسوق", path: "/cart" },
+  {
+    nameEn: "Delivery Info",
+    nameAr: "معلومات التوصيل",
+    path: "/cart/delivery-info",
+  },
+  { nameEn: "Payment", nameAr: "الدفع", path: "/cart/payment" },
 ];
 
 const CartTimeline = () => {
   const location = useLocation();
   const navigate = useNavigate();
+  const {
+    i18n: { language },
+  } = useTranslation();
 
   const currentStepIndex = steps.findIndex(
     (step) => location.pathname === step.path,
   );
 
   return (
-    <div className="space-y-4 w-full  lg:w-[90%] mx-auto ">
+    <div className="mx-auto w-full space-y-4 lg:w-[90%]">
       <div className="flex w-full items-center justify-between">
         {steps.map((step, index) => {
           const isActive = index === currentStepIndex;
           const isCompleted = index < currentStepIndex;
           return (
             <div
-              key={step.label}
+              key={step.nameEn}
               className="relative flex w-full flex-col items-center gap-2 gap-y-3 lg:flex-row"
             >
               {index !== steps.length - 1 && (
@@ -43,7 +53,7 @@ const CartTimeline = () => {
                 )}
               >
                 {isCompleted ? (
-                  <div className="outline-main rounded-full  outline-2 outline-offset-2">
+                  <div className="outline-main rounded-full outline-2 outline-offset-2">
                     <Icon
                       icon="icon-park-solid:check-one"
                       className="text-main"
@@ -61,7 +71,7 @@ const CartTimeline = () => {
                   "text-gray-500": !isActive && !isCompleted,
                 })}
               >
-                {step.label}
+                {getLocalizedName(step, language)}
               </span>
             </div>
           );

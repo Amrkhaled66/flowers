@@ -5,10 +5,12 @@ import CartMenuCard from "src/components/ui/CartCard";
 
 import { useNavBarToggleBtns } from "src/context/NavBarToggleBtns";
 import { useCart } from "src/context/user/cartCtx";
-
+import { useTranslation } from "react-i18next";
 const Cart = () => {
   const { openCart, toggleCart } = useNavBarToggleBtns();
-  const { cart } = useCart();
+  const { cart, cartLength } = useCart();
+  const { t } = useTranslation("layout");
+
   return (
     <div
       className={`text-text-main menu-bar fixed end-0 top-0 z-[80] flex h-screen flex-col justify-between gap-y-6 overflow-y-scroll bg-white px-4 py-[50px] transition-all duration-300 sm:w-[375px] lg:w-[446px] lg:px-8 ${
@@ -21,15 +23,18 @@ const Cart = () => {
       >
         <Icon icon="ic:outline-close" width="20" height="20" />
       </button>
-      <Head />
+      <Head cartLength={cartLength} />
       <div className="flex flex-1 flex-col">
         <div className="cart-menu flex-1 space-y-6">
-          {cart ? (
+          {cart && cartLength && cartLength > 0 ? (
+            cart &&
             cart.map((product, index) => (
               <CartMenuCard key={index} product={product} />
             ))
           ) : (
-            <p className="font-main text-text-main">Your cart is empty</p>
+            <p className="font-main text-text-main flex h-full items-center justify-center text-center">
+              {t("cart.empty")}
+            </p>
           )}
         </div>
         <Summary />

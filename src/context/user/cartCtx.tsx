@@ -5,8 +5,8 @@ import transformProduct from "src/utils/transforms/transformProduct";
 
 import { useCallback } from "react";
 interface CartContextType {
-  cart: CartItem[] | null;
-  setCart: (cart: CartItem[] | []) => void;
+  cart: CartItem[] | [];
+  storeCart: (cart: CartItem[] | []) => void;
   clearCart: () => void;
   isProductInCart: (productId: number) => boolean;
   cartTotal?: number;
@@ -18,20 +18,22 @@ const CartContext = createContext<CartContextType | undefined>(undefined);
 export const CartProvider: React.FC<{ children: React.ReactNode }> = ({
   children,
 }) => {
-  const [cart, setCartState] = useState<CartItem[] | null>(null);
-  const setCart = useCallback((newCart: CartItem[] | []) => {
-    const cart = newCart.map((item) => {
+  const [cart, setCart] = useState<CartItem[] | []>([]);
+
+  const storeCart = useCallback((newCart :CartItem[]) => {
+    const modifiedCart = newCart.map((item) => {
       return {
         quantity: item.quantity,
         id: item.id,
         product: transformProduct(item.product),
       };
     });
-    setCartState(cart);
-  }, []);
+    setCart(modifiedCart);
+  },[]);
+
 
   const clearCart = () => {
-    setCartState(null);
+    setCart([]);
   };
 
   const isProductInCart = (productId: number) => {
@@ -51,7 +53,7 @@ export const CartProvider: React.FC<{ children: React.ReactNode }> = ({
     <CartContext.Provider
       value={{
         cart,
-        setCart,
+        storeCart,
         clearCart,
         isProductInCart,
         cartTotal,

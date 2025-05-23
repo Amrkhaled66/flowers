@@ -1,9 +1,13 @@
 import React, { createContext, useState, useContext } from "react";
 
+type Item = {
+  id: number;
+  product_id: number;
+};
 type FavoritesContextType = {
-  favorites: number[];
-  storeFavorites: (ids: number[]) => void;
-  isFavorite: (id: number) => boolean
+  favorites: Item[];
+  storeFavorites: (items: Item[]) => void;
+  isFavorite: (id: number) => number;
 };
 
 const FavoritesContext = createContext<FavoritesContextType | undefined>(
@@ -15,17 +19,21 @@ export const FavoritesProvider = ({
 }: {
   children: React.ReactNode;
 }) => {
-  const [favorites, setFavorites] = useState<number[]>([]);
+  const [favorites, setFavorites] = useState<Item[]>([]);
 
-  const storeFavorites = (ids: number[]) => {
-    console.log("storeFavorites", ids);
-    setFavorites(ids);
+  const storeFavorites = (items: Item[]) => {
+    setFavorites(items);
   };
 
-  const isFavorite = (id: number) => favorites.includes(id);
+  const isFavorite = (id: number) => {
+    const item = favorites.find((item) => item.product_id === id);
+    return item ? item.id : 0;
+  };
 
   return (
-    <FavoritesContext.Provider value={{ favorites, storeFavorites ,isFavorite}}>
+    <FavoritesContext.Provider
+      value={{ favorites, storeFavorites, isFavorite }}
+    >
       {children}
     </FavoritesContext.Provider>
   );

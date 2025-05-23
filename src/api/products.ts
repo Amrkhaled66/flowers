@@ -14,6 +14,7 @@ const getProducts = async (filters?: any) => {
         .join("&");
     },
   });
+  
   return data.data.map(transformProduct);
 };
 

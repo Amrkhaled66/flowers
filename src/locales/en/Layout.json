@@ -12,14 +12,19 @@
     "remove": "Clear All",
     "showCart": "Show Cart",
     "pay": "Checkout",
-    "total": "Total"
+    "total": "Total",
+    "empty": "Your Cart is empty"
   },
   "footer": {
+    "categoryTitle":"Celebrate Every Moment",
+    "occasionTitle":"Every Moment Deserves a Gift",
     "socialMedia": "Social Media",
     "download": "Download App",
     "customerSupport": "Customer Support",
     "terms": "Terms & Conditions",
     "privacy": "Privacy Policy",
-    "copyright": "All rights reserved"
+    "copyright": "All rights reserved",
+    "contactUs": "Contact Us",
+    "faq": "FAQ"
   }
 }

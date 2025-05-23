@@ -1,13 +1,16 @@
+import { useTranslation } from "react-i18next";
+
 const CoponBtn = () => {
+  const { t } = useTranslation("sharedCart");
   return (
     <div className="relative w-full flex pe-1.5 bg-main-50 items-center rounded-xl border border-stroke h-[60px]  ">
       <input
-        placeholder="Coupon Code"
+        placeholder={t("copon.placeholder")}
         className="placeholder:text-subTitle flex-1 px-4"
         type="text"
       />
       <button className="bg-main  font-bold h-[50px] w-[100px] rounded-xl text-sm text-white">
-        Apply
+        {t("copon.apply")}
       </button>
     </div>
   );

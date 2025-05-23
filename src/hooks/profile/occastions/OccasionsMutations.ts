@@ -10,7 +10,8 @@ const useGetOccasions = () =>
   useQuery({
     queryKey: ["user-occasions"],
     queryFn: async () => {
-      const { data } = await getOccasions();
+      const data = await getOccasions();
+      return data.data;
     },
     retry: 2,
   });

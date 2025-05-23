@@ -15,7 +15,7 @@ const Bottom = () => {
   const { t } = useTranslation("layout");
   return (
     <div className="flex flex-col-reverse items-start justify-between gap-y-7 border-t border-white pt-7 text-white lg:flex-row lg:items-center lg:pt-4">
-      <p>{t("footer.copyright")} &copy; {year} Floward - V 4.3.10</p>
+      <p>{t("footer.copyright")} &copy; {year} Ballora - V 4.3.10</p>
       <div className="order-first flex items-center gap-x-1 lg:order-none">
         <span>{t("footer.terms")}</span>
         <div className="h-2 w-2 rounded-full bg-white"></div>

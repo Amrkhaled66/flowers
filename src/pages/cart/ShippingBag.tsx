@@ -20,13 +20,13 @@ const ShippingBag = () => {
 
   return (
     <div className="flex flex-col gap-x-[50px] gap-y-4 lg:flex-row">
-      <FreeDeliveryLine className="block lg:hidden" />
+      <FreeDeliveryLine className="flex lg:hidden" />
       <div className="block lg:hidden">
         <CartList />
       </div>
       <CartTable />
       <div className="flex flex-1 flex-col gap-y-6">
-        <FreeDeliveryLine className="hidden lg:block" />
+        <FreeDeliveryLine className="hidden lg:flex" />
         <MessageGift />
         <OrderSummary />
       </div>

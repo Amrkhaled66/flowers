@@ -13,7 +13,7 @@ const CartSubLayout = () => {
       <div className="flex flex-col space-y-4 gap-x-[40px] lg:flex-row">
         <Outlet />
         <div
-          className={`flex flex-1 flex-col gap-y-4 sm:gap-y-5 lg:gap-y-6 ${pathname === "/cart/delivery-info" && "hidden lg:block"} `}
+          className={`flex flex-1 flex-col gap-y-4 sm:gap-y-5 lg:gap-y-6 ${pathname === "/cart/delivery-info" && "hidden lg:flex"} `}
         >
           <FreeDeliveryLine />
           <CartList />

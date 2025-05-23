@@ -8,19 +8,25 @@ import LogOutButton from "src/components/ui/register/LogOutButton";
 import DeleteAccount from "src/components/ui/register/DeleteAccount";
 
 import { getLocalizedName } from "src/utils/getLocalizedName";
+
+import { useTranslation } from "react-i18next";
 const ProfileMenuButtonMobile = () => {
   const [open, setOpen] = useState(false);
+  const { t } = useTranslation("profile");
 
   return (
     <div className="block lg:hidden">
-      <button onClick={() => setOpen((prev) => !prev)} className="flex items-center">
+      <button
+        onClick={() => setOpen((prev) => !prev)}
+        className="flex items-center"
+      >
         <Icon icon="bi:person" width="24" height="24" />
       </button>
       <div
-        className={`text-text-main fixed inset-0 top-0 space-y-5  lg:hidden ${open ? "translate-x-0" : "-translate-x-[100%]"} animate h-screen w-full rounded-xl bg-white p-6 drop-shadow-xl`}
+        className={`text-text-main fixed inset-0 top-0 z-[1000] space-y-5 lg:hidden ${open ? "translate-x-0" : "-translate-x-[100%]"} animate h-screen w-full rounded-xl bg-white p-6 drop-shadow-xl`}
       >
         <div className="flex justify-between">
-          <h1 className="text-xl font-bold">My Account</h1>
+          <h1 className="text-xl font-bold">{t("header")}</h1>
           <button
             className="border-stroke flex h-[34px] w-[34px] items-center justify-center border"
             onClick={() => setOpen(false)}
@@ -38,13 +44,19 @@ const ProfileMenuButtonMobile = () => {
               if (item.nameEn === "Ballora Points" || item.show === false)
                 return null;
               return (
-                <Link key={item.nameEn} onClick={() => setOpen(false)} to={item.link}>
+                <Link
+                  key={item.nameEn}
+                  onClick={() => setOpen(false)}
+                  to={item.link}
+                >
                   <div
                     className={`flex ${index !== profileElements.length - 1 && "border-b"} border-b-stroke items-center justify-between py-2`}
                   >
                     <div className="flex gap-x-3">
                       {item.icon}
-                      <p className="text-text-main font-medium">{getLocalizedName(item)}</p>
+                      <p className="text-text-main font-medium">
+                        {getLocalizedName(item)}
+                      </p>
                     </div>
                     <Icon icon="jam:chevron-right" width="24" height="24" />
                   </div>
@@ -64,7 +76,7 @@ const ProfileMenuButtonMobile = () => {
                     />
                   </span>
                   <span className="text-text-main font-medium text-nowrap">
-                    Ballora Points
+                    {t("points.name")}
                   </span>
                 </div>
                 <div className="bg-main-100 rounded-xl px-6 py-1 font-medium">

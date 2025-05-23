@@ -1,5 +1,6 @@
 import { Icon } from "@iconify/react/dist/iconify.js";
 import { useMessageGiftCtx } from "src/context/MessageGiftCtx";
+import { useTranslation } from "react-i18next";
 import Button from "src/components/ui/Button";
 
 const PreviewMessage = ({
@@ -9,6 +10,7 @@ const PreviewMessage = ({
   onCloseFun: () => void;
   returnToForm: () => void;
 }) => {
+  const {t}=useTranslation("shippingBag");
   const {
     messageParts: { from, to, message },
     onSave,
@@ -38,7 +40,7 @@ const PreviewMessage = ({
           onCloseFun();
           returnToForm();
         }}
-        text="Save & Continue"
+        text={t("messageGift.form.save")}
         className="bg-main hover:bg-main-50 animate w-full !py-3 text-white"
       />
     </div>

@@ -37,6 +37,7 @@
             "recipientName": "اسم المستلم",
             "recipientPhone": "رقم المستلم",
             "address": "العنوان",
+            "addressPlaceholder":"ادخل رقم الشقة والطابق واسم المبنى والشارع",
             "area": "المنطقة",
             "submit": "حفظ"
         },
@@ -87,7 +88,8 @@
     },
     "points": {
         "header": "الرصيد المتاح",
-        "point": "نقظة"
+        "point": "نقظة",
+        "name":" نقاط بلورا"
     },
     "favorite": {
         "empty": "اختر المنتجات المفضلة لديك",

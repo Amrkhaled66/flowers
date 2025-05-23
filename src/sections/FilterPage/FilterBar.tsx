@@ -14,9 +14,15 @@ type SidebarProps = {
   categories: any[];
   occasions: any[];
   colors: { hex: string }[];
-  onOptionChange: (key: string, value: string) => void;
+  onOptionChange: (key: string, value: number) => void;
   handlePriceRangeChange: (value: number[]) => void;
   onSubmit: () => void;
+  options: {
+    category_id: number[];
+    occasion_id: number[];
+    color_id: number[];
+    price_range: number[];
+  };
 };
 
 const FilterBar = ({
@@ -28,6 +34,7 @@ const FilterBar = ({
   onOptionChange,
   handlePriceRangeChange,
   onSubmit,
+  options,
 }: SidebarProps) => {
   const { t } = useTranslation("filter");
   const [openSections, setOpenSections] = useState<string[]>([
@@ -36,7 +43,7 @@ const FilterBar = ({
     "color",
   ]);
 
-  const handleToogle = (section: string) => {
+  const handleToggle = (section: string) => {
     if (openSections.includes(section)) {
       setOpenSections(openSections.filter((item) => item !== section));
     } else {
@@ -59,7 +66,7 @@ const FilterBar = ({
       <div className="bg-main-50 space-y-6 rounded-xl p-4">
         <div className="space-y-4">
           <BarSection
-            onClick={() => handleToogle("category")}
+            onClick={() => handleToggle("category")}
             isOpen={openSections.includes("category")}
             className="border-b-stroke border-b pb-4"
             title={t("category")}
@@ -68,6 +75,7 @@ const FilterBar = ({
               onOptionChange={onOptionChange}
               field={"category_id"}
               items={categories}
+              selectedValues={options.category_id}
             />
           </BarSection>
 
@@ -75,7 +83,7 @@ const FilterBar = ({
         </div>
 
         <BarSection
-          onClick={() => handleToogle("occasion")}
+          onClick={() => handleToggle("occasion")}
           isOpen={openSections.includes("occasion")}
           title={t("occasion")}
         >
@@ -83,11 +91,12 @@ const FilterBar = ({
             onOptionChange={onOptionChange}
             field={"occasion_id"}
             items={occasions}
+            selectedValues={options.occasion_id}
           />
         </BarSection>
 
         <BarSection
-          onClick={() => handleToogle("color")}
+          onClick={() => handleToggle("color")}
           isOpen={openSections.includes("color")}
           title={t("color")}
         >

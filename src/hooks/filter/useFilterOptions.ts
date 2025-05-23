@@ -1,9 +1,10 @@
-import { useCallback, useState } from "react";
+import { useCallback, useState, useMemo } from "react";
+import { useSearchParams } from "react-router-dom";
 
 interface FilterOptions {
-  category_id: string[];
-  occasion_id: string[];
-  color_id: string[];
+  category_id: number[];
+  occasion_id: number[];
+  color_id: number[];
   price_range: number[];
 }
 
@@ -14,49 +15,95 @@ const INITIAL_FILTER_OPTIONS: FilterOptions = {
   price_range: [0, 9999],
 };
 
-const STRING_ARRAY_KEYS: (keyof FilterOptions)[] = [
+const STRING_ARRAY_KEYS = new Set<keyof FilterOptions>([
   "category_id",
   "occasion_id",
   "color_id",
-];
+]);
 
 export const useFilterOptions = () => {
-  const [options, setOptions] = useState<FilterOptions>(INITIAL_FILTER_OPTIONS);
-  const [appliedOptions, setAppliedOptions] = useState<FilterOptions>(
-    INITIAL_FILTER_OPTIONS,
-  );
-  const handleOptionChange = useCallback((key: string, value: string) => {
-    if (!STRING_ARRAY_KEYS.includes(key as keyof FilterOptions)) {
+  const [searchParams] = useSearchParams();
+  const [options, setOptions] = useState<FilterOptions>(() => {
+    const initialOptions = { ...INITIAL_FILTER_OPTIONS };
+    const categoryId = searchParams.get("category_id");
+    const occasionId = searchParams.get("occasion_id");
+
+    if (categoryId) {
+      initialOptions.category_id = [parseInt(categoryId)];
+    }
+    if (occasionId) {
+      initialOptions.occasion_id = [parseInt(occasionId)];
+    }
+    return initialOptions;
+  });
+
+  const [appliedOptions, setAppliedOptions] = useState<FilterOptions>(() => {
+    const initialApplied = { ...INITIAL_FILTER_OPTIONS };
+    const categoryId = searchParams.get("category_id");
+    const occasionId = searchParams.get("occasion_id");
+
+    if (categoryId) {
+      initialApplied.category_id = [parseInt(categoryId)];
+    }
+    if (occasionId) {
+      initialApplied.occasion_id = [parseInt(occasionId)];
+    }
+    return initialApplied;
+  });
+
+  const handleOptionChange = (key: string, value: number) => {
+    if (!STRING_ARRAY_KEYS.has(key as keyof FilterOptions)) {
       console.warn(`Invalid filter key: ${key}`);
       return;
     }
 
-    setOptions((prevOptions) => {
-      const currentValues = prevOptions[key as keyof FilterOptions] as string[];
+    setOptions(prevOptions => {
+      const currentValues = prevOptions[key as keyof FilterOptions];
       const valueExists = currentValues.includes(value);
+ 
+      const newValues = valueExists
+        ? currentValues.filter(item => item !== value)
+        : [...currentValues, value];
 
       return {
         ...prevOptions,
-        [key]: valueExists
-          ? currentValues.filter((item) => item !== value)
-          : [...currentValues, value],
+        [key]: newValues,
+      };
+    });
+  }
+
+  const handlePriceRangeChange = useCallback((value: number[]) => {
+    setOptions(prevOptions => {
+      if (
+        prevOptions.price_range[0] === value[0] &&
+        prevOptions.price_range[1] === value[1]
+      ) {
+        return prevOptions;
+      }
+      return {
+        ...prevOptions,
+        price_range: value,
       };
     });
   }, []);
 
-  const handlePriceRangeChange = useCallback((value: number[]) => {
-    setOptions((prevOptions) => ({
-      ...prevOptions,
-      price_range: value,
-    }));
+  const resetFilters = useCallback(() => {
+    setOptions(INITIAL_FILTER_OPTIONS);
   }, []);
 
-  return {
+  return useMemo(() => ({
     options,
+    appliedOptions,
     handleOptionChange,
     handlePriceRangeChange,
-    appliedOptions,
+    resetFilters,
     setAppliedOptions,
-    resetFilters: () => setOptions(INITIAL_FILTER_OPTIONS),
-  };
+    setOptions,
+  }), [
+    options,
+    appliedOptions,
+    handleOptionChange,
+    handlePriceRangeChange,
+    resetFilters,
+  ]);
 };

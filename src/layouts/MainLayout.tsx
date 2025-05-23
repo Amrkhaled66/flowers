@@ -11,7 +11,7 @@ import ScrollToTop from "src/components/ScroolToTop";
 import { useTranslation } from "react-i18next";
 import { useNavBarToggleBtns } from "src/context/NavBarToggleBtns";
 import { useGetCart } from "src/hooks/cart/useCartMutations";
-import { useGetFavoritesIds } from "src/hooks/profile/favorites/FavoritesMutations";
+import { useGetFavorites } from "src/hooks/profile/favorites/FavoritesMutations";
 
 import { AxiosProvider } from "src/context/axiosProvider";
 
@@ -20,8 +20,7 @@ const MainLayout = () => {
   const { i18n } = useTranslation();
 
   useGetCart();
-  useGetFavoritesIds();
-  
+  useGetFavorites();
   return (
     <AxiosProvider>
       <div

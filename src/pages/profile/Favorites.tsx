@@ -9,7 +9,6 @@ const Favorites = () => {
   if (isLoading) return null;
 
   if (!data || data.data.length === 0) return <EmptyFavorites />;
-
   const transformedProduct = data.data.map((item:any) =>
     transformProduct(item.product),
   );

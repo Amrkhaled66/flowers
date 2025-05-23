@@ -2,22 +2,24 @@ import { Icon } from "@iconify/react/dist/iconify.js";
 
 import { Elements } from "@stripe/react-stripe-js";
 import { loadStripe } from "@stripe/stripe-js";
-import usePageTitle from "src/hooks/ui/useUpdatePageTitle";
 
 import PaymentWays from "src/sections/Cart/payment/PaymentWays";
 
+import { useTranslation } from "react-i18next";
+import usePageTitle from "src/hooks/ui/useUpdatePageTitle";
 const stripePromise = loadStripe(import.meta.env.VITE_STRIPE_PUBLISH_KEY);
 
 const Payment = () => {
   usePageTitle("Payment");
+  const { t } = useTranslation("sharedCart");
   return (
     <div className="lg:!bg-main-50 h-fit w-full space-y-3 rounded-xl bg-white lg:w-[63%] lg:p-4">
       <div className="flex items-center gap-x-2">
         <Icon icon="ic:round-payment" width="24" height="24" />
-        <h1 className="text-xl font-bold">Payment Options</h1>
+        <h1 className="text-xl font-bold">{t("payment.title")}</h1>
       </div>
       <p className="text-subTitle hidden lg:block">
-        All transactions are secure and encrypted
+        {t("payment.subTitle")}
       </p>
       <Elements stripe={stripePromise}>
         <PaymentWays />

@@ -1,0 +1,28 @@
+{
+    "freeDelivery": {
+        "only": "باقي فقط",
+        "toGet": "للحصول على توصيل مجاني!"
+    },
+    "messageGift": {
+        "title": "رسالة الهدية",
+        "addMessage": "اضغط لإضافة رسالة",
+        "form": {
+            "to": "إلى",
+            "from": "من",
+            "or": "أو",
+            "work": "كيف تعمل؟",
+            "workText": "الصق رابط فيديو أو صورة من الإنترنت",
+            "messagePlaceholder": "اكتب رسالتك هنا",
+            "linkPlaceHolder": "الصق رابط فيديو او صورة من الانترنت",
+            "review": "مراجعة",
+            "save": "حفظ والمتابعة"
+        }
+    },
+    "cartTable": {
+        "product": "المنتج",
+        "price": "السعر",
+        "quantity": "الكمية",
+        "total": "المجموع",
+        "clearCart": "إفراغ سلة التسوق"
+    }
+}
