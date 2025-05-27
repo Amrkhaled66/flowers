@@ -30,7 +30,7 @@ const Address = () => {
             <Button
               text={t("address.add")}
               icon={<Icon icon="line-md:plus" width="24" height="24" />}
-              className="bg-main-100 animate text-main w-full rounded-sm !py-3 text-center font-bold"
+              className="bg-main-100 hover:!text-white animate text-main w-full rounded-sm !py-3 text-center font-bold"
             ></Button>
           </div>
         </Link>

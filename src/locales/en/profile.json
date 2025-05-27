@@ -87,7 +87,13 @@
     "points": {
         "header": "Available Points",
         "point": "Point",
-        "name":"Ballora Points"
+        "name":"Ballora Points",
+        "description": "Earn points with every purchase and redeem them for discounts on future orders.",
+        "empty": "You have no points yet.",
+        "history": "Points History",
+        "date":"Date",
+        "points":"points",
+        "orderId":"Order ID"
     },
     "favorite": {
         "empty": "Choose your favorite flowers",

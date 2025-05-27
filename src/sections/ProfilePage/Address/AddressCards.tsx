@@ -1,5 +1,6 @@
 import AddressCard from "src/components/ProfilePage/Address/AddressCard";
 import Address from "src/types/UserInfo/Address";
+import AddressCardSk from "src/components/ui/Skeletons/InfoCardSkeleton.tsx";
 import { useGetAddresses } from "src/hooks/profile/addresses/useAddressMutations";
 
 const AddressCards = ({
@@ -11,18 +12,24 @@ const AddressCards = ({
 
   if (isError) return;
 
-  if (!data || isLoading) return;
-  if (!data.data.length) return;
+  if (data && data.data.length === 0) return;
   return (
-    <div className="space-y-4 sm:space-y-5 lg:space-y-6">
-      {data.data.map((address: Address) => (
-        <AddressCard
-          refetch={() => refetch()}
-          key={address.id}
-          address={address}
-          onEditAddress={onEditAddress}
-        />
-      ))}
+    <div className="flex h-full w-full flex-col space-y-4 sm:space-y-5 lg:space-y-5">
+      {isLoading ? (
+        <>
+          <AddressCardSk />
+          <AddressCardSk />
+        </>
+      ) : (
+        data.data.map((address: Address) => (
+          <AddressCard
+            refetch={() => refetch()}
+            key={address.id}
+            address={address}
+            onEditAddress={onEditAddress}
+          />
+        ))
+      )}
     </div>
   );
 };

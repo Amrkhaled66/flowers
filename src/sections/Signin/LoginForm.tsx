@@ -41,7 +41,7 @@ const LoginForm = () => {
           type="submit"
           className="bg-main text-text-main animate hover:bg-main-300 mt-8 w-full rounded-xl py-3 text-lg font-bold text-white"
         >
-          {isPending ? <Loader /> : t("login")}
+          {isPending ? <Loader className="border-b-white h-6 w-6" /> : t("login")}
         </button>
         <div className="mt-4 flex w-full justify-center gap-x-2">
           <p className="text-text-main">{t("noAccount")}</p>

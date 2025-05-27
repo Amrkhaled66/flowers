@@ -8,7 +8,9 @@ const LogOutButton = ({ isMenuButton = false }: { isMenuButton?: boolean }) => {
   const { logout } = useAuth();
   const navigate = useNavigate();
   const { mutate } = useLogOutMutation();
-  const { i18n: { language } } = useTranslation()
+  const {
+    i18n: { language },
+  } = useTranslation();
   return (
     <button
       onClick={() => {

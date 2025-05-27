@@ -4,8 +4,10 @@ import { Link } from "react-router-dom";
 
 import ProfileNav from "src/components/layout/ProfileNav/ProfileNav";
 import { useTranslation } from "react-i18next";
+import { useLocation } from "react-router";
 const ProfilePage = () => {
   const { t } = useTranslation("profile");
+  const { pathname } = useLocation();
   return (
     <div className="text-text-main h-fit py-6 lg:h-auto lg:min-h-dvh lg:py-10">
       <div className="container space-y-5 lg:space-y-6">
@@ -19,9 +21,13 @@ const ProfilePage = () => {
         </div>
         <div className="flex space-x-[37px]">
           <ProfileSideBar />
-          <div className="bg-main-50 h-fit flex-1 rounded-xl p-4">
+          {pathname === "/profile/points" ? (
             <Outlet />
-          </div>
+          ) : (
+            <div className="bg-main-50 h-fit flex-1 rounded-xl p-4">
+              <Outlet />
+            </div>
+          )}
         </div>
       </div>
     </div>

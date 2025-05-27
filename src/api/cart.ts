@@ -1,3 +1,4 @@
+import { copyFile } from "fs";
 import { axiosPrivate } from "./axios";
 
 const getCart = async () => {
@@ -24,4 +25,11 @@ const deleteCart = async (id: number) => {
   return data;
 };
 
-export { getCart, addToCart, updateCart, deleteCart };
+const applyCoupon = async (couponCode: string) => {
+  const { data } = await axiosPrivate.post(
+    `/api/coupons?code=${couponCode}`,
+  );
+  return data;
+};
+
+export { getCart, addToCart, updateCart, deleteCart, applyCoupon };

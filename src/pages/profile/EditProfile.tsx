@@ -22,10 +22,6 @@ const formFields = [
     layout: "block",
     fields: [{ labelEn: "Birth Date", labelAr: "تاريخ الميلاد ", type: "date", name: "birth_date" }],
   },
-  {
-    layout: "block",
-    fields: [{ labelEn: "Phone Number", labelAr: "رقم الهاتف", type: "text", name: "phone_number" }],
-  },
 ];
 
 const EditProfile = () => {

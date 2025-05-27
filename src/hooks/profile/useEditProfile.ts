@@ -7,21 +7,23 @@ import { useTranslation } from "react-i18next";
 import { useMutation } from "@tanstack/react-query";
 import { updateProfileData } from "src/api/profile/profileData";
 import { useAuth } from "src/context/authCtx";
+import { useNavigate } from "react-router";
 
 import Alert from "src/components/ui/Alert";
 
 const useEditProfile = () => {
+  const navigate = useNavigate();
   const { t: tErrors } = useTranslation("errors");
   const { t: tShared } = useTranslation("shared");
   const { t: tProfile } = useTranslation("profile");
   const {
     authData: { user },
+    updateUser,
   } = useAuth();
   const [formData, setFormData] = useState<FormDataType>({
     first_name: user?.first_name || "",
     last_name: user?.last_name || "",
     email: user?.email || "",
-    phone_number: user?.phone_number || "",
     birth_date: user?.birth_date || "",
     gender: user?.gender || "",
   });
@@ -30,20 +32,21 @@ const useEditProfile = () => {
     first_name: "",
     last_name: "",
     email: "",
-    phone_number: "",
     birth_date: "",
     gender: "",
   });
 
   const { mutate, isPending } = useMutation({
     mutationFn: () => updateProfileData(formData),
-    onSuccess: () => {
+    onSuccess: (data) => {
       Alert({
         title: tShared("success"),
         text: tProfile("info.editForm.success"),
         icon: "success",
         confirmButtonText: "Okay",
       });
+      updateUser(data.data);
+      navigate("/profile/myData");
     },
     onError: (err: any) => {
       Alert({

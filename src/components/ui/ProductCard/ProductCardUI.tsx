@@ -39,13 +39,13 @@ const ProductCardUI = ({
         <div
           className={`bg-main ${isFilterCard && "lg:!h-[310px]"} ${
             (isFilterCard || isFavorite) && "sm:!h-[195px]"
-          } ${isFavorite && "!h-[310px] lg:!h-[310px]"} h-[140px] sm:h-[310px] lg:h-[282px]`}
+          } ${isFavorite && "!h-[310px] lg:!h-[310px]"} h-[140px] group overflow-hidden sm:h-[310px] lg:h-[282px]`}
         >
           <img
             src={product.images && product.images[0]}
             loading="lazy"
             alt="img"
-            className="size-full object-cover object-center"
+            className="size-full group-hover:scale-110 animate object-cover object-center"
           />
         </div>
         <div className="space-y-3 p-2 sm:p-3 lg:p-4">
@@ -71,7 +71,7 @@ const ProductCardUI = ({
         <button
           disabled={isAddPending || isUpdatePending}
           onClick={handelAddToCart}
-          className="hover:bg-main-300 animate bg-main flex place-items-center rounded-full p-2 text-white disabled:cursor-not-allowed sm:p-3 lg:p-4"
+          className="hover:bg-main-700 focus:bg-main-900 animate bg-main flex place-items-center rounded-full p-2 text-white disabled:cursor-not-allowed sm:p-3 lg:p-4"
         >
           {isAddPending || isUpdatePending ? (
             <Loader />

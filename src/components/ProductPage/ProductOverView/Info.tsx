@@ -1,10 +1,12 @@
 import React from "react";
 
 import QuantitySelector from "src/components/ui/QuantitySelector";
-import { Icon } from "@iconify/react/dist/iconify.js";
 import Button from "src/components/ui/Button";
-import { ReactNode } from "react";
 import NavigationBar from "src/sections/ProductPage/NavigationBar";
+import Skeleton from "react-loading-skeleton";
+
+import { Icon } from "@iconify/react/dist/iconify.js";
+import { ReactNode } from "react";
 const Section = ({
   title,
   children,
@@ -35,86 +37,100 @@ const SocialIcon = ({ icon }: { icon: ReactNode }) => {
 const Info = ({
   name,
   price,
+  loading
 }: {
   name: string | undefined;
   price: number | undefined;
+  loading?: boolean;
 }) => {
   return (
     <div className="space-y-2 lg:w-[50%] lg:space-y-6">
-      <NavigationBar className="flex lg:hidden" name={name} />
-
-      <Section withBorder>
-        <h1 className="text-text-main font-bold sm:text-xl lg:text-[28px]">
-          {name}
-        </h1>
-        <div className="flex flex-col gap-y-2">
-          <p className="text-main space-x-1">
-            <span className="text-xl">AED</span>
-            <span className="text-[28px] font-bold">{price}</span>
-          </p>
-          <p className="text-subTitle text-xs">All prices include tax</p>
-        </div>
-      </Section>
-
-      <Section withBorder>
-        <div className="space-y-4">
-          <QuantitySelector />
-          <div className="flex w-full flex-col gap-x-5 gap-y-4">
-            <Button
-              text="Add To Cart"
-              icon={
-                <Icon
-                  icon="material-symbols:shopping-cart-outline-rounded"
-                  width="24"
-                  height="24"
-                />
-              }
-              className="hover:bg-main-300 animate w-full !text-lg text-white lg:!py-4"
-            />
-            <button className="border-main text-main flex-1 rounded-xl border-2 !py-3 text-center text-lg font-bold">
-              Buy Now
-            </button>
+      {loading ? (
+        <div className="flex flex-col gap-y-4">
+          <Skeleton  count={4} height={20} />
+          <div className="flex flex-col gap-y-2">
+            <Skeleton containerClassName="!w-full rounded-xl" height={50} />
+            <Skeleton containerClassName="!w-full rounded-xl" height={50} />
           </div>
         </div>
-      </Section>
+      ) : (
+        <>
+          <NavigationBar className="flex lg:hidden" name={name} />
 
-      <div className="flex items-center gap-x-2">
-        <span className="text-text-main font-medium">Share:</span>
-        <div className="text-subTitle flex gap-x-2">
-          <SocialIcon
-            icon={
-              <Icon
-                className="text-main h-[20px] w-[20px]"
-                icon="ri:facebook-fill"
+          <Section withBorder>
+            <h1 className="text-text-main font-bold sm:text-xl lg:text-[28px]">
+              {name}
+            </h1>
+            <div className="flex flex-col gap-y-2">
+              <p className="text-main space-x-1">
+                <span className="text-xl">AED</span>
+                <span className="text-[28px] font-bold">{price}</span>
+              </p>
+              <p className="text-subTitle text-xs">All prices include tax</p>
+            </div>
+          </Section>
+
+          <Section withBorder>
+            <div className="space-y-4">
+              <QuantitySelector />
+              <div className="flex w-full flex-col gap-x-5 gap-y-4">
+                <Button
+                  text="Add To Cart"
+                  icon={
+                    <Icon
+                      icon="material-symbols:shopping-cart-outline-rounded"
+                      width="24"
+                      height="24"
+                    />
+                  }
+                  className="hover:bg-main-300 animate w-full !text-lg text-white lg:!py-4"
+                />
+                <button className="border-main text-main flex-1 rounded-xl border-2 !py-3 text-center text-lg font-bold">
+                  Buy Now
+                </button>
+              </div>
+            </div>
+          </Section>
+
+          <div className="flex items-center gap-x-2">
+            <span className="text-text-main font-medium">Share:</span>
+            <div className="text-subTitle flex gap-x-2">
+              <SocialIcon
+                icon={
+                  <Icon
+                    className="text-main h-[20px] w-[20px]"
+                    icon="ri:facebook-fill"
+                  />
+                }
               />
-            }
-          />
-          <SocialIcon
-            icon={
-              <Icon
-                className="text-main h-[20px] w-[20px]"
-                icon="ri:twitter-fill"
+              <SocialIcon
+                icon={
+                  <Icon
+                    className="text-main h-[20px] w-[20px]"
+                    icon="ri:twitter-fill"
+                  />
+                }
               />
-            }
-          />
-          <SocialIcon
-            icon={
-              <Icon
-                className="text-main h-[20px] w-[20px]"
-                icon="ri:instagram-fill"
+              <SocialIcon
+                icon={
+                  <Icon
+                    className="text-main h-[20px] w-[20px]"
+                    icon="ri:instagram-fill"
+                  />
+                }
               />
-            }
-          />
-          <SocialIcon
-            icon={
-              <Icon
-                className="text-main h-[20px] w-[20px]"
-                icon="ri:linkedin-fill"
+              <SocialIcon
+                icon={
+                  <Icon
+                    className="text-main h-[20px] w-[20px]"
+                    icon="ri:linkedin-fill"
+                  />
+                }
               />
-            }
-          />
-        </div>
-      </div>
+            </div>
+          </div>
+        </>
+      )}
     </div>
   );
 };

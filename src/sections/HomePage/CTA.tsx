@@ -21,7 +21,7 @@ const CTA = () => {
           <h1 className="text-[24px] font-bold sm:text-[40px] lg:text-[48px]">
             {t("ctaSection.offer")}
           </h1>
-          <button className="shadow- w-fit rounded-xl bg-[#C7A31B] px-3 py-2 font-bold text-black shadow-2xl shadow-[#C7A31B]/50 sm:mx-auto sm:h-[50px] sm:w-[200px] lg:h-[60px] lg:py-3">
+          <button className="shadow- w-fit rounded-xl animate hover:bg-[#C7A31B] bg-[#F6D451] px-3 py-2 font-bold text-black shadow-2xl shadow-[#C7A31B]/50 sm:mx-auto sm:h-[50px] sm:w-[200px] lg:h-[60px] lg:py-3">
             {t("ctaSection.ctaBtn")}
           </button>
         </div>

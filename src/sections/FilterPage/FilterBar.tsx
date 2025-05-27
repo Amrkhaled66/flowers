@@ -2,6 +2,8 @@ import CheckboxList from "src/components/FilterPage/FilterBar/CheckboxList";
 import ColorSelector from "src/components/FilterPage/FilterBar/ColorSelector";
 import PriceRange from "src/components/FilterPage/FilterBar/PriceRange";
 import BarSection from "src/components/FilterPage/FilterBar/BarSection";
+import Skeleton from "react-loading-skeleton";
+import "react-loading-skeleton/dist/skeleton.css";
 
 import { useTranslation } from "react-i18next";
 import { useState } from "react";
@@ -23,6 +25,7 @@ type SidebarProps = {
     color_id: number[];
     price_range: number[];
   };
+  loading: boolean;
 };
 
 const FilterBar = ({
@@ -35,6 +38,7 @@ const FilterBar = ({
   handlePriceRangeChange,
   onSubmit,
   options,
+  loading
 }: SidebarProps) => {
   const { t } = useTranslation("filter");
   const [openSections, setOpenSections] = useState<string[]>([
@@ -53,7 +57,7 @@ const FilterBar = ({
 
   return (
     <div
-      className={`lg:bg-main-50 fixed top-0 z-90 h-full w-[314px] overflow-y-scroll bg-white px-4 py-[50px] transition-all duration-300 lg:!relative lg:end-0 lg:z-40 lg:w-[25%] lg:overflow-y-hidden lg:rounded-xl lg:p-0 ${
+      className={`lg:bg-main-50 fixed top-0 z-90 h-screen w-[314px] overflow-y-scroll bg-white px-4 py-[50px] transition-all duration-300 lg:!relative lg:end-0 lg:z-40 lg:w-[25%] lg:overflow-y-hidden lg:rounded-xl lg:p-0 ${
         sidebarOpen ? "end-0" : "end-[-150%]"
       } lg:!translate-x-0`}
     >
@@ -63,53 +67,57 @@ const FilterBar = ({
       >
         <Icon icon="ic:outline-close" width="20" height="20" />
       </button>
-      <div className="bg-main-50 space-y-6 rounded-xl p-4">
-        <div className="space-y-4">
+      {loading? (
+        <Skeleton height={"100%"} />
+      ) : (
+        <div className="bg-main-50 space-y-6 rounded-xl p-4">
+          <div className="space-y-4">
+            <BarSection
+              onClick={() => handleToggle("category")}
+              isOpen={openSections.includes("category")}
+              className="border-b-stroke border-b pb-4"
+              title={t("category")}
+            >
+              <CheckboxList
+                onOptionChange={onOptionChange}
+                field={"category_id"}
+                items={categories}
+                selectedValues={options.category_id}
+              />
+            </BarSection>
+
+            <PriceRange handlePriceRangeChange={handlePriceRangeChange} />
+          </div>
+
           <BarSection
-            onClick={() => handleToggle("category")}
-            isOpen={openSections.includes("category")}
-            className="border-b-stroke border-b pb-4"
-            title={t("category")}
+            onClick={() => handleToggle("occasion")}
+            isOpen={openSections.includes("occasion")}
+            title={t("occasion")}
           >
             <CheckboxList
               onOptionChange={onOptionChange}
-              field={"category_id"}
-              items={categories}
-              selectedValues={options.category_id}
+              field={"occasion_id"}
+              items={occasions}
+              selectedValues={options.occasion_id}
             />
           </BarSection>
 
-          <PriceRange handlePriceRangeChange={handlePriceRangeChange} />
+          <BarSection
+            onClick={() => handleToggle("color")}
+            isOpen={openSections.includes("color")}
+            title={t("color")}
+          >
+            <ColorSelector colors={colors} />
+          </BarSection>
+
+          <button
+            onClick={onSubmit}
+            className="bg-main animate hover:bg-main-300 h-[43px] w-full rounded-xl text-lg font-semibold text-white lg:h-[60px]"
+          >
+            {t("apply")}
+          </button>
         </div>
-
-        <BarSection
-          onClick={() => handleToggle("occasion")}
-          isOpen={openSections.includes("occasion")}
-          title={t("occasion")}
-        >
-          <CheckboxList
-            onOptionChange={onOptionChange}
-            field={"occasion_id"}
-            items={occasions}
-            selectedValues={options.occasion_id}
-          />
-        </BarSection>
-
-        <BarSection
-          onClick={() => handleToggle("color")}
-          isOpen={openSections.includes("color")}
-          title={t("color")}
-        >
-          <ColorSelector colors={colors} />
-        </BarSection>
-
-        <button
-          onClick={onSubmit}
-          className="bg-main animate hover:bg-main-300 h-[43px] w-full rounded-xl text-lg font-semibold text-white lg:h-[60px]"
-        >
-          {t("apply")}
-        </button>
-      </div>
+      )}
     </div>
   );
 };

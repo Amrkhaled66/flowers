@@ -22,9 +22,9 @@ const HomePage = () => {
   return (
     <div className="flex flex-col gap-y-8 lg:gap-y-0">
       <HeroSection />
-      <Categories data={isLoading ? [] : data.data.categories} />
+      <Categories Loading={isLoading} data={isLoading ? [] : data.data.categories} />
       <BestSellers />
-      <Occasions data={isLoading ? [] : data.data.occasions} />
+      <Occasions loading={isLoading} data={isLoading ? [] : data.data.occasions} />
       <CTA />
       <Ideas />
     </div>

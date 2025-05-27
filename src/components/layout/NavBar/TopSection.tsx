@@ -15,7 +15,7 @@ const ProsIcon = ({
   return (
     <div className={`flex items-center gap-x-2 font-bold ${className}`}>
       <span className="">{icon}</span>
-      <span className="text-main-900 text-xs">{text}</span>
+      <span className="text-xs">{text}</span>
     </div>
   );
 };

@@ -22,12 +22,14 @@ const ProductPage = () => {
   usePageTitle("Product");
   // const { id } = useParams();
 
+  const isLoading = false;
   return (
     <div className="h-auto min-h-screen py-[24px] lg:py-[40px]">
       <div className="container space-y-[24px] lg:space-y-[80px]">
         <div className="space-y-6">
           <NavigationBar name={product?.name} />
           <ProductOverView
+          loading={isLoading}
             images={product?.images}
             name={product?.name}
             price={product?.price}
@@ -37,7 +39,7 @@ const ProductPage = () => {
             category={product?.category}
           />
         </div>
-        <ProductDetails />
+        <ProductDetails loading={isLoading} />
       </div>
     </div>
   );

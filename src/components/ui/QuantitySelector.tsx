@@ -23,7 +23,7 @@ const QuantitySelector = ({
   };
 
   return (
-    <div className="rounded-xl">
+    <div className="rounded-xl space-y-3">
       {!isCartMenu && (
         <p className="text-text-main font-bold">{t("quantity")}</p>
       )}
@@ -35,7 +35,7 @@ const QuantitySelector = ({
             background: `${isCartMenu ? "transparent" : "#fff"}`,
           }}
           disabled={quantity <= 1}
-          className="flex h-full w-full items-center justify-center px-1 disabled:cursor-not-allowed"
+          className="flex h-full w-full items-center justify-center px-1.5 disabled:cursor-not-allowed"
           onClick={() => {
             handleCart();
             setQuantity((prev) => prev - 1);
@@ -56,7 +56,7 @@ const QuantitySelector = ({
           style={{
             background: `${isCartMenu ? "transparent" : "#fff"}`,
           }}
-          className="flex h-full w-full items-center justify-center px-1"
+          className="flex h-full w-full items-center justify-center px-1.5"
           onClick={() => {
             handleCart();
             setQuantity((prev) => prev + 1);

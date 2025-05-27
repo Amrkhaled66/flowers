@@ -7,7 +7,7 @@
 @theme {
   --font-en: "Jost", sans-serif;
   --font-ar: "Cairo", sans-serif;
-  
+
   --color-main: #534457;
   --color-main-fade: #756979cc;
   --color-main-50: #f4f4f4;
@@ -15,6 +15,8 @@
   --color-main-300: #8c828e;
   --color-main-400: #93d5f5;
   --color-main-600: #6db9dd;
+  --color-main-700: #3b303e;
+  --color-main-900: #231d25;
   --color-hero-color: #f0e9df;
   --color-text-main: #231d25;
   --color-stroke: #e0e0e0;
@@ -24,7 +26,15 @@
 
   --margin-navbar-height: 124px;
 
+  --animate-shine: "shine 1.5s linear infinite";
+
   --shadow-custom: "0px 4px 4px 0px rgba(0, 0, 0, 0.25)";
+
+  @keyframes shimmer {
+    100%: {
+      transform: "translateX(100%)";
+    }
+  }
 }
 
 @layer base {
@@ -140,3 +150,4 @@ textarea {
     100% 1px,
     1px 100%;
 }
+

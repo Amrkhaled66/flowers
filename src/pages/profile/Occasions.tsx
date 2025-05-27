@@ -7,6 +7,7 @@ import EmptyOccasions from "src/sections/ProfilePage/Occasions/EmptyOccasions";
 import AddOccasionModal from "src/sections/ProfilePage/Occasions/AddOccasionModal";
 import OccasionsCards from "src/sections/ProfilePage/Occasions/OccasionsCards";
 import EditOccasionModal from "src/sections/ProfilePage/Occasions/EditOccasionModal";
+import InfoCardSkeleton from "src/components/ui/Skeletons/InfoCardSkeleton.tsx";
 import { transformOccasionFrom } from "src/utils/transforms/transformUserOccasion";
 const Occasions = () => {
   const { t } = useTranslation("profile");
@@ -21,15 +22,14 @@ const Occasions = () => {
 
   const { data, isLoading, refetch, isError } = useGetOccasions();
   if (isError) return null;
-  if (isLoading || !data) return null;
 
-  const hasOccasions = data.length > 0;
+  const hasOccasions = data && data.length > 0;
 
   const transforedmOccasions = hasOccasions && data.map(transformOccasionFrom);
 
   return (
     <div className="space-y-6">
-      {!hasOccasions && <EmptyOccasions />}
+      {!isLoading && !hasOccasions && <EmptyOccasions />}
 
       <AddOccasionButton onClick={handleAddClick} label={t("occasion.add")} />
 
@@ -38,6 +38,12 @@ const Occasions = () => {
         onClose={handleCloseAddModal}
         refetch={refetch}
       />
+      {isLoading && (
+        <>
+          <InfoCardSkeleton />
+          <InfoCardSkeleton />
+        </>
+      )}
 
       {hasOccasions && (
         <OccasionsCards

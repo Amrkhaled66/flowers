@@ -1,13 +1,16 @@
 import ProductCard from "src/components/ui/ProductCard/ProductCard";
+import ProductCardSk from "src/components/ui/Skeletons/ProductCardSk";
 import Product from "src/types/product";
 import { Icon } from "@iconify/react/dist/iconify.js";
 import { useTranslation } from "react-i18next";
 export default function FilteredProducts({
   Products,
   openSidebar,
+  loading,
 }: {
   Products: Product[];
   openSidebar: () => void;
+  loading?: boolean;
 }) {
   const { t } = useTranslation("filter");
   return (
@@ -19,10 +22,14 @@ export default function FilteredProducts({
         <Icon icon="mingcute:filter-fill" width="24" height="24" />
         {t("filter")}
       </button>
-      <div className="grid grid-cols-2 gap-4 sm:gap-5 sm:grid-cols-3 lg:grid-cols-3 lg:gap-6">
-        {Products.map((product: Product) => (
-          <ProductCard isFilterCard key={product.id} product={product} />
-        ))}
+      <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 sm:gap-5 lg:grid-cols-3 lg:gap-6">
+        {loading
+          ? Array.from({ length: 12 }).map((_, index) => (
+              <ProductCardSk key={index} />
+            ))
+          : Products.map((product: Product) => (
+              <ProductCard isFilterCard key={product.id} product={product} />
+            ))}
       </div>
     </div>
   );

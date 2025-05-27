@@ -33,7 +33,7 @@ export default function MapButton({ onLocationSelected }: MapButtonProps) {
       >
         <button
           onClick={openDialog}
-          className="bg-main hover:bg-main-300 animate rounded-xl px-4 py-[12px] text-white"
+          className="bg-main hover:bg-main-700 focus:bg-main-900 animate rounded-xl px-4 py-[12px] text-white"
         >
           {language === "ar" ? "تغيير الموقع" : "Change location"}
         </button>

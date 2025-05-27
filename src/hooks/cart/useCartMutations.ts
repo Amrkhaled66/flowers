@@ -1,4 +1,10 @@
-import { getCart, updateCart, deleteCart, addToCart } from "src/api/cart";
+import {
+  getCart,
+  updateCart,
+  deleteCart,
+  addToCart,
+  applyCoupon,
+} from "src/api/cart";
 import { useMutation, useQuery } from "@tanstack/react-query";
 import { useAuth } from "src/context/authCtx";
 
@@ -71,4 +77,16 @@ const useAddToCart = () =>
     },
   });
 
-export { useGetCart, useUpdateCart, useDeleteCart, useAddToCart };
+const useApplyCoupon = () => {
+  return useMutation({
+    mutationFn: (couponCode: string) => applyCoupon(couponCode),
+  });
+};
+
+export {
+  useGetCart,
+  useUpdateCart,
+  useDeleteCart,
+  useAddToCart,
+  useApplyCoupon,
+};

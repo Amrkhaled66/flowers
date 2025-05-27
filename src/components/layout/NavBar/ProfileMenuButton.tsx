@@ -42,13 +42,13 @@ const ProfileMenuButton = () => {
           className="absolute top-full right-0 z-50 mt-0 w-[300px] rounded-xl bg-white p-6 drop-shadow-xl"
           onMouseLeave={() => setOpenMenu(false)}
         >
-          <div className="space-y-8 pb-4">
+          <div className="space-y-3 pb-4">
             {filteredElements.map((item) => (
               <Link
                 key={item.nameEn}
                 to={item.link}
                 onClick={onCloseMenu}
-                className="animate flex items-center gap-x-3"
+                className="animate hover:bg-main-100 py-2 rounded-xl flex items-center gap-x-3"
               >
                 <span>{item.icon}</span>
                 <span className="text-text-main hidden font-medium text-nowrap lg:block">

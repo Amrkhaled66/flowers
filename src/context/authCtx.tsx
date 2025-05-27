@@ -9,7 +9,6 @@ import {
 } from "src/services/authStorage";
 import type User from "src/types/auth/User";
 
-// 1. Define proper types
 type AuthData = {
   user: User | null;
   token: string | null;
@@ -20,13 +19,15 @@ type AuthContextType = {
   login: (user: User, token: string) => void;
   logout: () => void;
   isAuthenticated: boolean;
+  updateUser: (user: User) => void;
 };
 
 const AuthContext = createContext<AuthContextType>({
   authData: { user: null, token: null },
-  login: () => { },
-  logout: () => { },
+  login: () => {},
+  logout: () => {},
   isAuthenticated: false,
+  updateUser: () => {},
 });
 
 export default function AuthProvider({ children }: { children: ReactNode }) {
@@ -39,6 +40,10 @@ export default function AuthProvider({ children }: { children: ReactNode }) {
     };
   });
 
+  const updateUser = (user: User) => {
+    setAuthData((prev) => ({ ...prev, user }));
+    setUser(user);
+  };
   const login = (user: User, token: string) => {
     setAuthData({ user, token });
     setToken(token);
@@ -57,6 +62,7 @@ export default function AuthProvider({ children }: { children: ReactNode }) {
     login,
     logout,
     isAuthenticated,
+    updateUser,
   };
 
   return (

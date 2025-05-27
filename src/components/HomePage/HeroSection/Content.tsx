@@ -17,7 +17,7 @@ const Content = () => {
         </p>
         <Link to="/filter">
           <Button
-            className="animate hover:bg-main-fade mx-auto text-white lg:h-[60px] lg:w-[200px]"
+            className="animate mx-auto text-white lg:h-[60px] lg:w-[200px]"
             text={t("hero.cta")}
           />
         </Link>

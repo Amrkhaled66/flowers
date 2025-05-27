@@ -13,7 +13,7 @@ export const AddOccasionButton = ({ onClick, label }: AddOccasionButtonProps) =>
       onClick={onClick}
       text={label}
       icon={<Icon icon="line-md:plus" width={24} height={24} />}
-      className="bg-main-100 animate text-main w-full rounded-sm !py-2 text-center font-bold lg:!py-3"
+      className="bg-main-100 animate hover:text-white text-main w-full rounded-sm !py-2 text-center font-bold lg:!py-3"
     />
   </div>
 );

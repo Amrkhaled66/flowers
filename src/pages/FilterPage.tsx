@@ -23,9 +23,10 @@ const FilterPage = () => {
     categories,
     occasions,
     products,
-    isLoading,
     refetchProducts,
     productsLoading,
+    categoriesLoading,
+    occasionsLoading,
   } = useFilterPageData(appliedOptions);
 
   const onApplyFilter = () => {
@@ -37,17 +38,10 @@ const FilterPage = () => {
     refetchProducts({ cancelRefetch: true });
   }, [appliedOptions]);
 
-  if (isLoading) {
-    return (
-      <div className="container flex h-screen items-center justify-center">
-        <div className="text-lg">Loading...</div>
-      </div>
-    );
-  }
-
   return (
     <div className="container flex h-auto min-h-dvh gap-x-6 !py-10">
       <FilterBar
+        loading={categoriesLoading || occasionsLoading}
         onSubmit={onApplyFilter}
         sidebarOpen={sidebarOpen}
         closeSidebar={closeSidebar}
@@ -61,7 +55,11 @@ const FilterPage = () => {
 
       {sidebarOpen && <Overlay onClick={closeSidebar} bgColor="#00000066" />}
 
-      <FilteredProducts openSidebar={toggleSidebar} Products={products || []} />
+      <FilteredProducts
+        openSidebar={toggleSidebar}
+        loading={productsLoading}
+        Products={products || []}
+      />
     </div>
   );
 };

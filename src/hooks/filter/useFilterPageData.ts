@@ -1,5 +1,5 @@
 import { useQuery } from "@tanstack/react-query";
-import {  useEffect } from "react";
+import { useEffect } from "react";
 import { getProducts } from "src/api/products";
 import {
   useGetCategories,
@@ -13,7 +13,7 @@ export const useFilterPageData = (appliedOptions: any) => {
     isLoading: productsLoading,
     refetch: refetchProducts,
   } = useQuery({
-    queryKey: ["products",appliedOptions],
+    queryKey: ["products", appliedOptions],
     queryFn: () => getProducts(appliedOptions),
     enabled: false,
   });
@@ -21,14 +21,14 @@ export const useFilterPageData = (appliedOptions: any) => {
   useEffect(() => {
     refetchProducts();
   }, []);
-  const isLoading = categoriesLoading || occasionsLoading ;
 
   return {
     categories: categories || [],
     occasions: occasions || [],
     products,
-    isLoading,
     refetchProducts,
     productsLoading,
+    categoriesLoading,
+    occasionsLoading,
   };
 };
