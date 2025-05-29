@@ -1,5 +1,6 @@
 import Button from "src/components/ui/Button";
 import { useTranslation } from "react-i18next";
+import { Link } from "react-router-dom";
 const BarElement = ({
   title,
   content,
@@ -21,10 +22,10 @@ const OrderOverViewBar = () => {
   const { t } = useTranslation("trackOrder");
   return (
     <div className="bg-main-100 flex flex-col gap-x-6 gap-y-6 rounded-xl px-3 py-4 lg:flex-row lg:px-4">
-      <div className="flex flex-1 gap-x-2 justify-between">
+      <div className="flex flex-1 justify-between gap-x-2">
         <BarElement title={t("bar.orderId")} content="123456" />
         <BarElement
-          className="border-x-stroke flex-1  border-x !text-center"
+          className="border-x-stroke flex-1 border-x !text-center"
           title={t("bar.paymentMethode")}
           content="123456"
         />
@@ -34,10 +35,12 @@ const OrderOverViewBar = () => {
           content="123456"
         />
       </div>
-      <Button
-        text={t("bar.downloadInvoice")}
-        className="bg-main animate w-full text-white lg:w-[240px]"
-      />
+      <Link to={"/invoice"}>
+        <Button
+          text={t("bar.viewInvoice")}
+          className="bg-main animate w-full !py-3 text-white lg:w-[240px]"
+        />
+      </Link>
     </div>
   );
 };

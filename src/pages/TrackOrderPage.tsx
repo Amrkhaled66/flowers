@@ -4,11 +4,12 @@ import OrderTrackingDetails from "src/sections/TrackOrderPage/OrderTrackingDetai
 
 
 const TrackOrderPage = () => {
+ 
   return (
-    <div className="min-h-dvh h-auto py-6 lg:py-10">
+    <div className="h-auto min-h-dvh py-6 lg:py-10">
       <div className="container space-y-4 lg:space-y-10">
-        <OrderOverViewBar />
-        <div className="flex gap-x-6 gap-y-4 flex-col lg:flex-row">
+        <OrderOverViewBar  />
+        <div className="flex flex-col gap-x-6 gap-y-4 lg:flex-row">
           <OrderTimeLine />
           <OrderTrackingDetails />
         </div>

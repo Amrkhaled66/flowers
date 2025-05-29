@@ -35,7 +35,7 @@ const MainLayout = () => {
         <Footer />
         <Cart />
         <Menu />
-        {(openCart || openMenu || openSearch) && <Overlay />}
+        <Overlay show={openCart || openMenu || openSearch} />
       </div>
     </AxiosProvider>
   );

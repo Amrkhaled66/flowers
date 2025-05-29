@@ -53,7 +53,7 @@ const FilterPage = () => {
         options={options}
       />
 
-      {sidebarOpen && <Overlay onClick={closeSidebar} bgColor="#00000066" />}
+      <Overlay show={sidebarOpen} onClick={closeSidebar} bgColor="#00000066" />
 
       <FilteredProducts
         openSidebar={toggleSidebar}

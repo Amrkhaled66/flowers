@@ -1,8 +1,9 @@
-import { useState, useRef, ReactNode } from "react";
+import { useState, useRef, ReactNode, useEffect } from "react";
 import SliderPoints from "src/components/ui/SliderPoints";
 import { Swiper } from "swiper/react";
 import { Navigation } from "swiper/modules";
 import { Swiper as SwiperType } from "swiper";
+import NavigationBtn from "src/components/ui/NavigationBtn";
 
 // Styles
 import "swiper/css";
@@ -23,6 +24,10 @@ interface SliderProps {
   children: ReactNode;
   slidesPerGroup?: number;
   isMenuSlider?: boolean;
+  notSpaceBetween?: boolean;
+  targetIndex?: number;
+  onChangeSlider?: (index: number) => void;
+  speed?: number;
 }
 
 const Slider = ({
@@ -30,6 +35,10 @@ const Slider = ({
   children,
   slidesPerGroup = DEFAULT_SLIDES_PER_GROUP,
   isMenuSlider = false,
+  notSpaceBetween = false,
+  targetIndex = 0,
+  onChangeSlider,
+  speed
 }: SliderProps) => {
   const swiperRef = useRef<SwiperType | null>(null);
   const [activeGroup, setActiveGroup] = useState(0);
@@ -42,6 +51,7 @@ const Slider = ({
       ? swiper.realIndex
       : Math.ceil(swiper.realIndex / slidesPerGroup);
     setActiveGroup(currentGroup);
+    onChangeSlider && onChangeSlider(swiper.realIndex);
   };
 
   const handleDotClick = (groupIndex: number) => {
@@ -54,12 +64,24 @@ const Slider = ({
     swiperRef.current.slideTo(targetSlideIndex);
   };
 
+  useEffect(() => {
+    if (swiperRef.current && targetIndex >= 0) {
+      swiperRef.current.slideTo(targetIndex);
+      setActiveGroup((prev) => {
+        const newGroup = isMenuSlider
+          ? targetIndex
+          : Math.floor(targetIndex / slidesPerGroup);
+        return newGroup;
+      });
+    }
+  }, [targetIndex, swiperRef]);
+
   return (
-    <div className="w-full lg:w-full lg:space-y-8">
+    <div className="size-full space-y-3">
       <div className="relative">
         <Swiper
           dir="ltr"
-          speed={800}
+          speed={speed || 800}
           loop={false}
           modules={[Navigation]}
           onSwiper={(swiper: SwiperType) => {
@@ -71,10 +93,10 @@ const Slider = ({
             0: {
               // slidesPerGroup: 1.5,
               slidesPerView: "auto",
-              spaceBetween: 16,
+              spaceBetween: notSpaceBetween ? 0 : 16,
             },
             [TABLET_BREAKPOINT]: {
-              spaceBetween: 20,
+              spaceBetween: notSpaceBetween ? 0 : 20,
               // slidesPerGroup: 1.5,
               slidesPerView: "auto",
             },
@@ -83,15 +105,15 @@ const Slider = ({
               slidesPerGroup: isMenuSlider
                 ? MOBILE_SLIDES_PER_VIEW
                 : slidesPerGroup,
-              spaceBetween: 25,
+              spaceBetween: notSpaceBetween ? 0 : 25,
             },
           }}
-          className="z-[10000] !overflow-visible last:ms-0 lg:w-full lg:!overflow-hidden"
+          className="z-[10000] aspect-square h-full !overflow-visible last:ms-0 lg:w-full lg:!overflow-hidden"
         >
           {children}
         </Swiper>
 
-        {/* {shouldShowNavigation && (
+        {shouldShowNavigation && (
           <>
             <NavigationBtn
               dir="left"
@@ -106,7 +128,7 @@ const Slider = ({
               aria-label="Next slide"
             />
           </>
-        )} */}
+        )}
       </div>
 
       {shouldShowNavigation && (
@@ -114,7 +136,7 @@ const Slider = ({
           currentIndex={activeGroup}
           onDotClick={handleDotClick}
           length={totalGroups}
-          className="mx-auto !hidden lg:!flex"
+          className="mx-auto lg:!flex"
         />
       )}
     </div>

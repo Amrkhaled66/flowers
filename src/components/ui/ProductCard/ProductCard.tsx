@@ -16,7 +16,7 @@ const ProductCard = ({
       isFilterCard={isFilterCard}
       product={product}
     >
-      <FavoriteButton productId={product.id} />
+      <FavoriteButton className="absolute top-2 right-2 z-40" productId={product.id} />
     </ProductCardUI>
   );
 };

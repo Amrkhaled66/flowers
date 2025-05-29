@@ -1,10 +1,12 @@
 import OrderSummary from "src/components/TrackOrderPage/OrderTrackingDetails/OrderSummary";
 import { useTranslation } from "react-i18next";
 import { Icon } from "@iconify/react/dist/iconify.js";
-const OrderTrackingDetails = () => {
+import { forwardRef } from "react";
+
+const OrderTrackingDetails = forwardRef<HTMLDivElement>(({}, ref) => {
   const { t } = useTranslation("trackOrder");
   return (
-    <div className="flex flex-col-reverse gap-4 lg:gap-6">
+    <div ref={ref} className="flex printable flex-col-reverse gap-4 lg:flex-col lg:gap-6">
       <OrderSummary />
       {/* orderDetails */}
       <div className="bg-main-50 space-y-4 rounded-xl p-4">
@@ -43,6 +45,6 @@ const OrderTrackingDetails = () => {
       </div>
     </div>
   );
-};
+});
 
 export default OrderTrackingDetails;

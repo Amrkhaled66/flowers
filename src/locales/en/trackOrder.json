@@ -3,7 +3,8 @@
         "orderId":"Order ID",
         "paymentMethode":"Payment Method",
         "deliveryDate":"Estimated Delivery Date",
-        "downloadInvoice":"Download Invoice"
+        "downloadInvoice":"Download Invoice",
+        "viewInvoice":"View Invoice"
     },
     "summary":{
         "title":"Order Summary",

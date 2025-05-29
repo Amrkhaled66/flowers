@@ -14,6 +14,7 @@ const register = async (credentials: { email: string; password: string }) => {
 
 const logout = async () => {
   const { data } = await axiosPrivate.post("/api/logout");
+  console.log("asdfasdf")
   return data;
 };
 

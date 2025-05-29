@@ -1,9 +1,9 @@
 import { createContext, useContext, useMemo } from "react";
 import { useNavigate } from "react-router-dom";
-import useLogOutMutation from "src/hooks/auth/useLogOutMutation";
 import { getToken } from "src/services/authStorage";
 import Alert from "src/components/ui/Alert";
 import { axiosPrivate } from "src/api/axios";
+import { useAuth } from "src/context/authCtx";
 
 const AxiosContext = createContext(axiosPrivate);
 
@@ -16,8 +16,8 @@ const EndedSessionModal = () =>
   });
 
 export const AxiosProvider = ({ children }: { children: React.ReactNode }) => {
-  const logoutMutate = useLogOutMutation();
   const navigate = useNavigate();
+  const { logout } = useAuth();
 
   useMemo(() => {
     const requestInterceptor = axiosPrivate.interceptors.request.use(
@@ -28,22 +28,18 @@ export const AxiosProvider = ({ children }: { children: React.ReactNode }) => {
         }
         return config;
       },
-      (error) => Promise.reject(error)
+      (error) => Promise.reject(error),
     );
 
     const responseInterceptor = axiosPrivate.interceptors.response.use(
       (response) => response,
       async (error) => {
         if (error?.response?.status === 401) {
-          logoutMutate.mutate(undefined, {
-            onSuccess: () => {
-              navigate("/login", { replace: true });
-              EndedSessionModal();
-            },
-          });
+          logout();
+          navigate("/signin", { replace: true });
+          EndedSessionModal();
         }
-        return Promise.reject(error);
-      }
+      },
     );
 
     return () => {

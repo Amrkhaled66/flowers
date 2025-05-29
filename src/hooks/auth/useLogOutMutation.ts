@@ -4,7 +4,7 @@ import { useMutation } from "@tanstack/react-query";
 const useLogOutMutation = () =>
   useMutation({
     mutationFn: () => logout(),
-    retry: 1,
+    retry: false,
   });
 
 export default useLogOutMutation;

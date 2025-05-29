@@ -17,12 +17,12 @@ const CartTable = () => {
             </tr>
           </thead>
           <tbody>
-            <div className="lg:pt-6">
+            <tr className="lg:pt-6">
               {cart &&
                 cart.map((product, index) => (
                   <CartTableCard key={index} product={product} />
                 ))}
-            </div>
+            </tr>
           </tbody>
           <tfoot className="">
             <div className="flex items-center justify-end gap-x-6 pt-4">

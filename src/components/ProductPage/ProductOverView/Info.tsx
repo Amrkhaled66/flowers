@@ -7,6 +7,23 @@ import Skeleton from "react-loading-skeleton";
 
 import { Icon } from "@iconify/react/dist/iconify.js";
 import { ReactNode } from "react";
+
+const shareProduct = async () => {
+  if (navigator.share) {
+    try {
+      await navigator.share({
+        title: "Awesome Product",
+        text: "Check this out!",
+        url: window.location.href,
+      });
+    } catch (err) {
+      console.error("Share failed:", err);
+    }
+  } else {
+    alert("Sharing not supported on this device/browser.");
+  }
+};
+
 const Section = ({
   title,
   children,
@@ -28,16 +45,26 @@ const Section = ({
   );
 };
 
-const SocialIcon = ({ icon }: { icon: ReactNode }) => {
+const SocialIcon = ({
+  icon,
+  onClick,
+}: {
+  icon: ReactNode;
+  onClick: () => void;
+}) => {
   return (
-    <button className="w-fit rounded-sm bg-[#F4F4F4] p-2.5">{icon}</button>
+    <button onClick={onClick}>
+      <div className="animate w-fit rounded-xl bg-[#DADADA] p-1 hover:drop-shadow-xl">
+        {icon}
+      </div>
+    </button>
   );
 };
 
 const Info = ({
   name,
   price,
-  loading
+  loading,
 }: {
   name: string | undefined;
   price: number | undefined;
@@ -47,7 +74,7 @@ const Info = ({
     <div className="space-y-2 lg:w-[50%] lg:space-y-6">
       {loading ? (
         <div className="flex flex-col gap-y-4">
-          <Skeleton  count={4} height={20} />
+          <Skeleton count={4} height={20} />
           <div className="flex flex-col gap-y-2">
             <Skeleton containerClassName="!w-full rounded-xl" height={50} />
             <Skeleton containerClassName="!w-full rounded-xl" height={50} />
@@ -96,41 +123,13 @@ const Info = ({
             <span className="text-text-main font-medium">Share:</span>
             <div className="text-subTitle flex gap-x-2">
               <SocialIcon
-                icon={
-                  <Icon
-                    className="text-main h-[20px] w-[20px]"
-                    icon="ri:facebook-fill"
-                  />
-                }
-              />
-              <SocialIcon
-                icon={
-                  <Icon
-                    className="text-main h-[20px] w-[20px]"
-                    icon="ri:twitter-fill"
-                  />
-                }
-              />
-              <SocialIcon
-                icon={
-                  <Icon
-                    className="text-main h-[20px] w-[20px]"
-                    icon="ri:instagram-fill"
-                  />
-                }
-              />
-              <SocialIcon
-                icon={
-                  <Icon
-                    className="text-main h-[20px] w-[20px]"
-                    icon="ri:linkedin-fill"
-                  />
-                }
+                onClick={shareProduct}
+                icon={<Icon icon="humbleicons:share" width="30" height="30" />}
               />
             </div>
           </div>
         </>
-      )}
+      )} 
     </div>
   );
 };

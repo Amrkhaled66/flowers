@@ -1,17 +1,17 @@
-// import { useParams } from "react-router";
 import NavigationBar from "src/sections/ProductPage/NavigationBar";
 import ProductOverView from "src/sections/ProductPage/ProductOverView";
 import ProductDetails from "src/sections/ProductPage/ProductDetails";
-import usePageTitle from "src/hooks/ui/useUpdatePageTitle";
+import ProductImagesSlider from "src/sections/ProductPage/ProductImagesSlider";
 
+// import { useParams } from "react-router";
+import usePageTitle from "src/hooks/ui/useUpdatePageTitle";
+import { useState } from "react";
+
+import imag1 from "src/assets/products/1.webp";
+import imag2 from "src/assets/products/2.webp";
 const product = {
   name: "Rose Bouquet",
-  images: [
-    "/images/products/1.webp",
-    "/images/products/2.webp",
-    "/images/products/3.webp",
-    "/images/products/4.webp",
-  ],
+  images: [imag1, imag2],
   price: 50,
   stars: 4,
   reviews: 100,
@@ -21,6 +21,7 @@ const product = {
 const ProductPage = () => {
   usePageTitle("Product");
   // const { id } = useParams();
+  const [showImagesSlider, setShowImagesSlider] = useState(false);
 
   const isLoading = false;
   return (
@@ -29,18 +30,23 @@ const ProductPage = () => {
         <div className="space-y-6">
           <NavigationBar name={product?.name} />
           <ProductOverView
-          loading={isLoading}
+            onShowImagesSlider={() => setShowImagesSlider(true)}
+            loading={isLoading}
             images={product?.images}
             name={product?.name}
             price={product?.price}
-            stars={product?.stars}
-            reviews={product?.reviews}
             description={product?.description}
             category={product?.category}
           />
         </div>
         <ProductDetails loading={isLoading} />
       </div>
+      {showImagesSlider && (
+        <ProductImagesSlider
+          onClose={() => setShowImagesSlider(false)}
+          images={product?.images}
+        />
+      )}
     </div>
   );
 };

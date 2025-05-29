@@ -42,7 +42,7 @@ const useUpdateCart = () => {
   });
 
   // Create a debounced version of mutate
-  const debouncedMutate = useDebounce(mutation.mutate, 1000);
+  const debouncedMutate = useDebounce(mutation.mutate, 500);
 
   return { ...mutation, mutate: debouncedMutate };
 };

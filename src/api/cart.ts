@@ -1,4 +1,3 @@
-import { copyFile } from "fs";
 import { axiosPrivate } from "./axios";
 
 const getCart = async () => {

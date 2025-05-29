@@ -6,8 +6,8 @@ import { useAddToCart, useUpdateCart } from "src/hooks/cart/useCartMutations";
 import { useCart } from "src/context/user/cartCtx";
 import { useTranslation } from "react-i18next";
 import Product from "src/types/product";
-import Loader from "../Loader";
 import priceFormatter from "src/utils/priceFormatter";
+
 const ProductCardUI = ({
   product,
   isFavorite = false,
@@ -39,13 +39,13 @@ const ProductCardUI = ({
         <div
           className={`bg-main ${isFilterCard && "lg:!h-[310px]"} ${
             (isFilterCard || isFavorite) && "sm:!h-[195px]"
-          } ${isFavorite && "!h-[310px] lg:!h-[310px]"} h-[140px] group overflow-hidden sm:h-[310px] lg:h-[282px]`}
+          } ${isFavorite && "!h-[310px] lg:!h-[310px]"} group h-[140px] overflow-hidden sm:h-[310px] lg:h-[282px]`}
         >
           <img
             src={product.images && product.images[0]}
             loading="lazy"
             alt="img"
-            className="size-full group-hover:scale-110 animate object-cover object-center"
+            className="animate size-full object-cover object-center group-hover:scale-110"
           />
         </div>
         <div className="space-y-3 p-2 sm:p-3 lg:p-4">
@@ -71,17 +71,15 @@ const ProductCardUI = ({
         <button
           disabled={isAddPending || isUpdatePending}
           onClick={handelAddToCart}
-          className="hover:bg-main-700 focus:bg-main-900 animate bg-main flex place-items-center rounded-full p-2 text-white disabled:cursor-not-allowed sm:p-3 lg:p-4"
+          className={`hover:bg-main-700 focus:bg-main-900 animate bg-main flex place-items-center rounded-full p-2 text-white disabled:cursor-not-allowed sm:p-3 lg:p-4 ${
+            (isAddPending || isUpdatePending) && "!animate-pulse"
+          }`}
         >
-          {isAddPending || isUpdatePending ? (
-            <Loader />
-          ) : (
-            <Icon
-              icon="material-symbols:shopping-cart-outline-rounded"
-              width="24"
-              height="24"
-            />
-          )}
+          <Icon
+            icon="material-symbols:shopping-cart-outline-rounded"
+            width="24"
+            height="24"
+          />
         </button>
       </div>
     </div>

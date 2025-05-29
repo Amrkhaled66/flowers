@@ -3,7 +3,8 @@
         "orderId":"رقم الطلب",
         "paymentMethode":"طريقة الدفع",
         "deliveryDate":"تاريخ التوصيل المتوقع",
-        "downloadInvoice":"تحميل الفاتورة"
+        "downloadInvoice":"تحميل الفاتورة",
+        "viewInvoice":"عرض الفاتورة"
     },
     "summary":{
         "title":"ملخص الطلب",

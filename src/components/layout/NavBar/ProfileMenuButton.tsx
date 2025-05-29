@@ -39,7 +39,7 @@ const ProfileMenuButton = () => {
 
       {openMenu && (
         <div
-          className="absolute top-full right-0 z-50 mt-0 w-[300px] rounded-xl bg-white p-6 drop-shadow-xl"
+          className="absolute top-full end-0 z-50 mt-0 w-[300px] rounded-xl bg-white p-6 drop-shadow-xl"
           onMouseLeave={() => setOpenMenu(false)}
         >
           <div className="space-y-3 pb-4">

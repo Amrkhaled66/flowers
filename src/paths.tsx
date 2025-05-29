@@ -13,6 +13,7 @@ import {
   FilterPage,
   SucessOrder,
   TrackOrderPage,
+  InvoicePage,
   // forget password
   SendOtp,
   SubmitOtp,
@@ -169,7 +170,11 @@ const router = createBrowserRouter([
       {
         path: "track-order",
         element: <TrackOrderPage />,
-      }
+      },
+      {
+        path: "invoice",
+        element: <InvoicePage />,
+      },
     ],
   },
 ]);
