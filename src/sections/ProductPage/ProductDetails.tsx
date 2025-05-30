@@ -4,8 +4,8 @@ import Skeleton from "react-loading-skeleton";
 const ProductDetails = ({ loading }: { loading: boolean }) => {
   return (
     <div className="space-y-5 lg:space-y-[36px]">
-      <div className="border-b-stroke flex gap-x-6 border-b px-4 pb-4 lg:px-0">
-        <h2 className={`text-main relative text-2xl font-bold`}>Description</h2>
+      <div className="border-b-stroke flex gap-x-6 border-b  pb-4 lg:px-0">
+        <h2 className={`text-main relative text-xl lg:text-2xl font-bold`}>Description</h2>
       </div>
       {loading ? (
         <div className="flex flex-col gap-y-4">

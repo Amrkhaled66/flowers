@@ -33,13 +33,13 @@ const BestSellers = () => {
           <Slider>
             {productsLoading
               ? Array.from({ length: 4 }).map((_, index) => (
-                  <SwiperSlide className="!w-[140px] sm:!w-[282px]" key={index}>
+                  <SwiperSlide className="!w-[140px] !h-fit sm:!w-[282px]" key={index}>
                     <ProductCardSk />
                   </SwiperSlide>
                 ))
               : products.map((product: Product) => (
                   <SwiperSlide
-                    className="!w-[140px] sm:!w-[282px]"
+                    className="!w-[140px] !h-fit sm:!w-[282px]"
                     key={product.id}
                   >
                     <ProductCard product={product} />

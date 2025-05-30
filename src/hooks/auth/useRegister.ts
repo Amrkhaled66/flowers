@@ -49,8 +49,9 @@ export default function useRegister() {
       case "email":
         return validateEmail(value, t);
       case "password":
-        return !value.trim() ? t("register.requiredPassword") :
-          validatePassword(value, t);
+        return !value.trim()
+          ? t("register.requiredPassword")
+          : validatePassword(value, t);
       case "confirm_password":
         if (!value.trim()) return t("register.confirmPassword");
         if (value !== formData.password) return t("register.passwordMismatch");
@@ -83,7 +84,9 @@ export default function useRegister() {
         ...errors,
         [name]: validateField(name, value),
         confirm_password:
-          value !== formData.confirm_password ? t("register.passwordMismatch") : "",
+          value !== formData.confirm_password
+            ? t("register.passwordMismatch")
+            : "",
       });
     }
   };
@@ -121,11 +124,19 @@ export default function useRegister() {
           navigate("/");
         });
       },
+
       onError: (err: any) => {
+        const formattedErrors: { [key: string]: string } = {};
+
+        Object.entries(err.response.data.errors).forEach(
+          ([field, messages]) => {
+            formattedErrors[field] = (messages as string[])[0];
+          },
+        );
         if (err.response.status === 400)
           setErrors((prev) => ({
             ...prev,
-            email: t("register.emailExists"),
+            ...formattedErrors,
           }));
         return;
       },

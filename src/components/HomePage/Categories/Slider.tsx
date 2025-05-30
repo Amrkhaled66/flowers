@@ -28,6 +28,7 @@ interface SliderProps {
   targetIndex?: number;
   onChangeSlider?: (index: number) => void;
   speed?: number;
+  isproductListSlider?: boolean;
 }
 
 const Slider = ({
@@ -38,7 +39,8 @@ const Slider = ({
   notSpaceBetween = false,
   targetIndex = 0,
   onChangeSlider,
-  speed
+  speed,
+  isproductListSlider
 }: SliderProps) => {
   const swiperRef = useRef<SwiperType | null>(null);
   const [activeGroup, setActiveGroup] = useState(0);
@@ -77,7 +79,7 @@ const Slider = ({
   }, [targetIndex, swiperRef]);
 
   return (
-    <div className="size-full space-y-3">
+    <div className="space-y-3">
       <div className="relative">
         <Swiper
           dir="ltr"
@@ -108,7 +110,7 @@ const Slider = ({
               spaceBetween: notSpaceBetween ? 0 : 25,
             },
           }}
-          className="z-[10000] aspect-square h-full !overflow-visible last:ms-0 lg:w-full lg:!overflow-hidden"
+          className={`z-[10000] !overflow-visible last:ms-0 lg:w-full lg:!overflow-hidden ${isproductListSlider && "aspect-square"}`}
         >
           {children}
         </Swiper>

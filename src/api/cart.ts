@@ -24,11 +24,14 @@ const deleteCart = async (id: number) => {
   return data;
 };
 
-const applyCoupon = async (couponCode: string) => {
-  const { data } = await axiosPrivate.post(
-    `/api/coupons?code=${couponCode}`,
-  );
+const clearCart = async () => {
+  const { data } = await axiosPrivate.delete(`/api/user-carts/clear`);
   return data;
 };
 
-export { getCart, addToCart, updateCart, deleteCart, applyCoupon };
+const applyCoupon = async (couponCode: string) => {
+  const { data } = await axiosPrivate.post(`/api/coupons?code=${couponCode}`);
+  return data;
+};
+
+export { getCart, addToCart, updateCart, deleteCart, clearCart, applyCoupon };

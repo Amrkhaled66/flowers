@@ -26,8 +26,8 @@ export default function InvoicePage() {
   }
 
   return (
-    <div className="py-10">
-      <div className="container flex flex-col items-end gap-4">
+    <div className="max-w-3xl mx-auto py-10">
+      <div className="flex flex-col items-end gap-3">
         <Button
           onClick={handlePrint}
           text={t("bar.downloadInvoice")}
@@ -36,7 +36,7 @@ export default function InvoicePage() {
       </div>
       <div
         ref={invoiceRef}
-        className="mx-auto my-6 max-w-3xl rounded bg-white p-6 drop-shadow-xl"
+        className="mx-auto my-6 rounded bg-white p-6 drop-shadow-xl"
         id="invoice"
       >
         <img src={logo} alt="Ballora-logo" height="150" width="150" />

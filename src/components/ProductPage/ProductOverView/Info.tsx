@@ -4,9 +4,11 @@ import QuantitySelector from "src/components/ui/QuantitySelector";
 import Button from "src/components/ui/Button";
 import NavigationBar from "src/sections/ProductPage/NavigationBar";
 import Skeleton from "react-loading-skeleton";
+import TabbyPromo from "src/components/ui/TabbyPromo";
 
 import { Icon } from "@iconify/react/dist/iconify.js";
 import { ReactNode } from "react";
+import priceFormatter from "src/utils/priceFormatter";
 
 const shareProduct = async () => {
   if (navigator.share) {
@@ -90,11 +92,13 @@ const Info = ({
             </h1>
             <div className="flex flex-col gap-y-2">
               <p className="text-main space-x-1">
-                <span className="text-xl">AED</span>
-                <span className="text-[28px] font-bold">{price}</span>
+                <span className="text-[28px] font-bold">
+                  {priceFormatter(price)}
+                </span>
               </p>
               <p className="text-subTitle text-xs">All prices include tax</p>
             </div>
+            <TabbyPromo price={price} />
           </Section>
 
           <Section withBorder>
@@ -106,13 +110,12 @@ const Info = ({
                   icon={
                     <Icon
                       icon="material-symbols:shopping-cart-outline-rounded"
-                      width="24"
-                      height="24"
+                      className="lg:size-6 size-5"
                     />
                   }
-                  className="hover:bg-main-300 animate w-full !text-lg text-white lg:!py-4"
+                  className="hover:bg-main-300 animate w-full !text-base lg:!text-lg text-white lg:!py-4"
                 />
-                <button className="border-main text-main flex-1 rounded-xl border-2 !py-3 text-center text-lg font-bold">
+                <button className="border-main text-main flex-1 rounded-xl border-2 !py-3 text-center text-base lg:text-lg font-bold">
                   Buy Now
                 </button>
               </div>
@@ -129,7 +132,7 @@ const Info = ({
             </div>
           </div>
         </>
-      )} 
+      )}
     </div>
   );
 };

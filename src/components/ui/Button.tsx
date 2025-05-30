@@ -25,8 +25,8 @@ const Button = ({
         </span>
       ) : (
         <>
-          <span>{text}</span>
           {icon && <span>{icon}</span>}
+          <span>{text}</span>
         </>
       )}
     </button>
