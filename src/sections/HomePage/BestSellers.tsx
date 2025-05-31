@@ -7,19 +7,20 @@ import ProductCardSk from "src/components/ui/Skeletons/ProductCardSk";
 
 import { SwiperSlide } from "swiper/react";
 import { useTranslation } from "react-i18next";
-import { useQuery } from "@tanstack/react-query";
-import { getProducts } from "src/api/products";
 
+import transformProduct from "src/utils/transforms/transformProduct";
 import Product from "src/types/product";
-const BestSellers = () => {
+const BestSellers = ({
+  products,
+  Loading,
+}: {
+  products: Product[];
+  Loading: boolean;
+}) => {
   const { t } = useTranslation("home");
 
-  const { data: products, isLoading: productsLoading } = useQuery({
-    queryKey: ["products"],
-    queryFn: () => getProducts(),
-  });
-
-  if (productsLoading) return <div>Loading...</div>;
+  const transformedProducts =
+    products.length > 0 ? products.map((product) => transformProduct(product)):[];
 
   return (
     <section className="container text-center">
@@ -28,18 +29,21 @@ const BestSellers = () => {
           <SectionTitle title={t("bestSellersTitle")} />
           <ChooseGiftsButton className="hidden lg:block" />
         </div>
-        <Products loading={productsLoading} products={products} />
+        <Products loading={Loading} products={transformedProducts} />
         <div className="lg:hidden">
           <Slider>
-            {productsLoading
+            {Loading
               ? Array.from({ length: 4 }).map((_, index) => (
-                  <SwiperSlide className="!w-[140px] !h-fit sm:!w-[282px]" key={index}>
+                  <SwiperSlide
+                    className="!h-fit !w-[140px] sm:!w-[282px]"
+                    key={index}
+                  >
                     <ProductCardSk />
                   </SwiperSlide>
                 ))
-              : products.map((product: Product) => (
+              : transformedProducts.map((product: Product) => (
                   <SwiperSlide
-                    className="!w-[140px] !h-fit sm:!w-[282px]"
+                    className="!h-fit !w-[140px] sm:!w-[282px]"
                     key={product.id}
                   >
                     <ProductCard product={product} />

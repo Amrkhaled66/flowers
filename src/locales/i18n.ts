@@ -2,33 +2,38 @@ import i18n from "i18next";
 import { initReactI18next } from "react-i18next";
 import LanguageDetector from "i18next-browser-languagedetector";
 
-import HomeEn from "src/locales/en/HomePage.json";
-import LayoutEn from "src/locales/en/Layout.json";
-import SignInEn from "src/locales/en/signin.json";
-import SignUpEn from "src/locales/en/signup.json";
-import errorsEn from "src/locales/en/errors.json";
-import forgetPasswordEn from "src/locales/en/forgetPassword.json";
-import profileEn from "src/locales/en/profile.json";
-import sharedEn from "src/locales/en/shared.json";
-import filterEn from "src/locales/en/filter.json";
-import successOrderEn from "src/locales/en/successOrder.json";
-import trackOrderEn from "src/locales/en/trackOrder.json";
-import shippingBagEn from "src/locales/en/shippingBag.json";
-import sharedCartEn from "src/locales/en/sharedCart.json";
+import {
+  HomeEn,
+  LayoutEn,
+  SignInEn,
+  SignUpEn,
+  errorsEn,
+  forgetPasswordEn,
+  profileEn,
+  sharedEn,
+  filterEn,
+  successOrderEn,
+  trackOrderEn,
+  shippingBagEn,
+  sharedCartEn
+} from "src/locales/en";
 
-import LayoutAr from "src/locales/ar/Layout.json";
-import HomeAr from "src/locales/ar/HomePage.json";
-import SignInAr from "src/locales/ar/signin.json";
-import SignUpAr from "src/locales/ar/signup.json";
-import errorsAr from "src/locales/ar/errors.json";
-import forgetPasswordAr from "src/locales/ar/forgetPassword.json";
-import profileAr from "src/locales/ar/profile.json";
-import sharedAr from "src/locales/ar/shared.json";
-import filterAr from "src/locales/ar/filter.json";
-import successOrderAr from "src/locales/ar/successOrder.json";
-import trackOrderAr from "src/locales/ar/trackOrder.json";
-import shippingBagAr from "src/locales/ar/shippingBag.json";
-import sharedCartAr from "src/locales/ar/sharedCart.json";
+import {
+  HomeAr,
+  LayoutAr,
+  SignInAr,
+  SignUpAr,
+  errorsAr,
+  forgetPasswordAr,
+  profileAr,
+  sharedAr,
+  filterAr,
+  successOrderAr,
+  trackOrderAr,
+  shippingBagAr,
+  sharedCartAr
+} from "src/locales/ar";
+
 
 const resources = {
   en: {

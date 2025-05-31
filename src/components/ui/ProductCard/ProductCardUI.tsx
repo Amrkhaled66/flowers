@@ -5,6 +5,9 @@ import { getLocalizedName } from "src/utils/getLocalizedName";
 import { useAddToCart, useUpdateCart } from "src/hooks/cart/useCartMutations";
 import { useCart } from "src/context/user/cartCtx";
 import { useTranslation } from "react-i18next";
+import { useAuthGuard } from "src/hooks/shared/useAuthGuard";
+import Alert from "../Alert";
+
 import Product from "src/types/product";
 import priceFormatter from "src/utils/priceFormatter";
 
@@ -25,8 +28,12 @@ const ProductCardUI = ({
   const {
     i18n: { language },
   } = useTranslation();
+  const { check } = useAuthGuard();
 
-  const handelAddToCart = () => {
+  const handelAddToCart = async() => {
+    const isAuthenticated = await check();
+    if(!isAuthenticated) return
+    
     isProductInCart(product.id)
       ? updateCart({ quantity: 3, id: product.id })
       : addToCart(product.id);

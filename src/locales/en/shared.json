@@ -4,5 +4,15 @@
     "success": "Success",
     "error": "Error",
     "quantity": "Quantity",
-    "chooseGiftNow": "Choose gift now"
+    "chooseGiftNow": "Choose gift now",
+    "sessionExpired":{
+        "title":"Session Expired",
+        "text":"Your session has expired. Please login again.",
+        "btnText":"Login"
+    },
+    "verificationOtp":{
+        "title":"Account Verification",
+        "text":"Please verify your account",
+        "btnText":"Verify Now"
+    }
 }

@@ -1,17 +1,19 @@
 import { useEffect, useState } from "react";
-import { useSendOtp } from "src/hooks/auth/useForgetPasswordMutation";
-import { useReset } from "src/context/resetCtx";
 import { useTranslation } from "react-i18next";
 
-const TimerCountDown = () => {
+const TimerCountDown = ({
+  onResend,
+  isSendOtpPending,
+}: {
+  onResend: () => void;
+  isSendOtpPending: boolean;
+}) => {
   const [seconds, setSeconds] = useState(60);
   const [isTimerRunning, setIsTimerRunning] = useState(true);
-  const { mutate, isPending } = useSendOtp();
-  const { phone } = useReset();
   const { t: forgetPasswordTranslation } = useTranslation("forgetPassword");
 
   const handleResend = () => {
-    mutate(phone);
+    onResend();
     setSeconds(60);
     setIsTimerRunning(true);
   };
@@ -44,7 +46,7 @@ const TimerCountDown = () => {
       ) : (
         <button
           onClick={handleResend}
-          disabled={isPending}
+          disabled={isSendOtpPending}
           className="text-main text-sm font-bold hover:underline"
         >
           {forgetPasswordTranslation("submitOtp.resendCode")}

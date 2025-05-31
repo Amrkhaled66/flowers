@@ -23,17 +23,18 @@ import { toast, ToastContainer } from "react-toastify";
 
 const queryClient = new QueryClient({
   queryCache: new QueryCache({
-    onError: (error) => {
-      toast("Error ,please call support", {
-        type: "error",
-      });
-    },
+    // onError: () => {
+    //   toast("Error ,please call support", {
+    //     type: "error",
+    //   });
+    // },
   }),
   defaultOptions: {
     queries: {
       refetchOnWindowFocus: false,
       staleTime: 1000 * 60 * 5,
       gcTime: 1000 * 60 * 5,
+      retry:2,
     },
   },
 });

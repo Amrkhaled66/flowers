@@ -23,7 +23,7 @@ const HomePage = () => {
     <div className="flex flex-col gap-y-8 lg:gap-y-0">
       <HeroSection />
       <Categories Loading={isLoading} data={isLoading ? [] : data.data.categories} />
-      <BestSellers />
+      <BestSellers  Loading={isLoading} products={isLoading?[]:data.data.best_selling}  />
       <Occasions loading={isLoading} data={isLoading ? [] : data.data.occasions} />
       <CTA />
       <Ideas />

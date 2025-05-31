@@ -84,7 +84,7 @@ textarea {
     max-width: 47rem;
   }
   @media (width >= 64rem /* 1024px */) {
-    max-width: 62rem /* 1024 */;
+    max-width: 64rem /* 1024 */;
   }
   @media (width >= 80rem /* 1280px */) {
     max-width: 75rem /* 1280 */;

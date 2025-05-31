@@ -5,7 +5,7 @@ import {
 } from "src/utils/register";
 
 import { useState, ChangeEvent, FormEvent } from "react";
-import useRegisterMutation from "./useRegisterMutation";
+import { useRegister as useRegisterMutation } from "./useRegisterMutation";
 import { useNavigate } from "react-router";
 import { UserRegister } from "src/types/auth/User";
 import { useAuth } from "src/context/authCtx";
@@ -121,7 +121,7 @@ export default function useRegister() {
           icon: "success",
           confirmButtonText: "Okay",
         }).then(() => {
-          navigate("/");
+          navigate("/verify-account");
         });
       },
 

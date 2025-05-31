@@ -8,12 +8,14 @@ import { OnlyGuestUser, ProtectedRoute } from "./middleware";
 import {
   HomePage,
   ProductPage,
-  SignInPage,
-  SignUpPage,
   FilterPage,
   SucessOrder,
   TrackOrderPage,
   InvoicePage,
+  // auth
+  SignUpPage,
+  SignInPage,
+  VerifyAccount,
   // forget password
   SendOtp,
   SubmitOtp,
@@ -46,6 +48,7 @@ const router = createBrowserRouter([
       { index: true, element: <HomePage /> },
       { path: "product/:id", element: <ProductPage /> },
       { path: "filter", element: <FilterPage /> },
+      // auth
       {
         path: "signin",
         element: (
@@ -62,20 +65,39 @@ const router = createBrowserRouter([
           </OnlyGuestUser>
         ),
       },
+      {
+        path: "verify-account",
+        element: (
+          <ProtectedRoute>
+            <VerifyAccount />
+          </ProtectedRoute>
+        ),
+      },
       // forget password
       {
         path: "forgot-password/send-otp",
-        element: <SendOtp />,
+        element: (
+          <OnlyGuestUser>
+            <SendOtp />
+          </OnlyGuestUser>
+        ),
       },
       {
         path: "forgot-password/submit-otp",
-        element: <SubmitOtp />,
+        element: (
+          <OnlyGuestUser>
+            <SubmitOtp />
+          </OnlyGuestUser>
+        ),
       },
       {
         path: "forgot-password/reset-password",
-        element: <ResetPassword />,
+        element: (
+          <OnlyGuestUser>
+            <ResetPassword />
+          </OnlyGuestUser>
+        ),
       },
-
       // Profile
       {
         path: "profile",

@@ -20,5 +20,9 @@
       "passwordMismatch": "Passwords do not match",
       "requiredGender": "Please select your gender"
     }
+    ,
+    "unauthorized":"Please login first",
+    "login":"Login",
+    "warning":"Warning"
   }
   

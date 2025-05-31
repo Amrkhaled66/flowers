@@ -1,4 +1,4 @@
-import { register } from "src/api/Auth";
+import { register, requestOtp, verifyOtp } from "src/api/Auth";
 import { useMutation } from "@tanstack/react-query";
 
 const useRegister = () => {
@@ -8,4 +8,16 @@ const useRegister = () => {
   });
 };
 
-export default useRegister;
+const useRequestOtp = () => {
+  return useMutation({
+    mutationFn: () => requestOtp(),
+  });
+};
+
+const useVerifyOtp = () => {
+  return useMutation({
+    mutationFn: (otp: string) => verifyOtp(otp),
+  });
+};
+
+export { useRegister, useRequestOtp, useVerifyOtp };

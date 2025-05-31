@@ -19,6 +19,9 @@
       "confirmPassword": "يرجى تأكيد كلمة المرور",
       "passwordMismatch": "كلمتا المرور غير متطابقتين",
       "requiredGender": "يرجى اختيار الجنس"
-    }
+    },
+    "unauthorized":"يرجى تسجيل الدخول اولا",
+    "login":"تسجيل الدخول",
+    "warning":"تحذير"
   }
   

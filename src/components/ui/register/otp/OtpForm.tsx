@@ -1,45 +1,35 @@
-import { useReset } from "src/context/resetCtx";
-import { useState } from "react";
-import { Navigate } from "react-router";
-import { useSubmitOtp } from "src/hooks/auth/useForgetPasswordMutation";
 import { useTranslation } from "react-i18next";
 
-import OtpInput from "src/sections/forgetPassword/SubmitOtp/OtpInput";
-import TimerCountDown from "src/sections/forgetPassword/SubmitOtp/TimerCountDown";
+import OtpInput from "src/components/ui/register/otp/OtpInput";
+import TimerCountDown from "src/components/ui/register/otp/TimerCountDown";
 import Button from "src/components/ui/Button";
 
-const SubmitOtp = () => {
-  const [otp, setOtp] = useState<string[]>(Array(4).fill(""));
-  const [error, setError] = useState("");
-  const { phone, token, setToken, setPhone } = useReset();
-  const { mutate, isPending } = useSubmitOtp();
+const OtpForm = ({
+  handleChangePhone,
+  handleSubmit,
+  otp,
+  setOtp,
+  phone,
+  error,
+  submitLoading,
+  isSendOtpPending,
+  onResend,
+}: {
+  handleChangePhone: () => void;
+  handleSubmit: () => void;
+  otp: string[];
+  setOtp: React.Dispatch<React.SetStateAction<string[]>>;
+  phone: string;
+  error: string;
+  submitLoading: boolean;
+  isSendOtpPending: boolean;
+  onResend: () => void;
+}) => {
   const { t: forgetPasswordTranslation } = useTranslation("forgetPassword");
-  if (!phone || token) return <Navigate to="/forgot-password/send-otp" />;
-
-  const handleChangePhone = () => {
-    setToken("");
-    setPhone("");
-    <Navigate to="/forgot-password/send-otp" />;
-  };
-
-  const handleSubmit = () => {
-    if (otp.join("").length !== 4) return;
-    mutate(
-      { phone_number: phone, otp: otp.join("") },
-      {
-        onSuccess: (data) => {
-          setToken(data.token);
-        },
-        onError: (err: any) => {
-          setError(err.response.data.message);
-        },
-      },
-    );
-  };
 
   return (
     <div className="flex items-center justify-center py-10">
-      <div className="border-stroke inline-flex lg:w-[646px] flex-col items-center justify-start gap-5 rounded-xl border bg-zinc-100 p-4 lg:p-8">
+      <div className="border-stroke inline-flex flex-col items-center justify-start gap-5 rounded-xl border bg-zinc-100 p-4 lg:w-[646px] lg:p-8">
         <div className="flex flex-col items-center justify-start gap-4 self-stretch">
           <div className="inline-flex items-center justify-center gap-2.5 self-stretch">
             <div className="text-text-main justify-start text-xl leading-7 font-bold">
@@ -67,16 +57,16 @@ const SubmitOtp = () => {
         <div className="flex flex-col items-center justify-start gap-8 self-stretch">
           <OtpInput error={error} otp={otp} setOtp={setOtp} />
           <Button
-            loading={isPending}
+            loading={submitLoading}
             text={forgetPasswordTranslation("submitOtp.continue")}
             onClick={handleSubmit}
             className="bg-main hover:bg-main-300 animate w-full rounded-xl !py-3 text-base leading-7 font-bold text-white"
           />
-          <TimerCountDown />
+          <TimerCountDown isSendOtpPending={isSendOtpPending} onResend={onResend} />
         </div>
       </div>
     </div>
   );
 };
 
-export default SubmitOtp;
+export default OtpForm;

@@ -1,7 +1,7 @@
 import { useEffect } from "react";
-import "./FlowerLoader.css";
+import "./BalloraLoader.css";
 
-const FlowerLoader = () => {
+const BalloraLoader = () => {
   useEffect(() => {
     const petals = document.querySelectorAll(".petal");
     let currentPhase = "appear";
@@ -40,7 +40,7 @@ const FlowerLoader = () => {
   }, []);
 
   return (
-    <div className="loader-container  inset-0 w-fit h-fit rounded-2xl m-auto z-[1000000000] backdrop-blur-sm">
+    <div className="loader-container fixed inset-0 w-screen h-screen z-[1000000000] m-auto rounded-2xl backdrop-blur-sm">
       <div className="flower-loader">
         {[...Array(8)].map((_, index) => (
           <div className="petal" key={index}></div>
@@ -51,4 +51,4 @@ const FlowerLoader = () => {
   );
 };
 
-export default FlowerLoader;
+export default BalloraLoader;

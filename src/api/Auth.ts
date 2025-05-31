@@ -14,8 +14,20 @@ const register = async (credentials: { email: string; password: string }) => {
 
 const logout = async () => {
   const { data } = await axiosPrivate.post("/api/logout");
-  console.log("asdfasdf")
+  console.log("asdfasdf");
   return data;
 };
 
-export { login, register, logout };
+const requestOtp = async () => {
+  const { data } = await axiosPrivate.get("/api/request-otp");
+  return data;
+};
+
+const verifyOtp = async (otp: string) => {
+  const { data } = await axiosPrivate.post("/api/verify-otp", {
+    otp,
+  });
+  return data;
+};
+
+export { login, register, logout, requestOtp, verifyOtp };

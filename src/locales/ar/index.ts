@@ -1,0 +1,13 @@
+export {default as HomeAr} from "./HomePage.json";
+export {default as LayoutAr} from "./Layout.json";
+export {default as SignInAr} from "./signin.json";
+export {default as SignUpAr} from "./signup.json";
+export {default as errorsAr} from "./errors.json";
+export {default as forgetPasswordAr} from "./forgetPassword.json";
+export {default as profileAr} from "./profile.json";
+export {default as sharedAr} from "./shared.json";
+export {default as filterAr} from "./filter.json";
+export {default as successOrderAr} from "./successOrder.json";
+export {default as trackOrderAr} from "./trackOrder.json";
+export {default as shippingBagAr} from "./shippingBag.json";
+export {default as sharedCartAr} from "./sharedCart.json";

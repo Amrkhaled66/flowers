@@ -1,16 +1,17 @@
 export { default as HomePage } from "./HomePage";
 export { default as ProductPage } from "./ProductPage";
-export { default as SignInPage } from "./SignInPage";
-export { default as SignUpPage } from "./SignUpPage";
+export { default as SignInPage } from "./auth/SignInPage";
+export { default as SignUpPage } from "./auth/SignUpPage";
 export { default as FilterPage } from "./FilterPage";
 export { default as SucessOrder } from "./SucessOrder";
 export { default as TrackOrderPage } from "./TrackOrderPage";
 export { default as InvoicePage } from "./InvoicePage";
+export { default as VerifyAccount } from "./auth/VerifyAccount";
 
 // forget password
-export { default as SendOtp } from "./forgetPassword/SendOtp";
-export { default as SubmitOtp } from "./forgetPassword/SubmitOtp";
-export { default as ResetPassword } from "./forgetPassword/ResetPassword";
+export { default as SendOtp } from "./auth/forgetPassword/SendOtp";
+export { default as SubmitOtp } from "./auth/forgetPassword/SubmitOtp";
+export { default as ResetPassword } from "./auth/forgetPassword/ResetPassword";
 // cart
 export { default as ShippingBag } from "./cart/ShippingBag";
 export { default as DeliveryInfo } from "./cart/DeliveryInfo";

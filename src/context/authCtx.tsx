@@ -12,6 +12,7 @@ import type User from "src/types/auth/User";
 type AuthData = {
   user: User | null;
   token: string | null;
+  isVerified?: boolean;
 };
 
 type AuthContextType = {
@@ -20,6 +21,7 @@ type AuthContextType = {
   logout: () => void;
   isAuthenticated: boolean;
   updateUser: (user: User) => void;
+  ToggleUserVerification: () => void;
 };
 
 const AuthContext = createContext<AuthContextType>({
@@ -28,6 +30,7 @@ const AuthContext = createContext<AuthContextType>({
   logout: () => {},
   isAuthenticated: false,
   updateUser: () => {},
+  ToggleUserVerification: () => {},
 });
 
 export default function AuthProvider({ children }: { children: ReactNode }) {
@@ -37,6 +40,7 @@ export default function AuthProvider({ children }: { children: ReactNode }) {
     return {
       user,
       token,
+      isVerified: true,
     };
   });
 
@@ -44,6 +48,7 @@ export default function AuthProvider({ children }: { children: ReactNode }) {
     setAuthData((prev) => ({ ...prev, user }));
     setUser(user);
   };
+
   const login = (user: User, token: string) => {
     setAuthData({ user, token });
     setToken(token);
@@ -54,6 +59,9 @@ export default function AuthProvider({ children }: { children: ReactNode }) {
     clearToken();
     clearUser();
   };
+  const ToggleUserVerification = () => {
+    setAuthData((prev) => ({ ...prev, isVerified: !prev.isVerified }));
+  };
 
   const isAuthenticated = !!authData.token;
 
@@ -63,6 +71,7 @@ export default function AuthProvider({ children }: { children: ReactNode }) {
     logout,
     isAuthenticated,
     updateUser,
+    ToggleUserVerification,
   };
 
   return (

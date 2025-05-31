@@ -15,6 +15,7 @@ import useDebounce from "../shared/useDebounce";
 const useGetCart = () => {
   const { isAuthenticated } = useAuth();
   const { storeCart } = useCart();
+  
   return useQuery({
     queryKey: ["cart"],
     queryFn: async () => {

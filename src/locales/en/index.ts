@@ -1,0 +1,13 @@
+export {default as HomeEn} from "./HomePage.json";
+export {default as SignInEn} from "./signin.json";
+export {default as SignUpEn} from "./signup.json";
+export {default as errorsEn} from "./errors.json";
+export {default as forgetPasswordEn} from "./forgetPassword.json";
+export {default as profileEn} from "./profile.json";
+export {default as sharedEn} from "./shared.json";
+export {default as filterEn} from "./filter.json";
+export {default as successOrderEn} from "./successOrder.json";
+export {default as trackOrderEn} from "./trackOrder.json";
+export {default as shippingBagEn} from "./shippingBag.json";
+export {default as sharedCartEn} from "./sharedCart.json";
+export {default as LayoutEn} from "./Layout.json";
