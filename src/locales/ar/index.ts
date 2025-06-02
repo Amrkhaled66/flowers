@@ -1,7 +1,7 @@
 export {default as HomeAr} from "./HomePage.json";
 export {default as LayoutAr} from "./Layout.json";
 export {default as SignInAr} from "./signin.json";
-export {default as SignUpAr} from "./signup.json";
+export {default as SignUpAr} from "./signUp.json";
 export {default as errorsAr} from "./errors.json";
 export {default as forgetPasswordAr} from "./forgetPassword.json";
 export {default as profileAr} from "./profile.json";

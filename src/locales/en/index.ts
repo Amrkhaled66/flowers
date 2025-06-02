@@ -1,6 +1,6 @@
 export {default as HomeEn} from "./HomePage.json";
 export {default as SignInEn} from "./signin.json";
-export {default as SignUpEn} from "./signup.json";
+export {default as SignUpEn} from "./signUp.json";
 export {default as errorsEn} from "./errors.json";
 export {default as forgetPasswordEn} from "./forgetPassword.json";
 export {default as profileEn} from "./profile.json";
