@@ -23,7 +23,7 @@ const CartTableCard = ({ product }: { product: CartItem }) => {
         <div className="h-[100px] w-[100px] overflow-hidden rounded-xl">
           <img
             className="size-full object-cover"
-            src={productInfo.img}
+            src={productInfo.images[0]}
             alt="title"
           />
         </div>

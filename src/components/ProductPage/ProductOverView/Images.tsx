@@ -1,6 +1,5 @@
 import { useState } from "react";
 import { Icon } from "@iconify/react";
-import { toast } from "react-toastify";
 import Skeleton from "react-loading-skeleton";
 import FavoriteButton from "src/components/ui/ProductCard/FavoriteButton";
 import Slider from "src/components/HomePage/Categories/Slider";

@@ -1,8 +1,8 @@
 import axiosInstance from "./axios";
 import transformProduct from "src/utils/transforms/transformProduct";
 
-const getProducts = async (filters?: any) => {
-  const { data } = await axiosInstance.get(`api/products`, {
+const getProducts = async (filters?: any, page?: number) => {
+  const { data } = await axiosInstance.get(`api/products?page=${page}`, {
     params: filters,
     paramsSerializer: (params) => {
       return Object.entries(params)
@@ -14,8 +14,12 @@ const getProducts = async (filters?: any) => {
         .join("&");
     },
   });
-  
-  return data.data.map(transformProduct);
+
+  return {
+    total: data.data.total,
+    perPage: data.data.per_page,
+    products: data.data.data.map(transformProduct),
+  };
 };
 
 export { getProducts };

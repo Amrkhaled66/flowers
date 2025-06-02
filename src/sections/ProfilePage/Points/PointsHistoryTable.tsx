@@ -1,6 +1,7 @@
 import Pagination from "src/components/ui/Pagination";
 import TableElement from "src/components/ProfilePage/Points/PointsHistoryTable/TableElement";
 import Skeleton from "react-loading-skeleton";
+import ProfilePageCompetent from "src/components/ProfilePage/ProfilePageCompetent";
 
 import { useTranslation } from "react-i18next";
 
@@ -16,13 +17,14 @@ const PointsHistoryTable = () => {
   const pageCount = Math.ceil(items.length / 10);
 
   const handlePaginate = ({ selected }: { selected: number }) => {
+    console.log(selected)
     // fetch data from the backend with the selected page number
   };
 
-  const isLoading = false; 
+  const isLoading = false;
   const isEmpty = 0;
   return (
-    <section className="bg-main-50 h-fit flex-1 rounded-xl p-4">
+    <ProfilePageCompetent>
       <div className="space-y-6 rounded-2xl">
         <h2 className="text-main text-2xl font-bold">{t("points.history")}</h2>
 
@@ -53,14 +55,14 @@ const PointsHistoryTable = () => {
               </thead>
 
               <tbody>
-                {isLoading ? (
-                  Array.from({ length: 5 }).map((_, index) => (
+                {1 ? (
+                  Array.from({ length: 2 }).map((_, index) => (
                     <tr
                       key={`skeleton-${index}`}
-                      className="border-b border-gray-200"
+                      className=""
                     >
                       <td className="px-4 py-2">
-                        <Skeleton className="h-12 w-full" />
+                        <Skeleton  className="h-12 opacity-80 rounded-xl w-full" />
                       </td>
                     </tr>
                   ))
@@ -88,7 +90,7 @@ const PointsHistoryTable = () => {
           </div>
 
           {!isEmpty && !isLoading && (
-            <div className="border-t border-gray-200 flex justify-end px-4 py-3">
+            <div className="flex justify-end border-t border-gray-200 px-4 py-3">
               <Pagination
                 pageCount={pageCount}
                 handlePageClick={handlePaginate}
@@ -97,7 +99,7 @@ const PointsHistoryTable = () => {
           )}
         </div>
       </div>
-    </section>
+    </ProfilePageCompetent>
   );
 };
 

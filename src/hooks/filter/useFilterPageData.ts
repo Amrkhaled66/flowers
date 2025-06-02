@@ -5,16 +5,17 @@ import {
   useGetCategories,
   useGetOccasions,
 } from "src/hooks/category/categoryQueries";
-export const useFilterPageData = (appliedOptions: any) => {
+
+export const useFilterPageData = (appliedOptions: any,page: number) => {
   const { data: categories, isLoading: categoriesLoading } = useGetCategories();
   const { data: occasions, isLoading: occasionsLoading } = useGetOccasions();
   const {
-    data: products,
+    data: productsData,
     isLoading: productsLoading,
     refetch: refetchProducts,
   } = useQuery({
     queryKey: ["products", appliedOptions],
-    queryFn: () => getProducts(appliedOptions),
+    queryFn: () => getProducts(appliedOptions,page),
     enabled: false,
   });
 
@@ -25,7 +26,7 @@ export const useFilterPageData = (appliedOptions: any) => {
   return {
     categories: categories || [],
     occasions: occasions || [],
-    products,
+    productsData,
     refetchProducts,
     productsLoading,
     categoriesLoading,

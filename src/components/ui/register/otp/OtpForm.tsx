@@ -1,35 +1,49 @@
 import { useTranslation } from "react-i18next";
+import clsx from "clsx";
 
 import OtpInput from "src/components/ui/register/otp/OtpInput";
 import TimerCountDown from "src/components/ui/register/otp/TimerCountDown";
-import Button from "src/components/ui/Button";
 
 const OtpForm = ({
+  children,
   handleChangePhone,
-  handleSubmit,
   otp,
   setOtp,
   phone,
   error,
-  submitLoading,
   isSendOtpPending,
   onResend,
+  isChangePhoneNumberForm,
 }: {
+  children?: React.ReactNode;
   handleChangePhone: () => void;
-  handleSubmit: () => void;
   otp: string[];
   setOtp: React.Dispatch<React.SetStateAction<string[]>>;
   phone: string;
   error: string;
-  submitLoading: boolean;
   isSendOtpPending: boolean;
   onResend: () => void;
+  isChangePhoneNumberForm?: boolean;
 }) => {
   const { t: forgetPasswordTranslation } = useTranslation("forgetPassword");
 
   return (
-    <div className="flex items-center justify-center py-10">
-      <div className="border-stroke inline-flex flex-col items-center justify-start gap-5 rounded-xl border bg-zinc-100 p-4 lg:w-[646px] lg:p-8">
+    <div
+      className={clsx("flex items-center justify-center", {
+        "py-10": !isChangePhoneNumberForm,
+      })}
+    >
+      <div
+        className={clsx(
+          "border-stroke inline-flex flex-col items-center justify-start gap-5 rounded-xl bg-zinc-100 p-4 lg:p-8",
+          {
+            "border lg:w-[646px]": !isChangePhoneNumberForm,
+          },
+          {
+            "w-full": isChangePhoneNumberForm,
+          },
+        )}
+      >
         <div className="flex flex-col items-center justify-start gap-4 self-stretch">
           <div className="inline-flex items-center justify-center gap-2.5 self-stretch">
             <div className="text-text-main justify-start text-xl leading-7 font-bold">
@@ -56,13 +70,11 @@ const OtpForm = ({
         </div>
         <div className="flex flex-col items-center justify-start gap-8 self-stretch">
           <OtpInput error={error} otp={otp} setOtp={setOtp} />
-          <Button
-            loading={submitLoading}
-            text={forgetPasswordTranslation("submitOtp.continue")}
-            onClick={handleSubmit}
-            className="bg-main hover:bg-main-300 animate w-full rounded-xl !py-3 text-base leading-7 font-bold text-white"
+          {children}
+          <TimerCountDown
+            isSendOtpPending={isSendOtpPending}
+            onResend={onResend}
           />
-          <TimerCountDown isSendOtpPending={isSendOtpPending} onResend={onResend} />
         </div>
       </div>
     </div>

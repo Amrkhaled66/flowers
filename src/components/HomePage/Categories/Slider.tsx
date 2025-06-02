@@ -69,7 +69,7 @@ const Slider = ({
   useEffect(() => {
     if (swiperRef.current && targetIndex >= 0) {
       swiperRef.current.slideTo(targetIndex);
-      setActiveGroup((prev) => {
+      setActiveGroup(() => {
         const newGroup = isMenuSlider
           ? targetIndex
           : Math.floor(targetIndex / slidesPerGroup);

@@ -37,7 +37,7 @@ const Search = () => {
       <div className={headerClasses}>
         <div className="w-[90%] lg:w-[70%]">
           <SearchInput
-            onChange={() => {}}
+            onChange={() => {setSearchOptions([])}}
             value="asdf"
             placeholder="Find Items"
             bgColor="bg-main-50"

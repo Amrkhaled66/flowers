@@ -19,7 +19,7 @@ import {
   QueryClientProvider,
 } from "@tanstack/react-query";
 
-import { toast, ToastContainer } from "react-toastify";
+import { ToastContainer } from "react-toastify";
 
 const queryClient = new QueryClient({
   queryCache: new QueryCache({

@@ -47,13 +47,13 @@ function FormInput<T>({
           type={type}
           name={name}
           id={name}
-          value={String(value)}
+          value={String(value || "")}
           onChange={onChange}
           placeholder={placeholder || label}
           pattern={pattern}
           className={` ${error ? "border-red" : "border-stroke focus:border-main"} ${bgColor} animate w-full rounded-xl border p-2.5 text-start`}
         />
-        {error && <p className="text-start text-xs text-red">{error}</p>}
+        {error && <p className="text-red text-start text-xs">{error}</p>}
       </div>
     </div>
   );

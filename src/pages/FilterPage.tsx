@@ -2,11 +2,12 @@ import usePageTitle from "src/hooks/ui/useUpdatePageTitle";
 import { useFilterOptions } from "src/hooks/filter/useFilterOptions";
 import { useSidebar } from "src/hooks/filter/useSidebar";
 import { useFilterPageData } from "src/hooks/filter/useFilterPageData";
-import { useEffect } from "react";
+import {  useEffect } from "react";
 
 import FilterBar from "src/sections/FilterPage/FilterBar";
 import FilteredProducts from "src/sections/FilterPage/FilteredProducts";
 import Overlay from "src/components/ui/Overlay";
+import Pagination from "src/components/ui/Pagination";
 
 const FilterPage = () => {
   usePageTitle("Products");
@@ -17,49 +18,76 @@ const FilterPage = () => {
     handlePriceRangeChange,
     appliedOptions,
     setAppliedOptions,
+    page,
+    setPage,
   } = useFilterOptions();
   const { sidebarOpen, closeSidebar, toggleSidebar } = useSidebar();
   const {
     categories,
     occasions,
-    products,
+    productsData,
     refetchProducts,
     productsLoading,
     categoriesLoading,
     occasionsLoading,
-  } = useFilterPageData(appliedOptions);
+  } = useFilterPageData(appliedOptions, page);
 
   const onApplyFilter = () => {
     if (JSON.stringify(options) === JSON.stringify(appliedOptions)) return;
     setAppliedOptions(options);
   };
+
   useEffect(() => {
     if (appliedOptions === null) return;
     refetchProducts({ cancelRefetch: true });
   }, [appliedOptions]);
 
+  useEffect(() => {
+    if (appliedOptions === null) return;
+    setPage(1);
+  }, [appliedOptions]);
+
+  useEffect(() => {
+    refetchProducts({ cancelRefetch: true });
+  }, [page]);
+
   return (
-    <div className="container flex h-auto min-h-dvh gap-x-6 !py-10">
-      <FilterBar
-        loading={categoriesLoading || occasionsLoading}
-        onSubmit={onApplyFilter}
-        sidebarOpen={sidebarOpen}
-        closeSidebar={closeSidebar}
-        categories={categories || []}
-        occasions={occasions || []}
-        colors={[{ hex: "#FF0000" }]}
-        onOptionChange={handleOptionChange}
-        handlePriceRangeChange={handlePriceRangeChange}
-        options={options}
-      />
+    <div className="container flex min-h-dvh flex-col justify-between !py-10">
+      <div className="flex h-auto gap-x-6">
+        <FilterBar
+          loading={categoriesLoading || occasionsLoading}
+          onSubmit={onApplyFilter}
+          sidebarOpen={sidebarOpen}
+          closeSidebar={closeSidebar}
+          categories={categories || []}
+          occasions={occasions || []}
+          colors={[{ hex: "#FF0000" }]}
+          onOptionChange={handleOptionChange}
+          handlePriceRangeChange={handlePriceRangeChange}
+          options={options}
+        />
 
-      <Overlay show={sidebarOpen} onClick={closeSidebar} bgColor="#00000066" />
+        <Overlay
+          show={sidebarOpen}
+          onClick={closeSidebar}
+          bgColor="#00000066"
+        />
 
-      <FilteredProducts
-        openSidebar={toggleSidebar}
-        loading={productsLoading}
-        Products={products || []}
-      />
+        <FilteredProducts
+          openSidebar={toggleSidebar}
+          loading={productsLoading}
+          Products={productsData?.products || []}
+        />
+      </div>
+      {!productsLoading && (
+        <Pagination
+          // pageCount={4}
+          pageCount={productsData?.total / productsData?.perPage}
+          handlePageClick={({ selected }: { selected: number }) => {
+            setPage(selected + 1);
+          }}
+        />
+      )}
     </div>
   );
 };

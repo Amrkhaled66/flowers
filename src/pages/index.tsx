@@ -19,6 +19,7 @@ export { default as Payment } from "./cart/Payment";
 
 // Profile
 export { default as MyData } from "./profile/MyData";
+export { default as ChangePhoneNumber } from "./profile/ChangePhoneNumber";
 export { default as EditProfile } from "./profile/EditProfile";
 export { default as ChangePassword } from "./profile/ChangePassword";
 export { default as Occasions } from "./profile/Occasions";

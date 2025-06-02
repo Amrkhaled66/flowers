@@ -3,6 +3,8 @@
     "delete": "Delete",
     "success": "Success",
     "error": "Error",
+    "continue": "Continue",
+    "back":"Back",
     "quantity": "Quantity",
     "chooseGiftNow": "Choose gift now",
     "sessionExpired":{

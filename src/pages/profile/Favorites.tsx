@@ -1,6 +1,7 @@
 import EmptyFavorites from "src/sections/ProfilePage/Favorites/EmptyFavorites";
 import FavoritesCards from "src/sections/ProfilePage/Favorites/FavoritesCards";
 import transformProduct from "src/utils/transforms/transformProduct";
+import ProfilePageCompetent from "src/components/ProfilePage/ProfilePageCompetent";
 
 import { useGetFavorites } from "src/hooks/profile/favorites/FavoritesMutations";
 const Favorites = () => {
@@ -13,9 +14,9 @@ const Favorites = () => {
     transformProduct(item.product),
   );
   return (
-    <div>
+    <ProfilePageCompetent>
       <FavoritesCards products={transformedProduct} />
-    </div>
+    </ProfilePageCompetent>
   );
 };
 

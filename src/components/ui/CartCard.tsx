@@ -26,7 +26,7 @@ const CartMenuCard = ({
     >
       <div className="h-20 w-20 overflow-hidden rounded-xl bg-red-800 lg:h-25 lg:w-25">
         <img
-          src={cartProduct.img}
+          src={cartProduct.images[0]}
           alt={cartProduct.nameEn}
           className="size-full object-cover object-center"
         />

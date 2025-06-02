@@ -15,20 +15,21 @@ const Row = ({ name, value }: { name: string; value: string | undefined }) => {
   );
 };
 const ProfileInfo = () => {
-  const { authData: { user } } = useAuth();
+  const {
+    authData: { user },
+  } = useAuth();
   const { t } = useTranslation("profile");
-
 
   return (
     <div className="space-y-3">
-      <div className="space-y-3">
+      <div className="space-y-1">
         <Row name={t("info.email")} value={user?.email} />
         <Row name={t("info.firstName")} value={user?.first_name} />
         <Row name={t("info.lastName")} value={user?.last_name} />
         <Row name={t("info.phone")} value={user?.phone_number} />
       </div>
       <Link to={"/profile/editProfile"}>
-        <div className="text-text-main w-fit bg-main-100 flex items-center gap-x-2 rounded-xl px-6 py-2 text-xs font-bold">
+        <div className="text-text-main bg-main-100 flex w-fit items-center gap-x-2 rounded-xl px-6 py-2 text-xs font-bold">
           <Icon icon="lucide:edit" width="24" height="24" />
           <p>{t("edit")}</p>
         </div>

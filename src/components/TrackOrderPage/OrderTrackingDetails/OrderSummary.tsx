@@ -10,7 +10,7 @@ const product = {
   img: img,
 };
 
-const ProductDiv = ({ product }) => {
+const ProductDiv = ({ product }: { product: any }) => {
   return (
     <div className="flex items-start gap-x-3">
       <img

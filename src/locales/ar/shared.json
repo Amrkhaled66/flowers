@@ -3,6 +3,8 @@
     "delete": "حذف",
     "success": "نجاح",
     "error": "خطأ",
+    "continue": "متابعة",
+    "back":"رجوع",
     "quantity": "الكمية",
     "chooseGiftNow": "اختر هديتك الآن",
     "sessionExpired":{

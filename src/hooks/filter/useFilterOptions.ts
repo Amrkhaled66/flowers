@@ -22,6 +22,7 @@ const STRING_ARRAY_KEYS = new Set<keyof FilterOptions>([
 ]);
 
 export const useFilterOptions = () => {
+  const [page, setPage] = useState(1);
   const [searchParams] = useSearchParams();
   const [options, setOptions] = useState<FilterOptions>(() => {
     const initialOptions = { ...INITIAL_FILTER_OPTIONS };
@@ -99,6 +100,8 @@ export const useFilterOptions = () => {
     resetFilters,
     setAppliedOptions,
     setOptions,
+    page,
+    setPage
   }), [
     options,
     appliedOptions,

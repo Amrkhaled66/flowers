@@ -103,7 +103,7 @@ const Info = ({
 
           <Section withBorder>
             <div className="space-y-4">
-              <QuantitySelector />
+              <QuantitySelector id={5} />
               <div className="flex w-full flex-col gap-x-5 gap-y-4">
                 <Button
                   text="Add To Cart"

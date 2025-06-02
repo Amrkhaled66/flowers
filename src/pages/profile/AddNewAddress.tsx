@@ -1,6 +1,8 @@
 import AddressForm from "src/sections/ProfilePage/Address/AddressForm";
 import Address from "src/types/UserInfo/Address";
 import Alert from "src/components/ui/Alert";
+import ProfilePageCompetent from "src/components/ProfilePage/ProfilePageCompetent";
+
 import { useNavigate } from "react-router";
 import { useAddAddress } from "src/hooks/profile/addresses/useAddressMutations";
 
@@ -25,7 +27,11 @@ const AddNewAddress = () => {
     );
   };
 
-  return <AddressForm onSubmit={onSubmit} isPending={isPending} />;
+  return (
+    <ProfilePageCompetent>
+      <AddressForm onSubmit={onSubmit} isPending={isPending} />
+    </ProfilePageCompetent>
+  );
 };
 
 export default AddNewAddress;

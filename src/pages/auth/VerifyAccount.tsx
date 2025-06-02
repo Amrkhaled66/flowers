@@ -1,7 +1,10 @@
 import OtpForm from "src/components/ui/register/otp/OtpForm";
+import Button from "src/components/ui/Button";
+
 import { useNavigate } from "react-router";
 import { useState, useEffect } from "react";
 import { useAuth } from "src/context/authCtx";
+import { useTranslation } from "react-i18next";
 
 import {
   useRequestOtp,
@@ -16,6 +19,7 @@ const VerifyAccount = () => {
     useRequestOtp();
   const { mutate: verifyOtp, isPending: isVerifyOtpPending } = useVerifyOtp();
   const { authData } = useAuth();
+  const { t: forgetPasswordTranslation } = useTranslation("forgetPassword");
 
   const handleChangePhone = () => {
     navigate("/profile/mydata");
@@ -57,12 +61,17 @@ const VerifyAccount = () => {
       handleChangePhone={handleChangePhone}
       setOtp={setOtp}
       error={error}
-      handleSubmit={handleSubmit}
       onResend={handleResend}
-      submitLoading={isVerifyOtpPending}
       isSendOtpPending={isRequestOtpPending}
       phone={authData.user?.phone_number || ""}
-    />
+    >
+      <Button
+        loading={isVerifyOtpPending}
+        text={forgetPasswordTranslation("submitOtp.continue")}
+        onClick={handleSubmit}
+        className="bg-main hover:bg-main-300 animate w-full rounded-xl !py-3 text-base leading-7 font-bold text-white"
+      />
+    </OtpForm>
   );
 };
 

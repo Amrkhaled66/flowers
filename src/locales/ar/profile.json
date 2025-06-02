@@ -10,6 +10,11 @@
             "save":"حفظ التغييرات"
         }
     },
+    "changPhoneNumber":{
+        "title":"تحديث رقم الهاتف",
+        "subTitle":"ادخل رقم الهاتف الجديد",
+        "newPhone":"رقم الهاتف الجديد"
+    },
     "changePassword": {
         "currentPass": "كلمة المرور الحالية",
         "newPass": "كلمة المرور الجديدة",

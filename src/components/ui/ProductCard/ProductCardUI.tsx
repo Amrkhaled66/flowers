@@ -6,7 +6,6 @@ import { useAddToCart, useUpdateCart } from "src/hooks/cart/useCartMutations";
 import { useCart } from "src/context/user/cartCtx";
 import { useTranslation } from "react-i18next";
 import { useAuthGuard } from "src/hooks/shared/useAuthGuard";
-import Alert from "../Alert";
 
 import Product from "src/types/product";
 import priceFormatter from "src/utils/priceFormatter";

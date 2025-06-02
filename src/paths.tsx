@@ -28,6 +28,7 @@ import {
 
   // Profile
   MyData,
+  ChangePhoneNumber,
   ChangePassword,
   Occasions,
   Address,
@@ -112,6 +113,11 @@ const router = createBrowserRouter([
             path: "mydata",
             element: <MyData />,
             handle: { breadcrumb: "My Data" },
+          },
+          {
+            path: "changePhoneNumber",
+            element: <ChangePhoneNumber />,
+            handle: { breadcrumb: "Change Phone Number" },
           },
           {
             path: "editProfile",

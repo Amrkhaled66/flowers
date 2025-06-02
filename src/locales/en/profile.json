@@ -10,6 +10,11 @@
             "save":"Save Changes"
         }
     },
+    "changPhoneNumber":{
+        "title":"Update Phone Number",
+        "subTitle":"Enter new phone number",
+        "newPhone":"New Phone Number"
+    },
     "changePassword": {
         "currentPass": "Current Password",
         "newPass": "New Password",
