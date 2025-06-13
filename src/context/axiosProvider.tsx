@@ -50,22 +50,12 @@ export const AxiosProvider = ({ children }: { children: React.ReactNode }) => {
     const responseInterceptor = axiosPrivate.interceptors.response.use(
       (response) => response,
       async (error) => {
-        // if (error?.response?.status === 403 && !isNotVerified.current) {
-        //   isNotVerified.current = true;
-        //   await Alert({
-        //     title: t("verificationOtp.title"),
-        //     text: t("verificationOtp.text"),
-        //     icon: "warning",
-        //     confirmButtonText: t("verificationOtp.btnText"),
-        //   });
-
-        //   navigate("/verify-account", { replace: true });
-        // }
         if (error?.response?.status === 401 && isAuthenticated) {
           logout();
           navigate("/signin", { replace: true });
           EndedSessionModal();
         }
+        return Promise.reject(error);
       },
     );
 

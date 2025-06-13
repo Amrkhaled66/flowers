@@ -107,5 +107,5 @@ export {
   useDeleteCart,
   useAddToCart,
   useApplyCoupon,
-  useClearCart
+  useClearCart,
 };

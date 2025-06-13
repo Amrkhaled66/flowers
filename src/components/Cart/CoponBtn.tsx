@@ -17,16 +17,19 @@ const CoponBtn = () => {
   const { updateOrder } = useOrder();
   const handleSubmit = () => {
     mutate(coponCode, {
-      onSuccess: (data) => {
-        applyCoupon(data.data.code, data.data.discount);
+      onSuccess: (data: any) => {
+        if (!data) return
+        applyCoupon(data.code, data.discount);
         toast("Coupon applied successfully", { type: "success" });
         updateOrder({
           coupon: data.data.discount,
         });
         setError("");
       },
-      onError: (err: any) => {
-        setError(err.response.data.message);
+      onError: (err:any) => {
+        setError(
+          err.response.data.errors.code ||"Coupon not found",
+        );
       },
     });
   };
@@ -35,6 +38,7 @@ const CoponBtn = () => {
     removeCoupon();
     setCoponCode("");
   };
+
   return (
     <div>
       <div
@@ -51,7 +55,6 @@ const CoponBtn = () => {
           onChange={(e) => setCoponCode(e.target.value)}
           disabled={coupon ? true : false}
         />
-        {error && <span className="text-red text-sm">{error}</span>}
         <Button
           onClick={coupon ? handleRemoveCode : handleSubmit}
           loading={isPending}

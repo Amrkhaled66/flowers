@@ -31,6 +31,7 @@ const clearCart = async () => {
 
 const applyCoupon = async (couponCode: string) => {
   const { data } = await axiosPrivate.get(`/api/coupons?code=${couponCode}`);
+  console.log(data)
   return data;
 };
 
