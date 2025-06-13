@@ -14,7 +14,6 @@ const register = async (credentials: { email: string; password: string }) => {
 
 const logout = async () => {
   const { data } = await axiosPrivate.post("/api/logout");
-  console.log("asdfasdf");
   return data;
 };
 
@@ -30,4 +29,9 @@ const verifyOtp = async (otp: string) => {
   return data;
 };
 
-export { login, register, logout, requestOtp, verifyOtp };
+const deactivateAccount = async () => {
+  const { data } = await axiosPrivate.post("/api/profile/deactivate");
+  return data;
+};
+
+export { login, register, logout, requestOtp, verifyOtp ,deactivateAccount};

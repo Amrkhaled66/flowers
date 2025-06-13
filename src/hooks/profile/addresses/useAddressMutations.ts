@@ -11,7 +11,7 @@ export const useGetAddresses = () =>
   useQuery({
     queryKey: ["addresses"],
     queryFn: () => getAddresses(),
-    retry: 2,
+    enabled: true,
   });
 
 export const useAddAddress = () =>
@@ -24,9 +24,8 @@ export const useDeleteAddress = () =>
     mutationFn: (id: number) => deleteAddress(id),
   });
 
-
 export const useUpdateAddress = () =>
   useMutation({
     mutationFn: ({ address, id }: { address: any; id: number }) =>
       updateAddress(address, id),
-});
+  });

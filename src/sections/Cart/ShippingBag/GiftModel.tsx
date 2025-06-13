@@ -14,7 +14,9 @@ const GiftModel = ({
   const handleReview = () => {
     setIsReview(true);
   };
+
   const returnToForm = () => setIsReview(false);
+  
   return (
     <Model isOpen={isOpen} onClose={onCloseFun}>
       {isReview ? (

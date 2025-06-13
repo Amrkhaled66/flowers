@@ -1,7 +1,6 @@
-import { useState, ChangeEvent, FormEvent } from "react";
+import { useState, ChangeEvent } from "react";
 import Address from "src/types/UserInfo/Address";
 import { validatePhoneNumber } from "src/utils/register";
-
 import { useTranslation } from "react-i18next";
 
 interface FormErrors {
@@ -18,15 +17,16 @@ const initialFormErrors: FormErrors = {
   address: "",
 };
 
-const useAddressForm = (
-  initialData: Address,
-  onSubmit: (formData: Address) => void,
-) => {
+export const useAddressFormBase = (initialData: Address) => {
   const [formData, setFormData] = useState<Address>(initialData);
   const [formErrors, setFormErrors] = useState<FormErrors>(initialFormErrors);
+
   const { t } = useTranslation("errors");
   const { t: tProfile } = useTranslation("profile");
-  const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
+
+  const handleInputChange = (
+    e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
+  ) => {
     const { name, value } = e.target;
     setFormData((prev) => ({ ...prev, [name]: value }));
 
@@ -43,7 +43,7 @@ const useAddressForm = (
     setFormData((prev) => ({ ...prev, address: location }));
   };
 
-  const validateForm = (): boolean => {
+  const validateBaseForm = (): boolean => {
     const errors = { ...initialFormErrors };
     let isValid = true;
 
@@ -65,6 +65,11 @@ const useAddressForm = (
       isValid = false;
     }
 
+    if (!formData.area) {
+      errors.area = tProfile("address.formErrors.area.required");
+      isValid = false;
+    }
+
     if (!formData.address.trim()) {
       errors.address = tProfile("address.formErrors.address.required");
       isValid = false;
@@ -77,20 +82,16 @@ const useAddressForm = (
     return isValid;
   };
 
-  const handleSubmit = async (e: FormEvent) => {
-    e.preventDefault();
-    if (!validateForm()) return;
-    onSubmit(formData);
-  };
-
   return {
     formData,
+    setFormData,
     formErrors,
+    setFormErrors,
     handleInputChange,
     handleLocationSelection,
     handleSelectArea,
-    handleSubmit,
+    validateBaseForm,
   };
 };
 
-export default useAddressForm;
+export const useAddressForm = (initialData: Address) => useAddressFormBase(initialData);

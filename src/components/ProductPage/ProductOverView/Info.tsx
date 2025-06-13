@@ -1,6 +1,6 @@
 import React from "react";
 
-import QuantitySelector from "src/components/ui/QuantitySelector";
+import QuantitySelector from "src/components/ui/Selectors/QuantitySelector";
 import Button from "src/components/ui/Button";
 import NavigationBar from "src/sections/ProductPage/NavigationBar";
 import Skeleton from "react-loading-skeleton";

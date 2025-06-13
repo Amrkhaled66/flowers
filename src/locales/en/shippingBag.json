@@ -15,7 +15,8 @@
             "messagePlaceholder":"Write your message here",
             "linkPlaceHolder":"Paste a Link to a Song or Video",
             "review":"Review",
-            "save":"Save & Continue"
+            "save":"Save & Continue",
+            "back":"Go Back"
         }
     },
     "cartTable":{

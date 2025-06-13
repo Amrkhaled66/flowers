@@ -40,8 +40,8 @@ const BalloraLoader = () => {
   }, []);
 
   return (
-    <div className="loader-container fixed inset-0 w-screen h-screen z-[1000000000] m-auto rounded-2xl backdrop-blur-sm">
-      <div className="flower-loader">
+    <div className="loader-container fixed inset-0 w-screen h-screen z-[1000000000] m-auto rounded-2xl backdrop-brightness-50">
+      <div className="bg-white  rounded-xl flower-loader">
         {[...Array(8)].map((_, index) => (
           <div className="petal" key={index}></div>
         ))}

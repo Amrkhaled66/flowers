@@ -7,12 +7,13 @@
     "total": "Total",
     "buttonText": "Proceed to Checkout"
   },
-  "copon":{
-    "placeholder":"Enter Coupon Code",
-    "apply":"Apply"
+  "copon": {
+    "placeholder": "Enter Coupon Code",
+    "apply": "Apply"
   },
-  "payment":{
-    "title":"Payment Options" ,
-    "subTitle":"All transactions are secure and encrypted"
-  }
+  "payment": {
+    "title": "Payment Options",
+    "subTitle": "All transactions are secure and encrypted"
+  },
+  "pointsNotice": "You have <strong>{{points}}</strong> points = <strong>{{price}}</strong> will be deducted"
 }

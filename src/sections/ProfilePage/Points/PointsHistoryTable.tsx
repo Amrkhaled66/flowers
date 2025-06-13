@@ -17,7 +17,6 @@ const PointsHistoryTable = () => {
   const pageCount = Math.ceil(items.length / 10);
 
   const handlePaginate = ({ selected }: { selected: number }) => {
-    console.log(selected)
     // fetch data from the backend with the selected page number
   };
 

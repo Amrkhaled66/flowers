@@ -3,7 +3,11 @@ import ProfilePageLayout from "./layouts/ProfilePageLayout";
 import CartLayout from "./layouts/CartLayout";
 import CartSubLayout from "./layouts/CartSubLayout";
 
-import { OnlyGuestUser, ProtectedRoute } from "./middleware";
+import { OrderProvider } from "./context/orderCtx";
+import MessageGiftProvider from "./context/MessageGiftCtx";
+import { DeliveryTimeCtxProvider } from "./context/DeliveryTimeCtx";
+
+import { OnlyGuestUser, ProtectedRoute, VerifiedAccount, NotVerifiedAccount } from "./middleware";
 
 import {
   HomePage,
@@ -44,7 +48,11 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <MainLayout />,
+    element:
+      <NotVerifiedAccount>
+        <MainLayout />
+      </NotVerifiedAccount>
+    ,
     children: [
       { index: true, element: <HomePage /> },
       { path: "product/:id", element: <ProductPage /> },
@@ -70,7 +78,9 @@ const router = createBrowserRouter([
         path: "verify-account",
         element: (
           <ProtectedRoute>
-            <VerifyAccount />
+            <VerifiedAccount>
+              <VerifyAccount />
+            </VerifiedAccount>
           </ProtectedRoute>
         ),
       },
@@ -170,11 +180,22 @@ const router = createBrowserRouter([
       // cart
       {
         path: "cart",
-        element: <CartLayout />,
+
+        element: (
+          <OrderProvider>
+            <DeliveryTimeCtxProvider>
+              <CartLayout />
+            </DeliveryTimeCtxProvider>
+          </OrderProvider>
+        ),
         children: [
           {
             index: true,
-            element: <ShippingBag />,
+            element: (
+              <MessageGiftProvider>
+                <ShippingBag />
+              </MessageGiftProvider>
+            ),
           },
           {
             element: <CartSubLayout />,

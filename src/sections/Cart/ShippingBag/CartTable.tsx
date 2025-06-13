@@ -1,9 +1,11 @@
 import CartTableCard from "src/components/Cart/ShippingBag/CartTable/CartTableCard";
 import { useCart } from "src/context/user/cartCtx";
 import { useTranslation } from "react-i18next";
+import { useClearCart } from "src/hooks/cart/useCartMutations";
 const CartTable = () => {
   const { cart } = useCart();
   const { t } = useTranslation("shippingBag");
+  const { mutate: clearCart, isPending } = useClearCart();
   return (
     <div className="hidden h-auto lg:block lg:w-[60%]">
       <div className="bg-main-50 w-full overflow-hidden rounded-xl p-4">
@@ -26,7 +28,7 @@ const CartTable = () => {
           </tbody>
           <tfoot className="">
             <div className="flex items-center justify-end gap-x-6 pt-4">
-              <button className="font-bold">{t("cartTable.clearCart")}</button>
+              <button onClick={() => clearCart()} className={`${isPending && "pointer-events-none animate-pulse"} font-bold`}>{t("cartTable.clearCart")}</button>
             </div>
           </tfoot>
         </table>

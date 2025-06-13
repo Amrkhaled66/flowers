@@ -1,5 +1,5 @@
 import { Icon } from "@iconify/react/dist/iconify.js";
-import QuantitySelector from "src/components/ui/QuantitySelector";
+import QuantitySelector from "src/components/ui/Selectors/QuantitySelector";
 
 import priceFormatter from "src/utils/priceFormatter";
 import { getLocalizedName } from "src/utils/getLocalizedName";
@@ -23,7 +23,7 @@ const CartTableCard = ({ product }: { product: CartItem }) => {
         <div className="h-[100px] w-[100px] overflow-hidden rounded-xl">
           <img
             className="size-full object-cover"
-            src={productInfo.images[0]}
+            src={productInfo.images && productInfo.images[0]}
             alt="title"
           />
         </div>

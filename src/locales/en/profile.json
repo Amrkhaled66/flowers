@@ -56,6 +56,12 @@
             "address": {
                 "required": "Address is required",
                 "minLength": "Address must be at least 5 characters"
+            },
+            "area":{
+                "required":"Area is required"
+            },
+            "deliveryTime":{
+                "required":"Delivery time is required"
             }
         },
         "deletionModel": {
@@ -103,6 +109,14 @@
     "favorite": {
         "empty": "Choose your favorite flowers",
         "cta": "Pick your favorite one"
+    },
+    "deleteAccount":{
+      "model":{
+        "title":"Delete Account",
+        "message":"Are you sure you want to delete your account?",
+        "confirmText":"Yes, Delete Account",
+        "cancelText":"Cancel"
+      }  
     },
     "Edit": "edit"
 }

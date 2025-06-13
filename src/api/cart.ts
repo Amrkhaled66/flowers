@@ -30,7 +30,7 @@ const clearCart = async () => {
 };
 
 const applyCoupon = async (couponCode: string) => {
-  const { data } = await axiosPrivate.post(`/api/coupons?code=${couponCode}`);
+  const { data } = await axiosPrivate.get(`/api/coupons?code=${couponCode}`);
   return data;
 };
 

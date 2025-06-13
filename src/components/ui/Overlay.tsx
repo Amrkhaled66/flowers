@@ -19,7 +19,7 @@ const Overlay = ({
       style={{
         backgroundColor: bgColor,
       }}
-      className={`fixed top-0 right-0 bottom-0 left-0 z-70 opacity-0 backdrop-blur-xs transition-all duration-300 ease-in-out ${show ? "opacity-100" : "pointer-events-none"}`}
+      className={`fixed top-0 right-0 bottom-0 left-0 z-[70] opacity-0 backdrop-blur-xs transition-all duration-300 ease-in-out ${show ? "opacity-100" : "pointer-events-none"}`}
       data-testid="overlay"
     ></div>
   );

@@ -26,7 +26,7 @@ const PaymentWay = ({
               name="payment"
               id=""
             />
-            <img src={icon} alt="" className="size-full" />
+            <img src={icon} alt={name} className="size-full" />
           </div>
           <div className="font-medium">{name}</div>
         </div>

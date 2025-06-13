@@ -29,7 +29,7 @@ const OtpForm = ({
 
   return (
     <div
-      className={clsx("flex items-center justify-center", {
+      className={clsx("flex items-center  justify-center", {
         "py-10": !isChangePhoneNumberForm,
       })}
     >
@@ -37,7 +37,7 @@ const OtpForm = ({
         className={clsx(
           "border-stroke inline-flex flex-col items-center justify-start gap-5 rounded-xl bg-zinc-100 p-4 lg:p-8",
           {
-            "border lg:w-[646px]": !isChangePhoneNumberForm,
+            "border lg:w-[646px] w-[90%]": !isChangePhoneNumberForm,
           },
           {
             "w-full": isChangePhoneNumberForm,

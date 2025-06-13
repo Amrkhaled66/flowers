@@ -2,6 +2,7 @@ import i18n from "i18next";
 import { initReactI18next } from "react-i18next";
 import LanguageDetector from "i18next-browser-languagedetector";
 
+
 import {
   HomeEn,
   LayoutEn,
@@ -15,7 +16,8 @@ import {
   successOrderEn,
   trackOrderEn,
   shippingBagEn,
-  sharedCartEn
+  sharedCartEn,
+  DeliveryInfoEn
 } from "src/locales/en";
 
 import {
@@ -31,7 +33,8 @@ import {
   successOrderAr,
   trackOrderAr,
   shippingBagAr,
-  sharedCartAr
+  sharedCartAr,
+  DeliveryInfoAr
 } from "src/locales/ar";
 
 
@@ -49,7 +52,8 @@ const resources = {
     successOrder: successOrderEn,
     trackOrder: trackOrderEn,
     shippingBag: shippingBagEn,
-    sharedCart: sharedCartEn
+    sharedCart: sharedCartEn,
+    deliveryInfo: DeliveryInfoEn
   },
   ar: {
     home: HomeAr,
@@ -64,7 +68,8 @@ const resources = {
     successOrder: successOrderAr,
     trackOrder: trackOrderAr,
     shippingBag: shippingBagAr,
-    sharedCart: sharedCartAr
+    sharedCart: sharedCartAr,
+    deliveryInfo: DeliveryInfoAr
   },
 };
 

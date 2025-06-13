@@ -4,6 +4,7 @@ import {
   deleteCart,
   addToCart,
   applyCoupon,
+  clearCart,
 } from "src/api/cart";
 import { useMutation, useQuery } from "@tanstack/react-query";
 import { useAuth } from "src/context/authCtx";
@@ -13,9 +14,9 @@ import { toast } from "react-toastify";
 import useDebounce from "../shared/useDebounce";
 
 const useGetCart = () => {
-  const { isAuthenticated } = useAuth();
+  const { isVerified } = useAuth();
   const { storeCart } = useCart();
-  
+  console.log(isVerified);
   return useQuery({
     queryKey: ["cart"],
     queryFn: async () => {
@@ -23,7 +24,7 @@ const useGetCart = () => {
       storeCart(data.data);
       return data;
     },
-    enabled: isAuthenticated,
+    enabled: isVerified,
   });
 };
 const useUpdateCart = () => {
@@ -78,6 +79,22 @@ const useAddToCart = () =>
     },
   });
 
+const useClearCart = () => {
+  return useMutation({
+    mutationFn: () => clearCart(),
+    onError: (err: any) => {
+      toast(err.response.data.message, {
+        type: "error",
+      });
+    },
+    onSuccess: () => {
+      toast("Cart cleared", {
+        type: "success",
+      });
+    },
+  });
+};
+
 const useApplyCoupon = () => {
   return useMutation({
     mutationFn: (couponCode: string) => applyCoupon(couponCode),
@@ -90,4 +107,5 @@ export {
   useDeleteCart,
   useAddToCart,
   useApplyCoupon,
+  useClearCart
 };

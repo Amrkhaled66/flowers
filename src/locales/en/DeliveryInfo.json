@@ -1,0 +1,18 @@
+{
+    "time": {
+        "title": "Delivery Time",
+        "model": {
+            "title": "Delivery Time",
+            "deliveryDate": "Delivery Date",
+            "deliveryTime": "Delivery Time",
+            "confirm": "Confirm",
+            "cancel": "Cancel",
+            "today": "Today",
+            "tomorrow": "Tomorrow"
+        }
+    },
+    "privacy": {
+        "toggleText": "Keep my identity secret",
+        "description": "By checking this box, we will not share any of your personal details with the recipient - even if they call to ask."
+    }
+}

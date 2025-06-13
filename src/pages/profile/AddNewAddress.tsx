@@ -8,7 +8,7 @@ import { useAddAddress } from "src/hooks/profile/addresses/useAddressMutations";
 
 const AddNewAddress = () => {
   const navigate = useNavigate();
-  const { mutate, isPending } = useAddAddress();
+  const { mutate, isPending} = useAddAddress();
   const onSubmit = (formData: Address) => {
     mutate(
       { ...formData, title: "Delivery Request" },

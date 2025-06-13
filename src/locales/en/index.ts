@@ -11,3 +11,4 @@ export {default as trackOrderEn} from "./trackOrder.json";
 export {default as shippingBagEn} from "./shippingBag.json";
 export {default as sharedCartEn} from "./sharedCart.json";
 export {default as LayoutEn} from "./Layout.json";
+export {default as DeliveryInfoEn} from "./DeliveryInfo.json";

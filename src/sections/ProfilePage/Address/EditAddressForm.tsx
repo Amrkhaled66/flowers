@@ -2,12 +2,15 @@ import Address from "src/types/UserInfo/Address";
 import AddressForm from "./AddressForm";
 import { useUpdateAddress } from "src/hooks/profile/addresses/useAddressMutations";
 import Alert from "src/components/ui/Alert";
+import ProfilePageCompetent from "src/components/ProfilePage/ProfilePageCompetent";
 const EditAddressForm = ({
   editedAddress,
   onClose,
+  refetch,
 }: {
   editedAddress: Address;
   onClose: () => void;
+  refetch: () => void;
 }) => {
   const { mutate, isPending } = useUpdateAddress();
 
@@ -22,6 +25,7 @@ const EditAddressForm = ({
             icon: "success",
             confirmButtonText: "Okay",
           }).then(() => {
+            refetch();
             onClose();
           });
         },
@@ -29,11 +33,13 @@ const EditAddressForm = ({
     );
   };
   return (
-    <AddressForm
-      FormData={editedAddress}
-      onSubmit={onSubmit}
-      isPending={isPending}
-    />
+    <ProfilePageCompetent>
+      <AddressForm
+        FormData={editedAddress}
+        onSubmit={onSubmit}
+        isPending={isPending}
+      />
+    </ProfilePageCompetent>
   );
 };
 

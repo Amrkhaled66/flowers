@@ -7,6 +7,7 @@ import LogOutButton from "src/components/ui/register/LogOutButton";
 
 import { useTranslation } from "react-i18next";
 import { useAuth } from "src/context/authCtx";
+
 const ProfileMenuButton = () => {
   const { t, i18n: { language } } = useTranslation("layout");
 
@@ -72,7 +73,7 @@ const ProfileMenuButton = () => {
               </span>
             </div>
             <div className="bg-main-100 rounded-xl px-6 py-1 font-medium">
-              0
+              {user?.points}
             </div>
           </div>
 

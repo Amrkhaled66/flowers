@@ -5,8 +5,7 @@
     "deliveryCharges": "رسوم التوصيل",
     "deliveryNote": "يرجى ملاحظة أن بعض المناطق والتوصيل السريع قد تتطلب رسوم توصيل إضافية",
     "total": "المجموع الكلي",
-    "buttonText": "الانتقال إلى الدفع"
-  },
+    "buttonText": "الانتقال إلى الدفع" },
   "copon":{
      "placeholder":"ادخل رمز الكوبون",
      "apply":"تطبيق"
@@ -14,5 +13,6 @@
   "payment":{
     "title":"خيارات الدفع",
     "subTitle":"جميع المعاملات امنة ومشفرة"
-  }
+  },
+  "pointsNotice": "لديك <strong>{{points}}</strong> نقاط = <strong>{{price}}</strong> سوف يتم خصمها"
 }

@@ -1,7 +1,9 @@
-import { useEffect } from "react";
+import { ReactNode, use, useEffect } from "react";
 import { createPortal } from "react-dom";
+import { motion, AnimatePresence } from "framer-motion";
+import useScrollLock from "src/hooks/ui/useScrollLock";
 import Overlay from "src/components/ui/Overlay";
-import { ReactNode } from "react";
+
 const Model = ({
   isOpen,
   onClose,
@@ -11,14 +13,8 @@ const Model = ({
   onClose: () => void;
   children: ReactNode;
 }) => {
-  useEffect(() => {
-    if (isOpen) {
-      document.body.style.overflow = "hidden";
-    } else {
-      document.body.style.overflow = "unset";
-    }
-  }, [isOpen]);
-  // Close on ESC key press
+  useScrollLock(isOpen);
+  
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
       if (e.key === "Escape" && isOpen) {
@@ -26,22 +22,31 @@ const Model = ({
       }
     };
     window.addEventListener("keydown", handleKeyDown);
-
     return () => window.removeEventListener("keydown", handleKeyDown);
   }, [isOpen, onClose]);
 
-  if (!isOpen) return null;
 
   return createPortal(
-    <div className="relative z-[80] flex items-center justify-center">
-      <div className="fixed top-0 left-0 h-full w-full" onClick={onClose}>
-        <Overlay />
-      </div>
-      <div className="fixed  top-1/2 left-1/2 w-full lg:w-fit -translate-x-1/2 -translate-y-1/2">
-        {children}
-      </div>
-    </div>,
+    <AnimatePresence>
+      {isOpen && (
+        <>
+          <motion.div
+            initial={{ y: -100, opacity: 0 }}
+            animate={{ y: 0, opacity: 1 }}
+            exit={{ y: -150, opacity: 0 }}
+            transition={{ duration: 0.3 }}
+            className="fixed top-1/2 left-1/2 z-[90] max-h-[85vh] w-full max-w-lg -translate-x-1/2 -translate-y-1/2"
+          >
+            {children}
+          </motion.div>
+          {/* <div className="absolute inset-0"> */}
+          <Overlay onClick={onClose} show={isOpen} />
+          {/* </div> */}
+        </>
+      )}
+    </AnimatePresence>,
     document.body,
   );
 };
+
 export default Model;

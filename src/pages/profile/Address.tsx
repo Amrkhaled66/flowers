@@ -9,14 +9,23 @@ import { Link } from "react-router-dom";
 
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
+import { useGetAddresses } from "src/hooks/profile/addresses/useAddressMutations";
+import { useEffect } from "react";
+
 const Address = () => {
   const [editedAddress, setEditedAddress] = useState<AddressType | null>(null);
+  const { data, isLoading, isError, refetch } = useGetAddresses();
   const handleEditAddress = (address: AddressType) => setEditedAddress(address);
   const { t } = useTranslation("profile");
+
+  useEffect(() => {
+    refetch();
+  }, []);
 
   if (editedAddress) {
     return (
       <EditAddressForm
+      refetch={refetch}
         editedAddress={editedAddress}
         onClose={() => setEditedAddress(null)}
       />
@@ -35,7 +44,13 @@ const Address = () => {
             ></Button>
           </div>
         </Link>
-        <AddressCards onEditAddress={handleEditAddress} />
+        <AddressCards
+          refetch={refetch}
+          isLoading={isLoading}
+          isError={isError}
+          data={isLoading ? null : data.data}
+          onEditAddress={handleEditAddress}
+        />
       </div>
     </ProfilePageCompetent>
   );

@@ -24,8 +24,9 @@ const VerifyAccount = () => {
   const handleChangePhone = () => {
     navigate("/profile/mydata");
   };
+
   const handleResend = () => {
-    requestOtp(undefined,{
+    requestOtp(undefined, {
       onError: (err: any) => {
         setError(err.response.data.message);
       }
@@ -42,6 +43,9 @@ const VerifyAccount = () => {
           icon: "success",
           confirmButtonText: "Okay",
         }).then(() => {
+          if (authData.user) {
+            authData.user.verified = 1;
+          }
           navigate("/");
         });
       },

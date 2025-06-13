@@ -1,18 +1,23 @@
 import AddressCard from "src/components/ProfilePage/Address/AddressCard";
 import Address from "src/types/UserInfo/Address";
 import AddressCardSk from "src/components/ui/Skeletons/InfoCardSkeleton.tsx";
-import { useGetAddresses } from "src/hooks/profile/addresses/useAddressMutations";
 
 const AddressCards = ({
   onEditAddress,
+  data,
+  isLoading,
+  refetch,
+  isError,
 }: {
   onEditAddress: (address: Address) => void;
+  data: Address[] | null;
+  isLoading: boolean;
+  refetch: () => void;
+  isError: boolean;
 }) => {
-  const { data, isLoading, isError, refetch } = useGetAddresses();
-
   if (isError) return;
 
-  if (data && data.data.length === 0) return;
+  if (data && data.length === 0) return;
   return (
     <div className="flex h-full w-full flex-col space-y-4 sm:space-y-5 lg:space-y-5">
       {isLoading ? (
@@ -21,7 +26,8 @@ const AddressCards = ({
           <AddressCardSk />
         </>
       ) : (
-        data.data.map((address: Address) => (
+        data &&
+        data.map((address: Address) => (
           <AddressCard
             refetch={() => refetch()}
             key={address.id}

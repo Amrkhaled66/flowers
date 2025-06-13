@@ -3,7 +3,6 @@ import "./App.css";
 import Paths from "./paths";
 // providers
 import NavBarToggleBtnsProvider from "./context/NavBarToggleBtns";
-import MessageGiftProvider from "./context/MessageGiftCtx";
 import OrderSummaryProvider from "./context/OrderSummaryContext";
 import ResetProvider from "./context/resetCtx";
 import AuthProvider from "./context/authCtx";
@@ -52,12 +51,10 @@ function App() {
           <AuthProvider>
             <NavBarToggleBtnsProvider>
               <OrderSummaryProvider>
-                <MessageGiftProvider>
                   <ResetProvider>
                     <ToastContainer />
                     <Paths />
                   </ResetProvider>
-                </MessageGiftProvider>
               </OrderSummaryProvider>
             </NavBarToggleBtnsProvider>
           </AuthProvider>

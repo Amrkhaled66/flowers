@@ -1,18 +1,15 @@
 import { createContext, useContext, useState, ReactNode } from "react";
 import {
-  setUser,
+  // setUser,
   setToken,
   clearToken,
-  clearUser,
+  // clearUser,
   getToken,
-  getUser,
 } from "src/services/authStorage";
 import type User from "src/types/auth/User";
-
 type AuthData = {
   user: User | null;
   token: string | null;
-  isVerified?: boolean;
 };
 
 type AuthContextType = {
@@ -21,48 +18,46 @@ type AuthContextType = {
   logout: () => void;
   isAuthenticated: boolean;
   updateUser: (user: User) => void;
-  ToggleUserVerification: () => void;
+  isVerified: boolean
 };
 
 const AuthContext = createContext<AuthContextType>({
   authData: { user: null, token: null },
-  login: () => {},
-  logout: () => {},
+  login: () => { },
+  logout: () => { },
   isAuthenticated: false,
-  updateUser: () => {},
-  ToggleUserVerification: () => {},
+  updateUser: () => { },
+  isVerified: false
 });
 
 export default function AuthProvider({ children }: { children: ReactNode }) {
   const [authData, setAuthData] = useState<AuthData>(() => {
-    const user = getUser();
+    // const user = getUser();
     const token = getToken();
     return {
-      user,
+      user: null,
       token,
-      isVerified: true,
     };
   });
-
+  console.log(authData)
   const updateUser = (user: User) => {
     setAuthData((prev) => ({ ...prev, user }));
-    setUser(user);
+    // setUser(user);
   };
 
   const login = (user: User, token: string) => {
     setAuthData({ user, token });
     setToken(token);
-    setUser(user);
+    // setUser(user);
   };
   const logout = () => {
     setAuthData({ user: null, token: null });
     clearToken();
-    clearUser();
+    // clearUser();
   };
-  const ToggleUserVerification = () => {
-    setAuthData((prev) => ({ ...prev, isVerified: !prev.isVerified }));
-  };
+  console.log(authData.user)
 
+  const isVerified = authData.user?.verified ? true : false
   const isAuthenticated = !!authData.token;
 
   const contextValue = {
@@ -71,7 +66,7 @@ export default function AuthProvider({ children }: { children: ReactNode }) {
     logout,
     isAuthenticated,
     updateUser,
-    ToggleUserVerification,
+    isVerified
   };
 
   return (

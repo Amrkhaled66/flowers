@@ -5,7 +5,7 @@ import Alert from "src/components/ui/Alert";
 import { axiosPrivate } from "src/api/axios";
 import { useAuth } from "src/context/authCtx";
 import { useLocation } from "react-router";
-import { useRef, useEffect } from "react";
+// import { useRef, useEffect } from "react";
 import { useTranslation } from "react-i18next";
 
 const AxiosContext = createContext(axiosPrivate);
@@ -13,20 +13,19 @@ const AxiosContext = createContext(axiosPrivate);
 export const AxiosProvider = ({ children }: { children: React.ReactNode }) => {
   const navigate = useNavigate();
   const { logout, isAuthenticated } = useAuth();
-  const location = useLocation();
-  const isNotVerified = useRef<boolean>(false);
+  // const location = useLocation();
   const { t } = useTranslation("shared");
 
-  useEffect(() => {
-    if (
-      location.pathname === "/verify-account" ||
-      location.pathname === "/signup"
-    ) {
-      isNotVerified.current = true;
-    } else {
-      isNotVerified.current = false;
-    }
-  }, [location.pathname]);
+  // useEffect(() => {
+  //   if (
+  //     location.pathname === "/verify-account" ||
+  //     location.pathname === "/signup"
+  //   ) {
+  //     isNotVerified.current = true;
+  //   } else {
+  //     isNotVerified.current = false;
+  //   }
+  // }, [location.pathname]);
 
   const EndedSessionModal = () =>
     Alert({
@@ -51,17 +50,17 @@ export const AxiosProvider = ({ children }: { children: React.ReactNode }) => {
     const responseInterceptor = axiosPrivate.interceptors.response.use(
       (response) => response,
       async (error) => {
-        if (error?.response?.status === 403 && !isNotVerified.current) {
-          isNotVerified.current = true;
-          await Alert({
-            title: t("verificationOtp.title"),
-            text: t("verificationOtp.text"),
-            icon: "warning",
-            confirmButtonText: t("verificationOtp.btnText"),
-          });
+        // if (error?.response?.status === 403 && !isNotVerified.current) {
+        //   isNotVerified.current = true;
+        //   await Alert({
+        //     title: t("verificationOtp.title"),
+        //     text: t("verificationOtp.text"),
+        //     icon: "warning",
+        //     confirmButtonText: t("verificationOtp.btnText"),
+        //   });
 
-          navigate("/verify-account", { replace: true });
-        }
+        //   navigate("/verify-account", { replace: true });
+        // }
         if (error?.response?.status === 401 && isAuthenticated) {
           logout();
           navigate("/signin", { replace: true });

@@ -1,5 +1,5 @@
 import { Icon } from "@iconify/react/dist/iconify.js";
-import QuantitySelector from "src/components/ui/QuantitySelector";
+import QuantitySelector from "src/components/ui/Selectors/QuantitySelector";
 import { CartItem } from "src/types/cart";
 
 import priceFormatter from "src/utils/priceFormatter";
@@ -19,14 +19,14 @@ const CartMenuCard = ({
   const { mutate: deleteCart } = useDeleteCart();
 
   const handleDelete = () => deleteCart(product.id);
-
+  console.log(product)
   return (
     <div
       className={` ${isCartPage && "bg-main-50 p-3 lg:p-4"} border-b-stroke text-text-main flex gap-x-3 rounded-xl border-b pb-4`}
     >
-      <div className="h-20 w-20 overflow-hidden rounded-xl bg-red-800 lg:h-25 lg:w-25">
+      <div className="h-20 w-20 overflow-hidden rounded-xl  lg:h-25 lg:w-25">
         <img
-          src={cartProduct.images && cartProduct.images[0]}
+          src={cartProduct.firstImage}
           alt={cartProduct.nameEn}
           className="size-full object-cover object-center"
         />

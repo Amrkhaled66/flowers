@@ -9,10 +9,12 @@ import DeleteAccount from "src/components/ui/register/DeleteAccount";
 
 import { getLocalizedName } from "src/utils/getLocalizedName";
 
+import { useAuth } from "src/context/authCtx";
 import { useTranslation } from "react-i18next";
 const ProfileMenuButtonMobile = () => {
   const [open, setOpen] = useState(false);
   const { t } = useTranslation("profile");
+  const { authData: { user } } = useAuth();
 
   return (
     <div className="block lg:hidden">
@@ -80,7 +82,7 @@ const ProfileMenuButtonMobile = () => {
                   </span>
                 </div>
                 <div className="bg-main-100 rounded-xl px-6 py-1 font-medium">
-                  0
+                  {user?.points}
                 </div>
               </div>
             </Link>

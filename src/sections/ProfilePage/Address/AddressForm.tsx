@@ -1,4 +1,4 @@
-import useAddressForm from "src/hooks/profile/addresses/useAddressForm";
+import { useAddressForm } from "src/hooks/profile/addresses/useAddressForm";
 import FormInput from "src/components/ui/register/FormInput";
 import Button from "src/components/ui/Button";
 import MapButton from "src/components/ui/AddressForm/MapModel/MapButton";
@@ -34,8 +34,14 @@ const AddressForm = ({
     handleInputChange,
     handleLocationSelection,
     handleSelectArea,
-    handleSubmit,
-  } = useAddressForm(initialData, onSubmit);
+    validateBaseForm,
+  } = useAddressForm(initialData);
+
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    if (!validateBaseForm()) return;
+    onSubmit(formData);
+  };
 
   return (
     <form className="w-full space-y-4 lg:p-4" onSubmit={handleSubmit}>
@@ -60,7 +66,11 @@ const AddressForm = ({
 
       <MapButton onLocationSelected={handleLocationSelection} />
 
-      <AreaSelection defaultValue={formData.area} onAreaSelected={handleSelectArea} />
+      <AreaSelection
+        error={formErrors.area}
+        defaultValue={formData.area}
+        onAreaSelected={handleSelectArea}
+      />
       <FormInput
         type="text"
         name="address"

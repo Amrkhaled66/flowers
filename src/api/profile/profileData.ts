@@ -1,7 +1,7 @@
 import { axiosPrivate } from "src/api/axios";
 
 const getProfileData = async () => {
-    const { data } = await axiosPrivate.get("/api/profile-data");
+    const { data } = await axiosPrivate.get("/api/profile");
     return data;
 };
 

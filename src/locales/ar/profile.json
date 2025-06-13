@@ -58,7 +58,8 @@
             "address": {
                 "required": "العنوان مطلوب",
                 "minLength": "يجب أن يحتوي العنوان على 5 أحرف على الأقل"
-            }
+            },
+            "deliveryTime":{"required":"يرجى اختيار وقت التوصيل"}
         },
         "deletionModel": {
             "title": "هل تريد حذف هذا العنوان؟",
@@ -105,6 +106,14 @@
     "favorite": {
         "empty": "اختر المنتجات المفضلة لديك",
         "cta": "اختر الان"
+    },
+    "deleteAccount":{
+        "model":{
+          "title":"حذف الحساب",
+          "message":"هل تريد حذف حسابك؟",
+          "confirmText":"نعم، حذف الحساب",
+          "cancelText":"الغاء"
+        }
     },
     "edit": "تعديل"
 }

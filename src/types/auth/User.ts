@@ -6,6 +6,8 @@ interface User {
   birth_date: string;
   password: string;
   gender: string;
+  points: string;
+  verified: number;
 }
 
 interface UserRegister extends User {

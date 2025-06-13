@@ -6,10 +6,13 @@ import FreeDeliveryLine from "src/components/Cart/FreeDeliveryLine";
 import { useOrderSummary } from "src/context/OrderSummaryContext";
 import { useEffect } from "react";
 import usePageTitle from "src/hooks/ui/useUpdatePageTitle";
+import { useCart } from "src/context/user/cartCtx";
+import { Navigate } from "react-router";
 import CartList from "src/components/Cart/CartList";
 const ShippingBag = () => {
   usePageTitle("Shipping Bag");
   const { setConfig } = useOrderSummary();
+  const { cartLength } = useCart();
 
   useEffect(() => {
     setConfig({
@@ -17,6 +20,8 @@ const ShippingBag = () => {
       pathName: "/cart/delivery-info",
     });
   }, []);
+
+  if (cartLength === 0) return <Navigate to="/" replace />;
 
   return (
     <div className="flex flex-col gap-x-[50px] gap-y-4 lg:flex-row">

@@ -4,6 +4,7 @@ import clsx from "clsx";
 import SearchInput from "src/components/ui/SearchInput";
 import SearchOption from "src/components/layout/Search/SearchOption";
 import { useNavBarToggleBtns } from "src/context/NavBarToggleBtns";
+import useScrollLock from "src/hooks/ui/useScrollLock";
 
 const headerClasses =
   "border-b-stroke flex justify-between border-b pb-5 lg:pb-10";
@@ -13,6 +14,7 @@ const closeButtonClasses =
 
 const Search = () => {
   const { toggleSearch, openSearch } = useNavBarToggleBtns();
+  useScrollLock(openSearch)
   const [searchOptions, setSearchOptions] = useState<string[]>([
     "Flowers",
     "flowers",
@@ -37,7 +39,7 @@ const Search = () => {
       <div className={headerClasses}>
         <div className="w-[90%] lg:w-[70%]">
           <SearchInput
-            onChange={() => {setSearchOptions([])}}
+            onChange={() => { setSearchOptions([]) }}
             value="asdf"
             placeholder="Find Items"
             bgColor="bg-main-50"
@@ -55,7 +57,7 @@ const Search = () => {
 
       {/* Search Options */}
       <div className={optionsContainerClasses}>
-        {searchOptions.map((option,index) => (
+        {searchOptions.map((option, index) => (
           <SearchOption key={index} value={option} onClick={toggleSearch} />
         ))}
       </div>

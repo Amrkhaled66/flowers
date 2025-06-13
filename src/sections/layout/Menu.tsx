@@ -8,6 +8,7 @@ import {
   useGetCategories,
   useGetOccasions,
 } from "src/hooks/category/categoryQueries";
+import useScrollLock from "src/hooks/ui/useScrollLock";
 
 import IdeasCards from "src/components/HomePage/Ideas/IdeasCards";
 import BaseItem from "src/types/BaseItem";
@@ -44,6 +45,7 @@ const Menu = () => {
 
   const { data: categories, isLoading: categoriesLoading } = useGetCategories();
   const { data: occasions, isLoading: occasionsLoading } = useGetOccasions();
+  useScrollLock(openMenu);
 
   return (
     <div

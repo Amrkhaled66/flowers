@@ -27,7 +27,7 @@ const CartTimeline = () => {
   );
 
   return (
-    <div className="mx-auto w-full space-y-4 lg:w-[90%]">
+    <div className="mx-auto w-full space-y-4">
       <div className="flex w-full items-center justify-between">
         {steps.map((step, index) => {
           const isActive = index === currentStepIndex;
@@ -78,12 +78,15 @@ const CartTimeline = () => {
         })}
       </div>
       {/* timeLine */}
-      <div
-        style={{
-          width: `${((currentStepIndex + 1) / steps.length) * 100}%`,
-        }}
-        className={"bg-main animate hidden h-2 rounded-xl lg:block"}
-      ></div>
+
+      <div className="bg-stroke/50 w-full">
+        <div
+          style={{
+            width: `${((currentStepIndex + 1) / steps.length) * 100}%`,
+          }}
+          className={"bg-main animate hidden h-2 rounded-xl lg:block"}
+        ></div>
+      </div>
     </div>
   );
 };

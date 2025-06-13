@@ -6,6 +6,9 @@
     "continue": "Continue",
     "back":"Back",
     "quantity": "Quantity",
+    "apply":"Apply Now",
+    
+    "balloraPoints": "Ballora Points",
     "chooseGiftNow": "Choose gift now",
     "sessionExpired":{
         "title":"Session Expired",

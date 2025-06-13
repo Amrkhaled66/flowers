@@ -10,9 +10,9 @@ const PreviewMessage = ({
   onCloseFun: () => void;
   returnToForm: () => void;
 }) => {
-  const {t}=useTranslation("shippingBag");
+  const { t } = useTranslation("shippingBag");
   const {
-    messageParts: { from, to, message },
+    inputParts: { from, to, message },
     onSave,
   } = useMessageGiftCtx();
   return (
@@ -34,15 +34,24 @@ const PreviewMessage = ({
           <p>{from}</p>
         </div>
       </div>
-      <Button
-        onClick={() => {
-          onSave();
-          onCloseFun();
-          returnToForm();
-        }}
-        text={t("messageGift.form.save")}
-        className="bg-main hover:bg-main-50 animate w-full !py-3 text-white"
-      />
+      <div className="flex gap-x-5">
+        <Button
+          onClick={() => {
+            returnToForm();
+          }}
+          text={t("messageGift.form.back")}
+          className="animate border border-main text-main w-full !bg-transparent !py-3 hover:!bg-transparent focus:!bg-transparent"
+        />
+        <Button
+          onClick={() => {
+            onSave();
+            onCloseFun();
+            returnToForm();
+          }}
+          text={t("messageGift.form.save")}
+          className="bg-main hover:bg-main-50 animate w-full !py-3 text-white"
+        />
+      </div>
     </div>
   );
 };

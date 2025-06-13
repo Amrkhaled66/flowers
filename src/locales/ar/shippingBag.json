@@ -15,7 +15,8 @@
             "messagePlaceholder": "اكتب رسالتك هنا",
             "linkPlaceHolder": "الصق رابط فيديو او صورة من الانترنت",
             "review": "مراجعة",
-            "save": "حفظ والمتابعة"
+            "save": "حفظ والمتابعة",
+            "back": "العودة"
         }
     },
     "cartTable": {

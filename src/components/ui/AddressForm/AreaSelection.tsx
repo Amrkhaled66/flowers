@@ -18,14 +18,18 @@ interface AreaSelectionProps {
   bgColor?: string;
   onAreaSelected: (area: string) => void;
   defaultValue?: string;
+  error?: string;
 }
 
 function AreaSelection({
   bgColor = "bg-white",
   onAreaSelected,
-  defaultValue
+  defaultValue,
+  error,
 }: AreaSelectionProps) {
-  const { i18n: { language } } = useTranslation();
+  const {
+    i18n: { language },
+  } = useTranslation();
   const [selectedArea, setSelectedArea] = useState<string | null>(null);
   const [query, setQuery] = useState("");
 
@@ -33,8 +37,8 @@ function AreaSelection({
     query === ""
       ? areas
       : areas.filter((area: Area) => {
-        return area.name.toLowerCase().includes(query.toLowerCase());
-      });
+          return area.name.toLowerCase().includes(query.toLowerCase());
+        });
 
   useEffect(() => {
     if (selectedArea) {
@@ -52,7 +56,8 @@ function AreaSelection({
     <div className={`w-full`}>
       <Field className="relative flex w-full flex-col space-y-3">
         <Label className="text-text-main font-bold">
-          {language === "ar" ? "المنطقة" : "Area"} : <span className="text-[#D00]">*</span>
+          {language === "ar" ? "المنطقة" : "Area"} :{" "}
+          <span className="text-[#D00]">*</span>
         </Label>
         <Combobox
           as="div"
@@ -61,19 +66,20 @@ function AreaSelection({
           onChange={setSelectedArea}
           onClose={() => setQuery("")}
         >
-          <div
-            className={`flex ${bgColor} focus:border-main animate gap-2 rounded-xl border border-transparent`}
-          >
-            <ComboboxInput
-              placeholder={language === "ar" ? "اختر المنطقة" : "Select Area"}
-              className="w-full p-2"
-              aria-label="Area"
-              displayValue={(area: string) => area || ""}
-              onChange={(event) => setQuery(event.target.value)}
-            />
-            <ComboboxButton className="absolute flex h-full w-full items-center justify-end rounded px-3">
-              <Icon icon="iconamoon:arrow-down-2" width="24" height="24" />
-            </ComboboxButton>
+          <div className="flex flex-col gap-y-1">
+            <div className={`flex bg-main-50 lg:${bgColor} relative rounded-xl gap-2`}>
+              <ComboboxInput
+                placeholder={language === "ar" ? "اختر المنطقة" : "Select Area"}
+                className={`focus:border-main ${error && "!border-red"} animate w-full  rounded-xl border border-transparent p-2`}
+                aria-label="Area"
+                displayValue={(area: string) => area || ""}
+                onChange={(event) => setQuery(event.target.value)}
+              />
+              <ComboboxButton className="absolute flex h-full w-full items-center justify-end rounded px-3">
+                <Icon icon="iconamoon:arrow-down-2" width="24" height="24" />
+              </ComboboxButton>
+            </div>
+            <p className="text-red px-2 text-xs">{error}</p>
           </div>
           <ComboboxOptions className="absolute z-10 mt-1 max-h-60 w-full overflow-auto rounded bg-white shadow-lg">
             {filteredAreas.map((area) => (

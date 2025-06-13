@@ -45,7 +45,7 @@ const DeletionModal = ({
               onClick={onConfirm}
               className="border-red text-red w-full rounded-xl border py-3 font-bold"
             >
-              {isPending ? <Loader /> : confirmText}
+              {isPending ? <Loader className="h-6 w-6 border-red" /> : confirmText}
             </button>
             <button
               onClick={onClose}

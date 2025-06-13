@@ -1,6 +1,7 @@
 const transformProduct = (product: any) => ({
   id: product.id,
   images: product.images && product.images.map((image: any) => image.image),
+  firstImage: product?.first_image,
   nameAr: product.name_ar,
   nameEn: product.name_en,
   descriptionAr: product.description_ar,

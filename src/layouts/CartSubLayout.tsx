@@ -1,6 +1,7 @@
 import OrderSummary from "src/components/Cart/OrderSummary";
 import FreeDeliveryLine from "src/components/Cart/FreeDeliveryLine";
 import CoponBtn from "src/components/Cart/CoponBtn";
+import PointsSelector from "src/components/ui/Selectors/PointsSelector";
 import { Outlet } from "react-router";
 
 import CartList from "src/components/Cart/CartList";
@@ -17,6 +18,7 @@ const CartSubLayout = () => {
         >
           <FreeDeliveryLine />
           <CartList />
+          <PointsSelector />
           <CoponBtn />
           <OrderSummary />
         </div>

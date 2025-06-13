@@ -24,7 +24,7 @@ interface PasswordInputProps {
         <label className="font-bold text-start" htmlFor={name}>
           {label}
         </label>
-        <div className="relative bg-white">
+        <div className="relative bg-white rounded-xl">
           <div className="pointer-events-none absolute inset-y-0 start-0 flex h-full items-center ps-3">
             <svg
               xmlns="http://www.w3.org/2000/svg"
