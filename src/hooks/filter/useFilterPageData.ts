@@ -4,11 +4,13 @@ import { getProducts } from "src/api/products";
 import {
   useGetCategories,
   useGetOccasions,
-} from "src/hooks/category/categoryQueries";
+  useGetColors
+} from "src/hooks/filter/useFilterSections";
 
 export const useFilterPageData = (appliedOptions: any,page: number) => {
   const { data: categories, isLoading: categoriesLoading } = useGetCategories();
   const { data: occasions, isLoading: occasionsLoading } = useGetOccasions();
+  const { data: colors, isLoading: colorsLoading } = useGetColors();
   const {
     data: productsData,
     isLoading: productsLoading,
@@ -31,5 +33,7 @@ export const useFilterPageData = (appliedOptions: any,page: number) => {
     productsLoading,
     categoriesLoading,
     occasionsLoading,
+    colors: colors || [],
+    colorsLoading,
   };
 };

@@ -1,14 +1,17 @@
 type ColorSelectorProps = {
-  colors: { hex: string }[];
+  colors: { id: number; name: string; code: string }[];
+  onOptionChange: (key: string, value: number) => void;
+  appliedColors: number[];
 };
 
-const ColorSelector = ({ colors }: ColorSelectorProps) => (
-  <div className="flex items-center gap-3">
-    {colors.map((color, i) => (
+const ColorSelector = ({ colors, onOptionChange, appliedColors }: ColorSelectorProps) => (
+  <div className="flex items-center p-1 gap-3">
+    {colors.map((item) => (
       <span
-        key={`${color}${i}`}
-        className="h-6 w-6 cursor-pointer rounded-full"
-        style={{ backgroundColor: "red" }}
+        onClick={() => onOptionChange("color_ids", item.id)}
+        key={item.id}
+        className={`h-6 w-6 cursor-pointer rounded-full ${appliedColors.includes(item.id) ? "outline-offset-2 outline-main outline" : ""} `}
+        style={{ backgroundColor: item.code }}
       ></span>
     ))}
   </div>

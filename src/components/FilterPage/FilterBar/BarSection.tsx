@@ -25,7 +25,7 @@ const BarSection = ({
         />
       </button>
       <div
-        className={`${isOpen ? "max-h-200 " : "max-h-0 !p-0 "} overlfow-hidden animate  ${className}`}
+        className={`${isOpen ? "max-h-[500px] " : "max-h-0 !p-0 "} overflow-hidden animate  ${className}`}
       >
         {children}
       </div>

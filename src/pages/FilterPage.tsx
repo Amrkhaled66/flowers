@@ -2,7 +2,7 @@ import usePageTitle from "src/hooks/ui/useUpdatePageTitle";
 import { useFilterOptions } from "src/hooks/filter/useFilterOptions";
 import { useSidebar } from "src/hooks/filter/useSidebar";
 import { useFilterPageData } from "src/hooks/filter/useFilterPageData";
-import {  useEffect } from "react";
+import { useEffect } from "react";
 
 import FilterBar from "src/sections/FilterPage/FilterBar";
 import FilteredProducts from "src/sections/FilterPage/FilteredProducts";
@@ -30,6 +30,8 @@ const FilterPage = () => {
     productsLoading,
     categoriesLoading,
     occasionsLoading,
+    colors,
+    colorsLoading,
   } = useFilterPageData(appliedOptions, page);
 
   const onApplyFilter = () => {
@@ -55,13 +57,13 @@ const FilterPage = () => {
     <div className="container flex min-h-dvh flex-col justify-between !py-10">
       <div className="flex h-auto gap-x-6">
         <FilterBar
-          loading={categoriesLoading || occasionsLoading}
+          loading={categoriesLoading || occasionsLoading || colorsLoading}
           onSubmit={onApplyFilter}
           sidebarOpen={sidebarOpen}
           closeSidebar={closeSidebar}
           categories={categories || []}
           occasions={occasions || []}
-          colors={[{ hex: "#FF0000" }]}
+          colors={colors}
           onOptionChange={handleOptionChange}
           handlePriceRangeChange={handlePriceRangeChange}
           options={options}
@@ -81,8 +83,7 @@ const FilterPage = () => {
       </div>
       {!productsLoading && (
         <Pagination
-          // pageCount={4}
-          pageCount={productsData?.total / productsData?.perPage}
+          pageCount={Math.ceil(productsData?.total / productsData?.perPage) || 0}
           handlePageClick={({ selected }: { selected: number }) => {
             setPage(selected + 1);
           }}

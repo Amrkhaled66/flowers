@@ -1,4 +1,4 @@
-import { getCategories, getOccasions } from "src/api/category";
+import { getCategories, getOccasions, getColors } from "src/api/filterSections";
 import { useQuery } from "@tanstack/react-query";
 import transformBaseItem from "src/utils/transforms/transformCategory";
 const useGetCategories = () => {
@@ -6,7 +6,7 @@ const useGetCategories = () => {
     queryKey: ["categories"],
     queryFn: async () => {
       const response = await getCategories();
-      const items = response?.data ?? []; // Fallback to empty array if undefined
+      const items = response?.data ?? [];
       return items.map(transformBaseItem);
     },
   });
@@ -17,10 +17,21 @@ const useGetOccasions = () => {
     queryKey: ["occasions"],
     queryFn: async () => {
       const response = await getOccasions();
-      const items = response?.data ?? []; // Fallback to empty array if undefined
+      const items = response?.data ?? [];
       return items.map(transformBaseItem);
     },
   });
 };
 
-export { useGetCategories, useGetOccasions };
+const useGetColors = () => {
+  return useQuery({
+    queryKey: ["colors"],
+    queryFn: async () => {
+      const response = await getColors();
+      const items = response?.data ?? [];
+      return items;
+    },
+  });
+};
+
+export { useGetCategories, useGetOccasions,useGetColors };

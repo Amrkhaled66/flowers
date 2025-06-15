@@ -15,17 +15,18 @@ type SidebarProps = {
   closeSidebar: () => void;
   categories: any[];
   occasions: any[];
-  colors: { hex: string }[];
   onOptionChange: (key: string, value: number) => void;
   handlePriceRangeChange: (value: number[]) => void;
   onSubmit: () => void;
   options: {
-    category_id: number[];
-    occasion_id: number[];
-    color_id: number[];
+    category_ids: number[];
+    occasion_ids: number[];
+    color_ids: number[];
     price_range: number[];
   };
   loading: boolean;
+  colors: { id: number, name: string, code: string }[];
+
 };
 
 const FilterBar = ({
@@ -38,7 +39,7 @@ const FilterBar = ({
   handlePriceRangeChange,
   onSubmit,
   options,
-  loading
+  loading,
 }: SidebarProps) => {
   const { t } = useTranslation("filter");
   const [openSections, setOpenSections] = useState<string[]>([
@@ -57,9 +58,8 @@ const FilterBar = ({
 
   return (
     <div
-      className={`lg:bg-main-50 fixed top-0 z-90 h-screen w-[314px] overflow-y-scroll bg-white px-4 py-[50px] transition-all duration-300 lg:!relative lg:end-0 lg:z-40 lg:w-[25%] lg:overflow-y-hidden lg:rounded-xl lg:p-0 ${
-        sidebarOpen ? "end-0" : "end-[-150%]"
-      } lg:!translate-x-0`}
+      className={`lg:bg-main-50 fixed top-0 z-90 h-screen w-[314px] overflow-y-scroll bg-white px-4 py-[50px] transition-all duration-300 lg:!relative lg:end-0 lg:z-40 lg:w-[25%] lg:overflow-y-hidden lg:rounded-xl lg:p-0 ${sidebarOpen ? "end-0" : "end-[-150%]"
+        } lg:!translate-x-0`}
     >
       <button
         className="text-main-900 bg-main absolute end-0 top-0 flex h-[36px] w-[36px] items-center justify-center rounded-es-xl text-2xl text-white lg:hidden"
@@ -67,7 +67,7 @@ const FilterBar = ({
       >
         <Icon icon="ic:outline-close" width="20" height="20" />
       </button>
-      {loading? (
+      {loading ? (
         <Skeleton height={"100%"} />
       ) : (
         <div className="bg-main-50 space-y-6 rounded-xl p-4">
@@ -80,9 +80,9 @@ const FilterBar = ({
             >
               <CheckboxList
                 onOptionChange={onOptionChange}
-                field={"category_id"}
+                field={"category_ids"}
                 items={categories}
-                selectedValues={options.category_id}
+                selectedValues={options.category_ids}
               />
             </BarSection>
 
@@ -96,9 +96,9 @@ const FilterBar = ({
           >
             <CheckboxList
               onOptionChange={onOptionChange}
-              field={"occasion_id"}
+              field={"occasion_ids"}
               items={occasions}
-              selectedValues={options.occasion_id}
+              selectedValues={options.occasion_ids}
             />
           </BarSection>
 
@@ -107,7 +107,7 @@ const FilterBar = ({
             isOpen={openSections.includes("color")}
             title={t("color")}
           >
-            <ColorSelector colors={colors} />
+            <ColorSelector appliedColors={options.color_ids} onOptionChange={onOptionChange} colors={colors} />
           </BarSection>
 
           <button

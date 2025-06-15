@@ -29,7 +29,6 @@ const PriceRange = ({
       </div>
 
       <Range
-        
         step={1}
         min={0}
         max={9999}
@@ -42,7 +41,7 @@ const PriceRange = ({
 
           return (
             <div
-            dir="ltr"
+              dir="ltr"
               {...props}
               className="relative h-2 w-full rounded"
               style={{
@@ -61,9 +60,13 @@ const PriceRange = ({
             </div>
           );
         }}
-        renderThumb={({ props }) => (
-          <div {...props} className="bg-main h-5 w-5 rounded-full" />
-        )}
+        renderThumb={({ props }) => {
+          return (<div
+            {...props}
+            key={props.key}
+            className="h-4 w-4 cursor-pointer rounded-full bg-main"
+          />)
+        }}
       />
     </div>
   );

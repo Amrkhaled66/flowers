@@ -3,7 +3,7 @@ import { memo } from "react";
 import {
   useGetCategories,
   useGetOccasions,
-} from "src/hooks/category/categoryQueries";
+} from "src/hooks/filter/useFilterSections";
 import { useTranslation } from "react-i18next";
 
 import { SiteMapSection } from "./SiteMapSection";
@@ -54,11 +54,10 @@ const SiteMap = memo(() => {
         title={t("footer.customerSupport")}
       >
         <div
-          className={`${
-            activeList === sectionKeys.support
+          className={`${activeList === sectionKeys.support
               ? "mb-7 max-h-[200px]"
               : "max-h-0"
-          } flex flex-col space-y-3 overflow-hidden text-start transition-all duration-300 lg:max-h-[200px]`}
+            } flex flex-col space-y-3 overflow-hidden text-start transition-all duration-300 lg:max-h-[200px]`}
         >
           <p className="hover:text-main-100 animate text-sm">
             {t("footer.contactUs")}

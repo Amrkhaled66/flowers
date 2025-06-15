@@ -8,4 +8,10 @@ const getCategories = async () => {
     const { data } = await axiosInstance.get("api/categories");
     return data;
 };
-export { getOccasions, getCategories }
+
+const getColors = async () => {
+    const { data } = await axiosInstance.get("api/colors");
+    return data;
+};
+
+export { getOccasions, getCategories,getColors }

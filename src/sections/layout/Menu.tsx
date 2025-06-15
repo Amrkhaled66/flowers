@@ -7,7 +7,7 @@ import { useTranslation } from "react-i18next";
 import {
   useGetCategories,
   useGetOccasions,
-} from "src/hooks/category/categoryQueries";
+} from "src/hooks/filter/useFilterSections";
 import useScrollLock from "src/hooks/ui/useScrollLock";
 
 import IdeasCards from "src/components/HomePage/Ideas/IdeasCards";
@@ -49,9 +49,8 @@ const Menu = () => {
 
   return (
     <div
-      className={`menu-bar fixed start-0 top-0 z-[80] flex h-screen w-full flex-col gap-y-6 overflow-x-hidden overflow-y-scroll bg-white px-4 py-6 transition-all duration-300 sm:px-8 sm:py-4 lg:w-[739px] lg:px-8 lg:py-10 ${
-        openMenu ? "translate-x-0" : "start-[-100%]"
-      }`}
+      className={`menu-bar fixed start-0 top-0 z-[80] flex h-screen w-full flex-col gap-y-6 overflow-x-hidden overflow-y-scroll bg-white px-4 py-6 transition-all duration-300 sm:px-8 sm:py-4 lg:w-[739px] lg:px-8 lg:py-10 ${openMenu ? "translate-x-0" : "start-[-100%]"
+        }`}
     >
       <button
         onClick={toggleMenu}

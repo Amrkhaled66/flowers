@@ -2,23 +2,23 @@ import { useCallback, useState, useMemo } from "react";
 import { useSearchParams } from "react-router-dom";
 
 interface FilterOptions {
-  category_id: number[];
-  occasion_id: number[];
-  color_id: number[];
+  category_ids: number[];
+  occasion_ids: number[];
+  color_ids: number[];
   price_range: number[];
 }
 
 const INITIAL_FILTER_OPTIONS: FilterOptions = {
-  category_id: [],
-  occasion_id: [],
-  color_id: [],
+  category_ids: [],
+  occasion_ids: [],
+  color_ids: [],
   price_range: [0, 9999],
 };
 
 const STRING_ARRAY_KEYS = new Set<keyof FilterOptions>([
-  "category_id",
-  "occasion_id",
-  "color_id",
+  "category_ids",
+  "occasion_ids",
+  "color_ids",
 ]);
 
 export const useFilterOptions = () => {
@@ -30,10 +30,10 @@ export const useFilterOptions = () => {
     const occasionId = searchParams.get("occasion_id");
 
     if (categoryId) {
-      initialOptions.category_id = [parseInt(categoryId)];
+      initialOptions.category_ids = [parseInt(categoryId)];
     }
     if (occasionId) {
-      initialOptions.occasion_id = [parseInt(occasionId)];
+      initialOptions.occasion_ids = [parseInt(occasionId)];
     }
     return initialOptions;
   });
@@ -44,10 +44,10 @@ export const useFilterOptions = () => {
     const occasionId = searchParams.get("occasion_id");
 
     if (categoryId) {
-      initialApplied.category_id = [parseInt(categoryId)];
+      initialApplied.category_ids = [parseInt(categoryId)];
     }
     if (occasionId) {
-      initialApplied.occasion_id = [parseInt(occasionId)];
+      initialApplied.occasion_ids = [parseInt(occasionId)];
     }
     return initialApplied;
   });
