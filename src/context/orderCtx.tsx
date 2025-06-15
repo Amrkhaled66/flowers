@@ -37,7 +37,6 @@ export const OrderProvider = ({ children }: { children: ReactNode }) => {
     setOrder(defaultOrder);
   };
 
-  console.log(order)
   return (
     <OrderContext.Provider value={{ order, updateOrder, resetOrder }}>
       {children}

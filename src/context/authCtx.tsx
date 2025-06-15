@@ -39,7 +39,6 @@ export default function AuthProvider({ children }: { children: ReactNode }) {
       token,
     };
   });
-  console.log(authData)
   const updateUser = (user: User) => {
     setAuthData((prev) => ({ ...prev, user }));
     // setUser(user);
@@ -55,7 +54,6 @@ export default function AuthProvider({ children }: { children: ReactNode }) {
     clearToken();
     // clearUser();
   };
-  console.log(authData.user)
 
   const isVerified = authData.user?.verified ? true : false
   const isAuthenticated = !!authData.token;

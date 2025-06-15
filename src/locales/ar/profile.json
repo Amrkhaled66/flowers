@@ -5,15 +5,15 @@
         "firstName": "الاسم الاول",
         "lastName": "الاسم الاخير",
         "phone": "رقم الهاتف",
-           "editForm": {
+        "editForm": {
             "success": "تم تحديث الملف الشخصي بنجاح",
-            "save":"حفظ التغييرات"
+            "save": "حفظ التغييرات"
         }
     },
-    "changPhoneNumber":{
-        "title":"تحديث رقم الهاتف",
-        "subTitle":"ادخل رقم الهاتف الجديد",
-        "newPhone":"رقم الهاتف الجديد"
+    "changPhoneNumber": {
+        "title": "تحديث رقم الهاتف",
+        "subTitle": "ادخل رقم الهاتف الجديد",
+        "newPhone": "رقم الهاتف الجديد"
     },
     "changePassword": {
         "currentPass": "كلمة المرور الحالية",
@@ -42,7 +42,7 @@
             "recipientName": "اسم المستلم",
             "recipientPhone": "رقم المستلم",
             "address": "العنوان",
-            "addressPlaceholder":"ادخل رقم الشقة والطابق واسم المبنى والشارع",
+            "addressPlaceholder": "ادخل رقم الشقة والطابق واسم المبنى والشارع",
             "area": "المنطقة",
             "submit": "حفظ"
         },
@@ -59,7 +59,12 @@
                 "required": "العنوان مطلوب",
                 "minLength": "يجب أن يحتوي العنوان على 5 أحرف على الأقل"
             },
-            "deliveryTime":{"required":"يرجى اختيار وقت التوصيل"}
+            "deliveryTime": {
+                "required": "يرجى اختيار وقت التوصيل"
+            },
+            "area": {
+                "required": "يرجى اختيار المنطقة"
+            }
         },
         "deletionModel": {
             "title": "هل تريد حذف هذا العنوان؟",
@@ -95,24 +100,25 @@
     "points": {
         "header": "الرصيد المتاح",
         "point": "نقظة",
-        "name":" نقاط بلورا",
+        "name": " نقاط بلورا",
         "history": "تاريخ النقاط",
         "empty": "لا توجد نقاط متاحة",
         "description": "يمكنك استخدام النقاط في عمليات الشراء المستقبلية",
-        "date":"تاريخ",
+        "date": "تاريخ الانتهاء ",
         "points": "النقاط",
-        "orderId": "رقم الطلب"
+        "orderId": "رقم الطلب",
+        "redeem": " استبدل النقاط"
     },
     "favorite": {
         "empty": "اختر المنتجات المفضلة لديك",
         "cta": "اختر الان"
     },
-    "deleteAccount":{
-        "model":{
-          "title":"حذف الحساب",
-          "message":"هل تريد حذف حسابك؟",
-          "confirmText":"نعم، حذف الحساب",
-          "cancelText":"الغاء"
+    "deleteAccount": {
+        "model": {
+            "title": "حذف الحساب",
+            "message": "هل تريد حذف حسابك؟",
+            "confirmText": "نعم، حذف الحساب",
+            "cancelText": "الغاء"
         }
     },
     "edit": "تعديل"

@@ -13,10 +13,9 @@ const Cart = () => {
   const { t } = useTranslation("layout");
   useScrollLock(openCart);
 
-
   return (
     <div
-      className={`text-text-main menu-bar w-[80%] fixed end-0 top-0 z-[80] flex h-screen flex-col justify-between gap-y-6 overflow-y-scroll bg-white px-4 py-[50px] transition-all duration-300 sm:w-[375px] lg:w-[446px] lg:px-8 ${openCart ? "end-0" : "end-[-150%]"
+      className={`text-text-main menu-bar w-[95%] fixed end-0 top-0 z-[80] flex h-screen flex-col justify-between gap-y-6 overflow-y-scroll bg-white px-4 py-[50px] transition-all duration-300 sm:w-[375px] lg:w-[446px] lg:px-8 ${openCart ? "end-0" : "end-[-150%]"
         } `}
     >
       <button

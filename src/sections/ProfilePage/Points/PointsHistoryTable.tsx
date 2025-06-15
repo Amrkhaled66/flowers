@@ -5,9 +5,15 @@ import ProfilePageCompetent from "src/components/ProfilePage/ProfilePageCompeten
 
 import { useTranslation } from "react-i18next";
 
-const PointsHistoryTable = () => {
+const PointsHistoryTable = ({ history, loading }: {
+  history: {
+    expiry_date: string;
+    points: string;
+    order_id: string;
+  }[],
+  loading?: boolean
+}) => {
   const { t } = useTranslation("profile");
-
   const items = Array.from({ length: 6 }, (_, i) => ({
     date: `2023-10-${i + 1}`,
     points: `${(i + 1) * 10} ${t("points.point")}`,
@@ -20,8 +26,7 @@ const PointsHistoryTable = () => {
     // fetch data from the backend with the selected page number
   };
 
-  const isLoading = false;
-  const isEmpty = 0;
+  const isEmpty = history.length === 0;
   return (
     <ProfilePageCompetent>
       <div className="space-y-6 rounded-2xl">
@@ -54,19 +59,19 @@ const PointsHistoryTable = () => {
               </thead>
 
               <tbody>
-                {1 ? (
+                {loading ? (
                   Array.from({ length: 2 }).map((_, index) => (
                     <tr
                       key={`skeleton-${index}`}
                       className=""
                     >
                       <td className="px-4 py-2">
-                        <Skeleton  className="h-12 opacity-80 rounded-xl w-full" />
+                        <Skeleton className="h-12 opacity-80 rounded-xl w-full" />
                       </td>
                     </tr>
                   ))
                 ) : isEmpty ? (
-                  <tr className="animate-pulse bg-white">
+                  <tr className=" bg-white">
                     <td
                       colSpan={3}
                       className="px-6 py-8 text-center text-gray-500"
@@ -75,12 +80,12 @@ const PointsHistoryTable = () => {
                     </td>
                   </tr>
                 ) : (
-                  items.map((item, index) => (
+                  history.map((item) => (
                     <TableElement
-                      key={`${item.orderId}-${index}`}
-                      data={item.date}
+                      key={item.order_id}
+                      data={item.expiry_date}
                       points={item.points}
-                      orderId={item.orderId}
+                      orderId={item.order_id}
                     />
                   ))
                 )}
@@ -88,7 +93,7 @@ const PointsHistoryTable = () => {
             </table>
           </div>
 
-          {!isEmpty && !isLoading && (
+          {!isEmpty && !loading && (
             <div className="flex justify-end border-t border-gray-200 px-4 py-3">
               <Pagination
                 pageCount={pageCount}

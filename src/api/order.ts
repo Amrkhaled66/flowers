@@ -7,8 +7,13 @@ const getBusyTimes = async () => {
     return data.data;
 };
 
+const getOrders = async (data: any) => {
+    const { data: res } = await axiosPrivate.post("/api/orders", data);
+    return res;
+};
+
 const submitOrder=async (data:any)=>{
     const {data:res}=await axiosPrivate.post("/api/orders",data);
     return res;
 }
-export {getBusyTimes,submitOrder}
+export {getBusyTimes,submitOrder,getOrders}

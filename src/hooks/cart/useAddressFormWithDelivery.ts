@@ -21,8 +21,6 @@ export const useAddressFormWithDelivery = (initialData: Address) => {
   const { t: tProfile } = useTranslation("profile");
   const { order } = useOrder();
   const validateDeliveryFields = (): boolean => {
-    console.log("asfdasdfasdf");
-    console.log(order);
     if (!order.delivery_time.trim() || !order.delivery_date.trim()) {
       setDeliveryError(tProfile("address.formErrors.deliveryTime.required"));
       return false;
@@ -34,7 +32,6 @@ export const useAddressFormWithDelivery = (initialData: Address) => {
   const validateForm = (): boolean => {
     const baseValid = validateBaseForm();
     const deliveryValid = validateDeliveryFields();
-    console.log(baseValid, deliveryValid);
     return baseValid && deliveryValid;
   };
 

@@ -20,7 +20,7 @@ const SelectorView = ({
   onDecrease,
   onChange,
   onBlur,
-  
+
 }: QuantitySelectorViewProps) => {
 
   const buttonClass =
@@ -30,7 +30,6 @@ const SelectorView = ({
     "border-main flex h-[28px] w-fit items-center overflow-hidden rounded-lg border lg:h-[40px] lg:rounded-xl";
   const inputClass =
     "bg-main-100 text-text-main h-full w-[28px] text-center text-sm font-bold sm:w-[34px] lg:w-[46px] lg:text-xl";
-
   return (
     <div className="space-y-3 rounded-xl">
       {!isCartMenu && (

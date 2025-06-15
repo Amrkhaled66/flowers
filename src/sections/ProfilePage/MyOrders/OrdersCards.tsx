@@ -3,6 +3,7 @@ import OrderCard from "src/components/ProfilePage/MyOrders/OrdersCards/OrderCard
 import OrderCardType from "src/types/UserInfo/OrderCard";
 import Skeleton from "react-loading-skeleton";
 
+// import { useGetOrders } from "src/hooks/order/useOrderMutation";
 const Orders: OrderCardType[] = [
   {
     id: "NEGH2200221",
@@ -23,9 +24,10 @@ const Orders: OrderCardType[] = [
 ];
 
 const OrdersCards = () => {
+  // const { data: orders, isLoading } = useGetOrders();
   return (
     <div className="flex flex-col gap-y-4">
-      {1 ? (
+      {false ? (
         <>
           <Skeleton containerClassName="!rounded-xl" height={120} />
           <Skeleton containerClassName="!rounded-xl" height={120} />

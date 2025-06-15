@@ -1,5 +1,5 @@
-import { useQuery } from "@tanstack/react-query";
-import { getPoints } from "src/api/points";
+import { useQuery, useMutation } from "@tanstack/react-query";
+import { getPoints, redeemPoints } from "src/api/points";
 
 const useGetPoints = () => {
   return useQuery({
@@ -8,6 +8,10 @@ const useGetPoints = () => {
   });
 };
 
+const useRedeemPoints = () => {
+  return useMutation({
+    mutationFn: redeemPoints,
+  });
+};
 
-
-export default useGetPoints
+export { useGetPoints, useRedeemPoints };

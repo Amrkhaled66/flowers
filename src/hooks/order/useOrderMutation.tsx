@@ -1,7 +1,7 @@
 import { useMutation } from "@tanstack/react-query";
 import { useQuery } from "@tanstack/react-query";
 
-import { submitOrder, getBusyTimes } from "src/api/order";
+import { submitOrder, getBusyTimes, getOrders } from "src/api/order";
 
 const useGetBusyTimes = () =>
   useQuery({
@@ -9,9 +9,15 @@ const useGetBusyTimes = () =>
     queryFn: getBusyTimes,
   });
 
+const useGetOrders = () =>
+  useQuery({
+    queryKey: ["orders"],
+    queryFn: getOrders,
+  });
+
 const useSubmitOrder = () =>
   useMutation({
     mutationFn: submitOrder,
   });
 
-export { useGetBusyTimes, useSubmitOrder };
+export { useGetBusyTimes, useSubmitOrder ,useGetOrders};

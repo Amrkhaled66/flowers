@@ -1,6 +1,5 @@
 import { useFavoriteHandler } from "src/hooks/profile/favorites/useFavoriteHandler";
 import { useFavorites } from "src/context/user/favoritesCtx";
-
 const FavoriteButton = ({ productId,className }: { productId: number ,className?: string}) => {
   const { isFavorite } = useFavorites();
 
@@ -14,7 +13,7 @@ const FavoriteButton = ({ productId,className }: { productId: number ,className?
     <button
       onClick={handleToggleFavorite}
       disabled={isPending}
-      className={`group  rounded-xl bg-white p-2.5 ${className}`}
+      className={`group  rounded-xl border border-stroke bg-white p-1 lg:p-2.5 ${className}`}
     >
       <svg
         xmlns="http://www.w3.org/2000/svg"

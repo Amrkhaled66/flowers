@@ -16,7 +16,6 @@ import useDebounce from "../shared/useDebounce";
 const useGetCart = () => {
   const { isVerified } = useAuth();
   const { storeCart } = useCart();
-  console.log(isVerified);
   return useQuery({
     queryKey: ["cart"],
     queryFn: async () => {
@@ -28,6 +27,8 @@ const useGetCart = () => {
   });
 };
 const useUpdateCart = () => {
+  const { storeCart } = useCart();
+
   const mutation = useMutation({
     mutationFn: ({ quantity, id }: { quantity: number; id: number }) =>
       updateCart(quantity, id),
@@ -36,7 +37,8 @@ const useUpdateCart = () => {
         type: "error",
       });
     },
-    onSuccess: () => {
+    onSuccess: (data) => {
+      storeCart(data.cart);
       toast("Item quantity updated", {
         type: "success",
       });
@@ -49,37 +51,43 @@ const useUpdateCart = () => {
   return { ...mutation, mutate: debouncedMutate };
 };
 
-const useDeleteCart = () =>
-  useMutation({
+const useDeleteCart = () => {
+  const { storeCart } = useCart();
+  return useMutation({
     mutationFn: (id: number) => deleteCart(id),
     onError: (err: any) => {
       toast(err.response.data.message, {
         type: "error",
       });
     },
-    onSuccess: () => {
+    onSuccess: (data) => {
+      storeCart(data.cart);
       toast("Item removed from cart", {
         type: "success",
       });
     },
   });
+};
 
-const useAddToCart = () =>
-  useMutation({
+const useAddToCart = () => {
+  const { storeCart } = useCart();
+  return useMutation({
     mutationFn: (id: number) => addToCart(id),
     onError: (err: any) => {
       toast(err.response.data.message, {
         type: "error",
       });
     },
-    onSuccess: () => {
+    onSuccess: (data) => {
+      storeCart(data.cart);
       toast("Item added to cart", {
         type: "success",
       });
     },
   });
-
+};
 const useClearCart = () => {
+  const { storeCart } = useCart();
   return useMutation({
     mutationFn: () => clearCart(),
     onError: (err: any) => {
@@ -88,6 +96,7 @@ const useClearCart = () => {
       });
     },
     onSuccess: () => {
+      storeCart([]);
       toast("Cart cleared", {
         type: "success",
       });

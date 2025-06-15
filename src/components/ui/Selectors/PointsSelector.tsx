@@ -70,7 +70,6 @@ const PointsSelector = ({
   }
 
   const price = 0.5;
-  console.log(user?.points, userPoints)
   return (
     <div className="bg-main-50 space-y-6 rounded-xl p-4 text-sm lg:text-base">
       <div className="space-y-4 lg:space-y-5">

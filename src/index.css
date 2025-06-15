@@ -63,6 +63,9 @@ button {
 input[type="checkbox"] {
   cursor: pointer;
 }
+button[disabled] {
+  cursor: not-allowed;
+}
 
 input {
   outline: none;

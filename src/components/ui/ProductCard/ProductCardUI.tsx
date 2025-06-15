@@ -29,10 +29,10 @@ const ProductCardUI = ({
   } = useTranslation();
   const { check } = useAuthGuard();
 
-  const handelAddToCart = async() => {
+  const handelAddToCart = async () => {
     const isAuthenticated = await check();
-    if(!isAuthenticated) return
-    
+    if (!isAuthenticated) return
+
     isProductInCart(product.id)
       ? updateCart({ quantity: 3, id: product.id })
       : addToCart(product.id);
@@ -43,12 +43,11 @@ const ProductCardUI = ({
       {children}
       <Link className="z-0" to={`/product/${product.id}`}>
         <div
-          className={`bg-main ${isFilterCard && "lg:!h-[310px]"} ${
-            (isFilterCard || isFavorite) && "sm:!h-[195px]"
-          } ${isFavorite && "!h-[310px] lg:!h-[310px]"} group h-[140px] overflow-hidden sm:h-[310px] lg:h-[282px]`}
+          className={` ${isFilterCard && "lg:!h-[310px]"} ${(isFilterCard || isFavorite) && "sm:!h-[195px]"
+            } ${isFavorite && "!h-[310px] lg:!h-[310px]"} group h-[140px] overflow-hidden sm:h-[310px] lg:h-[282px]`}
         >
           <img
-            src={product.images && product.images[0]}
+            src={product.images ? product.images[0] : product.firstImage}
             loading="lazy"
             alt="img"
             className="animate size-full object-cover object-center group-hover:scale-110"
@@ -77,9 +76,8 @@ const ProductCardUI = ({
         <button
           disabled={isAddPending || isUpdatePending}
           onClick={handelAddToCart}
-          className={`hover:bg-main-700 focus:bg-main-900 animate bg-main flex place-items-center rounded-full p-2 text-white disabled:cursor-not-allowed sm:p-3 lg:p-4 ${
-            (isAddPending || isUpdatePending) && "!animate-pulse"
-          }`}
+          className={`hover:bg-main-700 focus:bg-main-900 animate bg-main flex place-items-center rounded-full p-2 text-white disabled:cursor-not-allowed sm:p-3 lg:p-4 ${(isAddPending || isUpdatePending) && "!animate-pulse"
+            }`}
         >
           <Icon
             icon="material-symbols:shopping-cart-outline-rounded"

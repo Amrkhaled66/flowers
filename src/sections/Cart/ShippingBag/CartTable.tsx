@@ -18,19 +18,25 @@ const CartTable = () => {
               <th className="text-center">{t("cartTable.total")}</th>
             </tr>
           </thead>
-          <tbody>
-            <tr className="lg:pt-6">
-              {cart &&
-                cart.map((product, index) => (
-                  <CartTableCard key={index} product={product} />
-                ))}
-            </tr>
+          <tbody className="lg:pt-6">
+            {cart &&
+              cart.map((product, index) => (
+                <CartTableCard key={index} product={product} />
+              ))}
           </tbody>
-          <tfoot className="">
-            <div className="flex items-center justify-end gap-x-6 pt-4">
-              <button onClick={() => clearCart()} className={`${isPending && "pointer-events-none animate-pulse"} font-bold`}>{t("cartTable.clearCart")}</button>
-            </div>
+          <tfoot>
+            <tr>
+              <td  className="text-end pt-4">
+                <button
+                  onClick={() => clearCart()}
+                  className={`${isPending && "pointer-events-none animate-pulse"} font-bold`}
+                >
+                  {t("cartTable.clearCart")}
+                </button>
+              </td>
+            </tr>
           </tfoot>
+
         </table>
       </div>
     </div>

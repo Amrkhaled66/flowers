@@ -21,14 +21,14 @@ const MainLayout = () => {
 
   const { isLoading: cartLoading } = useGetCart();
   const { isLoading: favLoading } = useGetFavorites();
-  const { isLoading } = useGetProfileMutation()
+  const { isLoading: profileLoading } = useGetProfileMutation()
   return (
     <AxiosProvider>
       <div
         dir={`${i18n.language === "ar" ? "rtl" : "ltr"}`}
         className={`h-auto pt-[104px] lg:pt-[155px] ${i18n.language === "ar" ? "font-ar" : "font-en"} `}
       >
-        {(isLoading || cartLoading || favLoading) && <BalloraLoader />}
+        {(profileLoading || cartLoading || favLoading) && <BalloraLoader />}
         <ScrollToTop />
         <Search />
         <NavBar />

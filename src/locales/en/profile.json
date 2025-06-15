@@ -102,9 +102,10 @@
         "description": "Earn points with every purchase and redeem them for discounts on future orders.",
         "empty": "You have no points yet.",
         "history": "Points History",
-        "date":"Date",
+        "date":"Expiry Date",
         "points":"points",
-        "orderId":"Order ID"
+        "orderId":"Order ID",
+        "redeem":"Redeem Your Points"
     },
     "favorite": {
         "empty": "Choose your favorite flowers",

@@ -44,7 +44,6 @@ const DeliveryInfo = () => {
   } = useAddressFormWithDelivery(initialFormData);
 
   const onSubmit = () => {
-    console.log("daf")
     const isValid = validateForm();
     if (!isValid)
       return Alert({

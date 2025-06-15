@@ -1,8 +1,7 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useUpdateCart } from "src/hooks/cart/useCartMutations";
 import { useTranslation } from "react-i18next";
 import QuantitySelectorView from "./SelectorView";
-import { set } from "date-fns";
 
 interface QuantitySelectorProps {
   id: number;
@@ -61,7 +60,10 @@ const QuantitySelector = ({
     setInputValue(newQty.toString());
     handleUpdate(newQty);
   };
-
+  useEffect(() => {
+    setQuantity(currentQuantity);
+    setInputValue(currentQuantity.toString());
+  }, [currentQuantity]);
   return (
     <QuantitySelectorView
       title={t("quantity")}

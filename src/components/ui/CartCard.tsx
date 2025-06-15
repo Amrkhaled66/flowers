@@ -17,9 +17,7 @@ const CartMenuCard = ({
   const cartProduct = product.product;
 
   const { mutate: deleteCart } = useDeleteCart();
-
   const handleDelete = () => deleteCart(product.id);
-  console.log(product)
   return (
     <div
       className={` ${isCartPage && "bg-main-50 p-3 lg:p-4"} border-b-stroke text-text-main flex gap-x-3 rounded-xl border-b pb-4`}
