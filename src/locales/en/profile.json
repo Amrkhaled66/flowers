@@ -7,13 +7,13 @@
         "phone": "Phone Number",
         "editForm": {
             "success": "Profile updated successfully",
-            "save":"Save Changes"
+            "save": "Save Changes"
         }
     },
-    "changPhoneNumber":{
-        "title":"Update Phone Number",
-        "subTitle":"Enter new phone number",
-        "newPhone":"New Phone Number"
+    "changPhoneNumber": {
+        "title": "Update Phone Number",
+        "subTitle": "Enter new phone number",
+        "newPhone": "New Phone Number"
     },
     "changePassword": {
         "currentPass": "Current Password",
@@ -57,11 +57,11 @@
                 "required": "Address is required",
                 "minLength": "Address must be at least 5 characters"
             },
-            "area":{
-                "required":"Area is required"
+            "area": {
+                "required": "Area is required"
             },
-            "deliveryTime":{
-                "required":"Delivery time is required"
+            "deliveryTime": {
+                "required": "Delivery time is required"
             }
         },
         "deletionModel": {
@@ -93,31 +93,38 @@
     },
     "orders": {
         "searchPlaceholder": "Search items",
-        "orderId": "Order ID"
+        "orderId": "Order ID",
+        "placeFirstOrder": "Place Your First Order"
     },
     "points": {
         "header": "Available Points",
         "point": "Point",
-        "name":"Ballora Points",
+        "name": "Ballora Points",
         "description": "Earn points with every purchase and redeem them for discounts on future orders.",
         "empty": "You have no points yet.",
         "history": "Points History",
-        "date":"Expiry Date",
-        "points":"points",
-        "orderId":"Order ID",
-        "redeem":"Redeem Your Points"
+        "date": "Date",
+        "expiryDate": "Expiry Date",
+        "points": "points",
+        "type": "Type",
+        "orderId": "Order ID",
+        "redeem": "Redeem Your Points"
+    },
+    "ballance": {
+        "availableBallance": "Available Ballance",
+        "des": "Use Your Balance to pay for orders, send gifts to loved ones, or enjoy a smoother checkout experience."
     },
     "favorite": {
         "empty": "Choose your favorite flowers",
         "cta": "Pick your favorite one"
     },
-    "deleteAccount":{
-      "model":{
-        "title":"Delete Account",
-        "message":"Are you sure you want to delete your account?",
-        "confirmText":"Yes, Delete Account",
-        "cancelText":"Cancel"
-      }  
+    "deleteAccount": {
+        "model": {
+            "title": "Delete Account",
+            "message": "Are you sure you want to delete your account?",
+            "confirmText": "Yes, Delete Account",
+            "cancelText": "Cancel"
+        }
     },
     "Edit": "edit"
 }

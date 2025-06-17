@@ -1,27 +1,36 @@
 {
-    "bar":{
-        "orderId":"رقم الطلب",
-        "paymentMethode":"طريقة الدفع",
-        "deliveryDate":"تاريخ التوصيل المتوقع",
-        "downloadInvoice":"تحميل الفاتورة",
-        "viewInvoice":"عرض الفاتورة"
+    "bar": {
+        "orderId": "رقم الطلب",
+        "paymentMethode": "طريقة الدفع",
+        "deliveryDate": "تاريخ التوصيل المتوقع",
+        "downloadInvoice": "تحميل الفاتورة",
+        "viewInvoice": "عرض الفاتورة"
     },
-    "summary":{
-        "title":"ملخص الطلب",
-        "subtotal":"المجموع الفرعي",
-        "deliveryCharges":"رسوم التوصيل",
-        "chargeNote":"ملاحظة: يمكن أن يكون التوصيل في منطقة محددة ويؤدي إلى رسوم إضافية للتوصيل",
-        "total":"المجموع"
-
+    "summary": {
+        "title": "ملخص الطلب",
+        "subtotal": "المجموع الفرعي",
+        "deliveryCharges": "رسوم التوصيل",
+        "chargeNote": "ملاحظة: يمكن أن يكون التوصيل في منطقة محددة ويؤدي إلى رسوم إضافية للتوصيل",
+        "total": "المجموع"
     },
-    "orderDetails":{
-        "title":"تفاصيل الطلب",
-        "expectedDeliveryDate":"تاريخ التوصيل المتوقع",
-        "trackingId":"رقم التتبع"
+    "orderDetails": {
+        "title": "تفاصيل الطلب",
+        "expectedDeliveryDate": "تاريخ التوصيل المتوقع",
+        "trackingId": "رقم التتبع"
     },
-    "deliveryInfo":{
-        "title":"معلومات التوصيل",
-        "address":"عنوان التوصيل",
-        "userInfo":"معلومات المستخدم"
+    "deliveryInfo": {
+        "title": "معلومات التوصيل",
+        "address": "عنوان التوصيل",
+        "userInfo": "معلومات المستخدم"
+    },
+    "timeLine": {
+        "title":"حالة الطلب",
+        "status": {
+            "order_placed": "تم الطلب",
+            "in_progress": "قيد التنفيذ",
+            "shipped": "تم الشحن",
+            "delivered": "تم التوصيل",
+            "cancelled": "تم الإلغاء"
+        }
     }
 }

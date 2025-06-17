@@ -20,7 +20,9 @@ const BestSellers = ({
   const { t } = useTranslation("home");
 
   const transformedProducts =
-    products.length > 0 ? products.map((product) => transformProduct(product)):[];
+    products.length > 0
+      ? products.map((product) => transformProduct(product))
+      : [];
 
   return (
     <section className="container text-center">

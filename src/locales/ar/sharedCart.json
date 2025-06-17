@@ -5,14 +5,31 @@
     "deliveryCharges": "رسوم التوصيل",
     "deliveryNote": "يرجى ملاحظة أن بعض المناطق والتوصيل السريع قد تتطلب رسوم توصيل إضافية",
     "total": "المجموع الكلي",
-    "buttonText": "الانتقال إلى الدفع" },
-  "copon":{
-     "placeholder":"ادخل رمز الكوبون",
-     "apply":"تطبيق"
+    "buttonText": "الانتقال إلى الدفع",
+    "discount": "خصم",
+    "free":"مجانا",
+    "usedBalance":"الرصيد المستخدم",
+    "placeOrder":"تاكيد الطلب"
   },
-  "payment":{
-    "title":"خيارات الدفع",
-    "subTitle":"جميع المعاملات امنة ومشفرة"
+  "copon": {
+    "placeholder": "ادخل رمز الكوبون",
+    "apply": "تطبيق"
   },
-  "pointsNotice": "لديك <strong>{{points}}</strong> نقاط = <strong>{{price}}</strong> سوف يتم خصمها"
+  "payment": {
+    "title": "خيارات الدفع",
+    "subTitle": "جميع المعاملات امنة ومشفرة"
+  },
+  "pointsNotice": "لديك <strong>{{points}}</strong> نقاط = <strong>{{price}}</strong> سوف يتم خصمها",
+  "freeDelivery": {
+    "only": " فقط ",
+    "toGet": "للحصول على التوصيل المجاني!",
+    "Unlock": "لديك تمكين التوصيل المجاني!"
+  },
+  "useBalance":"استخدم رصيدك المتاح <strong>{{balance}}</strong>",
+  "redeemPoints":{
+    "title":"الرصيد المتاح",
+    "point":"نقطة",
+    "description":"يمكنك تحويل النقاط المتاحة للرصيد التي يمكنك استخدامها عند الشراء.",
+    "redeem":"تحويل النقاط"
+  }
 }

@@ -10,3 +10,14 @@ export const getLocalizedName = (
   const lang = language || i18next.language;
   return lang === "ar" ? item.nameAr : item.nameEn;
 };
+
+export const getLocalizedDescription = (
+  item: {
+    descriptionAr: string;
+    descriptionEn: string;
+  },
+  language?: string,
+): string => {
+  const lang = language || i18next.language;
+  return lang === "ar" ? item.descriptionAr : item.descriptionEn;
+};

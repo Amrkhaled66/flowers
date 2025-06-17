@@ -2,11 +2,10 @@ import { useState, useMemo } from "react";
 import { useDeliveryTime } from "src/context/DeliveryTimeCtx";
 import { useGetBusyTimes } from "src/hooks/order/useOrderMutation";
 import { useOrder } from "src/context/orderCtx";
-import {
-  generateTimeSlots,
-  getTodayAndTomorrow,
-} from "src/helpers/timeHelpers";
-
+import { getTodayAndTomorrow } from "src/helpers/timeHelpers";
+import formatDateToISO from "src/utils/formatDateToISO";
+import { getAvailableTimeSlots } from "src/helpers/timeHelpers";
+import { ENDDEDDELIVERYHOUR } from "src/utils/defaultSettings";
 export const useDeliveryTimeLogic = () => {
   const [openCalendar, setOpenCalendar] = useState(false);
   const { updateDeliveryTime, deliveryTime } = useDeliveryTime();
@@ -20,9 +19,12 @@ export const useDeliveryTimeLogic = () => {
     return busyTimesData
       .filter((time: any) => time.date === deliveryDate)
       .map((time: any) => time.period);
-  }, [deliveryDate]);
+  }, [deliveryDate, busyTimesData]);
 
-  const timeSlots = useMemo(() => generateTimeSlots(), [deliverTime]);
+  const AvailableTimeSlots = useMemo(
+    () => getAvailableTimeSlots(deliveryDate),
+    [deliveryDate, busyTimesData],
+  );
 
   const handleDateSelection = (date: string) => {
     setOpenCalendar(false);
@@ -41,18 +43,21 @@ export const useDeliveryTimeLogic = () => {
   };
 
   const handleConfirm = () => {
-    updateOrder({ delivery_date: deliveryDate, delivery_time: deliverTime });
+    updateOrder({ deliveryDate: deliveryDate, deliveryTime: deliverTime });
   };
 
   const isConfirmDisabled = !(deliverTime && deliveryDate);
 
+  const ToadyIsEnd = new Date().getHours() > ENDDEDDELIVERYHOUR;
+  if (deliveryDate === formatDateToISO(new Date())) {
+  }
   return {
     today,
     tomorrow,
     deliveryDate,
     deliverTime,
     busyTimes,
-    timeSlots,
+    AvailableTimeSlots,
     openCalendar,
     setOpenCalendar,
     handleDateSelection,
@@ -60,5 +65,6 @@ export const useDeliveryTimeLogic = () => {
     handleCalendarDateSelect,
     handleConfirm,
     isConfirmDisabled,
+    ToadyIsEnd,
   };
 };

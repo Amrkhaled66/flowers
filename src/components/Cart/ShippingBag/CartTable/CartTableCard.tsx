@@ -32,7 +32,7 @@ const CartTableCard = ({ product }: { product: CartItem }) => {
       <td className="text-center font-semibold">{priceFormatter(mainPrice)}</td>
       <td className="text-center">
         <QuantitySelector
-          id={productInfo.id}
+          id={product.id}
           isCartMenu
           currentQuantity={product.quantity}
         />

@@ -12,3 +12,4 @@ export {default as shippingBagEn} from "./shippingBag.json";
 export {default as sharedCartEn} from "./sharedCart.json";
 export {default as LayoutEn} from "./Layout.json";
 export {default as DeliveryInfoEn} from "./DeliveryInfo.json";
+export {default as ProductPageEn} from "./ProductPage.json"

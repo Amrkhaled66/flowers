@@ -3,9 +3,11 @@ import ReactPaginate from "react-paginate";
 const Pagination = ({
   pageCount,
   handlePageClick,
+  forcePage
 }: {
   pageCount: number;
   handlePageClick: ({ selected }: { selected: number }) => void;
+  forcePage?: number
 }) => {
 
   return (
@@ -15,6 +17,7 @@ const Pagination = ({
       onPageChange={handlePageClick}
       pageRangeDisplayed={5}
       pageCount={Math.ceil(pageCount)}
+      forcePage={forcePage}
       previousLabel="Prev"
       renderOnZeroPageCount={null}
       marginPagesDisplayed={2}

@@ -2,14 +2,12 @@ import { Link } from "react-router-dom";
 import { Icon } from "@iconify/react/dist/iconify.js";
 import { getLocalizedName } from "src/utils/getLocalizedName";
 
-import { useAddToCart, useUpdateCart } from "src/hooks/cart/useCartMutations";
-import { useCart } from "src/context/user/cartCtx";
+import { useAddToCartLogic } from "src/hooks/cart/useAddToCartLogic";
 import { useTranslation } from "react-i18next";
-import { useAuthGuard } from "src/hooks/shared/useAuthGuard";
 
 import Product from "src/types/product";
 import priceFormatter from "src/utils/priceFormatter";
-
+import { useCart } from "src/context/user/cartCtx";
 const ProductCardUI = ({
   product,
   isFavorite = false,
@@ -21,30 +19,29 @@ const ProductCardUI = ({
   isFilterCard?: boolean;
   children?: React.ReactNode;
 }) => {
-  const { isProductInCart } = useCart();
-  const { mutate: addToCart, isPending: isAddPending } = useAddToCart();
-  const { mutate: updateCart, isPending: isUpdatePending } = useUpdateCart();
   const {
     i18n: { language },
-  } = useTranslation();
-  const { check } = useAuthGuard();
+    t,
+  } = useTranslation("shared");
+  const { AddToCart, isLoading } = useAddToCartLogic();
+  const { isProductInCart, cart } = useCart();
 
-  const handelAddToCart = async () => {
-    const isAuthenticated = await check();
-    if (!isAuthenticated) return
-
-    isProductInCart(product.id)
-      ? updateCart({ quantity: 3, id: product.id })
-      : addToCart(product.id);
+  const isOutOfStock = product.stock <= 0;
+  const handleAdd = () => {
+    const res = isProductInCart(product.id);
+    if (!res) return AddToCart(product.id, 1);
+    const qnt =
+      cart.find((item) => item.product.id === product.id)?.quantity || 0;
+    AddToCart(product.id, qnt + 1);
   };
-
   return (
-    <div className="border-stroke w-full overflow-hidden rounded-2xl border bg-white drop-shadow-sm">
+    <div className="border-stroke animate w-full overflow-hidden rounded-2xl border bg-white drop-shadow-sm hover:drop-shadow-xl">
       {children}
       <Link className="z-0" to={`/product/${product.id}`}>
         <div
-          className={` ${isFilterCard && "lg:!h-[310px]"} ${(isFilterCard || isFavorite) && "sm:!h-[195px]"
-            } ${isFavorite && "!h-[310px] lg:!h-[310px]"} group h-[140px] overflow-hidden sm:h-[310px] lg:h-[282px]`}
+          className={` ${isFilterCard && "lg:!h-[310px]"} ${
+            (isFilterCard || isFavorite) && "sm:!h-[195px]"
+          } ${isFavorite && "!h-[310px] lg:!h-[310px]"} group h-[140px] overflow-hidden sm:h-[310px] lg:h-[282px]`}
         >
           <img
             src={product.images ? product.images[0] : product.firstImage}
@@ -63,29 +60,43 @@ const ProductCardUI = ({
           </div>
         </div>
       </Link>
-
-      <div className="flex flex-row items-center justify-between gap-y-3 px-2 pb-2 sm:px-3 lg:px-4">
-        <div className="flex w-full justify-start">
-          <p className="text-text-main font-bold">
-            {priceFormatter(product.beforeDiscount)}
-          </p>
-          {/* {discountedPrice && discountedPrice > 0 && (
-        <p className="text-text-main font-bold">{discountedPrice}</p>
-      )} */}
+      {isOutOfStock ? (
+        <div className="mx-auto mb-4 w-[90%] rounded-xl bg-red-600 p-2">
+          <p className="text-white">{t("outOfStock")} </p>
         </div>
-        <button
-          disabled={isAddPending || isUpdatePending}
-          onClick={handelAddToCart}
-          className={`hover:bg-main-700 focus:bg-main-900 animate bg-main flex place-items-center rounded-full p-2 text-white disabled:cursor-not-allowed sm:p-3 lg:p-4 ${(isAddPending || isUpdatePending) && "!animate-pulse"
+      ) : (
+        <div className="flex flex-row items-center justify-between gap-y-3 px-2 pb-2 sm:px-3 lg:px-4">
+          <div className="flex w-full justify-start">
+            {product.afterDiscount !== product.beforeDiscount ? (
+              <div className="flex flex-col items-start">
+                <p className="text-text-main font-bold">
+                  {priceFormatter(product.afterDiscount)}
+                </p>
+                <p className="text-text-main text-sm font-bold text-red-600 line-through">
+                  {priceFormatter(product.beforeDiscount)}
+                </p>
+              </div>
+            ) : (
+              <p className="text-text-main font-bold">
+                {priceFormatter(product.afterDiscount)}
+              </p>
+            )}
+          </div>
+          <button
+            disabled={isLoading}
+            onClick={handleAdd}
+            className={`hover:bg-main-700 focus:bg-main-900 animate bg-main flex place-items-center rounded-full p-2 text-white disabled:cursor-not-allowed sm:p-3 lg:p-4 ${
+              isLoading && "!animate-pulse"
             }`}
-        >
-          <Icon
-            icon="material-symbols:shopping-cart-outline-rounded"
-            width="24"
-            height="24"
-          />
-        </button>
-      </div>
+          >
+            <Icon
+              icon="material-symbols:shopping-cart-outline-rounded"
+              width="24"
+              height="24"
+            />
+          </button>
+        </div>
+      )}
     </div>
   );
 };

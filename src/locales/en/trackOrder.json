@@ -1,29 +1,36 @@
 {
-    "bar":{
-        "orderId":"Order ID",
-        "paymentMethode":"Payment Method",
-        "deliveryDate":"Estimated Delivery Date",
-        "downloadInvoice":"Download Invoice",
-        "viewInvoice":"View Invoice"
+    "bar": {
+        "orderId": "Order ID",
+        "paymentMethode": "Payment Method",
+        "deliveryDate": "Estimated Delivery Date",
+        "downloadInvoice": "Download Invoice",
+        "viewInvoice": "View Invoice"
     },
-    "summary":{
-        "title":"Order Summary",
-        "subtotal":"Subtotal",
-        "deliveryCharges":"Delivery Charges",
-        "chargeNote":"Please note that specific regions and express delivery may incur extra delivery fees",
-        "total":"Total"
+    "summary": {
+        "title": "Order Summary",
+        "subtotal": "Subtotal",
+        "deliveryCharges": "Delivery Charges",
+        "chargeNote": "Please note that specific regions and express delivery may incur extra delivery fees",
+        "total": "Total"
     },
-    "orderDetails":{
-        "title":"Order Details",
-        "expectedDeliveryDate":"Expected Delivery Date",
-        "trackingId":"Tracking ID"
+    "orderDetails": {
+        "title": "Order Details",
+        "expectedDeliveryDate": "Expected Delivery Date",
+        "trackingId": "Tracking ID"
     },
-    "deliveryInfo":{
-        "title":"Delivery Information",
-        "address":"Delivery Address",
-        "userInfo":"User Information"
+    "deliveryInfo": {
+        "title": "Delivery Information",
+        "address": "Delivery Address",
+        "userInfo": "User Information"
     },
-    "timeLine":{
-        "title":"Order Status"
+    "timeLine": {
+        "title": "Order Status",
+        "status": {
+            "order_placed": "Order Placed",
+            "in_progress": "In Progress",
+            "shipped": "Shipped",
+            "delivered": "Delivered",
+            "cancelled": "Cancelled"
+        }
     }
 }

@@ -6,12 +6,15 @@ import { useNavigate } from "react-router";
 import { useTranslation } from "react-i18next";
 import { useCart } from "src/context/user/cartCtx";
 import { Icon } from "@iconify/react/dist/iconify.js";
+import { useConfig } from "src/context/configCtx";
+import { useAuth } from "src/context/authCtx";
 const OrderSummary = () => {
   const { t } = useTranslation("sharedCart");
   const { config } = useOrderSummary();
   const navigate = useNavigate();
-  const { cartTotal, coupon, discountValue } = useCart();
-
+  const { cartSubTotal, coupon, copounValue, isFreeDelivery, isBalanceUsed } = useCart();
+  const { authData: { user } } = useAuth();
+  const { config: { shipping } } = useConfig()
   const handleClick = () => {
     if (config.onClick) {
       config.onClick();
@@ -19,6 +22,7 @@ const OrderSummary = () => {
       navigate(config.pathName);
     }
   };
+
   return (
     <div className="text-text-main bg-main-50 space-y-4 rounded-xl p-4 text-sm lg:space-y-[28px] lg:text-base">
       {/* Header */}
@@ -33,20 +37,28 @@ const OrderSummary = () => {
         {/* Subtotal */}
         <div className="border-b-stroke flex justify-between border-b pb-4">
           <p>{t("orderSummary.subtotal")}</p>
-          <p>{priceFormatter(cartTotal)}</p>
+          <p>{priceFormatter(cartSubTotal)}</p>
         </div>
         {coupon && (
           <div className="border-b-stroke flex justify-between border-b pb-4">
-            <p> discount</p>
-            <p className="text-green-500">{priceFormatter(discountValue)}</p>
+            <p> {t("orderSummary.discount")}</p>
+            <p className="text-green-500">{priceFormatter(copounValue)}</p>
           </div>
         )}
+        {
+          isBalanceUsed && (
+            <div className="border-b-stroke flex justify-between border-b pb-4">
+              <p>{t("orderSummary.usedBalance")}</p>
+              <p className="text-green-500">-{priceFormatter(user?.balance)}</p>
+            </div>
+          )
+        }
 
         {/* Delivery Charges */}
         <div className="border-b-stroke space-y-2.5 border-b pb-4">
           <div className="flex justify-between">
             <p>{t("orderSummary.deliveryCharges")}</p>
-            <p>{priceFormatter(100)}</p>
+            {isFreeDelivery ? <p className="text-green-600">{t("orderSummary.free")}</p> : <p>{priceFormatter(shipping)}</p>}
           </div>
           <p className="text-subTitle">{t("orderSummary.deliveryNote")}</p>
         </div>
@@ -54,14 +66,15 @@ const OrderSummary = () => {
         {/* Total */}
         <div className="border-b-stroke flex justify-between border-b pb-4 font-bold">
           <p>{t("orderSummary.total")}</p>
-          <p>{priceFormatter(cartTotal)}</p>
+          <p>{priceFormatter((cartSubTotal || 0) + (isFreeDelivery ? 0 : Number(shipping)))}</p>
         </div>
 
         {/* Button */}
         <div className="pt-4">
           <Button
             onClick={handleClick}
-            text={t("orderSummary.buttonText")}
+            loading={config.isLoading}
+            text={config.buttonText||"Order Now"}
             className="animate w-full !py-3 text-white"
           />
         </div>

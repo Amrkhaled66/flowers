@@ -9,12 +9,13 @@ type ImagesProps = {
   images?: string[];
   loading?: boolean;
   onShowImagesSlider: () => void;
+  id: number
 };
 
-const Images = ({ images, loading, onShowImagesSlider }: ImagesProps) => {
+const Images = ({ id, images, loading, onShowImagesSlider }: ImagesProps) => {
   const [activeImage, setActiveImage] = useState(0);
 
-  const renderMainImage = () => (
+  const MainImage = () => (
     <Slider
       speed={500}
       slidesPerGroup={1}
@@ -30,28 +31,28 @@ const Images = ({ images, loading, onShowImagesSlider }: ImagesProps) => {
     </Slider>
   );
 
-  const renderActionButtons = () => (
-    <>
-      <div className="absolute top-2 right-2 z-10">
-        <FavoriteButton productId={3} />
-      </div>
+  const ActionButtons = () => {
+    return (
+      <>
+        <div className="absolute top-2 right-2 z-10">
+          <FavoriteButton productId={id} />
+        </div>
 
-      <button
-        onClick={onShowImagesSlider}
-        className="animate absolute right-2 bottom-2 z-10 rounded-xl bg-white p-2.5 hover:drop-shadow-xl"
-      >
-        <Icon icon="lets-icons:full-alt" width="24" height="24" />
-      </button>
-    </>
-  );
-
+        <button
+          onClick={onShowImagesSlider}
+          className="animate absolute right-2 bottom-2 z-10 rounded-xl bg-white p-2.5 hover:drop-shadow-xl"
+        >
+          <Icon icon="lets-icons:full-alt" width="24" height="24" />
+        </button>
+      </>
+    )
+  }
   const renderThumbnails = () =>
     images?.map((image, index) => (
       <div
         key={image}
-        className={`aspect-square h-[44px] overflow-hidden rounded-xl sm:h-[50px] lg:h-[117px] ${
-          index === activeImage ? "border-main border" : ""
-        }`}
+        className={`aspect-square h-[44px] overflow-hidden rounded-xl sm:h-[50px] lg:h-[117px] ${index === activeImage ? "border-main border" : ""
+          }`}
       >
         <img
           src={image}
@@ -72,8 +73,12 @@ const Images = ({ images, loading, onShowImagesSlider }: ImagesProps) => {
   return (
     <div className="flex flex-col gap-y-4 lg:gap-y-6">
       <div className="relative h-[343px] w-full overflow-hidden rounded-xl sm:h-[680px] lg:h-[540px] lg:w-[540px]">
-        {loading ? <Skeleton className="!h-full !w-full" /> : renderMainImage()}
-        {!loading && renderActionButtons()}
+        {loading ? <Skeleton className="!h-full !w-full" /> :
+          <>
+            <MainImage />
+            <ActionButtons />
+          </>
+        }
       </div>
 
       <div className="flex gap-4 sm:gap-5 lg:gap-6">

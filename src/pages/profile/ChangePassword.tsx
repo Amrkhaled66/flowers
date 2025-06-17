@@ -5,7 +5,8 @@ import ProfilePageCompetent from "src/components/ProfilePage/ProfilePageCompeten
 
 import { useTranslation } from "react-i18next";
 const ChangePassword = () => {
-  const { formData, errors, handleChange, handleSubmit } = useChangePassword();
+  const { formData, errors, handleChange, handleSubmit, isLoading } =
+    useChangePassword();
   const { t } = useTranslation("profile");
 
   return (
@@ -40,8 +41,9 @@ const ChangePassword = () => {
 
         <div className="mt-8">
           <Button
+            loading={isLoading}
             text={t("changePassword.update")}
-            // type="submit"
+            type="submit"
             className="bg-main w-full !py-3 text-lg font-bold text-white transition-colors"
           ></Button>
         </div>

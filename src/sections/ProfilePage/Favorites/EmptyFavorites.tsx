@@ -18,7 +18,7 @@ const EmptyFavorites = () => {
             height="100"
           />
         </div>
-        <Link to="/">
+        <Link to="/filter">
           <Button
             text={t("favorite.cta")}
             className="animate w-full !py-3 text-white"

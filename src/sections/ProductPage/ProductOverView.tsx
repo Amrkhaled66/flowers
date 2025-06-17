@@ -2,24 +2,41 @@ import Images from "src/components/ProductPage/ProductOverView/Images";
 import Info from "src/components/ProductPage/ProductOverView/Info";
 
 const ProductOverView = ({
+  isOutOfStock,
   images,
+  afterDiscount,
+  beforeDiscount,
   name,
-  price,
   loading = false,
-  onShowImagesSlider
+  onShowImagesSlider,
+  id,
 }: {
+  isOutOfStock: boolean;
   images: string[] | undefined;
   name: string | undefined;
-  price: number | undefined;
-  description: string | undefined;
+  afterDiscount: number | undefined;
+  beforeDiscount: number | undefined;
   category: string | undefined;
   loading?: boolean;
+  id: number;
   onShowImagesSlider: () => void;
 }) => {
   return (
     <div className="flex flex-col gap-x-[50px] gap-y-4 lg:flex-row">
-      <Images onShowImagesSlider={onShowImagesSlider} loading={loading} images={images} />
-      <Info loading={loading} name={name} price={price} />
+      <Images
+        id={id}
+        onShowImagesSlider={onShowImagesSlider}
+        loading={loading}
+        images={images}
+      />
+      <Info
+        isOutOfStock={isOutOfStock}
+        id={id}
+        loading={loading}
+        name={name}
+        beforeDiscount={beforeDiscount}
+        afterDiscount={afterDiscount}
+      />
     </div>
   );
 };

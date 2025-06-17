@@ -7,7 +7,7 @@ import { OrderProvider } from "./context/orderCtx";
 import MessageGiftProvider from "./context/MessageGiftCtx";
 import { DeliveryTimeCtxProvider } from "./context/DeliveryTimeCtx";
 
-import { OnlyGuestUser, ProtectedRoute, VerifiedAccount, NotVerifiedAccount } from "./middleware";
+import { OnlyGuestUser, ProtectedRoute, VerifiedAccount } from "./middleware";
 
 import {
   HomePage,
@@ -41,6 +41,7 @@ import {
   Points,
   AddNewAddress,
   EditProfile,
+  BalloraBallance
 } from "./pages";
 
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
@@ -49,9 +50,9 @@ const router = createBrowserRouter([
   {
     path: "/",
     element:
-      <NotVerifiedAccount>
+      // <NotVerifiedAccount>
         <MainLayout />
-      </NotVerifiedAccount>
+      // </NotVerifiedAccount>
     ,
     children: [
       { index: true, element: <HomePage /> },
@@ -175,6 +176,11 @@ const router = createBrowserRouter([
             element: <Points />,
             handle: { breadcrumb: "Points" },
           },
+          {
+            path: "ballance",
+            element: <BalloraBallance />,
+            handle: { breadcrumb: "Ballora Ballance" },
+          },
         ],
       },
       // cart
@@ -213,15 +219,15 @@ const router = createBrowserRouter([
         ],
       },
       {
-        path: "success",
+        path: "success-order/:id",
         element: <SucessOrder />,
       },
       {
-        path: "track-order",
+        path: "track-order/:id",
         element: <TrackOrderPage />,
       },
       {
-        path: "invoice",
+        path: "invoice/:id",
         element: <InvoicePage />,
       },
     ],

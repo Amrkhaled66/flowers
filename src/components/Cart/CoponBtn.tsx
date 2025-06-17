@@ -17,18 +17,18 @@ const CoponBtn = () => {
   const { updateOrder } = useOrder();
   const handleSubmit = () => {
     mutate(coponCode, {
-      onSuccess: (data: any) => {
+      onSuccess: (data) => {
         if (!data) return
-        applyCoupon(data.code, data.discount);
+        applyCoupon(data.data.code, data.data.discount);
         toast("Coupon applied successfully", { type: "success" });
         updateOrder({
-          coupon: data.data.discount,
+          coupon: data.data.code,
         });
         setError("");
       },
-      onError: (err:any) => {
+      onError: (err: any) => {
         setError(
-          err.response.data.errors.code ||"Coupon not found",
+          err.response.data.errors.code || "Coupon not found",
         );
       },
     });

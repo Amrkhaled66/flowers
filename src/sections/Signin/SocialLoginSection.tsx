@@ -17,6 +17,7 @@ const SocialLoginSection = () => {
             },
           },
         );
+        return res
 
       } catch (err) {
         console.error("Failed to fetch user info", err);

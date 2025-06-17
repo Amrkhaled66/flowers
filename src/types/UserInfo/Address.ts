@@ -1,10 +1,18 @@
 interface Address {
   id: number;
-  recipient_name: string;
+  recipientName: string;
   address: string;
-  recipient_phone: string;
+  recipientPhone: string;
   area: string;
   title?: string;
 }
 
+interface FormErrors {
+  recipientName: string;
+  phoneNumber: string;
+  area: string;
+  address: string;
+}
+
 export default Address;
+export type { FormErrors };

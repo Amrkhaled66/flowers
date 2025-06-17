@@ -48,7 +48,7 @@ const Address = () => {
           refetch={refetch}
           isLoading={isLoading}
           isError={isError}
-          data={isLoading ? null : data.data}
+          data={isLoading ? null : data}
           onEditAddress={handleEditAddress}
         />
       </div>

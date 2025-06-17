@@ -8,10 +8,11 @@ import PaymentWays from "src/sections/Cart/payment/PaymentWays";
 import { useTranslation } from "react-i18next";
 import usePageTitle from "src/hooks/ui/useUpdatePageTitle";
 import { useOrder } from "src/context/orderCtx";
-import { Navigate } from "react-router";
 import { useOrderSummary } from "src/context/OrderSummaryContext";
 import { useEffect } from "react";
 import { useSubmitOrder } from "src/hooks/order/useOrderMutation";
+import transformKeysToSnakeCase from "src/utils/transformToSnakeCase";
+import Alert from "src/components/ui/Alert";
 const Payment = () => {
   usePageTitle("Payment");
   const { t } = useTranslation("sharedCart");
@@ -20,24 +21,26 @@ const Payment = () => {
   const { mutate, isPending } = useSubmitOrder();
   useEffect(() => {
     setConfig({
-      buttonText: "Continue to Checkout",
+      buttonText: t("orderSummary.placeOrder"),
+      isLoading: isPending,
       onClick: () => {
-        mutate(order)
+        if (!order.paymentMethod) return Alert({ title: "Error", text: "Please select a payment method", icon: "error", confirmButtonText: "Okay" })
+        mutate(transformKeysToSnakeCase(order))
       },
     });
 
     return () => {
       setConfig({});
     };
-  }, []);
-  if (
-    !order.recipient_name ||
-    !order.full_address ||
-    !order.delivery_time ||
-    !order.area ||
-    !order.phone_number
-  )
-    return <Navigate replace to={"/cart/delivery-info"} />;
+  }, [isPending, t, order]);
+  // if (
+  //   !order.recipientName ||
+  //   !order.fullAddress ||
+  //   !order.deliveryDate ||
+  //   !order.area ||
+  //   !order.phoneNumber
+  // )
+  //   return <Navigate replace to={"/cart/delivery-info"} />;
 
   return (
     <div className="lg:!bg-main-50 h-fit w-full space-y-3 rounded-xl bg-white lg:w-[62%] lg:p-4">

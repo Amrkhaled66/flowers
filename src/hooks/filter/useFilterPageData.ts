@@ -5,7 +5,7 @@ import {
   useGetCategories,
   useGetOccasions,
   useGetColors
-} from "src/hooks/filter/useFilterSections";
+} from "src/hooks/filter/useFilterSectionsMutations";
 
 export const useFilterPageData = (appliedOptions: any,page: number) => {
   const { data: categories, isLoading: categoriesLoading } = useGetCategories();

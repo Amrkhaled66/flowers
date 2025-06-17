@@ -5,6 +5,7 @@ import { useGetOccasions } from "src/hooks/profile/occastions/OccasionsMutations
 import { transformOccasionFrom } from "src/utils/transforms/transformUserOccasion";
 import { AddOccasionButton } from "src/components/ProfilePage/Occasions/AddOccasionButton";
 
+
 import EmptyOccasions from "src/sections/ProfilePage/Occasions/EmptyOccasions";
 import AddOccasionModal from "src/sections/ProfilePage/Occasions/AddOccasionModal";
 import OccasionsCards from "src/sections/ProfilePage/Occasions/OccasionsCards";
@@ -29,7 +30,6 @@ const Occasions = () => {
   const hasOccasions = data && data.length > 0;
 
   const transforedmOccasions = hasOccasions && data.map(transformOccasionFrom);
-
   return (
     <ProfilePageCompetent>
       <div className="space-y-6">

@@ -4,7 +4,6 @@ import { Swiper } from "swiper/react";
 import { Navigation } from "swiper/modules";
 import { Swiper as SwiperType } from "swiper";
 import NavigationBtn from "src/components/ui/NavigationBtn";
-
 // Styles
 import "swiper/css";
 import "swiper/css/navigation";

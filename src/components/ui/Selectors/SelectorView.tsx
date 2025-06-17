@@ -2,13 +2,13 @@ import { Icon } from "@iconify/react/dist/iconify.js";
 
 interface QuantitySelectorViewProps {
   title: string;
-  isCartMenu: boolean;
-  quantity: number;
+  isCartMenu?: boolean;
+  quantity?: number;
   inputValue: string;
   onIncrease: () => void;
   onDecrease: () => void;
   onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
-  onBlur: () => void;
+  onBlur?: () => void;
 }
 
 const SelectorView = ({
@@ -38,7 +38,7 @@ const SelectorView = ({
       <div className={wrapperClass}>
         <button
           onClick={onDecrease}
-          disabled={quantity <= 1}
+          disabled={quantity ? quantity <= 1 : Number(inputValue) <= 1}
           style={{ background: isCartMenu ? "transparent" : "#fff" }}
           className={buttonClass}
         >

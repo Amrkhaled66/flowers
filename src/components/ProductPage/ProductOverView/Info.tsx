@@ -1,14 +1,16 @@
-import React from "react";
-
-import QuantitySelector from "src/components/ui/Selectors/QuantitySelector";
+import SelectorView from "src/components/ui/Selectors/SelectorView";
 import Button from "src/components/ui/Button";
 import NavigationBar from "src/sections/ProductPage/NavigationBar";
 import Skeleton from "react-loading-skeleton";
 import TabbyPromo from "src/components/ui/TabbyPromo";
 
+import { useAddToCartLogic } from "src/hooks/cart/useAddToCartLogic";
+import { useTranslation } from "react-i18next";
+import { ReactNode, useState } from "react";
 import { Icon } from "@iconify/react/dist/iconify.js";
-import { ReactNode } from "react";
 import priceFormatter from "src/utils/priceFormatter";
+import { useCart } from "src/context/user/cartCtx";
+import { useNavigate } from "react-router";
 
 const shareProduct = async () => {
   if (navigator.share) {
@@ -64,14 +66,57 @@ const SocialIcon = ({
 };
 
 const Info = ({
+  isOutOfStock,
   name,
-  price,
   loading,
+  id,
+  afterDiscount,
+  beforeDiscount,
 }: {
+  isOutOfStock: boolean;
   name: string | undefined;
-  price: number | undefined;
   loading?: boolean;
+  id: number;
+  afterDiscount: number | undefined;
+  beforeDiscount: number | undefined;
 }) => {
+  const [quantity, setQuantity] = useState<number>(1);
+  const { t } = useTranslation("shared");
+  const { t: tProduct } = useTranslation("productPage");
+
+  const { AddToCart, isLoading } = useAddToCartLogic();
+  const { isProductInCart } = useCart();
+  const navigate = useNavigate();
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const value = e.target.value;
+    if (/^\d*$/.test(value)) {
+      setQuantity(Number(value));
+    }
+  };
+
+  const handleBlur = () => {
+    if (quantity < 1) {
+      setQuantity(1);
+    }
+  };
+
+  const decrease = () => {
+    if (quantity > 1) {
+      const newQty = quantity - 1;
+      setQuantity(newQty);
+    }
+  };
+
+  const increase = () => {
+    const newQty = quantity + 1;
+    setQuantity(newQty);
+  };
+
+  const handleBuy = () => {
+    if (isProductInCart(id)) return navigate("/cart");
+    AddToCart(id, quantity, () => navigate("/cart"));
+  };
+
   return (
     <div className="space-y-2 lg:w-[50%] lg:space-y-6">
       {loading ? (
@@ -92,38 +137,68 @@ const Info = ({
             </h1>
             <div className="flex flex-col gap-y-2">
               <p className="text-main space-x-1">
-                <span className="text-[28px] font-bold">
-                  {priceFormatter(price)}
-                </span>
+                {beforeDiscount !== afterDiscount ? (
+                  <div className="flex flex-col items-start">
+                    <p className="text-text-main text-3xl font-bold">
+                      {priceFormatter(afterDiscount)}
+                    </p>
+                    <p className="text-text-main text-sm font-bold text-red-600 line-through">
+                      {priceFormatter(beforeDiscount)}
+                    </p>
+                  </div>
+                ) : (
+                  <p className="text-text-main text-3xl font-bold">
+                    {priceFormatter(afterDiscount)}
+                  </p>
+                )}
               </p>
-              <p className="text-subTitle text-xs">All prices include tax</p>
+              <p className="text-subTitle text-xs">{tProduct("tax")}</p>
             </div>
-            <TabbyPromo price={price} />
+            <TabbyPromo price={afterDiscount} />
           </Section>
-
-          <Section withBorder>
-            <div className="space-y-4">
-              <QuantitySelector id={5} />
-              <div className="flex w-full flex-col gap-x-5 gap-y-4">
-                <Button
-                  text="Add To Cart"
-                  icon={
-                    <Icon
-                      icon="material-symbols:shopping-cart-outline-rounded"
-                      className="lg:size-6 size-5"
-                    />
-                  }
-                  className="hover:bg-main-300 animate w-full !text-base lg:!text-lg text-white lg:!py-4"
+          {isOutOfStock ? (
+            <div className="rounded-xl bg-red-600 p-2">
+              <p className="text-white">{t("outOfStock")} </p>
+            </div>
+          ) : (
+            <Section withBorder>
+              <div className="space-y-4">
+                <SelectorView
+                  onIncrease={increase}
+                  onDecrease={decrease}
+                  onBlur={handleBlur}
+                  onChange={handleInputChange}
+                  title={t("quantity")}
+                  inputValue={String(quantity)}
                 />
-                <button className="border-main text-main flex-1 rounded-xl border-2 !py-3 text-center text-base lg:text-lg font-bold">
-                  Buy Now
-                </button>
+                <div className="flex w-full flex-col gap-x-5 gap-y-4">
+                  <Button
+                    loading={isLoading}
+                    text={tProduct("add")}
+                    icon={
+                      <Icon
+                        icon="material-symbols:shopping-cart-outline-rounded"
+                        className="size-5 lg:size-6"
+                      />
+                    }
+                    onClick={() => AddToCart(id, quantity)}
+                    className="hover:bg-main-300 animate w-full !text-base text-white lg:!py-4 lg:!text-lg"
+                  />
+                  <button
+                    onClick={handleBuy}
+                    className="border-main text-main flex-1 rounded-xl border-2 !py-3 text-center text-base font-bold lg:text-lg"
+                  >
+                    {tProduct("buy")}
+                  </button>
+                </div>
               </div>
-            </div>
-          </Section>
+            </Section>
+          )}
 
           <div className="flex items-center gap-x-2">
-            <span className="text-text-main font-medium">Share:</span>
+            <span className="text-text-main font-medium">
+              {tProduct("share")}:
+            </span>
             <div className="text-subTitle flex gap-x-2">
               <SocialIcon
                 onClick={shareProduct}

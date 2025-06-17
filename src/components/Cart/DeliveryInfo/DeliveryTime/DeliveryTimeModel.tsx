@@ -22,7 +22,7 @@ const DeliveryTimeModel = ({
     deliveryDate,
     deliverTime,
     busyTimes,
-    timeSlots,
+    AvailableTimeSlots,
     openCalendar,
     setOpenCalendar,
     handleDateSelection,
@@ -30,70 +30,96 @@ const DeliveryTimeModel = ({
     handleCalendarDateSelect,
     handleConfirm,
     isConfirmDisabled,
+    ToadyIsEnd,
   } = useDeliveryTimeLogic();
   const { t } = useTranslation("deliveryInfo");
 
   return (
     <Model onClose={onClose} isOpen={isOpen}>
-      <div className="text-text-main mx-auto max-h-[80vh] w-[90%] space-y-8 overflow-y-auto rounded-xl bg-white px-4 py-5 text-center lg:w-[600px]">
+      <div className="text-text-main mx-auto max-h-[80vh] w-full space-y-8 overflow-y-auto rounded-xl bg-white px-4 py-5 text-center lg:w-[600px]">
         {/* Header */}
         <div className="flex items-center justify-between">
-          <p className="text-xl font-semibold">{t("time.model.title")}</p>
-          <button onClick={onClose} className="border-stroke rounded-xl border p-1">
-            <Icon icon="material-symbols:close-rounded" width="24" height="24" />
+          <p className="text-sm font-semibold sm:text-xl">
+            {t("time.model.title")}
+          </p>
+          <button
+            onClick={onClose}
+            className="border-stroke rounded-xl border p-1"
+          >
+            <Icon
+              icon="material-symbols:close-rounded"
+              width="24"
+              height="24"
+            />
           </button>
         </div>
 
         {/* Date Selection */}
         <div className="space-y-4">
-          <p className="flex items-center gap-x-2 text-lg font-semibold">
-            <Icon icon="solar:calendar-outline" width="24" height="24" />
+          <p className="flex items-center gap-x-2 text-sm font-semibold sm:text-lg">
+            <Icon icon="solar:calendar-outline" className="size-4 sm:size-6" />
             {t("time.model.deliveryDate")}
           </p>
           <ul className="grid grid-cols-3 gap-x-5">
-            <DeliveryDateOption
-              onClick={() => handleDateSelection(new Date().toISOString().slice(0, 10))}
-              isActive={deliveryDate === new Date().toISOString().slice(0, 10)}
-            >
-              <div >
-                <p>{`${t("time.model.today")}`} </p>
-                <p>{today}</p>
-              </div>
-
-            </DeliveryDateOption>
-
+            {!ToadyIsEnd && (
+              <DeliveryDateOption
+                onClick={() =>
+                  handleDateSelection(new Date().toISOString().slice(0, 10))
+                }
+                isActive={
+                  deliveryDate === new Date().toISOString().slice(0, 10)
+                }
+              >
+                <div className="text-xs sm:text-base">
+                  <p>{`${t("time.model.today")}`} </p>
+                  <p>{today}</p>
+                </div>
+              </DeliveryDateOption>
+            )}
             <DeliveryDateOption
               onClick={() => {
                 const tomorrowDate = new Date();
                 tomorrowDate.setDate(tomorrowDate.getDate() + 1);
                 handleDateSelection(tomorrowDate.toISOString().slice(0, 10));
               }}
-              isActive={deliveryDate === new Date(Date.now() + 86400000).toISOString().slice(0, 10)}
+              isActive={
+                deliveryDate ===
+                new Date(Date.now() + 86400000).toISOString().slice(0, 10)
+              }
             >
-              <div >
+              <div className="text-xs sm:text-base">
                 <p>{`${t("time.model.tomorrow")}`} </p>
                 <p>{tomorrow}</p>
               </div>
             </DeliveryDateOption>
 
             <DeliveryDateOption
-              onClick={() => setOpenCalendar(prev => !prev)}
+              onClick={() => setOpenCalendar((prev) => !prev)}
               isActive={
                 openCalendar ||
                 (deliveryDate !== new Date().toISOString().slice(0, 10) &&
-                  deliveryDate !== new Date(Date.now() + 86400000).toISOString().slice(0, 10) &&
+                  deliveryDate !==
+                    new Date(Date.now() + 86400000)
+                      .toISOString()
+                      .slice(0, 10) &&
                   deliveryDate !== "")
               }
             >
-              <div className="flex flex-col items-center">
-                <Icon icon="solar:calendar-outline" width="24" height="24" />
+              <div className="flex flex-col items-center text-xs sm:text-base">
+                <Icon
+                  icon="solar:calendar-outline"
+                  className="size-4 lg:size-6"
+                />
                 {deliveryDate ? deliveryDate : <p>Pick a Date</p>}
               </div>
             </DeliveryDateOption>
           </ul>
 
           {openCalendar && (
-            <Calender onDateSelect={handleCalendarDateSelect} selectedDate={deliveryDate} />
+            <Calender
+              onDateSelect={handleCalendarDateSelect}
+              selectedDate={deliveryDate}
+            />
           )}
         </div>
 
@@ -105,8 +131,10 @@ const DeliveryTimeModel = ({
               {t("time.model.deliveryTime")}
             </p>
             <div className="space-y-3">
-              {timeSlots.map((time) => {
-                const isBusy = busyTimes.includes(time.replace(/\s+/g, "").toLowerCase());
+              {AvailableTimeSlots.map((time) => {
+                const isBusy = busyTimes.includes(
+                  time.replace(/\s+/g, "").toLowerCase(),
+                );
                 return (
                   <TimeSlotButton
                     isBusy={isBusy}
@@ -129,7 +157,10 @@ const DeliveryTimeModel = ({
               "bg-main": !isConfirmDisabled,
               "!cursor-not-allowed opacity-60": isConfirmDisabled,
             })}
-            onClick={() => { handleConfirm(); onClose() }}
+            onClick={() => {
+              handleConfirm();
+              onClose();
+            }}
           />
           <Button
             text={t("time.model.cancel")}

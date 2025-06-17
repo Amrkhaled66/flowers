@@ -1,3 +1,7 @@
+import i18n from "i18next";
+
+
+
 const validateEmail = (email: string, t: (key: string) => string) => {
   const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
   if (!email.trim()) return t("register.requiredEmail");
@@ -12,14 +16,17 @@ const validatePassword = (password: string, t: (key: string) => string) => {
   return "";
 };
 
+
+const PhoneError = i18n.t("errors:register:phoneFormat");
+const requiredPhone = i18n.t("errors:register:requiredPhone");
 const validatePhoneNumber = (
   phoneNumber: string,
-  t: (key: string) => string,
+  t?: (key: string) => string,
 ) => {
   const regex = /^971(50|52|54|55|56)\d{7}$/;
-  if (!phoneNumber.trim()) return t("register.requiredPhone");
+  if (!phoneNumber.trim()) return t ? t("register.requiredPhone") : PhoneError;
   if (!regex.test(phoneNumber.replace(/\s+/g, "")))
-    return t("register.phoneFormat");
+    return t?t("register.phoneFormat"):requiredPhone;
   return "";
 };
 

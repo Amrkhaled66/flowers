@@ -34,8 +34,8 @@ const DeliveryTime = ({ error }: { error?: string }) => {
           subtitle={"Choose date and time"}
           isButton
           onClick={() => setActiveModel(1)}
-          deliveryDate={order.delivery_date}
-          deliveryTime={order.delivery_time}
+          deliveryDate={order.deliveryDate}
+          deliveryTime={order.deliveryTime}
         />
       </div>
     </div>

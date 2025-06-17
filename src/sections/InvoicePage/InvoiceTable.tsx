@@ -1,6 +1,7 @@
 import priceFormatter from "src/utils/priceFormatter";
-
-export default function InvoiceTable() {
+import { ReceivedOrder } from "src/types/ReceivedOrder";
+import { getLocalizedName } from "src/utils/getLocalizedName";
+export default function InvoiceTable({ order }: { order: ReceivedOrder | undefined }) {
   return (
     <div className="-mx-4 mt-8 flow-root sm:mx-0">
       <table className="min-w-full">
@@ -27,38 +28,19 @@ export default function InvoiceTable() {
           </tr>
         </thead>
         <tbody>
-          {[
-            {
-              name: "Ballora Flowers",
-              qty: "4",
-              price: "100",
-              amount: "300",
-            },
-            {
-              name: "Ballora Flowers",
-              qty: "2",
-              price: "100",
-              amount: "300",
-            },
-            {
-              name: "Ballora Flowers",
-              qty: "3",
-              price: "100",
-              amount: "300",
-            },
-          ].map((item, idx) => (
+          {order?.products.map((item, idx) => (
             <tr key={idx} className="border-b border-gray-200">
               <td className="max-w-0 py-5 pr-3 pl-4 text-sm sm:pl-0">
-                <div className="font-medium text-gray-900">{item.name}</div>
+                <div className="font-medium text-gray-900">{getLocalizedName(item)}</div>
               </td>
               <td className="hidden px-3 py-5 text-right text-sm text-gray-500 sm:table-cell">
-                {item.qty}
+                {item.quantity}
               </td>
               <td className="hidden px-3 py-5 text-right text-sm text-gray-500 sm:table-cell">
                 {priceFormatter(item.price)}
               </td>
               <td className="py-5 pr-4 pl-3 text-right text-sm text-gray-500 sm:pr-0">
-                {priceFormatter(item.amount)}
+                {priceFormatter(Number(item.price) * item.quantity)}
               </td>
             </tr>
           ))}
@@ -75,11 +57,11 @@ export default function InvoiceTable() {
               Subtotal
             </th>
             <td className="pt-6 pr-6 pl-3 text-right text-sm text-gray-500 sm:pr-0">
-              {priceFormatter(300)}
+              {priceFormatter(order?.subtotal)}
             </td>
           </tr>
-          
-            <tr>
+
+          <tr>
             <th
               colSpan={3}
               className="hidden pt-6 pr-3 pl-4 text-right text-sm font-normal text-gray-500 sm:table-cell sm:pl-0"
@@ -90,7 +72,7 @@ export default function InvoiceTable() {
               Shipping Fees
             </th>
             <td className="pt-6 pr-6 pl-3 text-right text-sm text-gray-500 sm:pr-0">
-              {priceFormatter(300)}
+              {priceFormatter(order?.shippingCost)}
             </td>
           </tr>
           <tr>
@@ -104,7 +86,7 @@ export default function InvoiceTable() {
               Total
             </th>
             <td className="pt-4 pr-4 pl-3 text-right text-sm font-semibold text-gray-900 sm:pr-0">
-              {priceFormatter(5000)}
+              {priceFormatter(order?.total)}
             </td>
           </tr>
         </tfoot>

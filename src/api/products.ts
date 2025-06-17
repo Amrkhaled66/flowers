@@ -22,4 +22,9 @@ const getProducts = async (filters?: any, page?: number) => {
   };
 };
 
-export { getProducts };
+const getProductById = async (id: string | undefined) => {
+  const { data } = await axiosInstance.get(`api/products/${id}`);
+  return data;
+};
+
+export { getProducts, getProductById };

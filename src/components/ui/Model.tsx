@@ -1,4 +1,4 @@
-import { ReactNode, use, useEffect } from "react";
+import { ReactNode, useEffect } from "react";
 import { createPortal } from "react-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import useScrollLock from "src/hooks/ui/useScrollLock";
@@ -14,7 +14,7 @@ const Model = ({
   children: ReactNode;
 }) => {
   useScrollLock(isOpen);
-  
+
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
       if (e.key === "Escape" && isOpen) {
@@ -35,7 +35,7 @@ const Model = ({
             animate={{ y: 0, opacity: 1 }}
             exit={{ y: -150, opacity: 0 }}
             transition={{ duration: 0.3 }}
-            className="fixed top-1/2 left-1/2 z-[90] max-h-[85vh] w-full max-w-lg -translate-x-1/2 -translate-y-1/2"
+            className="fixed top-1/2 left-1/2 z-[90] max-h-[85vh] w-full max-w-[90%] lg:w-fit -translate-x-1/2 -translate-y-1/2"
           >
             {children}
           </motion.div>

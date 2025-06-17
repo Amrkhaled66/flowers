@@ -14,6 +14,9 @@ const transformProduct = (product: any) => ({
   slug: product.slug,
   categoryId: product.category_id,
   occasionId: product.occasion_id,
+  recommendedProducts: product.recommended_products
+    ? product.recommended_products.map(transformProduct)
+    : [],
 });
 
 export default transformProduct;

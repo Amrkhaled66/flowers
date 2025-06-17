@@ -1,11 +1,10 @@
 import OrderSummary from "src/components/Cart/OrderSummary";
 import FreeDeliveryLine from "src/components/Cart/FreeDeliveryLine";
 import CoponBtn from "src/components/Cart/CoponBtn";
-import PointsSelector from "src/components/ui/Selectors/PointsSelector";
-import { Outlet } from "react-router";
-
 import CartList from "src/components/Cart/CartList";
-
+import UseBalanceCheckBox from "src/components/Cart/UseBalanceCheckBox";
+import RedeemPoints from "src/components/Cart/ReedemPoints";
+import { Outlet } from "react-router";
 import { useLocation } from "react-router";
 const CartSubLayout = () => {
   const { pathname } = useLocation();
@@ -18,8 +17,9 @@ const CartSubLayout = () => {
         >
           <FreeDeliveryLine />
           <CartList />
-          <PointsSelector />
           <CoponBtn />
+          <RedeemPoints />
+          <UseBalanceCheckBox />
           <OrderSummary />
         </div>
       </div>

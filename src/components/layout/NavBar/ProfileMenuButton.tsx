@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 
 import profileElements from "src/data/ProfileSideBarElements";
 import LogOutButton from "src/components/ui/register/LogOutButton";
+import priceFormatter from "src/utils/priceFormatter";
 
 import { useTranslation } from "react-i18next";
 import { useAuth } from "src/context/authCtx";
@@ -69,11 +70,11 @@ const ProfileMenuButton = () => {
                 />
               </span>
               <span className="text-text-main hidden font-medium text-nowrap lg:block">
-                {language === "en" ? "Ballora Points" : "نقاط بلورا"}
+                {language === "en" ? "Ballora Balance" : "رصيد بلورا"}
               </span>
             </div>
-            <div className="bg-main-100 rounded-xl px-6 py-1 font-medium">
-              {user?.points}
+            <div className="bg-main-100 rounded-xl px-2 text-sm py-1 font-medium">
+              {priceFormatter(user?.balance)}
             </div>
           </div>
 

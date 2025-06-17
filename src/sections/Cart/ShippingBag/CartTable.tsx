@@ -6,6 +6,7 @@ const CartTable = () => {
   const { cart } = useCart();
   const { t } = useTranslation("shippingBag");
   const { mutate: clearCart, isPending } = useClearCart();
+
   return (
     <div className="hidden h-auto lg:block lg:w-[60%]">
       <div className="bg-main-50 w-full overflow-hidden rounded-xl p-4">
@@ -20,8 +21,8 @@ const CartTable = () => {
           </thead>
           <tbody className="lg:pt-6">
             {cart &&
-              cart.map((product, index) => (
-                <CartTableCard key={index} product={product} />
+              cart.map((product) => (
+                <CartTableCard key={product.id} product={product} />
               ))}
           </tbody>
           <tfoot>

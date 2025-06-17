@@ -33,7 +33,6 @@ const UpdatePhoneNumberForm = ({
       // });
     },
     onError: (err: any) => {
-      console.log(err);
       setError(err.response.data.message);
       // Alert({
       //   title: "Error",

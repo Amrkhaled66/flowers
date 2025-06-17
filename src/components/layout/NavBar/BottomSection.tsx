@@ -38,7 +38,10 @@ const NavButton = ({
 );
 
 const BottomSection = () => {
-  const { toggleMenu, toggleCart, toggleSearch } = useNavBarToggleBtns();
+  const { toggleMenu, toggleCart, 
+    // toggleSearch
+
+   } = useNavBarToggleBtns();
   const { t } = useTranslation("layout");
   const { isAuthenticated } = useAuth();
   const { cartLength } = useCart();
@@ -54,11 +57,11 @@ const BottomSection = () => {
               icon="material-symbols:menu-rounded"
               label={t("navBar.menu")}
             />
-            <NavButton
+            {/* <NavButton
               onClick={toggleSearch}
               icon="ic:baseline-search"
               label={t("navBar.search")}
-            />
+            /> */}
           </div>
           {/* Logo */}
           <Link to="/">

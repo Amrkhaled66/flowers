@@ -1,6 +1,7 @@
 import { createContext, useContext, useState } from "react";
 type OrderSummaryConfig = {
   buttonText?: string;
+  isLoading?: boolean;
   pathName?: string;
   onClick?: () => void;
 };

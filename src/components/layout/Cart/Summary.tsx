@@ -8,13 +8,13 @@ import { useTranslation } from "react-i18next";
 import { useCart } from "src/context/user/cartCtx";
 const Summary = () => {
   const { toggleCart } = useNavBarToggleBtns();
-  const { cartTotal, cartLength } = useCart();
+  const { cartSubTotal, cartLength } = useCart();
   const { t } = useTranslation("layout");
   return (
     <div className="space-y-6">
       <div className="border-t-stroke flex justify-between border-t pt-4 text-lg font-bold">
         <p className="text-text-main text-xl">{t("cart.total")}</p>
-        <p className="text-main">{priceFormatter(cartTotal)}</p>
+        <p className="text-main">{priceFormatter(cartSubTotal)}</p>
       </div>
       <div className="flex w-full gap-x-6">
         <Link className="w-full" to="/cart">

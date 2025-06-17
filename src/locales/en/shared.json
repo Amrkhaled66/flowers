@@ -4,20 +4,20 @@
     "success": "Success",
     "error": "Error",
     "continue": "Continue",
-    "back":"Back",
+    "back": "Back",
     "quantity": "Quantity",
-    "apply":"Apply Now",
-    
+    "apply": "Apply Now",
     "balloraPoints": "Ballora Points",
     "chooseGiftNow": "Choose gift now",
-    "sessionExpired":{
-        "title":"Session Expired",
-        "text":"Your session has expired. Please login again.",
-        "btnText":"Login"
+    "sessionExpired": {
+        "title": "Session Expired",
+        "text": "Your session has expired. Please login again.",
+        "btnText": "Login"
     },
-    "verificationOtp":{
-        "title":"Account Verification",
-        "text":"Please verify your account",
-        "btnText":"Verify Now"
-    }
+    "verificationOtp": {
+        "title": "Account Verification",
+        "text": "Please verify your account",
+        "btnText": "Verify Now"
+    },
+    "outOfStock": "This product will be available soon."
 }

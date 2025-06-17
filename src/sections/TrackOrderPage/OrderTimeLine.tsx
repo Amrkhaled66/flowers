@@ -1,26 +1,26 @@
 import { useTranslation } from "react-i18next";
 import { Icon } from "@iconify/react/dist/iconify.js";
 import clsx from "clsx";
+import Skeleton from "react-loading-skeleton";
+
+import { OrderTracking } from "src/types/ReceivedOrder";
+
 const Element = ({
-  isEnd = false,
-  isChecked,
   status,
   date,
+  isEnd
 }: {
   isEnd?: boolean;
-  isChecked?: boolean;
   status: string;
-  date: string;
+  date?: string | null;
 }) => {
+  const { t } = useTranslation("trackOrder");
+
   return (
     <div className="flex gap-x-3">
       <div className={clsx("relative", { "min-h-[90px]": !isEnd })}>
         <div
-          className={clsx("absolute top-0 left-2.5 w-[4px]", {
-            "bg-main": isChecked,
-            "bg-stroke": !isChecked,
-            "h-full": !isEnd,
-          })}
+          className={clsx("absolute top-0 bg-main  left-2.5 w-[4px]", { "h-full": !isEnd })}
         ></div>
         <div className="relative">
           <Icon
@@ -28,31 +28,42 @@ const Element = ({
             width="24"
             height="24"
             className={clsx(
-              "rounded-full p-1",
-              isChecked ? "bg-main text-white" : "bg-stroke text-main",
+              "rounded-full p-1  bg-main text-white",
             )}
           />
         </div>
       </div>
       <div>
-        <p>{status}</p>
+        <p>{t(`timeLine.status.${status}`)}</p>
         <p className="text-subTitle">{date}</p>
       </div>
     </div>
   );
 };
 
-const OrderTimeLine = () => {
+const OrderTimeLine = ({
+  isLoading,
+  track = [],
+}: {
+  isLoading: boolean;
+  track?: OrderTracking[];
+}) => {
   const { t } = useTranslation("trackOrder");
-  return (
+
+  return isLoading ? (
+    <Skeleton className="!h-[250px]" containerClassName="min-w-[60%]" />
+  ) : (
     <div className="bg-main-50 h-fit min-w-[60%] flex-1 space-y-3 rounded-xl p-4">
       <h2 className="font-bold">{t("timeLine.title")}</h2>
-      <div>
-        <div className="flex flex-col gap-x-3">
-          <Element status="status" date="date" isChecked />
-          <Element status="status" date="date" />
-          <Element status="statusss" date="date" isEnd />
-        </div>
+      <div className="flex flex-col gap-x-3">
+        {track.map((step, index) => (
+          <Element
+            key={step.status}
+            status={step.status}
+            date={step.updatedAt}
+            isEnd={index === track.length - 1}
+          />
+        ))}
       </div>
     </div>
   );

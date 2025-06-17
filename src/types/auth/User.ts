@@ -6,13 +6,16 @@ interface User {
   birth_date: string;
   password: string;
   gender: string;
-  points: string;
   verified: number;
+  balance: string;
 }
 
 interface UserRegister extends User {
   confirm_password: string;
 }
+interface UserRegisterErrors extends Omit<User, "verified"> {
+  confirm_password: string;
+  verified: string;
+}
 
-export default User;
-export type { UserRegister };
+export type { User, UserRegister, UserRegisterErrors };

@@ -2,23 +2,27 @@ import React, { createContext, useContext, useState, useCallback } from "react";
 import { CartItem } from "src/types/cart";
 import getMainPrice from "src/utils/getMainPrice";
 import transformProduct from "src/utils/transforms/transformProduct";
-
+import { FREEDELIVERYBRECKDOWN } from "src/utils/defaultSettings";
+import { useAuth } from "../authCtx";
 interface Coupon {
   code: string;
-  discount: number; // percent, e.g., 12 for 12%
+  discount: number;
 }
 
 interface CartContextType {
   cart: CartItem[] | [];
   storeCart: (cart: CartItem[] | []) => void;
   clearCart: () => void;
-  isProductInCart: (productId: number) => boolean;
-  cartTotal?: number;
+  isProductInCart: (productId: number) => boolean | number;
+  cartSubTotal?: number;
   cartLength?: number;
   coupon: Coupon | null;
   applyCoupon: (code: string, discount: number) => void;
   removeCoupon: () => void;
-  discountValue: number;
+  copounValue: number;
+  isFreeDelivery: boolean;
+  isBalanceUsed: boolean
+  setIsBalanceUsed: (value: boolean) => void
 }
 
 const CartContext = createContext<CartContextType | undefined>(undefined);
@@ -28,7 +32,8 @@ export const CartProvider: React.FC<{ children: React.ReactNode }> = ({
 }) => {
   const [cart, setCart] = useState<CartItem[] | []>([]);
   const [coupon, setCoupon] = useState<Coupon | null>(null);
-
+  const [isBalanceUsed, setIsBalanceUsed] = useState(false)
+  const { authData: { user } } = useAuth()
   const storeCart = useCallback((newCart: CartItem[]) => {
     const modifiedCart = newCart.map((item) => ({
       quantity: item.quantity,
@@ -44,7 +49,8 @@ export const CartProvider: React.FC<{ children: React.ReactNode }> = ({
   };
 
   const isProductInCart = (productId: number) => {
-    return cart?.some((item: CartItem) => item.id === productId);
+    const item = (cart?.find((item: CartItem) => item.product.id === productId));
+    return item ? item.id : false;
   };
 
   const applyCoupon = (code: string, discount: number) => {
@@ -59,15 +65,19 @@ export const CartProvider: React.FC<{ children: React.ReactNode }> = ({
     return total + getMainPrice(item.product) * item.quantity;
   }, 0);
 
-  const cartTotal = coupon?.code
+  let cartSubTotal = coupon?.code
     ? baseTotal - (baseTotal * coupon.discount) / 100
     : baseTotal;
+
+  cartSubTotal = isBalanceUsed ? (cartSubTotal - Number(user?.balance)) || 0 : cartSubTotal
 
   const cartLength = cart?.reduce((total: number, item: CartItem) => {
     return total + item.quantity;
   }, 0);
 
-  const discountValue = cartTotal - baseTotal;
+  const copounValue = cartSubTotal - baseTotal;
+
+  const isFreeDelivery = cartSubTotal >= FREEDELIVERYBRECKDOWN;
 
   return (
     <CartContext.Provider
@@ -76,12 +86,15 @@ export const CartProvider: React.FC<{ children: React.ReactNode }> = ({
         storeCart,
         clearCart,
         isProductInCart,
-        cartTotal,
+        cartSubTotal,
         cartLength,
         coupon,
         applyCoupon,
         removeCoupon,
-        discountValue,
+        copounValue,
+        isFreeDelivery: isFreeDelivery,
+        setIsBalanceUsed,
+        isBalanceUsed
       }}
     >
       {children}

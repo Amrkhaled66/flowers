@@ -7,7 +7,7 @@ import { useTranslation } from "react-i18next";
 import {
   useGetCategories,
   useGetOccasions,
-} from "src/hooks/filter/useFilterSections";
+} from "src/hooks/filter/useFilterSectionsMutations";
 import useScrollLock from "src/hooks/ui/useScrollLock";
 
 import IdeasCards from "src/components/HomePage/Ideas/IdeasCards";

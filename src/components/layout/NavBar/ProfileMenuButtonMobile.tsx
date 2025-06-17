@@ -6,6 +6,7 @@ import profileElements from "src/data/ProfileSideBarElements";
 import ProfileSideBar from "src/types/ProfileSideBar";
 import LogOutButton from "src/components/ui/register/LogOutButton";
 import DeleteAccount from "src/components/ui/register/DeleteAccount";
+import priceFormatter from "src/utils/priceFormatter";
 
 import { getLocalizedName } from "src/utils/getLocalizedName";
 
@@ -13,8 +14,13 @@ import { useAuth } from "src/context/authCtx";
 import { useTranslation } from "react-i18next";
 const ProfileMenuButtonMobile = () => {
   const [open, setOpen] = useState(false);
-  const { t } = useTranslation("profile");
-  const { authData: { user } } = useAuth();
+  const {
+    t,
+    i18n: { language },
+  } = useTranslation("profile");
+  const {
+    authData: { user },
+  } = useAuth();
 
   return (
     <div className="block lg:hidden">
@@ -78,11 +84,11 @@ const ProfileMenuButtonMobile = () => {
                     />
                   </span>
                   <span className="text-text-main font-medium text-nowrap">
-                    {t("points.name")}
+                    {language === "en" ? "Ballora Balance" : "رصيد بلورا"}
                   </span>
                 </div>
-                <div className="bg-main-100 rounded-xl px-6 py-1 font-medium">
-                  {user?.points}
+                <div className="bg-main-100 rounded-xl px-2 lg:px-6 py-1 font-medium">
+                  {priceFormatter(user?.balance)}
                 </div>
               </div>
             </Link>

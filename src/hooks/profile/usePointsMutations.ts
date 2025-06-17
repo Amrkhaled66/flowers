@@ -1,6 +1,7 @@
 import { useQuery, useMutation } from "@tanstack/react-query";
-import { getPoints, redeemPoints } from "src/api/points";
-
+import { getPoints, redeemPoints, getBalance } from "src/api/points";
+import { useAuth } from "src/context/authCtx";
+import { toast } from "react-toastify";
 const useGetPoints = () => {
   return useQuery({
     queryKey: ["points"],
@@ -8,10 +9,23 @@ const useGetPoints = () => {
   });
 };
 
-const useRedeemPoints = () => {
-  return useMutation({
-    mutationFn: redeemPoints,
+const useGetBalance = () => {
+  return useQuery({
+    queryKey: ["balance"],
+    queryFn: getBalance,
   });
 };
 
-export { useGetPoints, useRedeemPoints };
+const useRedeemPoints = () => {
+  const { updateBalance } = useAuth();
+  return useMutation({
+    mutationFn: redeemPoints,
+    onSuccess: () => {
+      const newBalance = "900";
+      toast("Points Redeem Successfully");
+      updateBalance(newBalance);
+    },
+  });
+};
+
+export { useGetPoints, useRedeemPoints, useGetBalance };

@@ -1,20 +1,20 @@
 export interface Order {
-  coupon: string
-  recipient_name: string
-  phone_number: string
-  area: string
-  full_address: string
-  secret: boolean
-  delivery_time: string
-  delivery_date: string
-  payment_method: string
-  points_used: number
-  message: Message
+  coupon: string | null;
+  recipientName: string;
+  phoneNumber: string;
+  area: string;
+  fullAddress: string;
+  secret: boolean;
+  deliveryTime: string;
+  deliveryDate: string;
+  paymentMethod: string;
+  useBalance?: boolean;
+  message: Message;
 }
 
 export interface Message {
-  to: string
-  from: string
-  message: string
-  url: string
+  to: string;
+  from: string;
+  message: string;
+  url: string;
 }

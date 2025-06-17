@@ -4,15 +4,15 @@ import { Order } from "src/types/order";
 
 const defaultOrder: Order = {
   coupon: "",
-  recipient_name: "",
-  phone_number: "",
+  recipientName: "",
+  phoneNumber: "",
   area: "",
-  full_address: "",
+  fullAddress: "",
   secret: false,
-  delivery_time: "",
-  delivery_date: "",
-  payment_method: "",
-  points_used: 0,
+  deliveryDate: "",
+  deliveryTime: "",
+  paymentMethod: "",
+  useBalance: false,
   message: { to: "", from: "", message: "", url: "" },
 };
 

@@ -6,7 +6,7 @@ import {
   // clearUser,
   getToken,
 } from "src/services/authStorage";
-import type User from "src/types/auth/User";
+import type { User } from "src/types/auth/User";
 type AuthData = {
   user: User | null;
   token: string | null;
@@ -18,16 +18,20 @@ type AuthContextType = {
   logout: () => void;
   isAuthenticated: boolean;
   updateUser: (user: User) => void;
-  isVerified: boolean
+  isVerified: boolean;
+  updateBalance: (newBalance: string) => void;
 };
 
 const AuthContext = createContext<AuthContextType>({
   authData: { user: null, token: null },
-  login: () => { },
-  logout: () => { },
+  login: () => {},
+  logout: () => {},
   isAuthenticated: false,
-  updateUser: () => { },
-  isVerified: false
+  updateUser: () => {},
+  isVerified: false,
+  updateBalance: (
+    // newBalance:string
+  ) => {},
 });
 
 export default function AuthProvider({ children }: { children: ReactNode }) {
@@ -44,6 +48,16 @@ export default function AuthProvider({ children }: { children: ReactNode }) {
     // setUser(user);
   };
 
+  const updateBalance = (newBalance: string) => {
+    setAuthData((prev) => {
+      if (!prev.user) return prev;
+      return {
+        ...prev,
+        user: { ...prev.user, balance: newBalance },
+      };
+    });
+  };
+
   const login = (user: User, token: string) => {
     setAuthData({ user, token });
     setToken(token);
@@ -54,8 +68,7 @@ export default function AuthProvider({ children }: { children: ReactNode }) {
     clearToken();
     // clearUser();
   };
-
-  const isVerified = authData.user?.verified ? true : false
+  const isVerified = authData.user?.verified ? true : false;
   const isAuthenticated = !!authData.token;
 
   const contextValue = {
@@ -64,7 +77,8 @@ export default function AuthProvider({ children }: { children: ReactNode }) {
     logout,
     isAuthenticated,
     updateUser,
-    isVerified
+    isVerified,
+    updateBalance,
   };
 
   return (

@@ -5,6 +5,7 @@ import Slider from "../Categories/Slider";
 import ChooseGiftsButton from "src/components/ui/ChooseGiftsButton";
 import { SwiperSlide } from "swiper/react";
 import { getLocalizedName } from "src/utils/getLocalizedName";
+
 const IdeasCards = ({ isMenuCard }: { isMenuCard?: boolean }) => {
   return (
     <div className="space-y-5">
@@ -14,11 +15,11 @@ const IdeasCards = ({ isMenuCard }: { isMenuCard?: boolean }) => {
             className={` ${isMenuCard ? "!w-[200px]" : "!w-[260px] lg:!w-1/3"} sm:!w-[213px]`}
             key={index}
           >
-            <IdeaCard
-              isMenuCard={isMenuCard}
-              img={idea.img}
-              title={getLocalizedName(idea)}
-            />
+              <IdeaCard
+                isMenuCard={isMenuCard}
+                img={idea.img}
+                title={getLocalizedName(idea)}
+              />
           </SwiperSlide>
         ))}
       </Slider>

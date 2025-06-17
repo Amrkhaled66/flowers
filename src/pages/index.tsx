@@ -28,3 +28,4 @@ export { default as Favorite } from "./profile/Favorites";
 export { default as MyOrders } from "./profile/MyOrders";
 export { default as Points } from "./profile/Points";
 export { default as AddNewAddress } from "./profile/AddNewAddress";
+export { default as BalloraBallance } from "./profile/BalloraBallance";

@@ -5,7 +5,11 @@
     "deliveryCharges": "Delivery charges",
     "deliveryNote": "Please note that specific regions and express delivery may incur extra delivery fees",
     "total": "Total",
-    "buttonText": "Proceed to Checkout"
+    "buttonText": "Proceed to Checkout",
+    "discount": "Discount",
+    "free": "Free",
+    "usedBalance":"Used Balance",
+    "placeOrder":"Place Order"
   },
   "copon": {
     "placeholder": "Enter Coupon Code",
@@ -15,5 +19,17 @@
     "title": "Payment Options",
     "subTitle": "All transactions are secure and encrypted"
   },
-  "pointsNotice": "You have <strong>{{points}}</strong> points = <strong>{{price}}</strong> will be deducted"
+  "pointsNotice": "You have <strong>{{points}}</strong> points = <strong>{{price}}</strong> will be deducted",
+  "freeDelivery": {
+    "only": " Only ",
+    "toGet": "left to get free delivery!",
+    "Unlock": "You have unlocked free standard delivery!"
+  },
+  "useBalance":"Use your Balance you have <strong>{{balance}}</strong>",
+  "redeemPoints":{
+    "title":"Available Points",
+    "point":"Point",
+    "description":"You can convert the number of points available to you into credit that you can use when purchasing.",
+    "redeem":"Redeem"
+  }
 }

@@ -8,6 +8,7 @@ import ResetProvider from "./context/resetCtx";
 import AuthProvider from "./context/authCtx";
 import { FavoritesProvider } from "./context/user/favoritesCtx";
 import { CartProvider } from "./context/user/cartCtx";
+import { ConfigProvider } from "./context/configCtx";
 
 import { useEffect } from "react";
 import { useTranslation } from "react-i18next";
@@ -33,7 +34,7 @@ const queryClient = new QueryClient({
       refetchOnWindowFocus: false,
       staleTime: 1000 * 60 * 5,
       gcTime: 1000 * 60 * 5,
-      retry:2,
+      retry: 2,
     },
   },
 });
@@ -46,21 +47,23 @@ function App() {
 
   return (
     <QueryClientProvider client={queryClient}>
-      <FavoritesProvider>
-        <CartProvider>
-          <AuthProvider>
-            <NavBarToggleBtnsProvider>
-              <OrderSummaryProvider>
+      <ConfigProvider>
+        <FavoritesProvider>
+          <CartProvider>
+            <AuthProvider>
+              <NavBarToggleBtnsProvider>
+                <OrderSummaryProvider>
                   <ResetProvider>
                     <ToastContainer />
                     <Paths />
                   </ResetProvider>
-              </OrderSummaryProvider>
-            </NavBarToggleBtnsProvider>
-          </AuthProvider>
-        </CartProvider>
-      </FavoritesProvider>
-    </QueryClientProvider>
+                </OrderSummaryProvider>
+              </NavBarToggleBtnsProvider>
+            </AuthProvider>
+          </CartProvider>
+        </FavoritesProvider>
+      </ConfigProvider>
+    </QueryClientProvider >
   );
 }
 

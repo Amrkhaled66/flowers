@@ -1,5 +1,5 @@
-import { Icon } from "@iconify/react/dist/iconify.js";
-import { Link } from "react-router-dom";
+// import { Icon } from "@iconify/react/dist/iconify.js";
+// import { Link } from "react-router-dom";
 
 import { useTranslation } from "react-i18next";
 import { useAuth } from "src/context/authCtx";
@@ -28,12 +28,12 @@ const ProfileInfo = () => {
         <Row name={t("info.lastName")} value={user?.last_name} />
         <Row name={t("info.phone")} value={user?.phone_number} />
       </div>
-      <Link to={"/profile/editProfile"}>
+      {/* <Link to={"/profile/editProfile"}>
         <div className="text-text-main bg-main-100 flex w-fit items-center gap-x-2 rounded-xl px-6 py-2 text-xs font-bold">
           <Icon icon="lucide:edit" width="24" height="24" />
           <p>{t("edit")}</p>
         </div>
-      </Link>
+      </Link> */}
     </div>
   );
 };

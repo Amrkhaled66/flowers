@@ -7,7 +7,7 @@ import {
 import { useState, ChangeEvent, FormEvent } from "react";
 import { useRegister as useRegisterMutation } from "./useRegisterMutation";
 import { useNavigate } from "react-router";
-import { UserRegister } from "src/types/auth/User";
+import { UserRegister,UserRegisterErrors } from "src/types/auth/User";
 import { useAuth } from "src/context/authCtx";
 import { useTranslation } from "react-i18next";
 
@@ -22,9 +22,11 @@ export default function useRegister() {
     phone_number: "",
     birth_date: "",
     gender: "",
+    verified: 0,
+    balance: "",
   });
 
-  const [errors, setErrors] = useState<UserRegister>({
+  const [errors, setErrors] = useState<UserRegisterErrors>({
     first_name: "",
     last_name: "",
     email: "",
@@ -33,6 +35,8 @@ export default function useRegister() {
     phone_number: "",
     birth_date: "",
     gender: "",
+    verified: "",
+    balance: "",
   });
 
   const { login } = useAuth();
@@ -92,13 +96,13 @@ export default function useRegister() {
   };
 
   const validateForm = (): boolean => {
-    const newErrors = {} as UserRegister;
+    const newErrors = {} as UserRegisterErrors;
     let isValid = true;
 
     // Validate all fields
     Object.keys(formData).forEach((key) => {
       const fieldName = key as keyof UserRegister;
-      const error = validateField(fieldName, formData[fieldName]);
+      const error = validateField(fieldName, String(formData[fieldName]));
       newErrors[fieldName] = error;
       if (error) isValid = false;
     });
@@ -121,7 +125,8 @@ export default function useRegister() {
           icon: "success",
           confirmButtonText: "Okay",
         }).then(() => {
-          navigate("/verify-account");
+          // navigate("/verify-account");
+          navigate("/");
         });
       },
 

@@ -9,8 +9,8 @@ import { useMemo } from "react";
 import { useTranslation } from "react-i18next";
 
 const initialFormData: Address = {
-  recipient_name: "",
-  recipient_phone: "",
+  recipientName: "",
+  recipientPhone: "",
   address: "",
   area: "",
   title: "",
@@ -47,19 +47,19 @@ const AddressForm = ({
     <form className="w-full space-y-4 lg:p-4" onSubmit={handleSubmit}>
       <FormInput
         type="text"
-        name="recipient_name"
+        name="recipientName"
         required
         label={t("address.form.recipientName")}
-        value={formData.recipient_name}
+        value={formData.recipientName}
         onChange={handleInputChange}
-        error={formErrors.name}
+        error={formErrors.recipientName}
       />
       <FormInput
         type="text"
-        name="recipient_phone"
+        name="recipientPhone"
         required
         label={t("address.form.recipientPhone")}
-        value={formData.recipient_phone}
+        value={formData.recipientPhone}
         onChange={handleInputChange}
         error={formErrors.phoneNumber}
       />

@@ -3,6 +3,7 @@ function priceFormatter(amount: any): string {
     style: "currency",
     currency: "AED",
     minimumFractionDigits: 0,
+    maximumFractionDigits:2
   }).format(parseFloat(amount));
 }
 

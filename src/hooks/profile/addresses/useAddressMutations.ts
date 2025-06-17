@@ -7,10 +7,14 @@ import {
 import Address from "src/types/UserInfo/Address";
 
 import { useMutation, useQuery } from "@tanstack/react-query";
+import transformKeysToCamelCase from "src/utils/transformToCamalCase";
 export const useGetAddresses = () =>
   useQuery({
     queryKey: ["addresses"],
-    queryFn: () => getAddresses(),
+    queryFn: async () => {
+      const data = await getAddresses();
+      return transformKeysToCamelCase(data.data)
+    },
     enabled: true,
   });
 

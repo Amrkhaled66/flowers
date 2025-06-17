@@ -12,3 +12,4 @@ export {default as trackOrderAr} from "./trackOrder.json";
 export {default as shippingBagAr} from "./shippingBag.json";
 export {default as sharedCartAr} from "./sharedCart.json";
 export {default as DeliveryInfoAr} from "./DeliveryInfo.json";
+export {default as ProductPageAr} from "./ProductPage.json"

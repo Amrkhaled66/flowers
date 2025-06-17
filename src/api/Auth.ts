@@ -29,9 +29,23 @@ const verifyOtp = async (otp: string) => {
   return data;
 };
 
+const changePassword = async (data: any) => {
+  console.log(data);
+  const { data: res } = await axiosPrivate.post("/api/change-password", data);
+  return res;
+};
+
 const deactivateAccount = async () => {
-  const { data } = await axiosPrivate.post("/api/profile/deactivate");
+  const { data } = await axiosPrivate.delete("/api/profile/delete-account");
   return data;
 };
 
-export { login, register, logout, requestOtp, verifyOtp ,deactivateAccount};
+export {
+  login,
+  register,
+  logout,
+  requestOtp,
+  verifyOtp,
+  deactivateAccount,
+  changePassword,
+};

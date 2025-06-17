@@ -4,15 +4,17 @@ import googleplay from "src/assets/googleplay.svg";
 import { Icon } from "@iconify/react/dist/iconify.js";
 import { ReactNode } from "react";
 import { useTranslation } from "react-i18next";
-const SocialIcon = ({ icon }: { icon: ReactNode }) => {
+import { useConfig } from "src/context/configCtx";
+const SocialIcon = ({ icon, link }: { icon: ReactNode, link?: string | null }) => {
   return (
-    <button className="flex items-center rounded-xl border border-white p-2">
+    <a href={link || "#"} target="_blank" className="flex animate hover:bg-white hover:!text-main hover:-translate-y-1 items-center rounded-xl border border-white p-2">
       {icon}
-    </button>
+    </a>
   );
 };
 const SocialLinks = () => {
   const { t } = useTranslation("layout");
+  const { config: { instagram, tiktok, whatsapp } } = useConfig();
   return (
     <div className="space-y-8 text-start text-white lg:w-[40%]">
       <div>
@@ -23,12 +25,15 @@ const SocialLinks = () => {
           <p>{t("footer.socialMedia")}</p>
           <div className="flex gap-x-3">
             <SocialIcon
-              icon={<Icon icon="ri:facebook-fill" width="24" height="24" />}
+              link={whatsapp}
+              icon={<Icon icon="bi:whatsapp" width="24" height="24" />}
             />
             <SocialIcon
-              icon={<Icon icon="bi:snapchat" width="24" height="24" />}
+              link={instagram}
+              icon={<Icon icon="bi:instagram" width="24" height="24" />}
             />
             <SocialIcon
+              link={tiktok}
               icon={<Icon icon="ri:tiktok-fill" width="24" height="24" />}
             />
           </div>

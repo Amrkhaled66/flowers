@@ -24,7 +24,11 @@ const SignUpForm = () => {
             type={type}
             name={name}
             value={formData[name as keyof UserRegister] || ""}
-            error={errors[name as keyof UserRegister]}
+            error={
+              errors[name as keyof UserRegister] !== undefined
+                ? String(errors[name as keyof UserRegister])
+                : undefined
+            }
             onChange={handleChange}
           />
         ))}

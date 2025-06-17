@@ -14,6 +14,7 @@ interface Product {
   slug: string;
   categoryId: number;
   occasionId: number;
+  recommendedProducts?: Product[];
 }
 
 export default Product;

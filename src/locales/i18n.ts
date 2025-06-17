@@ -17,7 +17,8 @@ import {
   trackOrderEn,
   shippingBagEn,
   sharedCartEn,
-  DeliveryInfoEn
+  DeliveryInfoEn,
+  ProductPageEn
 } from "src/locales/en";
 
 import {
@@ -34,7 +35,8 @@ import {
   trackOrderAr,
   shippingBagAr,
   sharedCartAr,
-  DeliveryInfoAr
+  DeliveryInfoAr,
+  ProductPageAr
 } from "src/locales/ar";
 
 
@@ -53,7 +55,8 @@ const resources = {
     trackOrder: trackOrderEn,
     shippingBag: shippingBagEn,
     sharedCart: sharedCartEn,
-    deliveryInfo: DeliveryInfoEn
+    deliveryInfo: DeliveryInfoEn,
+    productPage: ProductPageEn
   },
   ar: {
     home: HomeAr,
@@ -69,7 +72,8 @@ const resources = {
     trackOrder: trackOrderAr,
     shippingBag: shippingBagAr,
     sharedCart: sharedCartAr,
-    deliveryInfo: DeliveryInfoAr
+    deliveryInfo: DeliveryInfoAr,
+    productPage: ProductPageAr
   },
 };
 

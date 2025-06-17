@@ -45,6 +45,14 @@ const Elements: ProfileSideBar[] = [
     link: "/profile/points",
   },
   {
+    nameEn: "Ballora Ballance",
+    nameAr: "رصيد بلورا",
+    icon: (
+      <Icon icon="majesticons:coins" width="24" height="24" />
+    ),
+    link: "/profile/ballance",
+  },
+  {
     nameEn: "Add New Address",
     nameAr: "أضافة عنوان جديد",
     icon: <Icon icon="mdi:favourite-border" width="24" height="24" />,

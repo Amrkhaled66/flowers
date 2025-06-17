@@ -1,6 +1,6 @@
 import ProfileInfo from "src/sections/ProfilePage/MyData/ProfileInfo";
 import ProfilePageCompetent from "src/components/ProfilePage/ProfilePageCompetent";
-import ChangePhoneNumberSection from "src/sections/ProfilePage/MyData/ChangePhoneNumberSection";
+// import ChangePhoneNumberSection from "src/sections/ProfilePage/MyData/ChangePhoneNumberSection";
 
 const MyData = () => {
   return (
@@ -8,9 +8,9 @@ const MyData = () => {
       <ProfilePageCompetent>
         <ProfileInfo />
       </ProfilePageCompetent>
-      <ProfilePageCompetent>
+      {/* <ProfilePageCompetent>
         <ChangePhoneNumberSection />
-      </ProfilePageCompetent>
+      </ProfilePageCompetent> */}
     </div>
   );
 };

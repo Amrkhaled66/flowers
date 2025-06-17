@@ -16,6 +16,7 @@ interface PasswordInputProps {
     placeholder,
     error,
     onChange,
+    value
   }: PasswordInputProps) => {
     const [showPassword, setShowPassword] = useState(false);
   
@@ -46,6 +47,7 @@ interface PasswordInputProps {
           <input
             placeholder={placeholder || label}
             onChange={onChange}
+            value={value}
             className="placeholder:text-subTitle border-stroke animate focus:border-main h-full w-full rounded-xl border py-2.5 ps-10"
             type={showPassword ? "text" : "password"}
             name={name}

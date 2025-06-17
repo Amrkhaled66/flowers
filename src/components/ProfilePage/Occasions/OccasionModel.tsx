@@ -8,26 +8,30 @@ import ComboBox from "src/components/ui/ComboBox";
 import Button from "src/components/ui/Button";
 import Occasion from "src/types/UserInfo/Occasion";
 
+import { getLocalizedName } from "src/utils/getLocalizedName";
+import { useGetOccasions } from "src/hooks/filter/useFilterSectionsMutations";
 const initialFormData: Occasion = {
   eventTitle: "",
   eventDate: "",
-  type: "",
+  occasionId: null,
   note: "",
 };
 
 const initialFormErrors: Occasion = {
   eventTitle: "",
   eventDate: "",
-  type: "",
+  occasionId: null,
   note: "",
 };
+
+
 
 const OccasionModal = ({
   FormData = null,
   isPending,
   isOpen = false,
   onSubmit,
-  onClose = () => {},
+  onClose = () => { },
 }: {
   FormData?: Occasion | null;
   isPending?: boolean;
@@ -40,6 +44,7 @@ const OccasionModal = ({
   );
   const [formErrors, setFormErrors] = useState<Occasion>(initialFormErrors);
   const { t } = useTranslation("profile");
+  const { data: occasions } = useGetOccasions();
 
   const handleInputChange = (value: string, name: string) => {
     setFormData({
@@ -100,6 +105,9 @@ const OccasionModal = ({
     return;
   };
 
+  const getOccasionById = (id: number) => occasions && occasions.find((occasion: { id: number }) => id === occasion.id)
+  const getOccasionId = (name: string) => occasions && occasions.find((occasion: { nameAr: string, nameEn: string }) => name === occasion.nameAr || name === occasion.nameEn)?.id
+
   return (
     <Model isOpen={isOpen} onClose={onClose}>
       <form
@@ -135,15 +143,9 @@ const OccasionModal = ({
             name="type"
             label={t("occasion.form.type")}
             bgColor="bg-main-50"
-            onSelected={(value) => handleInputChange(value, "type")}
-            value={formData.type}
-            options={[
-              "Birthday",
-              "Anniversary",
-              "Valentine's Day",
-              "Mother's Day",
-              "New Year",
-            ]}
+            onSelected={(value) => handleInputChange(getOccasionId(value), "occasionId")}
+            value={occasions && formData.occasionId && getLocalizedName(getOccasionById(formData.occasionId || 0))}
+            options={occasions && occasions?.map((occasion: { nameAr: string, nameEn: string }) => getLocalizedName(occasion))}
           />
           <label className="flex flex-col gap-y-3" htmlFor="">
             <span className="text-main font-bold">

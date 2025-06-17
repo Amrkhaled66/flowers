@@ -2,7 +2,7 @@ interface Occasion {
   id?: number;
   eventTitle: string;
   eventDate: string;
-  type: string;
+  occasionId: number|null;
   note: string;
 }
 

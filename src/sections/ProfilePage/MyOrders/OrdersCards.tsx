@@ -1,40 +1,34 @@
-import img1 from "src/assets/products/1.webp";
 import OrderCard from "src/components/ProfilePage/MyOrders/OrdersCards/OrderCard";
-import OrderCardType from "src/types/UserInfo/OrderCard";
 import Skeleton from "react-loading-skeleton";
 
-// import { useGetOrders } from "src/hooks/order/useOrderMutation";
-const Orders: OrderCardType[] = [
-  {
-    id: "NEGH2200221",
-    img: img1,
-    shippingStatus: "Shipping",
-    title: "Atom Nespresso Premium Endy Roses Bouquet",
-    price: 120,
-    date: new Date(Date.now()),
-  },
-  {
-    id: "NEGH2200221",
-    img: img1,
-    shippingStatus: "Shipping",
-    title: "Atom Nespresso Premium Endy Roses Bouquet",
-    price: 120,
-    date: new Date(Date.now()),
-  },
-];
+import { useGetOrders } from "src/hooks/order/useOrderMutation";
+import { ReceivedOrder } from "src/types/ReceivedOrder";
+import { useNavigate } from "react-router";
+import { useTranslation } from "react-i18next";
+import Button from "src/components/ui/Button";
 
 const OrdersCards = () => {
-  // const { data: orders, isLoading } = useGetOrders();
+  const { data: orders, isLoading } = useGetOrders();
+  const navigate = useNavigate();
+  const{t} =useTranslation("profile")
   return (
     <div className="flex flex-col gap-y-4">
-      {false ? (
+      {isLoading ? (
         <>
           <Skeleton containerClassName="!rounded-xl" height={120} />
           <Skeleton containerClassName="!rounded-xl" height={120} />
           <Skeleton containerClassName="!rounded-xl" height={120} />
         </>
+      ) : orders.length === 0 ? (
+        <Button
+          className="w-full !py-3 !text-white"
+          onClick={() => navigate("/filter")}
+          text={t("orders.placeFirstOrder")}
+        />
       ) : (
-        Orders.map((order) => <OrderCard key={order.id} order={order} />)
+        orders.map((order: ReceivedOrder) => (
+          <OrderCard key={order.id} order={order} />
+        ))
       )}
     </div>
   );

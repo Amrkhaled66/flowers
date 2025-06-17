@@ -1,11 +1,12 @@
 import { Icon } from "@iconify/react/dist/iconify.js";
 import { useTranslation } from "react-i18next";
-
+import { useParams } from "react-router";
 import Button from "src/components/ui/Button";
 import { Link } from "react-router-dom";
-const SucessOrder = () => {
+const SuccessOrder = () => {
   const { t } = useTranslation("successOrder");
-  const orderId = 921341234;
+  const { id } = useParams();
+
   return (
     <div className="text-text-main flex h-fit flex-col items-center justify-center px-4 py-6 text-center sm:py-8 lg:h-dvh">
       <div className="relative mb-8">
@@ -23,18 +24,20 @@ const SucessOrder = () => {
           </p>
           <p className="flex flex-col items-center justify-center gap-y-1 lg:flex-row">
             <span className="font-bold">
-              {t("orderNumber")} : {orderId}
+              {t("orderNumber")} : {id}
             </span>{" "}
             <span>{t("time")}</span>
           </p>
           <p>{t("description")}</p>
         </div>
         <div className="flex w-full flex-col justify-center gap-6 lg:flex-row">
-          <Button
-            text={t("track")}
-            className="animate w-full !py-4 text-white lg:w-[240px]"
-          />
-          <Link to="/">
+          <Link to={`/track-order/${id}`}>
+            <Button
+              text={t("track")}
+              className="animate w-full !py-4 text-white lg:w-[240px]"
+            />
+          </Link>
+          <Link to="/filter">
             <Button
               text={t("completeShop")}
               className="animate text-main border-main w-full border bg-transparent !py-4 hover:!bg-transparent lg:w-[240px]"
@@ -47,4 +50,4 @@ const SucessOrder = () => {
   );
 };
 
-export default SucessOrder;
+export default SuccessOrder;

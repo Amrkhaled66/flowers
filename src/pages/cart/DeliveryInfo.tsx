@@ -8,7 +8,7 @@ import Alert from "src/components/ui/Alert";
 import PrivacyConsentToggle from "src/components/Cart/DeliveryInfo/PrivacyConsentToggle ";
 import Button from "src/components/ui/Button";
 
-import { useEffect } from "react";
+import {  useEffect } from "react";
 import { Navigate, useNavigate } from "react-router";
 import { useOrderSummary } from "src/context/OrderSummaryContext";
 import usePageTitle from "src/hooks/ui/useUpdatePageTitle";
@@ -17,8 +17,8 @@ import { useOrder } from "src/context/orderCtx";
 import { useCart } from "src/context/user/cartCtx";
 
 const initialFormData: Address = {
-  recipient_name: "",
-  recipient_phone: "",
+  recipientName: "",
+  recipientPhone: "",
   address: "",
   area: "",
   id: 0,
@@ -27,20 +27,20 @@ const initialFormData: Address = {
 const DeliveryInfo = () => {
   usePageTitle("Delivery Info");
   const { t } = useTranslation("profile");
-  const { t : tCart} = useTranslation("sharedCart");
+  const { t: tCart } = useTranslation("sharedCart");
   const { setConfig } = useOrderSummary();
   const { cartLength } = useCart();
-  const { updateOrder } = useOrder();
+  const { updateOrder, order } = useOrder();
   const navigate = useNavigate();
 
   const {
     formData,
     formErrors,
-    handleInputChange,
     handleLocationSelection,
-    handleSelectArea,
     validateForm,
     deliveryError,
+    handleSelectArea,
+    handleInputChange
   } = useAddressFormWithDelivery(initialFormData);
 
   const onSubmit = () => {
@@ -53,10 +53,10 @@ const DeliveryInfo = () => {
         confirmButtonText: "Okay",
       });
     updateOrder({
-      recipient_name: formData.recipient_name,
-      phone_number: formData.recipient_phone,
+      recipientName: formData.recipientName,
+      phoneNumber: formData.recipientPhone,
       area: formData.area,
-      full_address: formData.address,
+      fullAddress: formData.address,
     });
     return navigate("/cart/payment");
   };
@@ -72,7 +72,7 @@ const DeliveryInfo = () => {
     return () => {
       setConfig({});
     };
-  }, [formData]);
+  }, [formData,order,tCart]);
 
   if (cartLength === 0) return <Navigate to="/" replace />;
   return (
@@ -81,27 +81,32 @@ const DeliveryInfo = () => {
         <FormInput
           bgColor=" bg-main-50 lg:bg-white"
           type="text"
-          name="recipient_name"
+          name="recipientName"
           required
           label={t("address.form.recipientName")}
-          value={formData.recipient_name}
+          value={formData.recipientName || order.recipientName}
+          // onChange={(e: ChangeEvent<HTMLInputElement>) => updateOrder({ recipientName: e.target.value })}
           onChange={handleInputChange}
-          error={formErrors.name}
+          error={formErrors.recipientName}
         />
         <FormInput
           bgColor="bg-main-50 lg:bg-white"
           type="text"
-          name="recipient_phone"
+          name="recipientPhone"
           required
           label={t("address.form.recipientPhone")}
-          value={formData.recipient_phone}
+          value={formData.recipientPhone || order.phoneNumber}
+          // onChange={(e: ChangeEvent<HTMLInputElement>) => updateOrder({ phoneNumber: e.target.value })}
           onChange={handleInputChange}
+
           error={formErrors.phoneNumber}
         />
 
         <MapButton onLocationSelected={handleLocationSelection} />
         <AreaSelection
+          defaultValue={formData.area || order.area}
           error={formErrors.area}
+          // onAreaSelected={(value) => updateOrder({ area: value })}
           onAreaSelected={handleSelectArea}
         />
         <div className="space-y-1">
@@ -110,9 +115,10 @@ const DeliveryInfo = () => {
               {t("address.form.address")}
             </label>
             <textarea
-              value={formData.address}
+              value={formData.address || order.fullAddress}
               name="address"
               onChange={handleInputChange}
+              // onChange={(e: ChangeEvent<HTMLTextAreaElement>) => updateOrder({ fullAddress: e.target.value })}
               className={`bg-main-50 mt-3 placeholder:text-subTitle animate focus:border-main h-[100px] w-full rounded-xl border p-3 placeholder:text-sm lg:bg-white ${formErrors.address ? "border-red" : "border-stroke"}`}
               placeholder={t("address.form.addressPlaceholder")}
             />
