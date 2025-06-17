@@ -2,9 +2,9 @@ import { Icon } from "@iconify/react/dist/iconify.js";
 
 // import { Elements } from "@stripe/react-stripe-js";
 // import { loadStripe } from "@stripe/stripe-js";
+import { Navigate } from "react-router";
 
 import PaymentWays from "src/sections/Cart/payment/PaymentWays";
-
 import { useTranslation } from "react-i18next";
 import usePageTitle from "src/hooks/ui/useUpdatePageTitle";
 import { useOrder } from "src/context/orderCtx";
@@ -33,14 +33,14 @@ const Payment = () => {
       setConfig({});
     };
   }, [isPending, t, order]);
-  // if (
-  //   !order.recipientName ||
-  //   !order.fullAddress ||
-  //   !order.deliveryDate ||
-  //   !order.area ||
-  //   !order.phoneNumber
-  // )
-  //   return <Navigate replace to={"/cart/delivery-info"} />;
+  if (
+    !order.recipientName ||
+    !order.fullAddress ||
+    !order.deliveryDate ||
+    !order.area ||
+    !order.phoneNumber
+  )
+    return <Navigate replace to={"/cart/delivery-info"} />;
 
   return (
     <div className="lg:!bg-main-50 h-fit w-full space-y-3 rounded-xl bg-white lg:w-[62%] lg:p-4">

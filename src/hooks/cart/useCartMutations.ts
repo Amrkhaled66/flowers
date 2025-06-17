@@ -14,7 +14,10 @@ import { toast } from "react-toastify";
 import useDebounce from "../shared/useDebounce";
 
 const useGetCart = () => {
-  const { isVerified } = useAuth();
+  const {
+    //  isVerified
+    isAuthenticated
+  } = useAuth();
   const { storeCart } = useCart();
   return useQuery({
     queryKey: ["cart"],
@@ -23,7 +26,7 @@ const useGetCart = () => {
       storeCart(data.data);
       return data;
     },
-    enabled: isVerified,
+    enabled: isAuthenticated,
   });
 };
 const useUpdateCart = () => {

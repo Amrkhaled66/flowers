@@ -2,7 +2,7 @@ import { getProfileData } from "src/api/profile/profileData";
 import { useQuery } from "@tanstack/react-query";
 import { useAuth } from "src/context/authCtx";
 const useGetProfileMutation = () => {
-  const { updateUser, authData } = useAuth();
+  const { updateUser,isAuthenticated } = useAuth();
   return useQuery({
     queryKey: ["profile"],
     queryFn: async () => {
@@ -10,7 +10,7 @@ const useGetProfileMutation = () => {
       updateUser(data.data);
       return data;
     },
-    enabled: authData.token !== null,
+    enabled: isAuthenticated,
   });
 };
 

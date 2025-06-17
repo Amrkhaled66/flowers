@@ -8,7 +8,10 @@ import { useAuth } from "src/context/authCtx";
 import { useFavorites } from "src/context/user/favoritesCtx";
 
 const useGetFavorites = () => {
-  const { isVerified } = useAuth();
+  const { 
+    // isVerified 
+isAuthenticated
+   } = useAuth();
   const { storeFavorites } = useFavorites();
   return useQuery({
     queryKey: ["user-favorites"],
@@ -17,7 +20,7 @@ const useGetFavorites = () => {
       storeFavorites(data.data);
       return data;
     },
-    enabled: isVerified,
+    enabled: isAuthenticated,
     retry: 2,
   });
 };
