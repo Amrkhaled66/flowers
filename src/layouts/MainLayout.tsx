@@ -1,5 +1,4 @@
 import { Outlet } from "react-router";
-import { Helmet } from "react-helmet-async";
 import NavBar from "src/sections/layout/NavBar";
 import Footer from "src/sections/layout/Footer";
 import Cart from "src/sections/layout/Cart";
@@ -17,6 +16,7 @@ import { useGetProfileMutation } from "src/hooks/profile/useProfileMutation";
 import { useGetConfig } from "src/hooks/sharedApi";
 import { AxiosProvider } from "src/context/axiosProvider";
 import { useConfig } from "src/context/configCtx";
+import { useEffect } from "react";
 const MainLayout = () => {
   const { openCart, openMenu, openSearch } = useNavBarToggleBtns();
   const { i18n } = useTranslation();
@@ -28,19 +28,37 @@ const MainLayout = () => {
 
   const { config } = useConfig();
   const { name, description, keywords, favicon } = config || {};
+
+  useEffect(() => {
+    if (configLoading) return;
+    document.title = name || "Ballora";
+    document
+      .querySelector("meta[name='description']")
+      ?.setAttribute("content", description || "Ballora store");
+    {
+      keywords &&
+        document
+          .querySelector("meta[name='keywords']")
+          ?.setAttribute("content", keywords || "Ballora store");
+    }
+    {
+      keywords &&
+        document
+          .querySelector("link[rel='icon']")
+          ?.setAttribute("href", favicon || "");
+    }
+  }, [configLoading]);
+
   return (
     <AxiosProvider>
-      {!configLoading && <Helmet>
-        <title>{name || "Ballora"}</title>
-        <meta name="description" content={description || "Ballora store"} />
-        {keywords && <meta name="keywords" content={keywords} />}
-        {favicon && <link rel="icon" href={favicon} />}
-      </Helmet>}
+    
       <div
         dir={`${i18n.language === "ar" ? "rtl" : "ltr"}`}
         className={`h-auto pt-[104px] lg:pt-[155px] ${i18n.language === "ar" ? "font-ar" : "font-en"} `}
       >
-        {(profileLoading || cartLoading || favLoading || configLoading) && <BalloraLoader />}
+        {(profileLoading || cartLoading || favLoading || configLoading) && (
+          <BalloraLoader />
+        )}
         <ScrollToTop />
         <Search />
         <NavBar />

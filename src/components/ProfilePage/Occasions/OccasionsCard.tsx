@@ -9,20 +9,28 @@ const OccasionCard = ({
   occasion: { eventDate, eventTitle, id, note, occasionId },
   onEditOccasion,
   refetch,
-  getOccasionById
+  getOccasionById,
 }: {
   occasion: Occasion;
   onEditOccasion: (occasion: Occasion) => void;
   refetch: () => void;
-  getOccasionById: (id: number) => { nameAr: string, nameEn: string } | undefined;
+  getOccasionById: (
+    id: number,
+  ) => { nameAr: string; nameEn: string } | undefined;
 }) => {
   const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
   const handleEditOccasion = () =>
-    onEditOccasion({ occasionId: id || null, eventTitle, eventDate, note });
+    onEditOccasion({
+      id: id,
+      occasionId: occasionId || null,
+      eventTitle,
+      eventDate,
+      note,
+    });
 
   const onDelete = () => setIsDeleteModalOpen(true);
 
-  const selectedOccasion = getOccasionById(occasionId || 0)
+  const selectedOccasion = getOccasionById(occasionId || 0);
   return (
     <ProfileCard onDelete={onDelete} onEdit={handleEditOccasion}>
       {isDeleteModalOpen && (
@@ -36,7 +44,10 @@ const OccasionCard = ({
       <div>
         <Row name="Event title" value={eventTitle} />
         <Row name="Event date" value={eventDate} />
-        <Row name="Type of occasion" value={selectedOccasion && getLocalizedName(selectedOccasion) || ""} />
+        <Row
+          name="Type of occasion"
+          value={(selectedOccasion && getLocalizedName(selectedOccasion)) || ""}
+        />
       </div>
     </ProfileCard>
   );

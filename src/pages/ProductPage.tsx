@@ -18,8 +18,6 @@ import {
 import usePageTitle from "src/hooks/ui/useUpdatePageTitle";
 
 const ProductPage = () => {
-  usePageTitle("Product");
-
   const { id } = useParams();
   const {
     i18n: { language },
@@ -37,7 +35,8 @@ const ProductPage = () => {
   const localizedDescription = product
     ? getLocalizedDescription(product, language)
     : "";
-    
+  usePageTitle(`Product Page - ${product?.nameEn}`);
+
   return (
     <div className="h-auto min-h-screen py-6 lg:py-10">
       <div className="container space-y-6 lg:space-y-20">

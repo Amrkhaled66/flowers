@@ -24,14 +24,12 @@ const initialFormErrors: Occasion = {
   note: "",
 };
 
-
-
 const OccasionModal = ({
   FormData = null,
   isPending,
   isOpen = false,
   onSubmit,
-  onClose = () => { },
+  onClose = () => {},
 }: {
   FormData?: Occasion | null;
   isPending?: boolean;
@@ -105,9 +103,18 @@ const OccasionModal = ({
     return;
   };
 
-  const getOccasionById = (id: number) => occasions && occasions.find((occasion: { id: number }) => id === occasion.id)
-  const getOccasionId = (name: string) => occasions && occasions.find((occasion: { nameAr: string, nameEn: string }) => name === occasion.nameAr || name === occasion.nameEn)?.id
+  const getOccasionById = (id: number) =>
+    occasions &&
+    occasions.find((occasion: { id: number }) => id === occasion.id);
 
+  const getOccasionId = (name: string) =>
+    occasions &&
+    occasions.find(
+      (occasion: { nameAr: string; nameEn: string }) =>
+        name === occasion.nameAr || name === occasion.nameEn,
+    )?.id;
+    
+  console.log(formData,getOccasionById(formData.occasionId || 0), "dddd");
   return (
     <Model isOpen={isOpen} onClose={onClose}>
       <form
@@ -143,9 +150,20 @@ const OccasionModal = ({
             name="type"
             label={t("occasion.form.type")}
             bgColor="bg-main-50"
-            onSelected={(value) => handleInputChange(getOccasionId(value), "occasionId")}
-            value={occasions && formData.occasionId && getLocalizedName(getOccasionById(formData.occasionId || 0))}
-            options={occasions && occasions?.map((occasion: { nameAr: string, nameEn: string }) => getLocalizedName(occasion))}
+            onSelected={(value) =>
+              handleInputChange(getOccasionId(value), "occasionId")
+            }
+            value={
+              occasions &&
+              formData.occasionId &&
+              getLocalizedName(getOccasionById(formData.occasionId || 0))
+            }
+            options={
+              occasions &&
+              occasions?.map((occasion: { nameAr: string; nameEn: string }) =>
+                getLocalizedName(occasion),
+              )
+            }
           />
           <label className="flex flex-col gap-y-3" htmlFor="">
             <span className="text-main font-bold">

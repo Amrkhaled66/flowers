@@ -3,6 +3,7 @@ import AddressForm from "./AddressForm";
 import { useUpdateAddress } from "src/hooks/profile/addresses/useAddressMutations";
 import Alert from "src/components/ui/Alert";
 import ProfilePageCompetent from "src/components/ProfilePage/ProfilePageCompetent";
+import transformKeysToSnakeCase from "src/utils/transformToSnakeCase";
 const EditAddressForm = ({
   editedAddress,
   onClose,
@@ -16,7 +17,7 @@ const EditAddressForm = ({
 
   const onSubmit = (formData: Address) => {
     mutate(
-      { address: formData, id: editedAddress.id },
+      { address: transformKeysToSnakeCase(formData), id: editedAddress.id },
       {
         onSuccess: () => {
           Alert({
