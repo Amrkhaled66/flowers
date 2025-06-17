@@ -8,6 +8,7 @@ type FavoritesContextType = {
   favorites: Item[];
   storeFavorites: (items: Item[]) => void;
   isFavorite: (id: number) => number;
+  resetFavorites: () => void;
 };
 
 const FavoritesContext = createContext<FavoritesContextType | undefined>(
@@ -30,9 +31,13 @@ export const FavoritesProvider = ({
     return item ? item.id : 0;
   };
 
+  const resetFavorites = () => {
+    setFavorites([]);
+  };
+
   return (
     <FavoritesContext.Provider
-      value={{ favorites, storeFavorites, isFavorite }}
+      value={{ favorites, storeFavorites, isFavorite, resetFavorites }}
     >
       {children}
     </FavoritesContext.Provider>

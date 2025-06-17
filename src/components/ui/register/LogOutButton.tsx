@@ -6,6 +6,7 @@ import useLogOutMutation from "src/hooks/auth/useLogOutMutation";
 import { useTranslation } from "react-i18next";
 import { useCart } from "src/context/user/cartCtx";
 import { useOrder } from "src/context/orderCtx";
+import { useFavorites } from "src/context/user/favoritesCtx";
 import Loader from "../Loader";
 const LogOutButton = ({ isMenuButton = false }: { isMenuButton?: boolean }) => {
   const { logout } = useAuth();
@@ -13,7 +14,7 @@ const LogOutButton = ({ isMenuButton = false }: { isMenuButton?: boolean }) => {
   const { mutate, isPending } = useLogOutMutation();
   const { clearCart } = useCart();
   const { resetOrder } = useOrder();
-  
+  const { resetFavorites } = useFavorites();
   const {
     i18n: { language },
   } = useTranslation();
@@ -26,6 +27,7 @@ const LogOutButton = ({ isMenuButton = false }: { isMenuButton?: boolean }) => {
             logout();
             clearCart();
             resetOrder();
+            resetFavorites();
             navigate("/signin");
           },
         });
