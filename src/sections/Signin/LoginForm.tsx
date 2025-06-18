@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import FormInput from "src/components/ui/register/FormInput";
+import PasswordInput from "src/components/ProfilePage/ChangePassword/PasswordInput";
 import Loader from "src/components/ui/Loader";
 
 import useLogin from "src/hooks/auth/useLogin";
@@ -21,14 +22,22 @@ const LoginForm = () => {
           error={errors.email}
           onChange={handleChange}
         />
-        <FormInput
+        <PasswordInput
+          error={errors.password}
+          value={formData.password}
+          onChange={handleChange}
+          label={t("password")}
+          name="password"
+          notShowingIcon
+        />
+        {/* <FormInput
           label={t("password")}
           type="password"
           name="password"
           value={formData.password}
           error={errors.password}
           onChange={handleChange}
-        />
+        /> */}
       </div>
 
       <div>
@@ -41,7 +50,11 @@ const LoginForm = () => {
           type="submit"
           className="bg-main text-text-main animate hover:bg-main-300 mt-8 w-full rounded-xl py-3 text-lg font-bold text-white"
         >
-          {isPending ? <Loader className="border-b-white h-6 w-6" /> : t("login")}
+          {isPending ? (
+            <Loader className="h-6 w-6 border-b-white" />
+          ) : (
+            t("login")
+          )}
         </button>
         <div className="mt-4 flex w-full justify-center gap-x-2">
           <p className="text-text-main">{t("noAccount")}</p>

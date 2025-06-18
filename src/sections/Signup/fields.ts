@@ -27,20 +27,7 @@ const formFields = [
     name: "phone_number",
     isRequired: true,
   },
-  {
-    labelEn: "Password",
-    labelAr: "كلمة المرور",
-    type: "password",
-    name: "password",
-    isRequired: true,
-  },
-  {
-    labelEn: "Confirm Password",
-    labelAr: "تاكيد كلمة المرور",
-    type: "password",
-    name: "confirm_password",
-    isRequired: true,
-  },
+
   {
     labelEn: "Birth Date",
     labelAr: "تاريخ الميلاد",

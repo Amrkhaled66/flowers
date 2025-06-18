@@ -8,6 +8,7 @@ import Loader from "src/components/ui/Loader";
 import useRegister from "src/hooks/auth/useRegister";
 import { UserRegister } from "src/types/auth/User";
 import { useTranslation } from "react-i18next";
+import PasswordInput from "src/components/ProfilePage/ChangePassword/PasswordInput";
 const SignUpForm = () => {
   const { formData, errors, handleChange, handleSubmit, isPending } =
     useRegister();
@@ -32,6 +33,23 @@ const SignUpForm = () => {
             onChange={handleChange}
           />
         ))}
+
+        <PasswordInput
+          label={i18n.language === "en" ? "Password" : "كلمة المرور"}
+          name="password"
+          onChange={handleChange}
+          value={formData.password}
+          error={errors.password}
+          notShowingIcon
+        />
+        <PasswordInput
+          label={i18n.language === "en" ? "Confirm Password" : "تأكيد كلمة المرور"}
+          name="confirm_password"
+          onChange={handleChange}
+          value={formData.confirm_password}
+          error={errors.confirm_password}
+          notShowingIcon
+          />
 
         <GenderButton
           label={i18n.language === "en" ? "Gender" : "النوع"}

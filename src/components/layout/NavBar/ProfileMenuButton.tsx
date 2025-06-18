@@ -16,7 +16,7 @@ const ProfileMenuButton = () => {
   } = useTranslation("layout");
 
   const [openMenu, setOpenMenu] = useState(false);
-
+  const [isLoggingOut, setIsLoggingOut] = useState(false);
   const {
     authData: { user },
   } = useAuth();
@@ -42,7 +42,7 @@ const ProfileMenuButton = () => {
         </span>
       </button>
 
-      {openMenu && (
+      {(openMenu || isLoggingOut) && (
         <div
           className="absolute end-0 top-full z-50 mt-0 w-[300px] rounded-xl bg-white p-6 drop-shadow-xl"
           onMouseLeave={() => setOpenMenu(false)}
@@ -67,11 +67,7 @@ const ProfileMenuButton = () => {
             <div className="border-y-stroke flex items-center justify-between rounded-xl border-y py-4">
               <div className="animate flex items-center gap-x-3">
                 <span>
-                  <Icon
-                    icon="majesticons:coins"
-                    width="24"
-                    height="24"
-                  />
+                  <Icon icon="majesticons:coins" width="24" height="24" />
                 </span>
                 <span className="text-text-main hidden font-medium text-nowrap lg:block">
                   {language === "en" ? "Ballora Ballance" : "رصيد بلورا"}
@@ -83,7 +79,10 @@ const ProfileMenuButton = () => {
             </div>
           </Link>
 
-          <LogOutButton isMenuButton />
+          <LogOutButton
+            handlePresistMenu={() => setIsLoggingOut(true)}
+            isMenuButton
+          />
         </div>
       )}
     </div>

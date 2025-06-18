@@ -8,7 +8,13 @@ import { useCart } from "src/context/user/cartCtx";
 import { useOrder } from "src/context/orderCtx";
 import { useFavorites } from "src/context/user/favoritesCtx";
 import Loader from "../Loader";
-const LogOutButton = ({ isMenuButton = false }: { isMenuButton?: boolean }) => {
+const LogOutButton = ({
+  isMenuButton = false,
+  handlePresistMenu,
+}: {
+  isMenuButton?: boolean;
+  handlePresistMenu?: () => void;
+}) => {
   const { logout } = useAuth();
   const navigate = useNavigate();
   const { mutate, isPending } = useLogOutMutation();
@@ -22,6 +28,7 @@ const LogOutButton = ({ isMenuButton = false }: { isMenuButton?: boolean }) => {
   return (
     <button
       onClick={() => {
+        handlePresistMenu && handlePresistMenu();
         mutate(undefined, {
           onSuccess: () => {
             logout();
