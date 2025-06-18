@@ -40,7 +40,7 @@ const CategoryGrid = ({
   </div>
 );
 
-const Menu = () => {
+const Menu = ({}) => {
   const { openMenu, toggleMenu } = useNavBarToggleBtns();
   const { t } = useTranslation("home");
 
@@ -59,7 +59,7 @@ const Menu = () => {
         <div className="z-10 flex-shrink-0 px-4 py-6 sm:px-8 sm:py-4 lg:px-8 lg:py-10">
           <button
             onClick={toggleMenu}
-            className="bg-main animate absolute end-4 top-4 flex h-[44px] w-[44px] items-center justify-center rounded-xl p-1 text-white hover:drop-shadow-xl sm:end-8 sm:top-4 lg:end-8 lg:top-8"
+            className="bg-main animate absolute end-4 top-1 flex h-[44px] w-[44px] items-center justify-center rounded-xl p-1 text-white hover:drop-shadow-xl sm:end-8 sm:top-4 lg:end-8 lg:top-8"
           >
             <Icon icon="ic:outline-close" width="20" height="20" />
           </button>
@@ -95,7 +95,7 @@ const Menu = () => {
           )}
 
           <MenuSection title={t("ideas.ideasTitle")}>
-            <IdeasCards isMenuCard />
+            <IdeasCards toggleMenu={toggleMenu} isMenuCard />
           </MenuSection>
         </div>
       </div>

@@ -1,5 +1,5 @@
 const Loader = ({
-  className = "border-white h-6 w-6",
+  className = "border-white size-6",
 }: {
   className?: string;
 }) => {

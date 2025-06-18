@@ -6,7 +6,7 @@ import ChooseGiftsButton from "src/components/ui/ChooseGiftsButton";
 import { SwiperSlide } from "swiper/react";
 import { getLocalizedName } from "src/utils/getLocalizedName";
 
-const IdeasCards = ({ isMenuCard }: { isMenuCard?: boolean }) => {
+const IdeasCards = ({ isMenuCard ,toggleMenu}: { isMenuCard?: boolean,toggleMenu: () => void }) => {
   return (
     <div className="space-y-5">
       <Slider slidesPerGroup={3}>
@@ -23,7 +23,8 @@ const IdeasCards = ({ isMenuCard }: { isMenuCard?: boolean }) => {
           </SwiperSlide>
         ))}
       </Slider>
-      <ChooseGiftsButton className="block lg:hidden" />
+      
+      <ChooseGiftsButton onClick={toggleMenu} className="block lg:hidden" />
     </div>
   );
 };

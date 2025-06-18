@@ -2,6 +2,7 @@ import { Icon } from "@iconify/react/dist/iconify.js";
 import { useTranslation } from "react-i18next";
 import Button from "src/components/ui/Button";
 import { Link } from "react-router-dom";
+import OutLineButton from "src/components/ui/OutLineButton";
 
 import { useLocation } from "react-router";
 import { useOrder } from "src/context/orderCtx";
@@ -20,8 +21,6 @@ const SuccessOrder = () => {
     clearCart();
     resetOrder();
   }, []);
-
-  console.log(orderId);
 
   if (!orderId) return <Navigate to="/" replace />;
 
@@ -52,14 +51,11 @@ const SuccessOrder = () => {
           <Link to={`/track-order/${orderId}`}>
             <Button
               text={t("track")}
-              className="animate w-full !py-4 text-white lg:w-[240px]"
+              className="animate w-full !py-3 text-white lg:w-[240px]"
             />
           </Link>
           <Link to="/filter">
-            <Button
-              text={t("completeShop")}
-              className="animate text-main border-main w-full border bg-transparent !py-4 hover:!bg-transparent lg:w-[240px]"
-            />
+            <OutLineButton onClick={() => {}} text={t("completeShop")} />
           </Link>
         </div>
         <p>{t("footer")}</p>

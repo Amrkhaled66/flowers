@@ -13,6 +13,7 @@ const OutLineButton = ({
 }) => {
   return (
     <Button
+    loaderBg="border-main"
       loading={loading}
       disabled={disabled}
       onClick={onClick}

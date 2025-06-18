@@ -8,6 +8,7 @@ const Button = ({
   type,
   loading = false,
   disabled = false,
+  loaderBg,
 }: {
   text: string;
   icon?: ReactNode;
@@ -16,6 +17,7 @@ const Button = ({
   type?: "button" | "submit";
   loading?: boolean;
   disabled?: boolean;
+  loaderBg?: string;
 }) => {
   return (
     <button
@@ -26,7 +28,7 @@ const Button = ({
     >
       {loading ? (
         <span>
-          <Loader />
+          <Loader className={`${loaderBg} size-6`} />
         </span>
       ) : (
         <>
