@@ -23,7 +23,6 @@ const useRedeemPoints = ({ confirmRedeem }: { confirmRedeem?: () => void }) => {
   return useMutation({
     mutationFn: redeemPoints,
     onSuccess: (data) => {
-      console.log(data);
       toast(t("points.redeemed"), { type: "success" });
       confirmRedeem && confirmRedeem();
       updateBalance(String(data.data.new_balance));

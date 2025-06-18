@@ -6,7 +6,7 @@ import priceFormatter from "src/utils/priceFormatter"
 const BalloraBallance = () => {
     const { t } = useTranslation("profile");
     const { data, isLoading } = useGetBalance();
-console.log(data)
+
     return (
         <ProfilePageCompetent>
             <div className="py-4 space-y-8  bg-white rounded-xl">

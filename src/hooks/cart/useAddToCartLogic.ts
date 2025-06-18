@@ -15,7 +15,6 @@ export const useAddToCartLogic = () => {
   ) => {
     const isAuthenticated = await check();
     if (!isAuthenticated) return;
-    console.log(productId, isProductInCart(productId));
     if (isProductInCart(productId)) {
       const id = Number(isProductInCart(productId));
       updateCart({ quantity, id });

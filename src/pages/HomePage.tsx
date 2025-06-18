@@ -8,31 +8,26 @@ import {
 } from "src/sections/HomePage";
 import usePageTitle from "src/hooks/ui/useUpdatePageTitle";
 
-import { useQuery } from "@tanstack/react-query";
-import { getFullData } from "src/api/HomePage";
-
+import useGetFullData from "src/hooks/shared/useGetFullData";
 const HomePage = () => {
   usePageTitle("Ballora");
 
-  const { data, isLoading } = useQuery({
-    queryKey: ["full-data"],
-    queryFn: getFullData,
-  });
+  const { data, isLoading } = useGetFullData();
 
   return (
     <div className="flex flex-col gap-y-8 lg:gap-y-0">
       <HeroSection />
       <Categories
         Loading={isLoading}
-        data={isLoading ? [] : data.data.categories}
+        data={isLoading ? [] : data.categories}
       />
       <BestSellers
         Loading={isLoading}
-        products={isLoading ? [] : data.data.best_selling}
+        products={isLoading ? [] : data.best_selling}
       />
       <Occasions
         loading={isLoading}
-        data={isLoading ? [] : data.data.occasions}
+        data={isLoading ? [] : data.occasions}
       />
       <CTA />
       <Ideas />

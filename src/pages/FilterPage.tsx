@@ -28,10 +28,9 @@ const FilterPage = () => {
     productsData,
     refetchProducts,
     productsLoading,
-    categoriesLoading,
-    occasionsLoading,
+    fullDataLoading,
     colors,
-    colorsLoading,
+    prices,
   } = useFilterPageData(appliedOptions, page);
 
   const onApplyFilter = () => {
@@ -57,7 +56,7 @@ const FilterPage = () => {
     <div className="container flex min-h-dvh flex-col justify-between !py-10">
       <div className="flex h-auto gap-x-6">
         <FilterBar
-          loading={categoriesLoading || occasionsLoading || colorsLoading}
+          loading={fullDataLoading}
           onSubmit={onApplyFilter}
           sidebarOpen={sidebarOpen}
           closeSidebar={closeSidebar}
@@ -67,6 +66,7 @@ const FilterPage = () => {
           onOptionChange={handleOptionChange}
           handlePriceRangeChange={handlePriceRangeChange}
           options={options}
+          prices={prices}
         />
 
         <Overlay
@@ -83,7 +83,9 @@ const FilterPage = () => {
       </div>
       {!productsLoading && (
         <Pagination
-          pageCount={Math.ceil(productsData?.total / productsData?.perPage) || 0}
+          pageCount={
+            Math.ceil(productsData?.total / productsData?.perPage) || 0
+          }
           handlePageClick={({ selected }: { selected: number }) => {
             setPage(selected + 1);
           }}

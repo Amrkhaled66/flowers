@@ -10,12 +10,7 @@ const FreeDeliveryLine = ({ className }: { className?: string }) => {
     i18n: { language },
   } = useTranslation("sharedCart");
   const { cartSubTotal, isFreeDelivery } = useCart();
-console.log(
-  "progress width",
-  isFreeDelivery
-    ? "100%"
-    : ((cartSubTotal || 0) / FREEDELIVERYBRECKDOWN) * 100
-);  return (
+  return (
     <div className={`bg-main-50 flex gap-x-3 rounded-xl p-4 ${className}`}>
       <Icon
         icon="game-icons:city-car"

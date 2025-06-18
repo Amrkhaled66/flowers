@@ -27,6 +27,7 @@ type SidebarProps = {
   };
   loading: boolean;
   colors: { id: number; name: string; code: string }[];
+  prices: { maxPrice: string; minPrice: string };
 };
 
 const FilterBar = ({
@@ -40,6 +41,7 @@ const FilterBar = ({
   onSubmit,
   options,
   loading,
+  prices
 }: SidebarProps) => {
   const { t } = useTranslation("filter");
   const [openSections, setOpenSections] = useState<string[]>([
@@ -90,7 +92,7 @@ const FilterBar = ({
                 />
               </BarSection>
 
-              <PriceRange handlePriceRangeChange={handlePriceRangeChange} />
+              <PriceRange prices={prices} handlePriceRangeChange={handlePriceRangeChange} />
             </div>
 
             <BarSection

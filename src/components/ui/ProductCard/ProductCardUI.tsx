@@ -62,7 +62,7 @@ const ProductCardUI = ({
       </Link>
       {isOutOfStock ? (
         <div className="mx-auto mb-4 w-[90%] rounded-xl bg-red-600 p-2">
-          <p className="text-white">{t("outOfStock")} </p>
+          <p className="text-white text-xs sm:text-base">{t("outOfStock")} </p>
         </div>
       ) : (
         <div className="flex flex-row items-center justify-between gap-y-3 px-2 pb-2 sm:px-3 lg:px-4">

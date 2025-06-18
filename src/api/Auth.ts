@@ -30,7 +30,6 @@ const verifyOtp = async (otp: string) => {
 };
 
 const changePassword = async (data: any) => {
-  console.log(data);
   const { data: res } = await axiosPrivate.post("/api/change-password", data);
   return res;
 };

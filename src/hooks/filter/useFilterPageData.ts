@@ -1,23 +1,19 @@
 import { useQuery } from "@tanstack/react-query";
 import { useEffect } from "react";
 import { getProducts } from "src/api/products";
-import {
-  useGetCategories,
-  useGetOccasions,
-  useGetColors
-} from "src/hooks/filter/useFilterSectionsMutations";
 
-export const useFilterPageData = (appliedOptions: any,page: number) => {
-  const { data: categories, isLoading: categoriesLoading } = useGetCategories();
-  const { data: occasions, isLoading: occasionsLoading } = useGetOccasions();
-  const { data: colors, isLoading: colorsLoading } = useGetColors();
+import useGetFullData from "../shared/useGetFullData";
+import transformBaseItem from "src/utils/transforms/transformCategory";
+import transformKeysToCamelCase from "src/utils/transformToCamalCase";
+export const useFilterPageData = (appliedOptions: any, page: number) => {
+  const { data: fullData, isLoading: fullDataLoading } = useGetFullData();
   const {
     data: productsData,
     isLoading: productsLoading,
     refetch: refetchProducts,
   } = useQuery({
     queryKey: ["products", appliedOptions],
-    queryFn: () => getProducts(appliedOptions,page),
+    queryFn: () => getProducts(appliedOptions, page),
     enabled: false,
   });
 
@@ -25,15 +21,16 @@ export const useFilterPageData = (appliedOptions: any,page: number) => {
     refetchProducts();
   }, []);
 
+  console.log(fullData);
+
   return {
-    categories: categories || [],
-    occasions: occasions || [],
+    categories: fullData?.categories?.map(transformBaseItem) || [],
+    occasions: fullData?.occasions?.map(transformBaseItem) || [],
     productsData,
     refetchProducts,
     productsLoading,
-    categoriesLoading,
-    occasionsLoading,
-    colors: colors || [],
-    colorsLoading,
+    fullDataLoading,
+    colors: fullData?.colors || [],
+    prices: transformKeysToCamelCase(fullData?.prices) || {},
   };
 };

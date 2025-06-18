@@ -4,11 +4,17 @@ import { useTranslation } from "react-i18next";
 import useDebounce from "src/hooks/shared/useDebounce";
 const PriceRange = ({
   handlePriceRangeChange,
+  prices,
 }: {
   handlePriceRangeChange: (value: number[]) => void;
+  prices: { maxPrice: string; minPrice: string };
 }) => {
   const { t } = useTranslation("filter");
-  const [priceRange, setPriceRange] = useState<number[]>([0, 9999]);
+  const { minPrice, maxPrice } = prices;
+  const [priceRange, setPriceRange] = useState<number[]>([
+    Number(minPrice),
+    Number(maxPrice),
+  ]);
 
   const depouncedChange = useDebounce(
     () => handlePriceRangeChange(priceRange),
@@ -30,14 +36,17 @@ const PriceRange = ({
 
       <Range
         step={1}
-        min={0}
-        max={9999}
+        min={Number(minPrice)}
+        max={Number(maxPrice)}
         values={priceRange}
         onChange={handleChange}
         renderTrack={({ props, children }) => {
           const [minVal, maxVal] = priceRange;
-          const percentageLeft = (minVal / 9999) * 100;
-          const percentageRight = (maxVal / 9999) * 100;
+          const min = Number(minPrice);
+          const max = Number(maxPrice);
+          const range = max - min;
+          const percentageLeft = ((minVal - min) / range) * 100;
+          const percentageRight = ((maxVal - min) / range) * 100;
 
           return (
             <div
@@ -61,11 +70,13 @@ const PriceRange = ({
           );
         }}
         renderThumb={({ props }) => {
-          return (<div
-            {...props}
-            key={props.key}
-            className="h-4 w-4 cursor-pointer rounded-full bg-main"
-          />)
+          return (
+            <div
+              {...props}
+              key={props.key}
+              className="bg-main h-4 w-4 cursor-pointer rounded-full"
+            />
+          );
         }}
       />
     </div>
