@@ -6,15 +6,17 @@ import { getLocalizedName } from "src/utils/getLocalizedName";
 import getMainPrice from "src/utils/getMainPrice";
 
 import { CartItem } from "src/types/cart";
+import { useDeleteCart } from "src/hooks/cart/useCartMutations";
 const CartTableCard = ({ product }: { product: CartItem }) => {
   const productInfo = product.product;
   const mainPrice = getMainPrice(productInfo);
+  const { mutate, isPending } = useDeleteCart();
   return (
     <tr className="border-b-stroke grid grid-cols-[3fr_1fr_1fr_1fr] items-center rounded-xl border-b py-4 pb-4">
       <td className="flex items-center gap-x-3 text-start">
-        <button>
+        <button disabled={isPending} onClick={() => mutate(product.id)}>
           <Icon
-            className="text-red"
+            className={`${isPending&&"animate-pulse"} text-red`}
             icon="fluent:delete-24-regular"
             width="24"
             height="24"

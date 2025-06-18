@@ -19,6 +19,7 @@ interface AreaSelectionProps {
   onAreaSelected: (area: string) => void;
   defaultValue?: string;
   error?: string;
+  isAddressForm?: boolean;
 }
 
 function AreaSelection({
@@ -26,6 +27,7 @@ function AreaSelection({
   onAreaSelected,
   defaultValue,
   error,
+  isAddressForm,
 }: AreaSelectionProps) {
   const {
     i18n: { language },
@@ -67,10 +69,12 @@ function AreaSelection({
           onClose={() => setQuery("")}
         >
           <div className="flex flex-col gap-y-1">
-            <div className={`flex bg-main-50 lg:${bgColor} relative rounded-xl gap-2`}>
+            <div
+              className={`flex ${isAddressForm ? "bg-white" : "bg-main-50"} lg:${bgColor} relative gap-2 rounded-xl`}
+            >
               <ComboboxInput
                 placeholder={language === "ar" ? "اختر المنطقة" : "Select Area"}
-                className={`focus:border-main ${error && "!border-red"} animate w-full  rounded-xl border border-transparent p-2`}
+                className={`focus:border-main ${error && "!border-red"} animate w-full rounded-xl border border-transparent p-2`}
                 aria-label="Area"
                 displayValue={(area: string) => area || ""}
                 onChange={(event) => setQuery(event.target.value)}

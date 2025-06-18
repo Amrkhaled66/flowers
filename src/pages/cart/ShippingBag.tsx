@@ -9,17 +9,18 @@ import usePageTitle from "src/hooks/ui/useUpdatePageTitle";
 import { useCart } from "src/context/user/cartCtx";
 import { Navigate } from "react-router";
 import CartList from "src/components/Cart/CartList";
+import { useTranslation } from "react-i18next";
 const ShippingBag = () => {
   usePageTitle("Shipping Bag");
   const { setConfig } = useOrderSummary();
   const { cartLength } = useCart();
-
+const { t } = useTranslation("sharedCart");
   useEffect(() => {
     setConfig({
-      buttonText: "Continue to Delivery",
+      buttonText: t("orderSummary.toCheckOut"),
       pathName: "/cart/delivery-info",
     });
-  }, []);
+  }, [t]);
 
   if (cartLength === 0) return <Navigate to="/" replace />;
 

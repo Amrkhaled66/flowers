@@ -26,7 +26,7 @@ const FreeDeliveryLine = ({ className }: { className?: string }) => {
               style={{
                 width: `${isFreeDelivery ? "100%" : ((cartSubTotal || 0) / FREEDELIVERYBRECKDOWN) * 100}%`,
               }}
-              className={`bg-main animate absolute h-full rounded-xl`}
+              className={`!bg-main animate absolute h-full rounded-xl`}
             ></div>
           </div>
           <p className="text-xs lg:text-base">{priceFormatter(FREEDELIVERYBRECKDOWN)}</p>

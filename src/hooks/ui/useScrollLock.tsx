@@ -2,16 +2,19 @@ import { useEffect } from "react";
 
 const useScrollLock = (isLocked: boolean) => {
   useEffect(() => {
-    const originalOverflow = document.body.style.overflow;
+    if (typeof window === "undefined") return;
+
+    const body = document.body;
+    const originalOverflow = body.style.overflow;
 
     if (isLocked) {
-      document.body.style.overflow = "hidden";
+      body.style.overflow = "hidden";
     } else {
-      document.body.style.overflow = originalOverflow || "auto";
+      body.style.overflow = originalOverflow || "auto";
     }
 
     return () => {
-      document.body.style.overflow = originalOverflow || "auto";
+      body.style.overflow = originalOverflow || "auto";
     };
   }, [isLocked]);
 };

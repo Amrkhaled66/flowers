@@ -5,6 +5,8 @@
 @import "tailwindcss";
 /* @plugin "daisyui"; */
 
+
+
 @theme {
   --font-en: "Jost", sans-serif;
   --font-ar: "Cairo", sans-serif;

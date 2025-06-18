@@ -11,11 +11,11 @@ const IdeaCard = ({
   isMenuCard?: boolean;
 }) => {
   const { t } = useTranslation("home");
-  const { toggleMenu } = useNavBarToggleBtns();
+  const { closMenu } = useNavBarToggleBtns();
 
   return (
     <div
-      onClick={toggleMenu}
+      onClick={closMenu}
       style={{
         background: `linear-gradient(0deg, rgba(0, 0, 0, 0.15) 0%, rgba(0, 0, 0, 0.15) 100%), url(${img}) lightgray 50% / cover no-repeat`,
       }}

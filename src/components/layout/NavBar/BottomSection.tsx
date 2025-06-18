@@ -27,7 +27,7 @@ const NavButton = ({
 }: NavButtonProps) => (
   <button
     onClick={onClick}
-    className={`relative flex hover:bg-main-100 animate rounded-xl p-2 items-center gap-x-2 ${className}`}
+    className={`hover:bg-main-100 animate relative flex items-center gap-x-2 rounded-xl p-2 ${className}`}
   >
     <div className="relative">
       <Icon icon={icon} width="24" height="24" className={iconClassName} />
@@ -38,10 +38,11 @@ const NavButton = ({
 );
 
 const BottomSection = () => {
-  const { toggleMenu, toggleCart, 
+  const {
+    toggleMenu,
+    toggleCart,
     // toggleSearch
-
-   } = useNavBarToggleBtns();
+  } = useNavBarToggleBtns();
   const { t } = useTranslation("layout");
   const { isAuthenticated } = useAuth();
   const { cartLength } = useCart();
@@ -89,7 +90,7 @@ const BottomSection = () => {
               icon="lineicons:cart-1"
               label={t("navBar.cart")}
             >
-              <span className="bg-main absolute left-2 -top-2 flex h-4 w-4 items-center justify-center rounded-full bg-red-700 text-xs text-white">
+              <span className="bg-main absolute -top-2 left-2 flex h-4 w-4 items-center justify-center rounded-full bg-red-700 text-xs text-white">
                 {cartLength || 0}
               </span>
             </NavButton>

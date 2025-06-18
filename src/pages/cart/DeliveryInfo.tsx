@@ -8,7 +8,7 @@ import Alert from "src/components/ui/Alert";
 import PrivacyConsentToggle from "src/components/Cart/DeliveryInfo/PrivacyConsentToggle ";
 import Button from "src/components/ui/Button";
 
-import {  useEffect } from "react";
+import { useEffect } from "react";
 import { Navigate, useNavigate } from "react-router";
 import { useOrderSummary } from "src/context/OrderSummaryContext";
 import usePageTitle from "src/hooks/ui/useUpdatePageTitle";
@@ -40,7 +40,7 @@ const DeliveryInfo = () => {
     validateForm,
     deliveryError,
     handleSelectArea,
-    handleInputChange
+    handleInputChange,
   } = useAddressFormWithDelivery(initialFormData);
 
   const onSubmit = () => {
@@ -63,7 +63,7 @@ const DeliveryInfo = () => {
 
   useEffect(() => {
     setConfig({
-      buttonText: "Continue to Checkout",
+      buttonText: tCart("orderSummary.toCheckOut"),
       onClick() {
         onSubmit();
       },
@@ -72,7 +72,7 @@ const DeliveryInfo = () => {
     return () => {
       setConfig({});
     };
-  }, [formData,order,tCart]);
+  }, [formData, order, tCart, t]);
 
   if (cartLength === 0) return <Navigate to="/" replace />;
   return (
@@ -98,7 +98,6 @@ const DeliveryInfo = () => {
           value={formData.recipientPhone || order.phoneNumber}
           // onChange={(e: ChangeEvent<HTMLInputElement>) => updateOrder({ phoneNumber: e.target.value })}
           onChange={handleInputChange}
-
           error={formErrors.phoneNumber}
         />
 
@@ -119,7 +118,7 @@ const DeliveryInfo = () => {
               name="address"
               onChange={handleInputChange}
               // onChange={(e: ChangeEvent<HTMLTextAreaElement>) => updateOrder({ fullAddress: e.target.value })}
-              className={`bg-main-50 mt-3 placeholder:text-subTitle animate focus:border-main h-[100px] w-full rounded-xl border p-3 placeholder:text-sm lg:bg-white ${formErrors.address ? "border-red" : "border-stroke"}`}
+              className={`bg-main-50 placeholder:text-subTitle animate focus:border-main mt-3 h-[100px] w-full rounded-xl border p-3 placeholder:text-sm lg:bg-white ${formErrors.address ? "border-red" : "border-stroke"}`}
               placeholder={t("address.form.addressPlaceholder")}
             />
           </div>
@@ -128,7 +127,11 @@ const DeliveryInfo = () => {
         <PrivacyConsentToggle />
         <DeliveryTime error={deliveryError} />
       </div>
-      <Button className="text-white lg:hidden !py-3" onClick={onSubmit} text={tCart("orderSummary.buttonText")} />
+      <Button
+        className="!py-3 text-white lg:hidden"
+        onClick={onSubmit}
+        text={tCart("orderSummary.buttonText")}
+      />
     </div>
   );
 };

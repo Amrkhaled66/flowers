@@ -69,6 +69,7 @@ const AddressForm = ({
       <AreaSelection
         error={formErrors.area}
         defaultValue={formData.area}
+        isAddressForm
         onAreaSelected={handleSelectArea}
       />
       <FormInput

@@ -26,7 +26,7 @@ const Categories = ({
         {Loading ? (
           <CategorySk />
         ) : (
-          <div className="grid grid-cols-3 gap-4 gap-x-4 sm:grid-cols-7 sm:gap-5 lg:gap-6">
+          <div className="flex flex-wrap justify-center gap-4 gap-x-4 sm:gap-5 lg:gap-6">
             {transformedCategory.map((category) => (
               <Link key={category.id} to={`/filter?category_id=${category.id}`}>
                 <CategoryCard

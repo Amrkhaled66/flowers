@@ -30,7 +30,9 @@ const ProfileNav = () => {
             width="24"
             height="24"
           />
-          <Link to={crumb.pathname}>{crumb.breadcrumb}</Link>
+          <Link to={crumb.pathname}>
+            {crumb.breadcrumb}
+          </Link>
         </span>
       ))}
     </nav>

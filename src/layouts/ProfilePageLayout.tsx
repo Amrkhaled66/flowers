@@ -9,8 +9,8 @@ const ProfilePage = () => {
   return (
     <div className="text-text-main h-fit py-6 lg:h-auto lg:min-h-dvh lg:py-10">
       <div className="container space-y-5 lg:space-y-6">
-        <div className="flex items-center gap-x-1 font-bold lg:text-2xl">
-          <Link to={"/profile/mydata"}>
+        <div className="flex  items-center gap-x-1 font-bold lg:text-2xl">
+          <Link  to={"/profile/mydata"}>
             <h1>{t("header")}</h1>
           </Link>
           <div className="block lg:hidden">

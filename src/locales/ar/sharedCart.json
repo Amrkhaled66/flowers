@@ -9,7 +9,8 @@
     "discount": "خصم",
     "free":"مجانا",
     "usedBalance":"الرصيد المستخدم",
-    "placeOrder":"تاكيد الطلب"
+    "placeOrder":"تاكيد الطلب",
+    "toCheckOut":"الذهاب إلى الدفع"
   },
   "copon": {
     "placeholder": "ادخل رمز الكوبون",

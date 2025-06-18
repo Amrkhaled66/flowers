@@ -3,6 +3,7 @@ import Button from "src/components/ui/Button";
 import NavigationBar from "src/sections/ProductPage/NavigationBar";
 import Skeleton from "react-loading-skeleton";
 import TabbyPromo from "src/components/ui/TabbyPromo";
+import OutLineButton from "src/components/ui/OutLineButton";
 
 import { useAddToCartLogic } from "src/hooks/cart/useAddToCartLogic";
 import { useTranslation } from "react-i18next";
@@ -81,11 +82,13 @@ const Info = ({
   beforeDiscount: number | undefined;
 }) => {
   const [quantity, setQuantity] = useState<number>(1);
+  const [buying, setBuying] = useState(false);
+
   const { t } = useTranslation("shared");
   const { t: tProduct } = useTranslation("productPage");
 
   const { AddToCart, isLoading } = useAddToCartLogic();
-  const { isProductInCart } = useCart();
+  const { isProductInCart, getProductQuantity } = useCart();
   const navigate = useNavigate();
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value;
@@ -114,7 +117,20 @@ const Info = ({
 
   const handleBuy = () => {
     if (isProductInCart(id)) return navigate("/cart");
-    AddToCart(id, quantity, () => navigate("/cart"));
+
+    setBuying(true);
+    AddToCart(id, quantity, () => {
+      setBuying(false);
+      navigate("/cart");
+    });
+  };
+
+  const handleAddToCart = () => {
+    const res = isProductInCart(id);
+    if (!res) return AddToCart(id, 1);
+
+    const currentQuantity = getProductQuantity(id);
+    AddToCart(id, currentQuantity + quantity);
   };
 
   return (
@@ -163,17 +179,19 @@ const Info = ({
           ) : (
             <Section withBorder>
               <div className="space-y-4">
-                <SelectorView
-                  onIncrease={increase}
-                  onDecrease={decrease}
-                  onBlur={handleBlur}
-                  onChange={handleInputChange}
-                  title={t("quantity")}
-                  inputValue={String(quantity)}
-                />
+                {isProductInCart(id) && (
+                  <SelectorView
+                    onIncrease={increase}
+                    onDecrease={decrease}
+                    onBlur={handleBlur}
+                    onChange={handleInputChange}
+                    title={t("quantity")}
+                    inputValue={String(quantity)}
+                  />
+                )}
                 <div className="flex w-full flex-col gap-x-5 gap-y-4">
                   <Button
-                    loading={isLoading}
+                    loading={isLoading && !buying}
                     text={tProduct("add")}
                     icon={
                       <Icon
@@ -181,15 +199,14 @@ const Info = ({
                         className="size-5 lg:size-6"
                       />
                     }
-                    onClick={() => AddToCart(id, quantity)}
+                    onClick={() => handleAddToCart()}
                     className="hover:bg-main-300 animate w-full !text-base text-white lg:!py-4 lg:!text-lg"
                   />
-                  <button
+                  <OutLineButton
+                    loading={buying}
                     onClick={handleBuy}
-                    className="border-main text-main flex-1 rounded-xl border-2 !py-3 text-center text-base font-bold lg:text-lg"
-                  >
-                    {tProduct("buy")}
-                  </button>
+                    text={tProduct("buy")}
+                  />
                 </div>
               </div>
             </Section>

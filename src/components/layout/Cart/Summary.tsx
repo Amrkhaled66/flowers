@@ -6,6 +6,9 @@ import { useNavBarToggleBtns } from "src/context/NavBarToggleBtns";
 import priceFormatter from "src/utils/priceFormatter";
 import { useTranslation } from "react-i18next";
 import { useCart } from "src/context/user/cartCtx";
+
+import OutLineButton from "src/components/ui/OutLineButton";
+
 const Summary = () => {
   const { toggleCart } = useNavBarToggleBtns();
   const { cartSubTotal, cartLength } = useCart();
@@ -21,15 +24,14 @@ const Summary = () => {
           <Button
             disabled={cartLength === 0}
             onClick={toggleCart}
-            className={`hover:bg-main-300 animate w-full !py-3 text-white disabled:opacity-50 disabled:!cursor-not-allowed`}
+            className={`hover:bg-main-300 animate w-full !py-3 text-white disabled:!cursor-not-allowed `}
             text={t("cart.showCart")}
           />
         </Link>
         <Link className="w-full" to={"/cart/delivery-info"}>
-          <Button
+          <OutLineButton
+            onClick={() => toggleCart()}
             disabled={cartLength === 0}
-            onClick={toggleCart}
-            className="border-main !text-main w-full disabled:!cursor-not-allowed rounded-sm border !bg-transparent !py-3"
             text={t("cart.pay")}
           />
         </Link>

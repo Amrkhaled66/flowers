@@ -9,7 +9,8 @@
     "discount": "Discount",
     "free": "Free",
     "usedBalance":"Used Balance",
-    "placeOrder":"Place Order"
+    "placeOrder":"Place Order",
+    "toCheckOut":"Continue to Checkout"
   },
   "copon": {
     "placeholder": "Enter Coupon Code",

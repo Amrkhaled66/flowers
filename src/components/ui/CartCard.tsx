@@ -22,7 +22,7 @@ const CartMenuCard = ({
     <div
       className={` ${isCartPage && "bg-main-50 p-3 lg:p-4"} border-b-stroke text-text-main flex gap-x-3 rounded-xl border-b pb-4`}
     >
-      <div className="h-20 w-20 overflow-hidden rounded-xl  lg:h-25 lg:w-25">
+      <div className="h-20 w-20 overflow-hidden rounded-xl lg:h-25 lg:w-25">
         <img
           src={cartProduct.firstImage}
           alt={cartProduct.nameEn}
@@ -45,11 +45,15 @@ const CartMenuCard = ({
             />
           </button>
         </div>
-        <div className="flex flex-row-reverse items-center justify-between">
-          <p className="text-text-main space-x-1 font-bold">
+        <div className="flex flex-row-reverse gap-x-3 items-center justify-between">
+          <p className="text-text-main space-x-1 text-xs font-bold sm:text-base">
             {priceFormatter(getMainPrice(cartProduct))}
           </p>
-          <QuantitySelector id={product.id} isCartMenu currentQuantity={product.quantity} />
+          <QuantitySelector
+            id={product.id}
+            isCartMenu
+            currentQuantity={product.quantity}
+          />
         </div>
       </div>
     </div>

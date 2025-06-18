@@ -10,7 +10,10 @@ import { useTranslation } from "react-i18next";
 import { useAuth } from "src/context/authCtx";
 
 const ProfileMenuButton = () => {
-  const { t, i18n: { language } } = useTranslation("layout");
+  const {
+    t,
+    i18n: { language },
+  } = useTranslation("layout");
 
   const [openMenu, setOpenMenu] = useState(false);
 
@@ -21,7 +24,7 @@ const ProfileMenuButton = () => {
   const onOpenMenu = () => setOpenMenu(true);
 
   const filteredElements = profileElements.filter(
-    (item) => item.nameEn !== "Ballora Points" && item.show !== false,
+    (item) => item.nameEn !== "Ballora Ballance" && item.show !== false,
   );
 
   return (
@@ -41,7 +44,7 @@ const ProfileMenuButton = () => {
 
       {openMenu && (
         <div
-          className="absolute top-full end-0 z-50 mt-0 w-[300px] rounded-xl bg-white p-6 drop-shadow-xl"
+          className="absolute end-0 top-full z-50 mt-0 w-[300px] rounded-xl bg-white p-6 drop-shadow-xl"
           onMouseLeave={() => setOpenMenu(false)}
         >
           <div className="space-y-3 pb-4">
@@ -50,7 +53,7 @@ const ProfileMenuButton = () => {
                 key={item.nameEn}
                 to={item.link}
                 onClick={onCloseMenu}
-                className="animate hover:bg-main-100 py-2 rounded-xl flex items-center gap-x-3"
+                className="animate hover:bg-main-100 flex items-center gap-x-3 rounded-xl py-2"
               >
                 <span>{item.icon}</span>
                 <span className="text-text-main hidden font-medium text-nowrap lg:block">
@@ -60,23 +63,25 @@ const ProfileMenuButton = () => {
             ))}
           </div>
 
-          <div className="border-y-stroke flex items-center justify-between rounded-xl border-y py-4">
-            <div className="animate flex items-center gap-x-3">
-              <span>
-                <Icon
-                  icon="fluent:wallet-credit-card-32-regular"
-                  width="24"
-                  height="24"
-                />
-              </span>
-              <span className="text-text-main hidden font-medium text-nowrap lg:block">
-                {language === "en" ? "Ballora Balance" : "رصيد بلورا"}
-              </span>
+          <Link to={"/profile/ballance"}>
+            <div className="border-y-stroke flex items-center justify-between rounded-xl border-y py-4">
+              <div className="animate flex items-center gap-x-3">
+                <span>
+                  <Icon
+                    icon="majesticons:coins"
+                    width="24"
+                    height="24"
+                  />
+                </span>
+                <span className="text-text-main hidden font-medium text-nowrap lg:block">
+                  {language === "en" ? "Ballora Ballance" : "رصيد بلورا"}
+                </span>
+              </div>
+              <div className="bg-main-100 rounded-xl px-2 py-1 text-sm font-medium">
+                {priceFormatter(user?.balance)}
+              </div>
             </div>
-            <div className="bg-main-100 rounded-xl px-2 text-sm py-1 font-medium">
-              {priceFormatter(user?.balance)}
-            </div>
-          </div>
+          </Link>
 
           <LogOutButton isMenuButton />
         </div>

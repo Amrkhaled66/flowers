@@ -9,6 +9,7 @@ const NavBarToggleBtns = createContext<
       toggleCart: () => void;
       toggleMenu: () => void;
       reset: () => void;
+      closMenu: () => void;
     }
   | undefined
 >(undefined);
@@ -20,6 +21,7 @@ const NavBarToggleBtnsProvider = ({ children }: { children: ReactNode }) => {
 
   const toggleCart = () => setOpenCart((prev) => !prev);
   const toggleMenu = () => setOpenMenu((prev) => !prev);
+  const closMenu = () => setOpenMenu(false);
   const toggleSearch = () => setOpenSearch((prev) => !prev);
 
   const reset = () => {
@@ -35,6 +37,7 @@ const NavBarToggleBtnsProvider = ({ children }: { children: ReactNode }) => {
     toggleSearch,
     toggleCart,
     toggleMenu,
+    closMenu,
     reset,
   };
 
