@@ -48,7 +48,7 @@ const BottomSection = () => {
   const { cartLength } = useCart();
 
   return (
-    <div className="z-50 w-screen bg-white py-3 drop-shadow-md">
+    <div className="z-50 w-screen  py-2 bg-white  drop-shadow-md">
       <div className="container">
         <div className="flex items-center justify-between">
           {/* Left Section */}
@@ -66,7 +66,7 @@ const BottomSection = () => {
           </div>
           {/* Logo */}
           <Link to="/">
-            <div className="h-[44px] w-[90px] lg:h-[95px] lg:w-[180px]">
+            <div className="h-[50px] w-[90px] lg:h-[95px] lg:w-[180px]">
               <img className="size-full object-cover" src={Logo1} alt="Logo" />
             </div>
           </Link>
@@ -78,7 +78,7 @@ const BottomSection = () => {
                 <ProfileMenuButtonMobile />
               </>
             ) : (
-              <Link to="/signin" className="flex items-center gap-x-2">
+              <Link  to="/signin" className="flex hover:bg-main-100 rounded-xl animate p-2  items-center gap-x-2">
                 <Icon icon="bi:person" width="24" height="24" />
                 <span className="text-text-main hidden font-bold lg:block">
                   {t("navBar.account")}

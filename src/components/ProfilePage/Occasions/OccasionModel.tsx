@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { FormEvent } from "react";
 
@@ -29,11 +29,13 @@ const OccasionModal = ({
   isPending,
   isOpen = false,
   onSubmit,
+  isSuccess = false,
   onClose = () => {},
 }: {
   FormData?: Occasion | null;
   isPending?: boolean;
   isOpen?: boolean;
+  isSuccess?: boolean;
   onSubmit: (formData: Occasion) => void;
   onClose?: () => void;
 }) => {
@@ -100,6 +102,7 @@ const OccasionModal = ({
     if (!validateForm()) return;
 
     onSubmit(formData);
+
     return;
   };
 
@@ -113,8 +116,14 @@ const OccasionModal = ({
       (occasion: { nameAr: string; nameEn: string }) =>
         name === occasion.nameAr || name === occasion.nameEn,
     )?.id;
-    
-  console.log(formData,getOccasionById(formData.occasionId || 0), "dddd");
+
+  useEffect(() => {
+    if (isSuccess) {
+      setFormData(initialFormData);
+      setFormErrors(initialFormErrors);
+    }
+  }, [isSuccess]);
+
   return (
     <Model isOpen={isOpen} onClose={onClose}>
       <form

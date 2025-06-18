@@ -4,7 +4,13 @@ import DeliveryTimeModel from "./DeliveryTimeModel";
 import DeliveryOption from "src/components/Cart/DeliveryInfo/DeliveryTime/DeliveryOption";
 import { useOrder } from "src/context/orderCtx";
 import { useTranslation } from "react-i18next";
-const DeliveryTime = ({ error }: { error?: string }) => {
+const DeliveryTime = ({
+  error,
+  resetDeliveryError,
+}: {
+  error?: string;
+  resetDeliveryError: () => void;
+}) => {
   const [activeModel, setActiveModel] = useState<boolean | number>(false);
   const { order } = useOrder();
   const { t } = useTranslation("deliveryInfo");
@@ -24,6 +30,7 @@ const DeliveryTime = ({ error }: { error?: string }) => {
           icon="carbon:delivery"
         /> */}
         <DeliveryTimeModel
+        resetDeliveryError={resetDeliveryError}
           isOpen={activeModel === 1}
           onClose={() => setActiveModel(false)}
         />
@@ -31,7 +38,7 @@ const DeliveryTime = ({ error }: { error?: string }) => {
         <DeliveryOption
           error={error}
           title={t("time.title")}
-          subtitle={"Choose date and time"}
+          subtitle={t("time.subTitle")}
           isButton
           onClick={() => setActiveModel(1)}
           deliveryDate={order.deliveryDate}

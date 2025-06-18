@@ -1,5 +1,5 @@
 import { Icon } from "@iconify/react/dist/iconify.js";
-
+import { useTranslation } from "react-i18next";
 const SearchInput = ({
   onChange,
   value,
@@ -15,6 +15,7 @@ const SearchInput = ({
   placeholder?: string;
   textSize?: string;
 }) => {
+  const { t } = useTranslation("shared");
   return (
     <div className="flex flex-1 flex-col gap-y-3">
       <div className={`relative ${bgColor} ${isFullScreen && "p-2"} `}>
@@ -22,7 +23,7 @@ const SearchInput = ({
           <Icon icon="material-symbols:search-rounded" width="24" height="24" />
         </div>
         <input
-          placeholder={placeholder}
+          placeholder={placeholder|| t("searchPlaceholder")}
           value={value}
           onChange={onChange}
           className={`placeholder:text-subTitle border-stroke animate focus:border-main h-full w-full rounded-xl border py-2.5 ps-12 ${textSize} focus:ring-0 focus:outline-none`}

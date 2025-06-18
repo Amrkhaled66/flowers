@@ -1,8 +1,6 @@
 import { useMutation } from "@tanstack/react-query";
 import { useQuery } from "@tanstack/react-query";
 import { useNavigate } from "react-router";
-import { useOrder } from "src/context/orderCtx";
-import { useCart } from "src/context/user/cartCtx";
 
 import {
   submitOrder,
@@ -39,18 +37,14 @@ const useGetOrderById = (id: number) =>
 
 const useSubmitOrder = () => {
   const navigate = useNavigate();
-  const { resetOrder } = useOrder();
-  const { clearCart } = useCart();
   return useMutation({
     mutationFn: submitOrder,
-    onSuccess: () =>
-      // data
-      {
-        const id = 3;
-        resetOrder();
-        clearCart();
-        navigate(`/success-order/${id}`);
-      },
+    onSuccess: (data) => {
+      navigate("/success-order", {
+        replace: true,
+        state: { orderId: data.orderId },
+      });
+    },
   });
 };
 export { useGetBusyTimes, useSubmitOrder, useGetOrders, useGetOrderById };

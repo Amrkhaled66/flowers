@@ -54,11 +54,11 @@ const MainLayout = () => {
       <div
         id="mainLayout"
         dir={`${i18n.language === "ar" ? "rtl" : "ltr"}`}
-        className={` pt-[104px] lg:pt-[155px] ${i18n.language === "ar" ? "font-ar" : "font-en"} `}
+        className={`pt-[104px] lg:pt-[155px] ${i18n.language === "ar" ? "font-ar" : "font-en"} `}
       >
-        {(profileLoading || cartLoading || favLoading || configLoading) && (
-          <BalloraLoader />
-        )}
+        <BalloraLoader
+          isOpen={profileLoading || cartLoading || favLoading || configLoading}
+        />
         <ScrollToTop />
         <Search />
         <NavBar />

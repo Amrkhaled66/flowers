@@ -12,8 +12,10 @@ import { useTranslation } from "react-i18next";
 const DeliveryTimeModel = ({
   onClose,
   isOpen,
+  resetDeliveryError,
 }: {
   onClose: () => void;
+  resetDeliveryError: () => void;
   isOpen: boolean;
 }) => {
   const {
@@ -34,6 +36,10 @@ const DeliveryTimeModel = ({
   } = useDeliveryTimeLogic();
   const { t } = useTranslation("deliveryInfo");
 
+  const onConfirm = () => {
+    handleConfirm();
+    resetDeliveryError();
+  };
   return (
     <Model onClose={onClose} isOpen={isOpen}>
       <div className="text-text-main mx-auto max-h-[80vh] w-full space-y-8 overflow-y-auto rounded-xl bg-white px-4 py-5 text-center lg:w-[600px]">
@@ -158,7 +164,7 @@ const DeliveryTimeModel = ({
               "!cursor-not-allowed opacity-60": isConfirmDisabled,
             })}
             onClick={() => {
-              handleConfirm();
+              onConfirm();
               onClose();
             }}
           />

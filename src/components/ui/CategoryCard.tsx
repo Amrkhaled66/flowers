@@ -20,12 +20,12 @@ const CategoryCard = ({ img, name, isMenuCard }: CategoryCardProps) => {
   return (
     <div className={containerClasses}>
       <div
-        className={`relative flex items-center overflow-hidden ${isMenuCard ? "h-[74px] w-[74px] lg:h-[140px] lg:w-[150px]" : "h-[97px] w-[104px] sm:h-[80px] sm:w-[80px] lg:h-[140px] lg:w-[150px]"} `}
+        className={`relative mx-auto flex items-center overflow-hidden ${isMenuCard ? "h-[74px] w-[74px] lg:h-[140px] lg:w-[150px]" : "h-[97px] w-[104px] sm:h-[80px] sm:w-[80px] lg:h-[140px] lg:w-[150px]"} `}
       >
         <div className="absolute z-[-1]">
           <img src={bg} alt="bg" />
         </div>
-        <div className="m-auto flex aspect-square max-h-[85%] w-[80%] justify-center">
+        <div className="m-auto flex aspect-square max-h-[80%] w-[75%] justify-center">
           <img
             loading="lazy"
             src={img}

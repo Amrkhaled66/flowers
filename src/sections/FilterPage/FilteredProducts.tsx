@@ -22,15 +22,21 @@ export default function FilteredProducts({
         <Icon icon="mingcute:filter-fill" width="24" height="24" />
         {t("filter")}
       </button>
-      <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 sm:gap-5 lg:grid-cols-3 lg:gap-6">
-        {loading
-          ? Array.from({ length: 12 }).map((_, index) => (
-              <ProductCardSk key={index} />
-            ))
-          : Products.map((product: Product) => (
-              <ProductCard isFilterCard key={product.id} product={product} />
-            ))}
-      </div>
+      {Products.length === 0 && !loading ? (
+        <div className="bg-main-50 rounded-xl py-9">
+          <p className="text-center font-bold">{t("noProducts")}</p>
+        </div>
+      ) : (
+        <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 sm:gap-5 lg:grid-cols-3 lg:gap-6">
+          {loading
+            ? Array.from({ length: 12 }).map((_, index) => (
+                <ProductCardSk key={index} />
+              ))
+            : Products.map((product: Product) => (
+                <ProductCard isFilterCard key={product.id} product={product} />
+              ))}
+        </div>
+      )}
     </div>
   );
 }

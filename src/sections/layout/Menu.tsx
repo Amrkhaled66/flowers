@@ -54,19 +54,19 @@ const Menu = () => {
         openMenu ? "translate-x-0" : "start-[-100%]"
       }`}
     >
-      <div className="flex h-screen  flex-col overflow-hidden">
+      <div className="flex h-screen flex-col overflow-hidden">
         {/* Header with close button */}
-        <div className="flex-shrink-0 px-4 py-6 sm:px-8 sm:py-4 lg:px-8 lg:py-10">
+        <div className="z-10 flex-shrink-0 px-4 py-6 sm:px-8 sm:py-4 lg:px-8 lg:py-10">
           <button
             onClick={toggleMenu}
-            className="bg-main animate absolute top-4 right-4 flex h-[44px] w-[44px] items-center justify-center rounded-xl p-1 text-white hover:drop-shadow-xl sm:top-4 sm:right-8 lg:top-8 lg:right-8"
+            className="bg-main animate absolute end-4 top-4 flex h-[44px] w-[44px] items-center justify-center rounded-xl p-1 text-white hover:drop-shadow-xl sm:end-8 sm:top-4 lg:end-8 lg:top-8"
           >
             <Icon icon="ic:outline-close" width="20" height="20" />
           </button>
         </div>
 
         {/* Scrollable content area */}
-        <div className="flex flex-1 flex-col gap-y-6 overflow-y-auto !overflow-x-hidden px-4 pt-2 pb-6 sm:px-8 lg:px-8">
+        <div className="flex flex-1 flex-col gap-y-6 !overflow-x-hidden overflow-y-auto px-4 pt-2 pb-23 sm:px-8 sm:pb-3 lg:px-8">
           {categoriesLoading || occasionsLoading ? (
             <div className="text-main flex flex-col items-center justify-center space-y-4">
               <Icon icon="solar:calendar-outline" width="56" height="56" />

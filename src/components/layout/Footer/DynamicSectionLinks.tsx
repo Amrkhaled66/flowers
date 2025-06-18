@@ -15,8 +15,8 @@ export const DynamicSectionLinks = ({
   return (
     <div
       className={`${
-        isActive ? "mb-7 max-h-[200px]" : "max-h-0"
-      } flex flex-col space-y-3 overflow-hidden text-start transition-all duration-300 lg:max-h-[200px]`}
+        isActive ? "mb-7 max-h-[600px] min-h-full" : "max-h-0"
+      } flex flex-col space-y-3 overflow-hidden text-start transition-all duration-300 lg:!max-h-full`}
     >
       {items.map((subLink) => (
         <Link

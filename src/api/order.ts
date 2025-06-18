@@ -16,8 +16,8 @@ const getOrderById = async (id: number) => {
   return data;
 };
 
-const submitOrder = async (data: any) => {
-  const { data: res } = await axiosPrivate.post("/api/orders", data);
-  return res;
+const submitOrder = async (sentData: any) => {
+  const { data } = await axiosPrivate.post("/api/orders", sentData);
+  return data;
 };
 export { getBusyTimes, submitOrder, getOrders, getOrderById };

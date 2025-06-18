@@ -69,7 +69,10 @@
             "message": "This address will be removed from your profile.",
             "confirmText": "Yes, Delete Address",
             "cancelText": "Cancel"
-        }
+        },
+        "map": {
+            "title": "Map"
+                    }
     },
     "occasion": {
         "empty": "There are no special occasions.",

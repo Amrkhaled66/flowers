@@ -12,9 +12,14 @@ const OrderSummary = () => {
   const { t } = useTranslation("sharedCart");
   const { config } = useOrderSummary();
   const navigate = useNavigate();
-  const { cartSubTotal, coupon, copounValue, isFreeDelivery, isBalanceUsed } = useCart();
-  const { authData: { user } } = useAuth();
-  const { config: { shipping } } = useConfig()
+  const { cartSubTotal, coupon, copounValue, isFreeDelivery, isBalanceUsed } =
+    useCart();
+  const {
+    authData: { user },
+  } = useAuth();
+  const {
+    config: { shipping, tax },
+  } = useConfig();
   const handleClick = () => {
     if (config.onClick) {
       config.onClick();
@@ -37,28 +42,38 @@ const OrderSummary = () => {
         {/* Subtotal */}
         <div className="border-b-stroke flex justify-between border-b pb-4">
           <p>{t("orderSummary.subtotal")}</p>
-          <p>{priceFormatter(cartSubTotal)}</p>
+          <p className="font-semibold">{priceFormatter(cartSubTotal)}</p>
+        </div>
+        <div className="border-b-stroke flex justify-between border-b pb-4">
+          <p>{t("orderSummary.tax")}</p>
+          <p className="font-semibold">{priceFormatter(tax || 0)}</p>
         </div>
         {coupon && (
           <div className="border-b-stroke flex justify-between border-b pb-4">
-            <p> {t("orderSummary.discount")}</p>
-            <p className="text-green-500">{priceFormatter(copounValue)}</p>
+            <p> {t("orderSummary.coponDiscount")}</p>
+            <p className="font-semibold text-green-600">
+              {priceFormatter(copounValue)}
+            </p>
           </div>
         )}
-        {
-          isBalanceUsed && (
-            <div className="border-b-stroke flex justify-between border-b pb-4">
-              <p>{t("orderSummary.usedBalance")}</p>
-              <p className="text-green-500">-{priceFormatter(user?.balance)}</p>
-            </div>
-          )
-        }
+        {isBalanceUsed && (
+          <div className="border-b-stroke flex justify-between border-b pb-4">
+            <p>{t("orderSummary.usedBalance")}</p>
+            <p className="text-green-600">-{priceFormatter(user?.balance)}</p>
+          </div>
+        )}
 
         {/* Delivery Charges */}
         <div className="border-b-stroke space-y-2.5 border-b pb-4">
           <div className="flex justify-between">
             <p>{t("orderSummary.deliveryCharges")}</p>
-            {isFreeDelivery ? <p className="text-green-600">{t("orderSummary.free")}</p> : <p>{priceFormatter(shipping)}</p>}
+            {isFreeDelivery ? (
+              <p className="font-semibold text-green-600">
+                {t("orderSummary.free")}
+              </p>
+            ) : (
+              <p>{priceFormatter(shipping)}</p>
+            )}
           </div>
           <p className="text-subTitle">{t("orderSummary.deliveryNote")}</p>
         </div>
@@ -66,7 +81,11 @@ const OrderSummary = () => {
         {/* Total */}
         <div className="border-b-stroke flex justify-between border-b pb-4 font-bold">
           <p>{t("orderSummary.total")}</p>
-          <p>{priceFormatter((cartSubTotal || 0) + (isFreeDelivery ? 0 : Number(shipping)))}</p>
+          <p>
+            {priceFormatter(
+              (cartSubTotal || 0) + (isFreeDelivery ? 0 : Number(shipping)),
+            )}
+          </p>
         </div>
 
         {/* Button */}
@@ -74,7 +93,7 @@ const OrderSummary = () => {
           <Button
             onClick={handleClick}
             loading={config.isLoading}
-            text={config.buttonText||"Order Now"}
+            text={config.buttonText || "Order Now"}
             className="animate w-full !py-3 text-white"
           />
         </div>

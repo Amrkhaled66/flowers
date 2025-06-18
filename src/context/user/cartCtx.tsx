@@ -23,7 +23,7 @@ interface CartContextType {
   isFreeDelivery: boolean;
   isBalanceUsed: boolean;
   setIsBalanceUsed: (value: boolean) => void;
-  getProductQuantity: (id: number) => number ;
+  getProductQuantity: (id: number) => number;
 }
 
 const CartContext = createContext<CartContextType | undefined>(undefined);
@@ -65,7 +65,9 @@ export const CartProvider: React.FC<{ children: React.ReactNode }> = ({
   };
 
   const getProductQuantity = (id: number) => {
-    return cart?.find((item: CartItem) => item.product.id === id)?.quantity||0;
+    return (
+      cart?.find((item: CartItem) => item.product.id === id)?.quantity || 0
+    );
   };
 
   const baseTotal = cart?.reduce((total: number, item: CartItem) => {
@@ -77,7 +79,7 @@ export const CartProvider: React.FC<{ children: React.ReactNode }> = ({
     : baseTotal;
 
   cartSubTotal = isBalanceUsed
-    ? cartSubTotal - Number(user?.balance) || 0
+    ? cartSubTotal - Number(user?.balance)
     : cartSubTotal;
 
   const cartLength = cart?.reduce((total: number, item: CartItem) => {

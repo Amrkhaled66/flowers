@@ -26,7 +26,7 @@ const Cart = () => {
       >
         <button
           onClick={toggleCart}
-          className="bg-main animate absolute top-1 right-1 flex h-[44px] w-[44px] items-center justify-center rounded-xl text-white hover:drop-shadow-xl"
+          className="bg-main animate absolute top-1 right-1 flex size-[34px] items-center justify-center rounded-xl text-white hover:drop-shadow-xl lg:size-[44px]"
         >
           <Icon icon="ic:outline-close" width="20" height="20" />
         </button>
@@ -39,7 +39,7 @@ const Cart = () => {
         {/* Scrollable content area */}
         <div className="flex flex-1 flex-col overflow-hidden">
           {/* Cart items */}
-          <div className="flex-1 overflow-y-auto py-6">
+          <div className="flex-1 overflow-y-auto">
             {cart && cartLength && cartLength > 0 ? (
               <div className="space-y-6">
                 {cart.map((product, index) => (
@@ -54,7 +54,7 @@ const Cart = () => {
           </div>
 
           {/* Fixed summary at bottom */}
-          <div className="border-t-stroke flex-shrink-0 border-t pt-4 pb-7">
+          <div className="border-t-stroke flex-shrink-0 border-t pb-7">
             <Summary />
           </div>
         </div>

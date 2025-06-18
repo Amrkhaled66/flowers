@@ -41,6 +41,7 @@ const DeliveryInfo = () => {
     deliveryError,
     handleSelectArea,
     handleInputChange,
+    setDeliveryError
   } = useAddressFormWithDelivery(initialFormData);
 
   const onSubmit = () => {
@@ -125,7 +126,7 @@ const DeliveryInfo = () => {
           <p className="text-red px-2 text-xs">{formErrors.address}</p>
         </div>
         <PrivacyConsentToggle />
-        <DeliveryTime error={deliveryError} />
+        <DeliveryTime resetDeliveryError={()=>setDeliveryError("")} error={deliveryError} />
       </div>
       <Button
         className="!py-3 text-white lg:hidden"

@@ -28,17 +28,22 @@ const OrderContext = createContext<{
 
 export const OrderProvider = ({ children }: { children: ReactNode }) => {
   const [order, setOrder] = useState<Order>(defaultOrder);
-
   const updateOrder = (updates: Partial<Order>) => {
     setOrder((prev) => ({ ...prev, ...updates }));
   };
-  
+
   const resetOrder = () => {
     setOrder(defaultOrder);
   };
 
   return (
-    <OrderContext.Provider value={{ order, updateOrder, resetOrder }}>
+    <OrderContext.Provider
+      value={{
+        order,
+        updateOrder,
+        resetOrder,
+      }}
+    >
       {children}
     </OrderContext.Provider>
   );

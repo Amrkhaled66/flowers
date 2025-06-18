@@ -7,6 +7,9 @@
     "back": "Back",
     "quantity": "Quantity",
     "apply": "Apply Now",
+    "confirm": "Confirm",
+    "cancel": "Cancel",
+    "searchPlaceholder": "Search",
     "balloraPoints": "Ballora Points",
     "chooseGiftNow": "Choose gift now",
     "sessionExpired": {

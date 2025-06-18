@@ -24,8 +24,19 @@ const Payment = () => {
       buttonText: t("orderSummary.placeOrder"),
       isLoading: isPending,
       onClick: () => {
-        if (!order.paymentMethod) return Alert({ title: "Error", text: "Please select a payment method", icon: "error", confirmButtonText: "Okay" })
-        mutate(transformKeysToSnakeCase(order))
+        if (!order.paymentMethod)
+          return Alert({
+            title: "Error",
+            text: "Please select a payment method",
+            icon: "error",
+            confirmButtonText: "Okay",
+          });
+        mutate(
+          transformKeysToSnakeCase({
+            ...order,
+            deliveryTime: order.deliveryTime.toLowerCase().replace(/\s+/g, ""),
+          }),
+        );
       },
     });
 

@@ -219,7 +219,7 @@ const router = createBrowserRouter([
         ],
       },
       {
-        path: "success-order/:id",
+        path: "success-order",
         element: <SucessOrder />,
       },
       {

@@ -3,6 +3,7 @@ import Address from "src/types/UserInfo/Address";
 import { useTranslation } from "react-i18next";
 import { FormErrors } from "src/types/UserInfo/Address";
 import validateAddressForm from "src/utils/ValidateAddressForm";
+import { validatePhoneNumber } from "src/utils/register";
 
 const initialFormErrors: FormErrors = {
   recipientName: "",
@@ -26,13 +27,65 @@ export const useAddressFormBase = (initialData: Address) => {
     const { name, value } = e.target;
     setFormData((prev) => ({ ...prev, [name]: value }));
 
-    if (formErrors[name as keyof FormErrors]) {
-      setFormErrors((prev) => ({ ...prev, [name]: "" }));
-    }
+    // Validate the specific field
+    setFormErrors((prevErrors) => {
+      const updatedErrors = { ...prevErrors };
+
+      switch (name) {
+        case "recipientName":
+          if (!value.trim()) {
+            updatedErrors.recipientName = tProfile(
+              "address.formErrors.name.required",
+            );
+          } else if (value.length < 3) {
+            updatedErrors.recipientName = tProfile(
+              "address.formErrors.name.minLength",
+            );
+          } else {
+            updatedErrors.recipientName = "";
+          }
+          break;
+
+        case "recipientPhone":
+          if (!value.trim()) {
+            updatedErrors.phoneNumber = tProfile(
+              "address.formErrors.phoneNumber.required",
+            );
+          } else if (validatePhoneNumber(value.replace(/\s+/g, ""))) {
+            updatedErrors.phoneNumber = tProfile(
+              "address.formErrors.phoneNumber.invalid",
+            );
+          } else {
+            updatedErrors.phoneNumber = "";
+          }
+          break;
+
+        case "address":
+          if (!value.trim()) {
+            updatedErrors.address = tProfile(
+              "address.formErrors.address.required",
+            );
+          } else if (value.length < 5) {
+            updatedErrors.address = tProfile(
+              "address.formErrors.address.minLength",
+            );
+          } else {
+            updatedErrors.address = "";
+          }
+          break;
+      }
+
+      return updatedErrors;
+    });
   };
 
   const handleSelectArea = (area: string) => {
     setFormData((prev) => ({ ...prev, area }));
+
+    setFormErrors((prev) => ({
+      ...prev,
+      area: area ? "" : tProfile("address.formErrors.area.required"),
+    }));
   };
 
   const handleLocationSelection = (location: string) => {
@@ -54,7 +107,7 @@ export const useAddressFormBase = (initialData: Address) => {
     handleLocationSelection,
     handleSelectArea,
     validateBaseForm,
-    updateFormDate
+    updateFormDate,
   };
 };
 

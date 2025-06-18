@@ -49,8 +49,8 @@ function App() {
     <QueryClientProvider client={queryClient}>
       <ConfigProvider>
         <FavoritesProvider>
-          <CartProvider>
-            <AuthProvider>
+          <AuthProvider>
+            <CartProvider>
               <NavBarToggleBtnsProvider>
                 <OrderSummaryProvider>
                   <ResetProvider>
@@ -59,11 +59,11 @@ function App() {
                   </ResetProvider>
                 </OrderSummaryProvider>
               </NavBarToggleBtnsProvider>
-            </AuthProvider>
-          </CartProvider>
+            </CartProvider>
+          </AuthProvider>
         </FavoritesProvider>
       </ConfigProvider>
-    </QueryClientProvider >
+    </QueryClientProvider>
   );
 }
 

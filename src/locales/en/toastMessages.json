@@ -1,0 +1,15 @@
+{
+    "cart": {
+        "cartAdded": "Item added to cart",
+        "cartUpdated": "Item quantity updated",
+        "cartDeleted": "Item removed from cart",
+        "cartCleared": "Cart cleared Successfully"
+    },
+    "copon":{
+        "applied":"Copon applied successfully",
+        "notFound":"Copon not found"
+    },
+    "points":{
+        "redeemed":"Points redeemed successfully"
+    }
+}

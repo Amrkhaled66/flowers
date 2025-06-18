@@ -10,7 +10,7 @@ const AddOccasionModal = ({
   onClose: () => void;
   refetch: () => void;
 }) => {
-  const { mutate, isPending } = useAddOccasion();
+  const { mutate, isPending,isSuccess } = useAddOccasion();
   const handleSubmit = async (occasion: Occasion) => {
     mutate(occasion, {
       onSuccess: () => {
@@ -26,6 +26,7 @@ const AddOccasionModal = ({
       isPending={isPending}
       isOpen={isOpen}
       onClose={onClose}
+      isSuccess={isSuccess}
     />
   );
 };

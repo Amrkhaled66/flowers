@@ -15,7 +15,7 @@ const Summary = () => {
   const { t } = useTranslation("layout");
   return (
     <div className="space-y-6">
-      <div className="border-t-stroke flex justify-between border-t pt-4 text-lg font-bold">
+      <div className="flex justify-between pt-4 text-lg font-bold">
         <p className="text-text-main text-xl">{t("cart.total")}</p>
         <p className="text-main">{priceFormatter(cartSubTotal)}</p>
       </div>
@@ -24,7 +24,7 @@ const Summary = () => {
           <Button
             disabled={cartLength === 0}
             onClick={toggleCart}
-            className={`hover:bg-main-300 animate w-full !py-3 text-white disabled:!cursor-not-allowed `}
+            className={`hover:bg-main-300 animate w-full !py-3 text-white disabled:!cursor-not-allowed`}
             text={t("cart.showCart")}
           />
         </Link>

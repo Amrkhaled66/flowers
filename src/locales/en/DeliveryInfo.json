@@ -1,6 +1,7 @@
 {
     "time": {
         "title": "Delivery Time",
+        "subTitle":"Select Delivery Time",
         "model": {
             "title": "Delivery Time",
             "deliveryDate": "Delivery Date",
@@ -8,7 +9,8 @@
             "confirm": "Confirm",
             "cancel": "Cancel",
             "today": "Today",
-            "tomorrow": "Tomorrow"
+            "tomorrow": "Tomorrow",
+            "busy":"Busy Time"
         }
     },
     "privacy": {

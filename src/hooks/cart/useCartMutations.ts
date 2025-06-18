@@ -12,11 +12,11 @@ import { useAuth } from "src/context/authCtx";
 import { useCart } from "src/context/user/cartCtx";
 import { toast } from "react-toastify";
 import useDebounce from "../shared/useDebounce";
-
+import { useTranslation } from "react-i18next";
 const useGetCart = () => {
   const {
     //  isVerified
-    isAuthenticated
+    isAuthenticated,
   } = useAuth();
   const { storeCart } = useCart();
   return useQuery({
@@ -27,10 +27,13 @@ const useGetCart = () => {
       return data;
     },
     enabled: isAuthenticated,
+    refetchOnWindowFocus: true,
+    staleTime: 0,
   });
 };
 const useUpdateCart = () => {
   const { storeCart } = useCart();
+  const { t } = useTranslation("toast");
 
   const mutation = useMutation({
     mutationFn: ({ quantity, id }: { quantity: number; id: number }) =>
@@ -42,7 +45,7 @@ const useUpdateCart = () => {
     },
     onSuccess: (data) => {
       storeCart(data.cart);
-      toast("Item quantity updated", {
+      toast(t("cart.cartUpdated"), {
         type: "success",
       });
     },
@@ -56,6 +59,8 @@ const useUpdateCart = () => {
 
 const useDeleteCart = () => {
   const { storeCart } = useCart();
+  const { t } = useTranslation("toast");
+
   return useMutation({
     mutationFn: (id: number) => deleteCart(id),
     onError: (err: any) => {
@@ -65,7 +70,7 @@ const useDeleteCart = () => {
     },
     onSuccess: (data) => {
       storeCart(data.cart);
-      toast("Item removed from cart", {
+      toast(t("cart.cartDeleted"), {
         type: "success",
       });
     },
@@ -74,6 +79,8 @@ const useDeleteCart = () => {
 
 const useAddToCart = () => {
   const { storeCart } = useCart();
+  const { t } = useTranslation("toast");
+
   return useMutation({
     mutationFn: (id: number) => addToCart(id),
     onError: (err: any) => {
@@ -83,7 +90,7 @@ const useAddToCart = () => {
     },
     onSuccess: (data) => {
       storeCart(data.cart);
-      toast("Item added to cart", {
+      toast(t("cart.cartAdded"), {
         type: "success",
       });
     },
@@ -91,6 +98,8 @@ const useAddToCart = () => {
 };
 const useClearCart = () => {
   const { storeCart } = useCart();
+  const { t } = useTranslation("toast");
+
   return useMutation({
     mutationFn: () => clearCart(),
     onError: (err: any) => {
@@ -100,7 +109,7 @@ const useClearCart = () => {
     },
     onSuccess: () => {
       storeCart([]);
-      toast("Cart cleared", {
+      toast(t("cart.cartCleared"), {
         type: "success",
       });
     },

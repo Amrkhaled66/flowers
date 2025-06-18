@@ -1,6 +1,7 @@
 {
     "time": {
         "title": "وقت التوصيل",
+        "subTitle":"حدد وقت التوصيل",
         "model": {
             "title": "وقت التوصيل",
             "deliveryDate": "تاريخ التوصيل",
@@ -8,7 +9,8 @@
             "confirm": "تأكيد",
             "cancel": "إلغاء",
             "today": "اليوم",
-            "tomorrow": "غدا"
+            "tomorrow": "غدا",
+            "busy":"وقت مشغول"
         }
     },
     "privacy": {

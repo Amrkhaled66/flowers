@@ -2,19 +2,24 @@
   "orderSummary": {
     "title": "Order Summary",
     "subtotal": "Subtotal",
+    "tax": "Tax",
     "deliveryCharges": "Delivery charges",
     "deliveryNote": "Please note that specific regions and express delivery may incur extra delivery fees",
     "total": "Total",
     "buttonText": "Proceed to Checkout",
     "discount": "Discount",
     "free": "Free",
-    "usedBalance":"Used Balance",
-    "placeOrder":"Place Order",
-    "toCheckOut":"Continue to Checkout"
+    "usedBalance": "Used Balance",
+    "placeOrder": "Place Order",
+    "toCheckOut": "Continue to Checkout",
+    "coponDiscount": "Coupon Discount",
+    "coponApplied": "Coupon Applied"
   },
   "copon": {
     "placeholder": "Enter Coupon Code",
-    "apply": "Apply"
+    "apply": "Apply",
+    "remove": "Remove Coupon",
+    "notFound": "Coupon not found"
   },
   "payment": {
     "title": "Payment Options",
@@ -26,11 +31,11 @@
     "toGet": "left to get free delivery!",
     "Unlock": "You have unlocked free standard delivery!"
   },
-  "useBalance":"Use your Balance you have <strong>{{balance}}</strong>",
-  "redeemPoints":{
-    "title":"Available Points",
-    "point":"Point",
-    "description":"You can convert the number of points available to you into credit that you can use when purchasing.",
-    "redeem":"Redeem"
+  "useBalance": "Use your Balance you have <strong>{{balance}}</strong>",
+  "redeemPoints": {
+    "title": "Available Points",
+    "point": "Point",
+    "description": "You can convert the number of points available to you into credit that you can use when purchasing.",
+    "redeem": "Redeem"
   }
 }

@@ -10,13 +10,12 @@ import Skeleton from "react-loading-skeleton";
 const Points = () => {
   const { t } = useTranslation("profile");
   const { data, isLoading, refetch } = useGetPoints();
-  const { mutate, isPending: redeemLoading } = useRedeemPoints();
+  const { mutate, isPending: redeemLoading } = useRedeemPoints({});
 
   const handleRedeem = () => {
     mutate(undefined, {
       onSuccess: () => {
         refetch();
-        toast("Points redeemed successfully", { type: "success" });
       },
       onError: (err: any) => {
         toast(err.response.data.message || "Something went wrong", { type: "error" });

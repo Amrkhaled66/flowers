@@ -2,6 +2,7 @@ import i18n from "i18next";
 import { initReactI18next } from "react-i18next";
 import LanguageDetector from "i18next-browser-languagedetector";
 
+const storedLang = localStorage.getItem("language") || "en";
 
 import {
   HomeEn,
@@ -18,7 +19,8 @@ import {
   shippingBagEn,
   sharedCartEn,
   DeliveryInfoEn,
-  ProductPageEn
+  ProductPageEn,
+  ToastMessagesEn,
 } from "src/locales/en";
 
 import {
@@ -36,9 +38,9 @@ import {
   shippingBagAr,
   sharedCartAr,
   DeliveryInfoAr,
-  ProductPageAr
+  ProductPageAr,
+  ToastMessagesAr,
 } from "src/locales/ar";
-
 
 const resources = {
   en: {
@@ -56,7 +58,8 @@ const resources = {
     shippingBag: shippingBagEn,
     sharedCart: sharedCartEn,
     deliveryInfo: DeliveryInfoEn,
-    productPage: ProductPageEn
+    productPage: ProductPageEn,
+    toast: ToastMessagesEn,
   },
   ar: {
     home: HomeAr,
@@ -73,7 +76,8 @@ const resources = {
     shippingBag: shippingBagAr,
     sharedCart: sharedCartAr,
     deliveryInfo: DeliveryInfoAr,
-    productPage: ProductPageAr
+    productPage: ProductPageAr,
+    toast: ToastMessagesAr,
   },
 };
 
@@ -82,7 +86,7 @@ i18n
   .use(initReactI18next)
   .init({
     resources,
-    lng: "en",
+    lng: storedLang,
     fallbackLng: "en",
     interpolation: {
       escapeValue: false,

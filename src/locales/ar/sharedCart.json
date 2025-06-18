@@ -2,19 +2,24 @@
   "orderSummary": {
     "title": "ملخص الطلب",
     "subtotal": "المجموع الفرعي",
+    "tax": "الضريبة",
     "deliveryCharges": "رسوم التوصيل",
     "deliveryNote": "يرجى ملاحظة أن بعض المناطق والتوصيل السريع قد تتطلب رسوم توصيل إضافية",
     "total": "المجموع الكلي",
     "buttonText": "الانتقال إلى الدفع",
     "discount": "خصم",
-    "free":"مجانا",
-    "usedBalance":"الرصيد المستخدم",
-    "placeOrder":"تاكيد الطلب",
-    "toCheckOut":"الذهاب إلى الدفع"
+    "free": "مجانا",
+    "usedBalance": "الرصيد المستخدم",
+    "placeOrder": "تاكيد الطلب",
+    "toCheckOut": "الذهاب إلى الدفع",
+    "coponDiscount": "خصم الكوبون",
+    "coponApplied": "تم تطبيق الكوبون"
   },
   "copon": {
     "placeholder": "ادخل رمز الكوبون",
-    "apply": "تطبيق"
+    "apply": "تطبيق",
+    "remove": "ازالة الكوبون",
+    "notFound": "الكوبون غير موجود"
   },
   "payment": {
     "title": "خيارات الدفع",
@@ -24,13 +29,13 @@
   "freeDelivery": {
     "only": " فقط ",
     "toGet": "للحصول على التوصيل المجاني!",
-    "Unlock": "لديك تمكين التوصيل المجاني!"
+    "Unlock": "🎉 طلبك مؤهل للتوصيل المجاني "
   },
-  "useBalance":"استخدم رصيدك المتاح <strong>{{balance}}</strong>",
-  "redeemPoints":{
-    "title":"الرصيد المتاح",
-    "point":"نقطة",
-    "description":"يمكنك تحويل النقاط المتاحة للرصيد التي يمكنك استخدامها عند الشراء.",
-    "redeem":"تحويل النقاط"
+  "useBalance": "استخدم رصيدك المتاح <strong>{{balance}}</strong>",
+  "redeemPoints": {
+    "title": "الرصيد المتاح",
+    "point": "نقطة",
+    "description": "يمكنك تحويل النقاط المتاحة للرصيد التي يمكنك استخدامها عند الشراء.",
+    "redeem": "تحويل النقاط"
   }
 }

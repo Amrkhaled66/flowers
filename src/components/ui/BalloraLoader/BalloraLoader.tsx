@@ -1,7 +1,8 @@
 import { useEffect } from "react";
 import "./BalloraLoader.css";
 
-const BalloraLoader = () => {
+import { motion, AnimatePresence } from "framer-motion";
+const BalloraLoader = ({ isOpen }: { isOpen: boolean }) => {
   useEffect(() => {
     const petals = document.querySelectorAll(".petal");
     let currentPhase = "appear";
@@ -40,14 +41,22 @@ const BalloraLoader = () => {
   }, []);
 
   return (
-    <div className="loader-container fixed inset-0 w-screen h-screen z-[1000000000] m-auto rounded-2xl backdrop-brightness-50">
-      <div className="bg-white  rounded-xl flower-loader">
-        {[...Array(8)].map((_, index) => (
-          <div className="petal" key={index}></div>
-        ))}
-        <div className="center-circle"></div>
-      </div>
-    </div>
+    <AnimatePresence>
+      {isOpen && (
+        <motion.div
+          exit={{ opacity: 0 }}
+          transition={{ duration: 0.5 }}
+          className="loader-container fixed inset-0 z-[1000000000] m-auto h-screen w-screen rounded-2xl bg-[#f6f1e9]"
+        >
+          <div className="flower-loader">
+            {[...Array(8)].map((_, index) => (
+              <div className="petal" key={index}></div>
+            ))}
+            <div className="center-circle"></div>
+          </div>
+        </motion.div>
+      )}
+    </AnimatePresence>
   );
 };
 

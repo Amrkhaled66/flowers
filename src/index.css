@@ -5,8 +5,6 @@
 @import "tailwindcss";
 /* @plugin "daisyui"; */
 
-
-
 @theme {
   --font-en: "Jost", sans-serif;
   --font-ar: "Cairo", sans-serif;
@@ -55,7 +53,7 @@ html {
 }
 body {
   height: auto;
-  overflow-y:auto;
+  overflow-y: auto;
 }
 
 button {
@@ -158,3 +156,6 @@ textarea {
     1px 100%;
 }
 
+.Toastify__toast {
+  font-family: var(--font-ar), sans-serif;
+}
