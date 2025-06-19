@@ -21,7 +21,6 @@ export const useFilterPageData = (appliedOptions: any, page: number) => {
     refetchProducts();
   }, []);
 
-  console.log(fullData);
 
   return {
     categories: fullData?.categories?.map(transformBaseItem) || [],

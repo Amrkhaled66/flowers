@@ -17,6 +17,8 @@ const transformProduct = (product: any) => ({
   recommendedProducts: product.recommended_products
     ? product.recommended_products.map(transformProduct)
     : [],
+  weight: product.weight,
+  height: product.height,
 });
 
 export default transformProduct;

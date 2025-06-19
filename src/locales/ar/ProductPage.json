@@ -5,5 +5,8 @@
   "buy": "اشترِ الآن",
   "desc": "الوصف",
   "recommendations": "يمكنك شراؤه مع",
-  "share":"مشاركة"
+  "share":"مشاركة",
+  "dimensions":"الابعاد",
+  "height":"الارتفاع",
+  "weight":"الوزن"
 }

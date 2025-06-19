@@ -10,6 +10,8 @@ const ProductOverView = ({
   loading = false,
   onShowImagesSlider,
   id,
+  weight,
+  height,
 }: {
   isOutOfStock: boolean;
   images: string[] | undefined;
@@ -20,6 +22,8 @@ const ProductOverView = ({
   loading?: boolean;
   id: number;
   onShowImagesSlider: () => void;
+  weight: string | undefined;
+  height: string | undefined;
 }) => {
   return (
     <div className="flex flex-col gap-x-[50px] gap-y-4 lg:flex-row">
@@ -36,6 +40,8 @@ const ProductOverView = ({
         name={name}
         beforeDiscount={beforeDiscount}
         afterDiscount={afterDiscount}
+        weight={weight}
+        height={height}
       />
     </div>
   );

@@ -16,13 +16,19 @@ const ProductImagesSlider = ({
       >
         <Icon icon="ion:close" width="20" height="20" />
       </button>
-      <div className="relative !aspect-square w-full overflow-hidden sm:w-[65%] lg:overflow-visible xl:w-[40%]">
-        <Slider isproductListSlider speed={500} items={images} slidesPerGroup={1} notSpaceBetween>
+      <div className="relative !aspect-square max-h-[90%] w-full overflow-hidden sm:w-[65%] lg:w-[80%] lg:overflow-visible xl:w-[40%]">
+        <Slider
+          isproductListSlider
+          speed={500}
+          items={images}
+          slidesPerGroup={1}
+          notSpaceBetween
+        >
           {images &&
             images.map((img: string) => (
               <SwiperSlide className="" key={img}>
                 <img
-                  className="size-full object-cover object-bottom lg:rounded-xl"
+                  className="size-full object-cover object-center lg:rounded-xl"
                   src={img}
                 />
               </SwiperSlide>

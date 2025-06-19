@@ -6,13 +6,13 @@ import ChooseGiftsButton from "src/components/ui/ChooseGiftsButton";
 import { SwiperSlide } from "swiper/react";
 import { getLocalizedName } from "src/utils/getLocalizedName";
 
-const IdeasCards = ({ isMenuCard ,toggleMenu}: { isMenuCard?: boolean,toggleMenu: () => void }) => {
+const IdeasCards = ({ isMenuCard ,toggleMenu}: { isMenuCard?: boolean,toggleMenu?: () => void }) => {
   return (
     <div className="space-y-5">
       <Slider slidesPerGroup={3}>
         {ideasArr.map((idea: Idea, index) => (
           <SwiperSlide
-            className={` ${isMenuCard ? "!w-[200px]" : "!w-[260px] lg:!w-1/3"} sm:!w-[213px]`}
+            className={` ${isMenuCard ? "!w-[200px]" : "!w-[260px] lg:!w-1/3"} sm:!w-[240px]`}
             key={index}
           >
               <IdeaCard

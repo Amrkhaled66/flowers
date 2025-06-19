@@ -5,5 +5,8 @@
     "buy": "Buy Now",
     "desc": "Description",
     "recommendations": "You can buy it with",
-    "share":"Share"
+    "share": "Share",
+    "dimensions": "Dimensions",
+    "height": "Height",
+    "weight": "Weight"
 }

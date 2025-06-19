@@ -73,6 +73,8 @@ const Info = ({
   id,
   afterDiscount,
   beforeDiscount,
+  weight,
+  height,
 }: {
   isOutOfStock: boolean;
   name: string | undefined;
@@ -80,6 +82,8 @@ const Info = ({
   id: number;
   afterDiscount: number | undefined;
   beforeDiscount: number | undefined;
+  weight: string | undefined;
+  height: string | undefined;
 }) => {
   const [quantity, setQuantity] = useState<number>(1);
   const [buying, setBuying] = useState(false);
@@ -152,7 +156,7 @@ const Info = ({
               {name}
             </h1>
             <div className="flex flex-col gap-y-2">
-              <p className="text-main space-x-1">
+              <div className="text-main space-x-1">
                 {beforeDiscount !== afterDiscount ? (
                   <div className="flex flex-col items-start">
                     <p className="text-text-main text-3xl font-bold">
@@ -167,7 +171,7 @@ const Info = ({
                     {priceFormatter(afterDiscount)}
                   </p>
                 )}
-              </p>
+              </div>
               <p className="text-subTitle text-xs">{tProduct("tax")}</p>
             </div>
             <TabbyPromo price={afterDiscount} />
@@ -212,16 +216,75 @@ const Info = ({
             </Section>
           )}
 
-          <div className="flex items-center gap-x-2">
-            <span className="text-text-main font-medium">
-              {tProduct("share")}:
-            </span>
-            <div className="text-subTitle flex gap-x-2">
-              <SocialIcon
-                onClick={shareProduct}
-                icon={<Icon icon="humbleicons:share" width="30" height="30" />}
-              />
+          <div className="space-y-6">
+            <div className="flex items-center gap-x-2">
+              <span className="text-text-main font-medium">
+                {tProduct("share")}:
+              </span>
+              <div className="text-subTitle flex gap-x-2">
+                <SocialIcon
+                  onClick={shareProduct}
+                  icon={
+                    <Icon icon="humbleicons:share" width="30" height="30" />
+                  }
+                />
+              </div>
             </div>
+
+            {(weight || height) && (
+              <div className="flex items-center gap-x-2 lg:gap-x-5">
+                <p className=" text-xl lg:text-2xl font-bold">{tProduct("dimensions")}:</p>
+                <div className="flex items-center gap-x-1 lg:gap-x-3">
+                  <div className="flex items-center">
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="26"
+                      height="8"
+                      viewBox="0 0 26 8"
+                      fill="none"
+                      className="rotate-90"
+                    >
+                      <path
+                        d="M0.646447 3.64645C0.451184 3.84171 0.451184 4.15829 0.646447 4.35355L3.82843 7.53553C4.02369 7.7308 4.34027 7.7308 4.53553 7.53553C4.7308 7.34027 4.7308 7.02369 4.53553 6.82843L1.70711 4L4.53553 1.17157C4.7308 0.976311 4.7308 0.659728 4.53553 0.464466C4.34027 0.269204 4.02369 0.269204 3.82843 0.464466L0.646447 3.64645ZM25.3536 4.35355C25.5488 4.15829 25.5488 3.84171 25.3536 3.64645L22.1716 0.464466C21.9763 0.269204 21.6597 0.269204 21.4645 0.464466C21.2692 0.659728 21.2692 0.976311 21.4645 1.17157L24.2929 4L21.4645 6.82843C21.2692 7.02369 21.2692 7.34027 21.4645 7.53553C21.6597 7.7308 21.9763 7.7308 22.1716 7.53553L25.3536 4.35355ZM1 4V4.5H25V4V3.5H1V4Z"
+                        fill="#534457"
+                      />
+                    </svg>
+
+                    <div className="space-y-1">
+                      <div className="bg-main-100 border-main size-6 rounded-lg border"></div>
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="26"
+                        height="8"
+                        viewBox="0 0 26 8"
+                        fill="none"
+                      >
+                        <path
+                          d="M0.646447 3.64645C0.451184 3.84171 0.451184 4.15829 0.646447 4.35355L3.82843 7.53553C4.02369 7.7308 4.34027 7.7308 4.53553 7.53553C4.7308 7.34027 4.7308 7.02369 4.53553 6.82843L1.70711 4L4.53553 1.17157C4.7308 0.976311 4.7308 0.659728 4.53553 0.464466C4.34027 0.269204 4.02369 0.269204 3.82843 0.464466L0.646447 3.64645ZM25.3536 4.35355C25.5488 4.15829 25.5488 3.84171 25.3536 3.64645L22.1716 0.464466C21.9763 0.269204 21.6597 0.269204 21.4645 0.464466C21.2692 0.659728 21.2692 0.976311 21.4645 1.17157L24.2929 4L21.4645 6.82843C21.2692 7.02369 21.2692 7.34027 21.4645 7.53553C21.6597 7.7308 21.9763 7.7308 22.1716 7.53553L25.3536 4.35355ZM1 4V4.5H25V4V3.5H1V4Z"
+                          fill="#534457"
+                        />
+                      </svg>
+                    </div>
+                  </div>
+                  <div>
+                    <ol>
+                      {height && (
+                        <li className="flex lg:text-xl">
+                          <Icon icon="mdi:dot" className="size-7" />
+                          {tProduct("height")} : {height}
+                        </li>
+                      )}
+                      {weight && (
+                        <li className="flex lg:text-xl">
+                          <Icon icon="mdi:dot" className="size-7" />
+                          {tProduct("weight")} : {weight}
+                        </li>
+                      )}
+                    </ol>
+                  </div>
+                </div>
+              </div>
+            )}
           </div>
         </>
       )}

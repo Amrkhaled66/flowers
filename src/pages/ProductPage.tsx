@@ -53,6 +53,8 @@ const ProductPage = () => {
             afterDiscount={product?.afterDiscount}
             category={product?.categoryId}
             onShowImagesSlider={() => setShowImagesSlider(true)}
+            weight={product?.weight}
+            height={product?.height}
           />
         </div>
 

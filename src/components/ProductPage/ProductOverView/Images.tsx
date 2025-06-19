@@ -9,7 +9,7 @@ type ImagesProps = {
   images?: string[];
   loading?: boolean;
   onShowImagesSlider: () => void;
-  id: number
+  id: number;
 };
 
 const Images = ({ id, images, loading, onShowImagesSlider }: ImagesProps) => {
@@ -24,8 +24,14 @@ const Images = ({ id, images, loading, onShowImagesSlider }: ImagesProps) => {
       notSpaceBetween
     >
       {images?.map((img) => (
-        <SwiperSlide key={img}>
-          <img src={img} alt="" className="size-full object-top" />
+        <SwiperSlide key={img} className="flex items-center justify-center">
+          {" "}
+          {/* 👉 Center content inside slide */}
+          <img
+            className="max-h-full max-w-full object-contain lg:rounded-xl" // 👉 `object-contain` prevents cropping
+            src={img}
+            alt="Product image"
+          />
         </SwiperSlide>
       ))}
     </Slider>
@@ -45,19 +51,22 @@ const Images = ({ id, images, loading, onShowImagesSlider }: ImagesProps) => {
           <Icon icon="lets-icons:full-alt" width="24" height="24" />
         </button>
       </>
-    )
-  }
+    );
+  };
+
   const renderThumbnails = () =>
     images?.map((image, index) => (
       <div
         key={image}
-        className={`aspect-square h-[44px] overflow-hidden rounded-xl sm:h-[50px] lg:h-[117px] ${index === activeImage ? "border-main border" : ""
-          }`}
+        className={`aspect-square h-[44px] overflow-hidden rounded-xl sm:h-[50px] lg:h-[117px] ${
+          index === activeImage ? "border-main border" : ""
+        }`}
       >
         <img
           src={image}
           onClick={() => setActiveImage(index)}
           className="size-full cursor-pointer rounded-sm object-cover object-center"
+          alt="Thumbnail"
         />
       </div>
     ));
@@ -72,15 +81,18 @@ const Images = ({ id, images, loading, onShowImagesSlider }: ImagesProps) => {
 
   return (
     <div className="flex flex-col gap-y-4 lg:gap-y-6">
-      <div className="relative h-[343px] w-full overflow-hidden rounded-xl sm:h-[680px] lg:h-[540px] lg:w-[540px]">
-        {loading ? <Skeleton className="!h-full !w-full" /> :
+      <div className="relative flex h-[343px] w-full items-center justify-center overflow-hidden rounded-xl sm:h-[680px] lg:h-[540px] lg:w-[540px]">
+        {loading ? (
+          <Skeleton className="!h-full !w-full" />
+        ) : (
           <>
             <MainImage />
             <ActionButtons />
           </>
-        }
+        )}
       </div>
 
+      {/* 👉 Thumbnails row */}
       <div className="flex gap-4 sm:gap-5 lg:gap-6">
         {loading ? renderThumbnailSkeletons() : renderThumbnails()}
       </div>
