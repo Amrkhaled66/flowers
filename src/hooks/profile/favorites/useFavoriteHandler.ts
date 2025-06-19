@@ -2,7 +2,7 @@ import {
   useAddFavorite,
   useRemoveFavorite,
 } from "src/hooks/profile/favorites/FavoritesMutations";
-import { toast } from "react-toastify";
+import { showToast } from "src/utils/toast";
 
 import { useAuthGuard } from "src/hooks/shared/useAuthGuard";
 import { useTranslation } from "react-i18next";
@@ -24,9 +24,7 @@ export const useFavoriteHandler = (favoriteId: number, productId: number) => {
 
     action(undefined, {
       onSuccess: () => {
-        toast(` ${favoriteId ? t("favorite.deleted") : t("favorite.added")}`, {
-          type: "success",
-        });
+        showToast.success(` ${favoriteId ? t("favorite.deleted") : t("favorite.added")}`);
       },
     });
   };

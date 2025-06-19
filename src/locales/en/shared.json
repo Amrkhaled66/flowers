@@ -22,5 +22,7 @@
         "text": "Please verify your account",
         "btnText": "Verify Now"
     },
-    "outOfStock": "This product will be available soon."
+    "outOfStock": "This product will be available soon.",
+    "next":"Next",
+    "prev":"Prev"
 }

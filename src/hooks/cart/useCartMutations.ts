@@ -10,9 +10,10 @@ import { useMutation, useQuery } from "@tanstack/react-query";
 import { useAuth } from "src/context/authCtx";
 
 import { useCart } from "src/context/user/cartCtx";
-import { toast } from "react-toastify";
 import useDebounce from "../shared/useDebounce";
 import { useTranslation } from "react-i18next";
+import { showToast } from "src/utils/toast";
+
 const useGetCart = () => {
   const {
     //  isVerified
@@ -39,15 +40,11 @@ const useUpdateCart = () => {
     mutationFn: ({ quantity, id }: { quantity: number; id: number }) =>
       updateCart(quantity, id),
     onError: (err: any) => {
-      toast(err.response.data.message, {
-        type: "error",
-      });
+      showToast.error(err.response.data.message);
     },
     onSuccess: (data) => {
       storeCart(data.cart);
-      toast(t("cart.cartUpdated"), {
-        type: "success",
-      });
+      showToast.success(t("cart.cartUpdated"));
     },
   });
 
@@ -64,15 +61,11 @@ const useDeleteCart = () => {
   return useMutation({
     mutationFn: (id: number) => deleteCart(id),
     onError: (err: any) => {
-      toast(err.response.data.message, {
-        type: "error",
-      });
+      showToast.error(err.response.data.message);
     },
     onSuccess: (data) => {
       storeCart(data.cart);
-      toast(t("cart.cartDeleted"), {
-        type: "success",
-      });
+      showToast.success(t("cart.cartDeleted"));
     },
   });
 };
@@ -84,15 +77,11 @@ const useAddToCart = () => {
   return useMutation({
     mutationFn: (id: number) => addToCart(id),
     onError: (err: any) => {
-      toast(err.response.data.message, {
-        type: "error",
-      });
+      showToast.error(err.response.data.message);
     },
     onSuccess: (data) => {
       storeCart(data.cart);
-      toast(t("cart.cartAdded"), {
-        type: "success",
-      });
+      showToast.success(t("cart.cartAdded"));
     },
   });
 };
@@ -103,15 +92,11 @@ const useClearCart = () => {
   return useMutation({
     mutationFn: () => clearCart(),
     onError: (err: any) => {
-      toast(err.response.data.message, {
-        type: "error",
-      });
+      showToast.error(err.response.data.message);
     },
     onSuccess: () => {
       storeCart([]);
-      toast(t("cart.cartCleared"), {
-        type: "success",
-      });
+      showToast.success(t("cart.cartCleared"));
     },
   });
 };

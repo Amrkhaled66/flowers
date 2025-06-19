@@ -1,8 +1,8 @@
 import { useQuery, useMutation } from "@tanstack/react-query";
 import { getPoints, redeemPoints, getBalance } from "src/api/points";
 import { useAuth } from "src/context/authCtx";
-import { toast } from "react-toastify";
 import { useTranslation } from "react-i18next";
+import { showToast } from "src/utils/toast";
 const useGetPoints = () => {
   return useQuery({
     queryKey: ["points"],
@@ -23,7 +23,7 @@ const useRedeemPoints = ({ confirmRedeem }: { confirmRedeem?: () => void }) => {
   return useMutation({
     mutationFn: redeemPoints,
     onSuccess: (data) => {
-      toast(t("points.redeemed"), { type: "success" });
+      showToast.success(t("points.redeemed"));
       confirmRedeem && confirmRedeem();
       updateBalance(String(data.data.new_balance));
     },

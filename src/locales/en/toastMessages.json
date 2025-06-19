@@ -11,5 +11,9 @@
     },
     "points":{
         "redeemed":"Points redeemed successfully"
+    },
+    "favorite":{
+        "deleted":"Item removed from favorites",
+        "added":"Item added to favorites"
     }
 }

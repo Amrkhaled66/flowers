@@ -1,24 +1,24 @@
 import ReactPaginate from "react-paginate";
-
+import { useTranslation } from "react-i18next";
 const Pagination = ({
   pageCount,
   handlePageClick,
-  forcePage
+  forcePage,
 }: {
   pageCount: number;
   handlePageClick: ({ selected }: { selected: number }) => void;
-  forcePage?: number
+  forcePage?: number;
 }) => {
-
+  const { t } = useTranslation("shared");
   return (
     <ReactPaginate
       breakLabel="..."
-      nextLabel="Next"
+      nextLabel={t("next")}
       onPageChange={handlePageClick}
       pageRangeDisplayed={5}
       pageCount={Math.ceil(pageCount)}
       forcePage={forcePage}
-      previousLabel="Prev"
+      previousLabel={t("prev")}
       renderOnZeroPageCount={null}
       marginPagesDisplayed={2}
       // Tailwind classes

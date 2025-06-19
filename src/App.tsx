@@ -19,7 +19,12 @@ import {
   QueryClientProvider,
 } from "@tanstack/react-query";
 
-import { ToastContainer } from "react-toastify";
+// import { ToastContainer } from "react-toastify";
+import { registerToastImpl } from "src/utils/toast";
+import { reactHotToastImpl } from "src/lib/toastProvider";
+import { Toaster } from "react-hot-toast";
+
+registerToastImpl(reactHotToastImpl);
 
 const queryClient = new QueryClient({
   queryCache: new QueryCache({
@@ -54,7 +59,8 @@ function App() {
               <NavBarToggleBtnsProvider>
                 <OrderSummaryProvider>
                   <ResetProvider>
-                    <ToastContainer />
+                    <Toaster position="bottom-right"/>
+
                     <Paths />
                   </ResetProvider>
                 </OrderSummaryProvider>

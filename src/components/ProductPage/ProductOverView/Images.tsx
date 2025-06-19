@@ -83,7 +83,12 @@ const Images = ({ id, images, loading, onShowImagesSlider }: ImagesProps) => {
     <div className="flex flex-col gap-y-4 lg:gap-y-6">
       <div className="relative flex h-[343px] w-full items-center justify-center overflow-hidden rounded-xl sm:h-[680px] lg:h-[540px] lg:w-[540px]">
         {loading ? (
-          <Skeleton className="!h-full !w-full" />
+          <>
+            <Skeleton
+              className="!absolute !inset-0 !h-full !w-full"
+              containerClassName="absolute inset-0"
+            />
+          </>
         ) : (
           <>
             <MainImage />

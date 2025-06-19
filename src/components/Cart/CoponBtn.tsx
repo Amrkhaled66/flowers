@@ -4,7 +4,7 @@ import { useApplyCoupon } from "src/hooks/cart/useCartMutations";
 import { useState } from "react";
 import { useCart } from "src/context/user/cartCtx";
 import Button from "src/components/ui/Button";
-import { toast } from "react-toastify";
+import { showToast } from 'src/utils/toast';
 
 import clsx from "clsx";
 const CoponBtn = () => {
@@ -23,7 +23,7 @@ const CoponBtn = () => {
       onSuccess: (data) => {
         if (!data) return;
         applyCoupon(data.data.code, data.data.discount);
-        toast(tToast("copon.applied"), { type: "success" });
+        showToast.success(tToast("copon.applied"));
         updateOrder({
           coupon: data.data.code,
         });

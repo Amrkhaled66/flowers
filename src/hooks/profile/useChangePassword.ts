@@ -6,7 +6,7 @@ import { useMutation } from "@tanstack/react-query";
 import { changePassword } from "src/api/Auth";
 import transformKeysToSnakeCase from "src/utils/transformToSnakeCase";
 import Alert from "src/components/ui/Alert";
-import { toast } from "react-toastify";
+import { showToast } from "src/utils/toast";
 const useChangePassword = () => {
   const [formData, setFormData] = useState({
     oldPassword: "",
@@ -136,9 +136,7 @@ const useChangePassword = () => {
         });
       },
       onError: (err: any) => {
-        toast(err?.response?.data?.message, {
-          type: "error",
-        });
+        showToast.error(err?.response?.data?.message);
       },
     });
   };
