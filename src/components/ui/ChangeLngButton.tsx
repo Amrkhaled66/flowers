@@ -1,6 +1,10 @@
 import { useTranslation } from "react-i18next";
 
-const ChangeLngButton = () => {
+const ChangeLngButton = ({
+  borderColor = "border-white",
+}: {
+  borderColor?: string;
+}) => {
   const {
     i18n: { language, changeLanguage: changeLanguageFunc },
   } = useTranslation();
@@ -13,7 +17,7 @@ const ChangeLngButton = () => {
   return (
     <button
       onClick={() => changeLanguage(language === "ar" ? "en" : "ar")}
-      className="font-ar ms-auto w-fit rounded-xl border border-white px-2 text-white"
+      className={`font-ar ms-auto w-fit rounded-xl border ${borderColor} px-2 text-white`}
     >
       {language === "ar" ? "English" : "العربية"}
     </button>

@@ -19,7 +19,7 @@ const Footer = () => {
               <SocialLinks />
               <SiteMap />
             </div>
-            <ChangeLngButton />
+            <ChangeLngButton borderColor="border-main" />
           </div>
           <Bottom />
         </div>
