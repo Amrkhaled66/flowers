@@ -28,7 +28,7 @@ const ProductImagesSlider = ({
             images.map((img: string) => (
               <SwiperSlide className="" key={img}>
                 <img
-                  className="size-full object-cover object-center lg:rounded-xl"
+                  className="size-full object-contain object-center lg:rounded-xl"
                   src={img}
                 />
               </SwiperSlide>

@@ -1,18 +1,97 @@
-import { Icon } from "@iconify/react/dist/iconify.js";
+import { Icon } from "@iconify/react";
 import { useState } from "react";
 import { Link } from "react-router-dom";
 
 import profileElements from "src/data/ProfileSideBarElements";
-import ProfileSideBar from "src/types/ProfileSideBar";
 import LogOutButton from "src/components/ui/register/LogOutButton";
 import DeleteAccount from "src/components/ui/register/DeleteAccount";
 import priceFormatter from "src/utils/priceFormatter";
-
 import { getLocalizedName } from "src/utils/getLocalizedName";
 
 import { useAuth } from "src/context/authCtx";
 import { useTranslation } from "react-i18next";
 import useScrollLock from "src/hooks/ui/useScrollLock";
+
+// ─────────────────────────────────────────
+// Reusable Components
+// ─────────────────────────────────────────
+
+const CloseButton = ({ onClick }: { onClick: () => void }) => (
+  <button
+    className="bg-main flex h-[34px] w-[34px] items-center justify-center rounded-lg border animate text-white hover:drop-shadow-xl"
+    onClick={onClick}
+  >
+    <Icon icon="material-symbols:close-rounded" width="24" height="24" />
+  </button>
+);
+
+const ProfileUserCard = ({ user, onClick }: { user: any; onClick: () => void }) => (
+  <Link to="/profile/mydata" onClick={onClick}>
+    <div className="bg-main-50 flex items-start justify-between rounded-xl p-3 border-b-stroke">
+      <div className="flex items-start gap-x-3">
+        <div className="text-main flex size-[54px] items-center justify-center rounded-full bg-white">
+          <Icon icon="lsicon:user-filled" width="36" height="36" />
+        </div>
+        <div>
+          <p className="text-lg font-bold">{user?.first_name + " " + user?.last_name}</p>
+          <p className="text-subTitle text-sm">{user?.phone_number}</p>
+        </div>
+      </div>
+    </div>
+  </Link>
+);
+
+const ProfileLinkCard = ({
+  icon,
+  label,
+  link,
+  onClick,
+}: {
+  icon: React.ReactNode;
+  label: string;
+  link: string;
+  onClick: () => void;
+}) => (
+  <Link to={link} onClick={onClick}>
+    <div className="flex bg-main-50 border-b-stroke items-start justify-between rounded-xl px-3 py-2">
+      <div className="flex flex-col gap-y-2">
+        {icon}
+        <p className="text-text-main text-sm font-medium text-nowrap">{label}</p>
+      </div>
+      <Icon icon="jam:chevron-right" width="24" height="24" />
+    </div>
+  </Link>
+);
+
+const BalloraBalanceCard = ({
+  balance,
+  language,
+  onClick,
+}: {
+  balance: number|string;
+  language: string;
+  onClick: () => void;
+}) => (
+  <Link to="/profile/ballance" onClick={onClick}>
+    <div className="bg-main-50 border-b-stroke flex items-start justify-between rounded-xl px-3 py-2">
+      <div className="flex w-full items-start justify-between">
+        <div className="flex flex-col gap-y-2">
+          <Icon icon="fluent:wallet-credit-card-32-regular" width="24" height="24" />
+          <p className="text-text-main text-sm font-medium text-nowrap">
+            {language === "en" ? "Ballora Ballance" : "رصيد بلورا"}
+          </p>
+        </div>
+        <div className="bg-main-100 rounded-lg px-2 py-1 text-xs font-medium lg:px-6">
+          {priceFormatter(balance)}
+        </div>
+      </div>
+    </div>
+  </Link>
+);
+
+// ─────────────────────────────────────────
+// Main Component
+// ─────────────────────────────────────────
 
 const ProfileMenuButtonMobile = () => {
   const [open, setOpen] = useState(false);
@@ -23,82 +102,46 @@ const ProfileMenuButtonMobile = () => {
   const {
     authData: { user },
   } = useAuth();
+
   useScrollLock(open);
+
+  const closeMenu = () => setOpen(false);
 
   return (
     <div className="block lg:hidden">
-      <button
-        onClick={() => setOpen((prev) => !prev)}
-        className="flex items-center"
-      >
+      <button onClick={() => setOpen((prev) => !prev)} className="flex items-center">
         <Icon icon="bi:person" width="24" height="24" />
       </button>
+
       <div
-        className={`text-text-main fixed inset-0 top-0 z-[1000] space-y-5 lg:hidden ${open ? "translate-x-0" : "-translate-x-[100%]"} animate h-screen w-full rounded-xl bg-white p-5 drop-shadow-xl`}
+        className={`text-text-main fixed inset-0 top-0 z-[1000] space-y-5 lg:hidden ${open ? "translate-x-0" : "-translate-x-[100%]"} animate h-screen w-full rounded-xl bg-white p-4 drop-shadow-xl`}
       >
         <div className="flex justify-between">
           <h1 className="text-xl font-bold">{t("header")}</h1>
-          <button
-            className="bg-main animate flex h-[34px] w-[34px] items-center justify-center rounded-lg border text-white hover:drop-shadow-2xl"
-            onClick={() => setOpen(false)}
-          >
-            <Icon
-              icon="material-symbols:close-rounded"
-              width="24"
-              height="24"
-            />
-          </button>
+          <CloseButton onClick={closeMenu} />
         </div>
-        <div className="space-y-4">
-          <div className="bg-main-50 rounded-xl p-4">
-            {profileElements.map((item: ProfileSideBar, index: number) => {
-              if (item.nameEn === "Ballora Ballance" || item.show === false)
-                return null;
+
+        <div className="flex flex-col gap-y-4">
+          <ProfileUserCard user={user} onClick={closeMenu} />
+
+          <div className="grid grid-cols-2 gap-4 rounded-xl">
+            {profileElements.map((item) => {
+              if (item.nameEn === "Ballora Ballance" || item.show === false) return null;
+
               return (
-                <Link
+                <ProfileLinkCard
                   key={item.nameEn}
-                  onClick={() => setOpen(false)}
-                  to={item.link}
-                >
-                  <div
-                    className={`flex ${index !== profileElements.length - 1 && "border-b"} border-b-stroke h-[52px] items-center justify-between`}
-                  >
-                    <div className="flex gap-x-3">
-                      {item.icon}
-                      <p className="text-text-main font-medium">
-                        {getLocalizedName(item)}
-                      </p>
-                    </div>
-                    <Icon icon="jam:chevron-right" width="24" height="24" />
-                  </div>
-                </Link>
+                  icon={item.icon}
+                  label={getLocalizedName(item)}
+                  link={item.link}
+                  onClick={closeMenu}
+                />
               );
             })}
-          </div>
-          <div className="bg-main-50 h-[50px] rounded-xl p-4">
-            <Link onClick={() => setOpen(false)} to={"/profile/ballance"}>
-              <div className="flex items-center justify-between">
-                <div className="animate flex items-center gap-x-3">
-                  <span>
-                    <Icon
-                      icon="fluent:wallet-credit-card-32-regular"
-                      width="24"
-                      height="24"
-                    />
-                  </span>
-                  <span className="text-text-main font-medium text-nowrap">
-                    {language === "en" ? "Ballora Ballance" : "رصيد بلورا"}
-                  </span>
-                </div>
-                <div className="bg-main-100 rounded-xl px-2 font-medium lg:px-6">
-                  {priceFormatter(user?.balance)}
-                </div>
-              </div>
-            </Link>
+            <BalloraBalanceCard balance={user?.balance||0} language={language} onClick={closeMenu} />
           </div>
 
           <LogOutButton />
-
           <DeleteAccount />
         </div>
       </div>

@@ -33,14 +33,16 @@ const ProfileMenuButton = () => {
       onMouseLeave={onCloseMenu}
       className="relative hidden lg:block"
     >
-      <button
-        className={`hover:bg-main-100 animate relative flex items-center gap-x-2 rounded-xl p-2 ${openMenu && "bg-main-100"}`}
-      >
-        <Icon icon="bi:person" width="24" height="24" />
-        <span className="text-text-main hidden font-bold lg:block">
-          {t("navBar.authWelcome")} {user?.first_name}
-        </span>
-      </button>
+      <Link to="/profile/mydata">
+        <button
+          className={`hover:bg-main-100 animate relative flex items-center gap-x-2 rounded-xl p-2 ${openMenu && "bg-main-100"}`}
+        >
+          <Icon icon="bi:person" width="24" height="24" />
+          <span className="text-text-main hidden font-bold lg:block">
+            {t("navBar.authWelcome")} {user?.first_name}
+          </span>
+        </button>
+      </Link>
 
       {(openMenu || isLoggingOut) && (
         <div

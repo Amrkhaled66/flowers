@@ -14,12 +14,10 @@ import { useEffect } from "react";
 import { useTranslation } from "react-i18next";
 
 import {
-  QueryCache,
   QueryClient,
   QueryClientProvider,
 } from "@tanstack/react-query";
 
-// import { ToastContainer } from "react-toastify";
 import { registerToastImpl } from "src/utils/toast";
 import { reactHotToastImpl } from "src/lib/toastProvider";
 import { Toaster } from "react-hot-toast";
@@ -27,13 +25,6 @@ import { Toaster } from "react-hot-toast";
 registerToastImpl(reactHotToastImpl);
 
 const queryClient = new QueryClient({
-  queryCache: new QueryCache({
-    // onError: () => {
-    //   toast("Error ,please call support", {
-    //     type: "error",
-    //   });
-    // },
-  }),
   defaultOptions: {
     queries: {
       refetchOnWindowFocus: false,
@@ -43,6 +34,7 @@ const queryClient = new QueryClient({
     },
   },
 });
+
 function App() {
   const { i18n } = useTranslation();
 
@@ -60,7 +52,6 @@ function App() {
                 <OrderSummaryProvider>
                   <ResetProvider>
                     <Toaster position="bottom-right"/>
-
                     <Paths />
                   </ResetProvider>
                 </OrderSummaryProvider>

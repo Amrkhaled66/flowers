@@ -21,7 +21,9 @@ const SiteMap = memo(() => {
   const { data: categories } = useGetCategories();
   const { data: occasions } = useGetOccasions();
   const { t } = useTranslation("layout");
-  const { config: { phone } } = useConfig();
+  const {
+    config: { whatsapp, email },
+  } = useConfig();
 
   const onActiveList = (title: string | null) => {
     setActiveList(activeList === title ? null : title);
@@ -56,13 +58,24 @@ const SiteMap = memo(() => {
         title={t("footer.customerSupport")}
       >
         <div
-          className={`${activeList === sectionKeys.support
-            ? "mb-7 max-h-[200px]"
-            : "max-h-0"
-            } flex flex-col space-y-3 overflow-hidden text-start transition-all duration-300 lg:max-h-[200px]`}
+          className={`${
+            activeList === sectionKeys.support
+              ? "mb-7 max-h-[200px]"
+              : "max-h-0"
+          } flex flex-col space-y-3 overflow-hidden text-start transition-all duration-300 lg:max-h-[200px]`}
         >
-          <a href={`tel:${phone}`} className="hover:text-main-100 animate text-sm">
-            {t("footer.contactUs")}
+          <a
+            target="_blank"
+            href={whatsapp || ""}
+            className="hover:text-main-100 animate text-sm"
+          >
+            {t("footer.contactUsWithWhatsApp")}
+          </a>
+          <a
+            href={`mailto:${email || ""}`}
+            className="hover:text-main-100 animate text-sm"
+          >
+            {t("footer.contactUsWithEmail")}
           </a>
           {/* <p className="hover:text-main-100 animate text-sm">
             {t("footer.faq")}

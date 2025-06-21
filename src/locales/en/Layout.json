@@ -24,7 +24,9 @@
     "terms": "Terms & Conditions",
     "privacy": "Privacy Policy",
     "copyright": "All rights reserved",
-    "contactUs": "Contact Us",
-    "faq": "FAQ"
+    "contactUsWithWhatsApp": "Contact Us With What's App",
+    "contactUsWithEmail": "Contact Us With Email",
+    "faq": "FAQ",
+    "poweredBy":"Powered By"
   }
 }

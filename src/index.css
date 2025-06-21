@@ -159,3 +159,12 @@ textarea {
 .Toastify__toast {
   font-family: var(--font-ar), sans-serif;
 }
+
+.black {
+  * {
+    color: black !important;
+  }
+}
+.white:hover {
+  color: white !important;
+}

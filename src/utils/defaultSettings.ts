@@ -9,4 +9,14 @@ const shippingStatusTextColor = {
 const FREEDELIVERYBRECKDOWN = 500;
 const ENDDEDDELIVERYHOUR = 19;
 
-export { shippingStatusTextColor, FREEDELIVERYBRECKDOWN, ENDDEDDELIVERYHOUR };
+const APPONGOOGLEPLAY =
+  "https://play.google.com/store/apps/details?id=com.ballora";
+const APPONAPPSTORE = "https://apps.apple.com/us/app/ballora";
+
+export {
+  shippingStatusTextColor,
+  FREEDELIVERYBRECKDOWN,
+  ENDDEDDELIVERYHOUR,
+  APPONGOOGLEPLAY,
+  APPONAPPSTORE,
+};

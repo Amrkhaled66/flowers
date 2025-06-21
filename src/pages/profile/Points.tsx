@@ -26,7 +26,7 @@ const Points = () => {
     });
   };
   return (
-    <div className="flex flex-1 flex-col bg-emerald-500 gap-10">
+    <div className="flex flex-1 flex-col gap-10">
       <ProfilePageCompetent>
         <div className="space-y-4 sm:space-y-5 lg:space-y-8">
           <div className="space-y-4 rounded-2xl bg-white p-4">
