@@ -1,6 +1,7 @@
 import { useTranslation } from "react-i18next";
 import { useNavBarToggleBtns } from "src/context/NavBarToggleBtns";
 import { Link } from "react-router-dom";
+
 const IdeaCard = ({
   img,
   title,
@@ -10,7 +11,7 @@ const IdeaCard = ({
   title: string;
   isMenuCard?: boolean;
 }) => {
-  const { t } = useTranslation("home");
+  const { t ,i18n:{language}} = useTranslation("home");
   const { closMenu } = useNavBarToggleBtns();
 
   return (
@@ -21,7 +22,7 @@ const IdeaCard = ({
       }}
       className={` ${isMenuCard ? "h-[300px]" : "h-[400px] lg:h-[500px]"} flex items-end overflow-hidden rounded-xl p-3 text-white lg:rounded-[35px]`}
     >
-      <div className="space-y-3 rounded-sm bg-[#FFFFFF1A] p-4 text-end backdrop-blur-[6px]">
+      <div className={`space-y-3 rounded-sm bg-[#FFFFFF1A] p-4 ${language === "ar" ? "text-right" : "text-left"}  backdrop-blur-[6px] `}>
         <p
           className={`text-lg font-bold ${isMenuCard ? "text-sm" : "lg:text-[32px]"} `}
         >
