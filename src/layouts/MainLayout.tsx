@@ -54,7 +54,7 @@ const MainLayout = () => {
       <div
         id="mainLayout"
         dir={`${i18n.language === "ar" ? "rtl" : "ltr"}`}
-        className={`pt-[104px] lg:pt-[155px] ${i18n.language === "ar" ? "font-ar" : "font-en"} `}
+        className={` ${i18n.language === "ar" ? "font-ar" : "font-en"} `}
       >
         <BalloraLoader
           isOpen={profileLoading || cartLoading || favLoading || configLoading}

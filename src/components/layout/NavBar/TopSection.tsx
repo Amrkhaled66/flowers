@@ -48,7 +48,7 @@ const TopSection = () => {
               text={t("navBar.pros")}
             />
           </div>
-        <ChangeLngButton/>
+          <ChangeLngButton />
         </div>
       </div>
     </div>

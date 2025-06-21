@@ -48,7 +48,7 @@ const BottomSection = () => {
   const { cartLength } = useCart();
 
   return (
-    <div className="z-50 w-screen bg-white py-2 drop-shadow-md">
+    <div className="sticky z-50 w-screen bg-white drop-shadow-md">
       <div className="container">
         <div className="flex items-center justify-between">
           {/* Left Section */}
@@ -66,12 +66,12 @@ const BottomSection = () => {
           </div>
           {/* Logo */}
           <Link to="/">
-            <div className="flex h-[50px] flex-1 w-[90px] justify-center items-center lg:h-[95px] lg:w-[180px]">
+            <div className="flex h-[50px] w-[90px] flex-1 items-center justify-center lg:h-[95px] lg:w-[180px]">
               <img className="size-full object-cover" src={Logo1} alt="Logo" />
             </div>
           </Link>
           {/* Right Section */}
-          <div className="flex items-center  justify-end flex-1 gap-x-5">
+          <div className="flex flex-1 items-center justify-end gap-x-5">
             {isAuthenticated ? (
               <>
                 <ProfileMenuButton />

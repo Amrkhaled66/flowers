@@ -21,7 +21,7 @@ const Bottom = () => {
       </a>
       <div className="order-first flex items-center gap-x-1 lg:order-none">
         <span>{t("footer.terms")}</span>
-        <div className="h-2 w-2 rounded-full bg-white"></div>
+        <div className="h-2 w-2 rounded-full bg-main"></div>
         <span>{t("footer.privacy")}</span>
       </div>
       <div className="flex gap-x-4">
