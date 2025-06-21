@@ -38,7 +38,7 @@ const ProductCardUI = ({
   };
 
   return (
-    <div className="border-stroke animate flex w-full flex-col justify-between overflow-hidden rounded-2xl border bg-white drop-shadow-sm hover:drop-shadow-xl">
+    <div className="border-stroke animate relative flex w-full flex-col justify-between overflow-hidden rounded-2xl border bg-white hover:drop-shadow-xl">
       {children}
 
       <Link to={`/product/${product.id}`} className="z-0">

@@ -15,10 +15,10 @@ export const SiteMapSection = ({
   children,
 }: SectionProps) => {
   return (
-    <div className="space-y-7" key={title}>
+    <div className="space-y-4 lg:space-y-7" key={title}>
       <div
         onClick={onToggle}
-        className={`flex justify-between border-b border-white  lg:border-none ${isActive && "border-none"}`}
+        className={`flex justify-between border-b border-white lg:border-none ${isActive && "border-none"}`}
       >
         <p className="pb-3 font-bold">{title}</p>
         <div className="block lg:hidden">

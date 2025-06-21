@@ -15,13 +15,17 @@ const Bottom = () => {
   const { t } = useTranslation("layout");
 
   return (
-    <div className="flex flex-col-reverse items-start justify-between gap-y-7 border-t border-white pt-7 text-white lg:flex-row lg:items-center lg:pt-4">
-      <a className="hover:underline" target="_blank" href="https://mainflare.com/">
+    <div className="flex flex-col-reverse items-start justify-between gap-y-4 border-t border-white pt-7 text-white lg:flex-row lg:items-center lg:gap-y-7 lg:pt-4">
+      <a
+        className="hover:underline"
+        target="_blank"
+        href="https://mainflare.com/"
+      >
         {t("footer.poweredBy")} MainFlare
       </a>
       <div className="order-first flex items-center gap-x-1 lg:order-none">
         <span>{t("footer.terms")}</span>
-        <div className="h-2 w-2 rounded-full bg-main"></div>
+        <div className="bg-main h-2 w-2 rounded-full"></div>
         <span>{t("footer.privacy")}</span>
       </div>
       <div className="flex gap-x-4">

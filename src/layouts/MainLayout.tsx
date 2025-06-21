@@ -62,7 +62,9 @@ const MainLayout = () => {
         <ScrollToTop />
         <Search />
         <NavBar />
-        <Outlet />
+        <div className="overflow-x-hidden overflow-y-auto">
+          <Outlet />
+        </div>
         <Footer />
         <Cart />
         <Menu />

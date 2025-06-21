@@ -7,6 +7,8 @@ import { useTranslation } from "react-i18next";
 import { useConfig } from "src/context/configCtx";
 
 import { APPONAPPSTORE, APPONGOOGLEPLAY } from "src/utils/defaultSettings";
+
+import ChangeLngButton from "src/components/ui/ChangeLngButton";
 const SocialIcon = ({
   icon,
   link,
@@ -18,7 +20,7 @@ const SocialIcon = ({
     <a
       href={link || "#"}
       target="_blank"
-      className="animate border-main white hover:shadow-2xl flex items-center rounded-xl border p-2 hover:-translate-y-1 "
+      className="animate border-main white flex items-center rounded-xl border p-2 hover:-translate-y-1 hover:shadow-2xl"
     >
       {icon}
     </a>
@@ -32,8 +34,8 @@ const SocialLinks = () => {
   const year = new Date().getFullYear();
 
   return (
-    <div className="space-y-8 text-start lg:w-[40%]">
-      <div className="space-y-4">
+    <div className="space-y-6 text-start lg:w-[40%]">
+      <div className="space-y-2 lg:space-y-4">
         <div className="h-[50px] w-[90px] lg:h-[95px] lg:w-[180px]">
           <img className="size-full object-cover" src={Logo2} alt="Logo" />
         </div>
@@ -43,21 +45,26 @@ const SocialLinks = () => {
         </p>
       </div>
       <div className="space-y-7">
-        <div className="space-y-4">
-          <p>{t("footer.socialMedia")}</p>
-          <div className="flex gap-x-3">
-            <SocialIcon
-              link={whatsapp}
-              icon={<Icon icon="bi:whatsapp"  width="24" height="24" />}
-            />
-            <SocialIcon
-              link={instagram}
-              icon={<Icon icon="bi:instagram" width="24" height="24" />}
-            />
-            <SocialIcon
-              link={tiktok}
-              icon={<Icon icon="ri:tiktok-fill" width="24" height="24" />}
-            />
+        <div className="flex items-end justify-between">
+          <div className="space-y-2 lg:space-y-4">
+            <p>{t("footer.socialMedia")}</p>
+            <div className="flex gap-x-3">
+              <SocialIcon
+                link={whatsapp}
+                icon={<Icon icon="bi:whatsapp" width="24" height="24" />}
+              />
+              <SocialIcon
+                link={instagram}
+                icon={<Icon icon="bi:instagram" width="24" height="24" />}
+              />
+              <SocialIcon
+                link={tiktok}
+                icon={<Icon icon="ri:tiktok-fill" width="24" height="24" />}
+              />
+            </div>
+          </div>
+          <div className="block lg:hidden">
+            <ChangeLngButton borderColor="border-main" />
           </div>
         </div>
         <div className="space-y-3">
@@ -72,7 +79,7 @@ const SocialLinks = () => {
           </div>
         </div>
       </div>
-      <p>
+      <p className="text-xs lg:text-base">
         {t("footer.copyright")} &copy; {year} {name || "Ballora"} - V 4.3.10
       </p>
     </div>

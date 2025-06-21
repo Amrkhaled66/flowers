@@ -12,14 +12,16 @@ const Footer = () => {
         src={footerBg}
         className="absolute inset-0 z-[0] h-full blur-md lg:h-auto"
       />
-      <div style={{}} className="black footer-container relative">
-        <div className="space-y-10">
+      <div className="black footer-container relative">
+        <div className="lg:space-y-10">
           <div className="flex flex-col gap-7">
             <div className="flex flex-col justify-between gap-y-8 lg:flex-row">
               <SocialLinks />
               <SiteMap />
             </div>
-            <ChangeLngButton borderColor="border-main" />
+            <div className="lg:flex justify-end hidden">
+              <ChangeLngButton borderColor="border-main" />
+            </div>
           </div>
           <Bottom />
         </div>
