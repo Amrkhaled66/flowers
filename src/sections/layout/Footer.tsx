@@ -19,7 +19,7 @@ const Footer = () => {
               <SocialLinks />
               <SiteMap />
             </div>
-            <div className="lg:flex justify-end hidden">
+            <div className="hidden justify-end lg:flex">
               <ChangeLngButton borderColor="border-main" />
             </div>
           </div>

@@ -15,7 +15,7 @@ const Bottom = () => {
   const { t } = useTranslation("layout");
 
   return (
-    <div className="flex flex-col-reverse items-start justify-between gap-y-4 border-t border-white pt-7 text-white lg:flex-row lg:items-center lg:gap-y-7 lg:pt-4">
+    <div className="flex flex-col-reverse items-start justify-between gap-y-4 lg:border-t border-white pt-7 text-white lg:flex-row lg:items-center lg:gap-y-7 lg:pt-4">
       <a
         className="hover:underline"
         target="_blank"
