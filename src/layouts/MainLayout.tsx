@@ -54,7 +54,7 @@ const MainLayout = () => {
       <div
         id="mainLayout"
         dir={`${i18n.language === "ar" ? "rtl" : "ltr"}`}
-        className={` ${i18n.language === "ar" ? "font-ar" : "font-en"} `}
+        className={` overflow-x-clip ${i18n.language === "ar" ? "font-ar" : "font-en"} `}
       >
         <BalloraLoader
           isOpen={profileLoading || cartLoading || favLoading || configLoading}
@@ -62,12 +62,10 @@ const MainLayout = () => {
         <ScrollToTop />
         <Search />
         <NavBar />
-        <div className="overflow-x-hidden overflow-y-auto">
-          <Outlet />
-          <Footer />
-          <Cart />
-          <Menu />
-        </div>
+        <Outlet />
+        <Footer />
+        <Cart />
+        <Menu />
         <Overlay show={openCart || openMenu || openSearch} />
       </div>
     </AxiosProvider>

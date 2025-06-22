@@ -71,7 +71,7 @@ const BottomSection = () => {
             </div>
           </Link>
           {/* Right Section */}
-          <div className="flex !overflow-x-hidden flex-1 items-center justify-end gap-x-5">
+          <div className="flex  flex-1 items-center justify-end gap-x-5">
             {isAuthenticated ? (
               <>
                 <ProfileMenuButton />
