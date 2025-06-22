@@ -51,7 +51,7 @@ const Menu = ({}) => {
   return (
     <div
       className={`menu-bar fixed start-0 top-0 z-[80] flex w-full flex-col !overflow-x-hidden bg-white transition-all duration-300 lg:w-[739px] ${
-        openMenu ? "translate-x-0" : "start-[-100%]"
+        openMenu ? "start-0" : "start-[-100%]"
       }`}
     >
       <div className="flex h-screen flex-col overflow-hidden">

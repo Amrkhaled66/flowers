@@ -52,7 +52,7 @@ const ImageSlider = ({
           />
         ) : (
           <Swiper
-            //   ref={mainSwiperRef}
+            dir="ltr"
             modules={[Navigation, Thumbs]}
             spaceBetween={10}
             slidesPerView={1}

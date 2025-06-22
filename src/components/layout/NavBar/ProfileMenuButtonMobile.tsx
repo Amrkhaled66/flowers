@@ -18,22 +18,30 @@ import useScrollLock from "src/hooks/ui/useScrollLock";
 
 const CloseButton = ({ onClick }: { onClick: () => void }) => (
   <button
-    className="bg-main flex h-[34px] w-[34px] items-center justify-center rounded-lg border animate text-white hover:drop-shadow-xl"
+    className="bg-main animate flex h-[34px] w-[34px] items-center justify-center rounded-lg border text-white hover:drop-shadow-xl"
     onClick={onClick}
   >
     <Icon icon="material-symbols:close-rounded" width="24" height="24" />
   </button>
 );
 
-const ProfileUserCard = ({ user, onClick }: { user: any; onClick: () => void }) => (
+const ProfileUserCard = ({
+  user,
+  onClick,
+}: {
+  user: any;
+  onClick: () => void;
+}) => (
   <Link to="/profile/mydata" onClick={onClick}>
-    <div className="bg-main-50 flex items-start justify-between rounded-xl p-3 border-b-stroke">
+    <div className="bg-main-50 border-b-stroke flex items-start justify-between rounded-xl p-3">
       <div className="flex items-start gap-x-3">
         <div className="text-main flex size-[54px] items-center justify-center rounded-full bg-white">
           <Icon icon="lsicon:user-filled" width="36" height="36" />
         </div>
         <div>
-          <p className="text-lg font-bold">{user?.first_name + " " + user?.last_name}</p>
+          <p className="text-lg font-bold">
+            {user?.first_name + " " + user?.last_name}
+          </p>
           <p className="text-subTitle text-sm">{user?.phone_number}</p>
         </div>
       </div>
@@ -53,10 +61,12 @@ const ProfileLinkCard = ({
   onClick: () => void;
 }) => (
   <Link to={link} onClick={onClick}>
-    <div className="flex bg-main-50 border-b-stroke items-start justify-between rounded-xl px-3 py-2">
+    <div className="bg-main-50 border-b-stroke flex items-start justify-between rounded-xl px-3 py-2">
       <div className="flex flex-col gap-y-2">
         {icon}
-        <p className="text-text-main text-sm font-medium text-nowrap">{label}</p>
+        <p className="text-text-main text-sm font-medium text-nowrap">
+          {label}
+        </p>
       </div>
       <Icon icon="jam:chevron-right" width="24" height="24" />
     </div>
@@ -68,7 +78,7 @@ const BalloraBalanceCard = ({
   language,
   onClick,
 }: {
-  balance: number|string;
+  balance: number | string;
   language: string;
   onClick: () => void;
 }) => (
@@ -76,7 +86,11 @@ const BalloraBalanceCard = ({
     <div className="bg-main-50 border-b-stroke flex items-start justify-between rounded-xl px-3 py-2">
       <div className="flex w-full items-start justify-between">
         <div className="flex flex-col gap-y-2">
-          <Icon icon="fluent:wallet-credit-card-32-regular" width="24" height="24" />
+          <Icon
+            icon="fluent:wallet-credit-card-32-regular"
+            width="24"
+            height="24"
+          />
           <p className="text-text-main text-sm font-medium text-nowrap">
             {language === "en" ? "Ballora Ballance" : "رصيد بلورا"}
           </p>
@@ -109,12 +123,15 @@ const ProfileMenuButtonMobile = () => {
 
   return (
     <div className="block lg:hidden">
-      <button onClick={() => setOpen((prev) => !prev)} className="flex items-center">
+      <button
+        onClick={() => setOpen((prev) => !prev)}
+        className="flex items-center"
+      >
         <Icon icon="bi:person" width="24" height="24" />
       </button>
 
       <div
-        className={`text-text-main fixed inset-0 top-0 z-[1000] space-y-5 lg:hidden ${open ? "translate-x-0" : "-translate-x-full"} animate h-screen w-full rounded-xl bg-white p-4 drop-shadow-xl`}
+        className={`text-text-main fixed inset-0 top-0 z-[1000] space-y-5 lg:hidden ${open ? "translate-x-0" : "translate-x-full"} animate h-screen w-full rounded-xl bg-white p-4 drop-shadow-xl`}
       >
         <div className="flex justify-between">
           <h1 className="text-xl font-bold">{t("header")}</h1>
@@ -126,7 +143,8 @@ const ProfileMenuButtonMobile = () => {
 
           <div className="grid grid-cols-2 gap-4 rounded-xl">
             {profileElements.map((item) => {
-              if (item.nameEn === "Ballora Ballance" || item.show === false) return null;
+              if (item.nameEn === "Ballora Ballance" || item.show === false)
+                return null;
 
               return (
                 <ProfileLinkCard
@@ -138,7 +156,11 @@ const ProfileMenuButtonMobile = () => {
                 />
               );
             })}
-            <BalloraBalanceCard balance={user?.balance||0} language={language} onClick={closeMenu} />
+            <BalloraBalanceCard
+              balance={user?.balance || 0}
+              language={language}
+              onClick={closeMenu}
+            />
           </div>
 
           <LogOutButton />

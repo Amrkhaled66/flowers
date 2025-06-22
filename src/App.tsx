@@ -51,7 +51,7 @@ function App() {
               <NavBarToggleBtnsProvider>
                 <OrderSummaryProvider>
                   <ResetProvider>
-                    <Toaster position="bottom-right"/>
+                    <Toaster position="top-center"/>
                     <Paths />
                   </ResetProvider>
                 </OrderSummaryProvider>

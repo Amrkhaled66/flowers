@@ -64,10 +64,10 @@ const MainLayout = () => {
         <NavBar />
         <div className="overflow-x-hidden overflow-y-auto">
           <Outlet />
+          <Footer />
+          <Cart />
+          <Menu />
         </div>
-        <Footer />
-        <Cart />
-        <Menu />
         <Overlay show={openCart || openMenu || openSearch} />
       </div>
     </AxiosProvider>
