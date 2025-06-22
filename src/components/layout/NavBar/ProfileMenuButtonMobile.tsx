@@ -12,6 +12,7 @@ import { useAuth } from "src/context/authCtx";
 import { useTranslation } from "react-i18next";
 import useScrollLock from "src/hooks/ui/useScrollLock";
 
+import { motion, AnimatePresence } from "framer-motion";
 // ─────────────────────────────────────────
 // Reusable Components
 // ─────────────────────────────────────────
@@ -130,43 +131,50 @@ const ProfileMenuButtonMobile = () => {
         <Icon icon="bi:person" width="24" height="24" />
       </button>
 
-      <div
-        className={`text-text-main fixed inset-0 top-0 z-[1000] space-y-5 lg:hidden ${open ? "translate-x-0" : "translate-x-full"} animate h-screen w-full rounded-xl bg-white p-4 drop-shadow-xl`}
-      >
-        <div className="flex justify-between">
-          <h1 className="text-xl font-bold">{t("header")}</h1>
-          <CloseButton onClick={closeMenu} />
-        </div>
+      <AnimatePresence>
+        {open && (
+          <motion.div
+            initial={{ translateX: "-100%" }}
+            animate={{ translateX: 0 }}
+            exit={{ translateX: "100%" }}
+            className={`text-text-main  absolute inset-0 !top-0 z-[10] !h-screen w-full space-y-5  rounded-xl bg-white p-4 drop-shadow-xl lg:hidden`}
+          >
+            <div className="flex justify-between">
+              <h1 className="text-xl font-bold">{t("header")}</h1>
+              <CloseButton onClick={closeMenu} />
+            </div>
 
-        <div className="flex flex-col gap-y-4">
-          <ProfileUserCard user={user} onClick={closeMenu} />
+            <div className="flex flex-grow overflow-auto flex-col gap-y-4">
+              <ProfileUserCard user={user} onClick={closeMenu} />
 
-          <div className="grid grid-cols-2 gap-4 rounded-xl">
-            {profileElements.map((item) => {
-              if (item.nameEn === "Ballora Ballance" || item.show === false)
-                return null;
+              <div className="grid grid-cols-2 gap-4 rounded-xl">
+                {profileElements.map((item) => {
+                  if (item.nameEn === "Ballora Ballance" || item.show === false)
+                    return null;
 
-              return (
-                <ProfileLinkCard
-                  key={item.nameEn}
-                  icon={item.icon}
-                  label={getLocalizedName(item)}
-                  link={item.link}
+                  return (
+                    <ProfileLinkCard
+                      key={item.nameEn}
+                      icon={item.icon}
+                      label={getLocalizedName(item)}
+                      link={item.link}
+                      onClick={closeMenu}
+                    />
+                  );
+                })}
+                <BalloraBalanceCard
+                  balance={user?.balance || 0}
+                  language={language}
                   onClick={closeMenu}
                 />
-              );
-            })}
-            <BalloraBalanceCard
-              balance={user?.balance || 0}
-              language={language}
-              onClick={closeMenu}
-            />
-          </div>
+              </div>
 
-          <LogOutButton />
-          <DeleteAccount />
-        </div>
-      </div>
+              <LogOutButton />
+              <DeleteAccount />
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </div>
   );
 };

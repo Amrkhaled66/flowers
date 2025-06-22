@@ -48,7 +48,7 @@ const BottomSection = () => {
   const { cartLength } = useCart();
 
   return (
-    <div className="sticky top-0 left-0 z-50 bg-white py-2 drop-shadow-md">
+    <div className="sticky top-0  left-0 z-50 bg-white py-2 drop-shadow-md">
       <div className="container">
         <div className="flex items-center justify-between">
           {/* Left Section */}
@@ -71,7 +71,7 @@ const BottomSection = () => {
             </div>
           </Link>
           {/* Right Section */}
-          <div className="flex flex-1 items-center justify-end gap-x-5">
+          <div className="flex !overflow-x-hidden flex-1 items-center justify-end gap-x-5">
             {isAuthenticated ? (
               <>
                 <ProfileMenuButton />
