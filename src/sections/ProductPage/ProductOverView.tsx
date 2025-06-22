@@ -1,5 +1,6 @@
-import Images from "src/components/ProductPage/ProductOverView/Images";
 import Info from "src/components/ProductPage/ProductOverView/Info";
+
+import ImageSlider from "src/components/ProductPage/ProductOverView/ImagesSlider";
 
 const ProductOverView = ({
   isOutOfStock,
@@ -27,11 +28,11 @@ const ProductOverView = ({
 }) => {
   return (
     <div className="flex flex-col gap-x-[50px] gap-y-4 lg:flex-row">
-      <Images
+      <ImageSlider
         id={id}
         onShowImagesSlider={onShowImagesSlider}
+        images={images || []}
         loading={loading}
-        images={images}
       />
       <Info
         isOutOfStock={isOutOfStock}

@@ -36,10 +36,10 @@ const Slider = ({
   slidesPerGroup = DEFAULT_SLIDES_PER_GROUP,
   isMenuSlider = false,
   notSpaceBetween = false,
-  targetIndex = 0,
+  targetIndex,
   onChangeSlider,
   speed,
-  isproductListSlider
+  isproductListSlider,
 }: SliderProps) => {
   const swiperRef = useRef<SwiperType | null>(null);
   const [activeGroup, setActiveGroup] = useState(0);
@@ -66,16 +66,18 @@ const Slider = ({
   };
 
   useEffect(() => {
-    if (swiperRef.current && targetIndex >= 0) {
-      swiperRef.current.slideTo(targetIndex);
-      setActiveGroup(() => {
-        const newGroup = isMenuSlider
-          ? targetIndex
-          : Math.floor(targetIndex / slidesPerGroup);
-        return newGroup;
-      });
+    if (swiperRef.current && targetIndex ) {
+      swiperRef.current.slideTo(targetIndex, speed || 800);
+
+      const newGroup = isMenuSlider
+        ? targetIndex
+        : Math.floor(targetIndex / slidesPerGroup);
+
+      if (activeGroup !== newGroup) {
+        setActiveGroup(newGroup);
+      }
     }
-  }, [targetIndex, swiperRef]);
+  }, [targetIndex]);
 
   return (
     <div className="space-y-3">
@@ -109,7 +111,7 @@ const Slider = ({
               spaceBetween: notSpaceBetween ? 0 : 25,
             },
           }}
-          className={`z-[10000] !overflow-visible last:ms-0 lg:w-full lg:!overflow-hidden ${isproductListSlider && "aspect-square"}`}
+          className={`z-[10000] !overflow-visible last:ms-0 lg:w-full lg:!overflow-hidden ${isproductListSlider && "xl:aspect-square"}`}
         >
           {children}
         </Swiper>

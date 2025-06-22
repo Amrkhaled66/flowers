@@ -114,7 +114,7 @@ const ProfileMenuButtonMobile = () => {
       </button>
 
       <div
-        className={`text-text-main fixed inset-0 top-0 z-[1000] space-y-5 lg:hidden ${open ? "translate-x-0" : "-translate-x-[100%]"} animate h-screen w-full rounded-xl bg-white p-4 drop-shadow-xl`}
+        className={`text-text-main fixed inset-0 top-0 z-[1000] space-y-5 lg:hidden ${open ? "translate-x-0" : "-translate-x-full"} animate h-screen w-full rounded-xl bg-white p-4 drop-shadow-xl`}
       >
         <div className="flex justify-between">
           <h1 className="text-xl font-bold">{t("header")}</h1>

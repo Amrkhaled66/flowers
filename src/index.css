@@ -176,3 +176,12 @@ textarea {
   box-shadow: 0 10px 30px rgba(87, 73, 98, 0.1);
   backdrop-filter:  blur(5px);
 }
+
+
+.swiper {
+  transition-timing-function: ease-in-out !important;
+}
+
+.swiper-wrapper {
+  transition-timing-function: ease-in-out !important;
+}
