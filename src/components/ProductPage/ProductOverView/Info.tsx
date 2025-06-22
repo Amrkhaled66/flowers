@@ -277,7 +277,7 @@ const Info = ({
                       {weight && (
                         <li className="flex lg:text-xl">
                           <Icon icon="mdi:dot" className="size-7" />
-                          {tProduct("weight")} : {weight}
+                          {tProduct("width")} : {weight}
                         </li>
                       )}
                     </ol>
