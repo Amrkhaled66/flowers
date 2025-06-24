@@ -95,7 +95,7 @@ const FullDeliveryTimeModal = ({
               </div>
             </DeliveryDateOption>
 
-            <DeliveryDateOption
+            {/* <DeliveryDateOption
               onClick={() => handleDateSelection(nextTomorrow)}
               isActive={deliveryDate === nextTomorrow}
             >
@@ -103,7 +103,7 @@ const FullDeliveryTimeModal = ({
                 <p className="text-nowrap">{t("time.model.nextTomorrow")}</p>
                 <p>{nextTomorrow}</p>
               </div>
-            </DeliveryDateOption>
+            </DeliveryDateOption> */}
 
             <DeliveryDateOption
               onClick={() => setOpenCalendar((prev) => !prev)}
