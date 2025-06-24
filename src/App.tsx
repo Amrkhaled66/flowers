@@ -9,14 +9,12 @@ import AuthProvider from "./context/authCtx";
 import { FavoritesProvider } from "./context/user/favoritesCtx";
 import { CartProvider } from "./context/user/cartCtx";
 import { ConfigProvider } from "./context/configCtx";
+import { AddToCartModalProvider } from "./context/AddedToCartModelCtx";
 
 import { useEffect } from "react";
 import { useTranslation } from "react-i18next";
 
-import {
-  QueryClient,
-  QueryClientProvider,
-} from "@tanstack/react-query";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 
 import { registerToastImpl } from "src/utils/toast";
 import { reactHotToastImpl } from "src/lib/toastProvider";
@@ -44,22 +42,24 @@ function App() {
 
   return (
     <QueryClientProvider client={queryClient}>
-      <ConfigProvider>
-        <FavoritesProvider>
-          <AuthProvider>
-            <CartProvider>
-              <NavBarToggleBtnsProvider>
-                <OrderSummaryProvider>
-                  <ResetProvider>
-                    <Toaster position="top-center"/>
-                    <Paths />
-                  </ResetProvider>
-                </OrderSummaryProvider>
-              </NavBarToggleBtnsProvider>
-            </CartProvider>
-          </AuthProvider>
-        </FavoritesProvider>
-      </ConfigProvider>
+      <AddToCartModalProvider>
+        <ConfigProvider>
+          <FavoritesProvider>
+            <AuthProvider>
+              <CartProvider>
+                <NavBarToggleBtnsProvider>
+                  <OrderSummaryProvider>
+                    <ResetProvider>
+                      <Toaster position="top-center" />
+                      <Paths />
+                    </ResetProvider>
+                  </OrderSummaryProvider>
+                </NavBarToggleBtnsProvider>
+              </CartProvider>
+            </AuthProvider>
+          </FavoritesProvider>
+        </ConfigProvider>
+      </AddToCartModalProvider>
     </QueryClientProvider>
   );
 }

@@ -83,7 +83,7 @@ const Slider = ({
     <div className="space-y-3">
       <div className="relative">
         <Swiper
-          dir="ltr"
+          // dir="ltr"
           speed={speed || 800}
           loop={false}
           modules={[Navigation]}
@@ -99,7 +99,7 @@ const Slider = ({
               spaceBetween: notSpaceBetween ? 0 : 16,
             },
             [TABLET_BREAKPOINT]: {
-              spaceBetween: notSpaceBetween ? 0 : 20,
+              spaceBetween: notSpaceBetween ? 0 : 16,
               // slidesPerGroup: 1.5,
               slidesPerView: "auto",
             },
@@ -108,7 +108,7 @@ const Slider = ({
               slidesPerGroup: isMenuSlider
                 ? MOBILE_SLIDES_PER_VIEW
                 : slidesPerGroup,
-              spaceBetween: notSpaceBetween ? 0 : 25,
+              spaceBetween: notSpaceBetween ? 0 : 16,
             },
           }}
           className={`z-[10000] !overflow-visible last:ms-0 lg:w-full lg:!overflow-hidden ${isproductListSlider && "xl:aspect-square"}`}

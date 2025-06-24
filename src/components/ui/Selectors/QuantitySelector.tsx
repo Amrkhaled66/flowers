@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { useUpdateCart } from "src/hooks/cart/useCartMutations";
+import { useDebouncedUpdateCart } from "src/hooks/cart/useCartMutations";
 import { useTranslation } from "react-i18next";
 import QuantitySelectorView from "./SelectorView";
 
@@ -17,7 +17,7 @@ const QuantitySelector = ({
   const { t } = useTranslation("shared");
   const [quantity, setQuantity] = useState(currentQuantity);
   const [inputValue, setInputValue] = useState(currentQuantity.toString());
-  const { mutate } = useUpdateCart();
+  const { mutate } = useDebouncedUpdateCart();
 
   const handleUpdate = (newQuantity: number) => {
     mutate({ id, quantity: newQuantity }, {

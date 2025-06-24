@@ -20,6 +20,7 @@ interface AreaSelectionProps {
   defaultValue?: string;
   error?: string;
   isAddressForm?: boolean;
+  disabled?: boolean;
 }
 
 function AreaSelection({
@@ -28,6 +29,7 @@ function AreaSelection({
   defaultValue,
   error,
   isAddressForm,
+  disabled,
 }: AreaSelectionProps) {
   const {
     i18n: { language },
@@ -63,7 +65,8 @@ function AreaSelection({
         </Label>
         <Combobox
           as="div"
-          className="relative w-full"
+          disabled={disabled}
+          className="relative w-full disabled:opacity-45"
           value={selectedArea}
           onChange={setSelectedArea}
           onClose={() => setQuery("")}
@@ -73,8 +76,9 @@ function AreaSelection({
               className={`flex ${isAddressForm ? "bg-white" : "bg-main-50"} lg:${bgColor} relative gap-2 rounded-xl`}
             >
               <ComboboxInput
+                disabled={disabled}
                 placeholder={language === "ar" ? "اختر المنطقة" : "Select Area"}
-                className={`focus:border-main ${error && "!border-red"} animate w-full rounded-xl border border-transparent p-2`}
+                className={`focus:border-main ${error && "!border-red"} animate w-full rounded-xl border border-transparent p-2 disabled:opacity-45`}
                 aria-label="Area"
                 displayValue={(area: string) => area || ""}
                 onChange={(event) => setQuery(event.target.value)}
@@ -85,7 +89,7 @@ function AreaSelection({
             </div>
             <p className="text-red px-2 text-xs">{error}</p>
           </div>
-          <ComboboxOptions className="absolute z-10 mt-1 max-h-60 w-full overflow-auto rounded bg-white shadow-lg">
+          <ComboboxOptions className="absolute z-10 mt-1 max-h-60 w-full !overflow-visible rounded bg-white shadow-lg">
             {filteredAreas.map((area) => (
               <ComboboxOption
                 key={area.id}

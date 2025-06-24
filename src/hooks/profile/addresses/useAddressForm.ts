@@ -92,8 +92,8 @@ export const useAddressFormBase = (initialData: Address) => {
     setFormData((prev) => ({ ...prev, address: location }));
   };
 
-  const validateBaseForm = () => {
-    const { errors, isValid } = validateAddressForm(formData, tProfile);
+  const validateBaseForm = (deliverWithoutAddress?:boolean) => {
+    const { errors, isValid } = validateAddressForm(formData, tProfile,deliverWithoutAddress);
     setFormErrors(errors);
     return isValid;
   };

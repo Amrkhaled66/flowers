@@ -1,4 +1,5 @@
 import formatDateToISO from "src/utils/formatDateToISO";
+
 export const formatTime = (hour: number) => {
   const suffix = hour >= 12 ? "PM" : "AM";
   const hour12 = hour % 12 === 0 ? 12 : hour % 12;
@@ -20,49 +21,80 @@ export const generateTimeSlots = () => {
   return slots;
 };
 
-const timeSlots = ["9AM - 1PM", "1PM - 3PM", "3PM - 6PM", "6PM - 9PM"];
-
-const getAvailableTimeSlots = (deliveryDate: string) => {
-  const todayISO = formatDateToISO(new Date());
-  const now = new Date();
-
-  const currentHour = now.getHours();
-  if (deliveryDate === todayISO) {
-    return timeSlots.filter((slot) => {
-      const endHour = slot.split(" - ")[1];
-      const EndHourHour24 = convertTo24Hour(endHour);
-      return EndHourHour24 - currentHour > 1;
-    });
-  }
-
-  return timeSlots;
-};
+const timeSlots = ["3AM - 6PM", "6PM - 9PM"];
+const todayTimeSlots = [
+  "10AM - 4PM",
+  "4PM - 10PM",
+  // "10PM - 11PM",
+];
 
 const convertTo24Hour = (time: string): number => {
   const [hourStr, period] = time.match(/(\d+)(AM|PM)/i)!.slice(1);
   let hour = parseInt(hourStr, 10);
-
-  if (period.toUpperCase() === "PM" && hour !== 12) {
-    hour += 12;
-  } else if (period.toUpperCase() === "AM" && hour === 12) {
-    hour = 0;
-  }
-
+  if (period.toUpperCase() === "PM" && hour !== 12) hour += 12;
+  if (period.toUpperCase() === "AM" && hour === 12) hour = 0;
   return hour;
 };
 
-function getTodayAndTomorrow(): { today: string; tomorrow: string } {
-  const date = new Date();
-  const tomorrow = new Date(date);
-  tomorrow.setDate(date.getDate() + 1);
+const getTodayAvailableTimeSlots = () => {
+  const now = new Date();
+  const currentHour = now.getHours() + now.getMinutes() / 60;
 
-  const options: Intl.DateTimeFormatOptions = { day: "numeric", month: "long" };
-  const formatter = new Intl.DateTimeFormat("en-GB", options);
+  return todayTimeSlots.filter((slot) => {
+    const endTime = slot.split(" - ")[1];
+    const startHour = convertTo24Hour(endTime);
+
+    return startHour - currentHour >= 1;
+  });
+};
+
+// const getNearestAvailableSlot = (): string | null => {
+//   const now = new Date();
+//   const currentHour = now.getHours();
+//   const currentMinutes = now.getMinutes();
+
+//   const nowInMinutes = currentHour * 60 + currentMinutes;
+
+//   for (const slot of todayTimeSlots) {
+//     const [startTime] = slot.split(" - ");
+//     const startHour = convertTo24Hour(startTime);
+//     const startInMinutes = startHour * 60;
+
+//     if (startInMinutes - nowInMinutes > 60) {
+//       return slot;
+//     }
+//   }
+
+//   return null;
+// };
+
+function getTodayAndUpcomingDates(): {
+  today: string;
+  tomorrow: string;
+  nextTomorrow: string;
+} {
+  const date = new Date();
+
+  const today = new Date(date);
+  const tomorrow = new Date(date);
+  const nextTomorrow = new Date(date);
+
+  tomorrow.setDate(date.getDate() + 1);
+  nextTomorrow.setDate(date.getDate() + 2);
 
   return {
-    today: formatter.format(date),
-    tomorrow: formatter.format(tomorrow),
+    today: formatDateToISO(today),
+    tomorrow: formatDateToISO(tomorrow),
+    nextTomorrow: formatDateToISO(nextTomorrow),
   };
 }
 
-export { getTodayAndTomorrow, getAvailableTimeSlots };
+const normalizeTime = (t: string) => t.replace(/\s+/g, "").toLowerCase();
+
+export {
+  getTodayAndUpcomingDates,
+  convertTo24Hour,
+  getTodayAvailableTimeSlots,
+  timeSlots,
+  normalizeTime,
+};

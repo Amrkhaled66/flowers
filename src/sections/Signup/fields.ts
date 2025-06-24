@@ -19,6 +19,7 @@ const formFields = [
     type: "email",
     name: "email",
     isRequired: true,
+    inputmode: "email",
   },
   {
     labelEn: "Phone Number",
@@ -26,6 +27,7 @@ const formFields = [
     type: "tel",
     name: "phone_number",
     isRequired: true,
+    inputmode: "tel",
   },
 
   {

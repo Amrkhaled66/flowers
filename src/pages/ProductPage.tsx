@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useParams } from "react-router";
-import { useQuery } from "@tanstack/react-query";
 import { useTranslation } from "react-i18next";
+import useGetProduct from "src/hooks/products/useGetProduct";
 
 import NavigationBar from "src/sections/ProductPage/NavigationBar";
 import ProductOverView from "src/sections/ProductPage/ProductOverView";
@@ -9,13 +9,12 @@ import ProductDetails from "src/sections/ProductPage/ProductDetails";
 import ProductImagesSlider from "src/sections/ProductPage/ProductImagesSlider";
 import Recommendations from "src/sections/ProductPage/Recommendations";
 
-import { getProductById } from "src/api/products";
-import transformProduct from "src/utils/transforms/transformProduct";
 import {
   getLocalizedName,
   getLocalizedDescription,
 } from "src/utils/getLocalizedName";
 import usePageTitle from "src/hooks/ui/useUpdatePageTitle";
+import Product from "src/types/product";
 
 const ProductPage = () => {
   const { id } = useParams();
@@ -24,13 +23,8 @@ const ProductPage = () => {
   } = useTranslation();
   const [showImagesSlider, setShowImagesSlider] = useState(false);
 
-  const { data, isLoading } = useQuery({
-    queryKey: ["product", id],
-    queryFn: () => getProductById(id),
-    enabled: !!id,
-  });
+  const { data: product, isLoading } = useGetProduct(id as string);
 
-  const product = data?.data ? transformProduct(data.data) : null;
   const localizedName = product ? getLocalizedName(product, language) : "";
   const localizedDescription = product
     ? getLocalizedDescription(product, language)
@@ -64,7 +58,13 @@ const ProductPage = () => {
           description={localizedDescription}
         />
         {product?.recommendedProducts.length > 0 && (
-          <Recommendations products={product?.recommendedProducts || []} />
+          <Recommendations
+            mainProductId={product?.id}
+            mainProductName={ getLocalizedName(product as Product)}
+            mainProductImage={product?.firstImage}
+            products={product?.recommendedProducts || []}
+            mainProductPrice={product?.afterDiscount || 0}
+          />
         )}
       </div>
 

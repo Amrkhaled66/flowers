@@ -7,6 +7,7 @@ import Overlay from "src/components/ui/Overlay";
 import Search from "./Search";
 import ScrollToTop from "src/components/ScroolToTop";
 import BalloraLoader from "src/components/ui/BalloraLoader/BalloraLoader";
+import AddToCartModal from "./AddedToCartModel";
 
 import { useTranslation } from "react-i18next";
 import { useNavBarToggleBtns } from "src/context/NavBarToggleBtns";
@@ -54,7 +55,7 @@ const MainLayout = () => {
       <div
         id="mainLayout"
         dir={`${i18n.language === "ar" ? "rtl" : "ltr"}`}
-        className={` overflow-x-clip ${i18n.language === "ar" ? "font-ar" : "font-en"} `}
+        className={`overflow-x-clip ${i18n.language === "ar" ? "font-ar" : "font-en"} `}
       >
         <BalloraLoader
           isOpen={profileLoading || cartLoading || favLoading || configLoading}
@@ -66,6 +67,7 @@ const MainLayout = () => {
         <Footer />
         <Cart />
         <Menu />
+        <AddToCartModal />
         <Overlay show={openCart || openMenu || openSearch} />
       </div>
     </AxiosProvider>

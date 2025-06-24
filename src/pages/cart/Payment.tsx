@@ -44,15 +44,14 @@ const Payment = () => {
       setConfig({});
     };
   }, [isPending, t, order]);
+
   if (
     !order.recipientName ||
-    !order.fullAddress ||
-    !order.deliveryDate ||
-    !order.area ||
-    !order.phoneNumber
+    !order.phoneNumber ||
+    (!order.withoutAddress && !order.fullAddress) ||
+    !order.deliveryDate
   )
     return <Navigate replace to={"/cart/delivery-info"} />;
-
   return (
     <div className="lg:!bg-main-50 h-fit w-full space-y-3 rounded-xl bg-white lg:w-[62%] lg:p-4">
       <div className="flex items-center gap-x-2">

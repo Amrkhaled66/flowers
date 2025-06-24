@@ -5,11 +5,13 @@ const OutLineButton = ({
   onClick,
   disabled,
   loading,
+  className
 }: {
   text: string;
   onClick: () => void;
   disabled?: boolean;
   loading?: boolean;
+  className?: string;
 }) => {
   return (
     <Button
@@ -17,7 +19,7 @@ const OutLineButton = ({
       loading={loading}
       disabled={disabled}
       onClick={onClick}
-      className="border-main !text-main focus:!bg-main-900 hover:!bg-main-300 w-full rounded-sm border !bg-transparent !py-3 hover:!border-transparent hover:!text-white focus:!text-white disabled:!cursor-not-allowed"
+      className={`border-main !text-main  focus:!bg-main-900 hover:!bg-main-300 w-full flex-1 rounded-sm border !bg-transparent !py-3 hover:!border-transparent hover:!text-white focus:!text-white disabled:!cursor-not-allowed ${className}`}
       text={text}
     />
   );

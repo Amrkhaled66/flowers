@@ -2,21 +2,18 @@ import ProductCardUI from "./ProductCardUI";
 import FavoriteButton from "./FavoriteButton";
 import Product from "src/types/product";
 const ProductCard = ({
-  isFavoriteCard,
   product,
-  isFilterCard = false,
+  isAddedModelCard,
 }: {
   product: Product;
-  isFilterCard?: boolean;
-  isFavoriteCard?: boolean;
+  isAddedModelCard?: boolean;
 }) => {
   return (
-    <ProductCardUI
-      isFavorite={isFavoriteCard}
-      isFilterCard={isFilterCard}
-      product={product}
-    >
-      <FavoriteButton className="absolute top-2 end-2 z-40" productId={product.id} />
+    <ProductCardUI isAddedModelCard={isAddedModelCard} product={product}>
+      <FavoriteButton
+        className="absolute end-2 top-2 z-40"
+        productId={product.id}
+      />
     </ProductCardUI>
   );
 };

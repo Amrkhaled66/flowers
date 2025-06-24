@@ -1,6 +1,5 @@
 import CheckboxList from "src/components/FilterPage/FilterBar/CheckboxList";
 import ColorSelector from "src/components/FilterPage/FilterBar/ColorSelector";
-import PriceRange from "src/components/FilterPage/FilterBar/PriceRange";
 import BarSection from "src/components/FilterPage/FilterBar/BarSection";
 import Skeleton from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
@@ -8,7 +7,7 @@ import "react-loading-skeleton/dist/skeleton.css";
 import { useTranslation } from "react-i18next";
 import { useState } from "react";
 import useScrollLock from "src/hooks/ui/useScrollLock";
-
+import PriceSelectors from "src/components/FilterPage/FilterBar/PriceSelectors";
 import { Icon } from "@iconify/react/dist/iconify.js";
 
 type SidebarProps = {
@@ -17,7 +16,7 @@ type SidebarProps = {
   categories: any[];
   occasions: any[];
   onOptionChange: (key: string, value: number) => void;
-  handlePriceRangeChange: (value: number[]) => void;
+  handlePriceRangeChange: (min: number, max: number) => void;
   onSubmit: () => void;
   options: {
     category_ids: number[];
@@ -41,7 +40,7 @@ const FilterBar = ({
   onSubmit,
   options,
   loading,
-  prices
+  prices,
 }: SidebarProps) => {
   const { t } = useTranslation("filter");
   const [openSections, setOpenSections] = useState<string[]>([
@@ -92,7 +91,7 @@ const FilterBar = ({
                 />
               </BarSection>
 
-              <PriceRange prices={prices} handlePriceRangeChange={handlePriceRangeChange} />
+              {/* <PriceRange prices={prices} handlePriceRangeChange={handlePriceRangeChange} /> */}
             </div>
 
             <BarSection
@@ -108,6 +107,13 @@ const FilterBar = ({
               />
             </BarSection>
 
+            <PriceSelectors
+              selectedValues={options.price_range}
+              onChange={handlePriceRangeChange}
+              handleToggle={handleToggle}
+              openSections={openSections}
+              maxPrice={Number(prices.maxPrice)}
+            />
             <BarSection
               onClick={() => handleToggle("color")}
               isOpen={openSections.includes("color")}

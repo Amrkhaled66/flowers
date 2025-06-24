@@ -11,13 +11,11 @@ import { useCart } from "src/context/user/cartCtx";
 
 const ProductCardUI = ({
   product,
-  // isFavorite = false,
-  // isFilterCard = false,
+  isAddedModelCard,
   children,
 }: {
   product: Product;
-  isFavorite?: boolean;
-  isFilterCard?: boolean;
+  isAddedModelCard?: boolean;
   children?: React.ReactNode;
 }) => {
   const {
@@ -46,7 +44,7 @@ const ProductCardUI = ({
           src={product.images ? product.images[0] : product.firstImage}
           alt="img"
           loading="lazy"
-          className="animate w-full object-cover"
+          className={`animate w-full ${isAddedModelCard && "aspect-square"} object-cover`}
         />
         <div className="space-y-3 p-2 sm:p-3 lg:p-4">
           <p className="text-text-main line-clamp-4 text-start text-xs font-bold sm:text-xl lg:w-[90%] lg:text-base">

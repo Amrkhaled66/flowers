@@ -17,22 +17,25 @@ const SignUpForm = () => {
   return (
     <form onSubmit={handleSubmit} className="">
       <div className="!text-text-main space-y-5">
-        {FormFields.map(({ labelAr, labelEn, type, name, isRequired }) => (
-          <FormInput
-            key={name}
-            required={isRequired}
-            label={i18n.language === "en" ? labelEn : labelAr}
-            type={type}
-            name={name}
-            value={formData[name as keyof UserRegister] || ""}
-            error={
-              errors[name as keyof UserRegister] !== undefined
-                ? String(errors[name as keyof UserRegister])
-                : undefined
-            }
-            onChange={handleChange}
-          />
-        ))}
+        {FormFields.map(
+          ({ labelAr, labelEn, type, name, isRequired, inputmode }) => (
+            <FormInput
+              key={name}
+              required={isRequired}
+              label={i18n.language === "en" ? labelEn : labelAr}
+              type={type}
+              inputmode={(inputmode as "email" | "text" | "tel" | "numeric" | undefined) || "text"}
+              name={name}
+              value={formData[name as keyof UserRegister] || ""}
+              error={
+                errors[name as keyof UserRegister] !== undefined
+                  ? String(errors[name as keyof UserRegister])
+                  : undefined
+              }
+              onChange={handleChange}
+            />
+          ),
+        )}
 
         <PasswordInput
           label={i18n.language === "en" ? "Password" : "كلمة المرور"}
@@ -43,13 +46,15 @@ const SignUpForm = () => {
           notShowingIcon
         />
         <PasswordInput
-          label={i18n.language === "en" ? "Confirm Password" : "تأكيد كلمة المرور"}
+          label={
+            i18n.language === "en" ? "Confirm Password" : "تأكيد كلمة المرور"
+          }
           name="confirm_password"
           onChange={handleChange}
           value={formData.confirm_password}
           error={errors.confirm_password}
           notShowingIcon
-          />
+        />
 
         <GenderButton
           label={i18n.language === "en" ? "Gender" : "النوع"}

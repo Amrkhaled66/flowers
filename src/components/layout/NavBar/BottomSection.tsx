@@ -48,7 +48,7 @@ const BottomSection = () => {
   const { cartLength } = useCart();
 
   return (
-    <div className="sticky top-0  left-0 z-50 bg-white py-2 drop-shadow-md">
+    <div className="sticky top-0 will-change-transform  left-0 z-50 bg-white py-2 drop-shadow-md">
       <div className="container">
         <div className="flex items-center justify-between">
           {/* Left Section */}

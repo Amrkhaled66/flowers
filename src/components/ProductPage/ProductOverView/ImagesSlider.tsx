@@ -44,7 +44,7 @@ const ImageSlider = ({
 
   return (
     <div className={`flex h-auto flex-col gap-4`}>
-      <div className="relative flex h-[420px] w-full items-center justify-center overflow-hidden rounded-xl sm:h-[680px] lg:h-[550px] lg:w-[540px]">
+      <div className="relative flex h-[420px] w-full  items-center justify-center overflow-hidden rounded-xl sm:h-[680px] lg:h-[550px] lg:w-[540px]">
         {loading ? (
           <Skeleton
             className="!absolute !inset-0 !h-full !w-full"
@@ -54,7 +54,7 @@ const ImageSlider = ({
           <Swiper
             dir="ltr"
             modules={[Navigation, Thumbs]}
-            spaceBetween={10}
+            spaceBetween={0}
             slidesPerView={1}
             speed={500}
             initialSlide={initialIndex}
@@ -65,15 +65,15 @@ const ImageSlider = ({
             thumbs={{ swiper: thumbsSwiperRef.current }}
             onSlideChange={handleMainSlideChange}
             onSwiper={(swiper) => (mainSwiperRef.current = swiper)}
-            className="h-full w-full"
+            className="border-stroke h-full w-full  rounded-xl border"
           >
             {images.map((image, index) => (
               <SwiperSlide key={`main-${index}`}>
-                <div className="flex h-full w-full items-center justify-center">
+                <div className="flex h-full w-full  items-center justify-center rounded-xl">
                   <img
                     src={image}
                     alt={`Slide ${index + 1}`}
-                    className="h-full w-full object-cover object-center"
+                    className="h-full w-full rounded-xl object-cover object-center"
                     draggable={false}
                     loading="lazy"
                   />

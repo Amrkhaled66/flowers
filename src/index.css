@@ -46,7 +46,7 @@
 
 /* || reset */
 html {
-  /* overflow-x: hidden !important ; */
+  overflow: visible !important ;
   height: auto;
   /* overflow-y: auto !important; */
   padding: 0 !important;

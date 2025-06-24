@@ -6,9 +6,10 @@ import {
   applyCoupon,
   clearCart,
 } from "src/api/cart";
+
 import { useMutation, useQuery } from "@tanstack/react-query";
 import { useAuth } from "src/context/authCtx";
-
+import { useAddToCartModal } from "src/context/AddedToCartModelCtx";
 import { useCart } from "src/context/user/cartCtx";
 import useDebounce from "../shared/useDebounce";
 import { useTranslation } from "react-i18next";
@@ -35,8 +36,9 @@ const useGetCart = () => {
 const useUpdateCart = () => {
   const { storeCart } = useCart();
   const { t } = useTranslation("toast");
+  const { openModal } = useAddToCartModal();
 
-  const mutation = useMutation({
+  return useMutation({
     mutationFn: ({ quantity, id }: { quantity: number; id: number }) =>
       updateCart(quantity, id),
     onError: (err: any) => {
@@ -44,14 +46,43 @@ const useUpdateCart = () => {
     },
     onSuccess: (data) => {
       storeCart(data.cart);
+
+      const addedProductId = data.cart[data.cart.length - 1]?.product.id;
+      if (addedProductId) {
+        openModal(addedProductId);
+      }
+
       showToast.success(t("cart.cartUpdated"));
     },
   });
+};
 
-  // Create a debounced version of mutate
+const useDebouncedUpdateCart = () => {
+  const mutation = useUpdateCart();
   const debouncedMutate = useDebounce(mutation.mutate, 500);
-
   return { ...mutation, mutate: debouncedMutate };
+};
+
+const useAddToCart = () => {
+  const { storeCart } = useCart();
+  const { t } = useTranslation("toast");
+  const { openModal } = useAddToCartModal();
+  return useMutation({
+    mutationFn: (id: number) => addToCart(id),
+    onError: (err: any) => {
+      showToast.error(err.response.data.message);
+    },
+    onSuccess: (data) => {
+      storeCart(data.cart);
+
+      showToast.success(t("cart.cartAdded"));
+
+      const addedProductId = data.cart[data.cart.length - 1]?.product.id;
+      if (addedProductId) {
+        openModal(addedProductId);
+      }
+    },
+  });
 };
 
 const useDeleteCart = () => {
@@ -70,21 +101,6 @@ const useDeleteCart = () => {
   });
 };
 
-const useAddToCart = () => {
-  const { storeCart } = useCart();
-  const { t } = useTranslation("toast");
-
-  return useMutation({
-    mutationFn: (id: number) => addToCart(id),
-    onError: (err: any) => {
-      showToast.error(err.response.data.message);
-    },
-    onSuccess: (data) => {
-      storeCart(data.cart);
-      showToast.success(t("cart.cartAdded"));
-    },
-  });
-};
 const useClearCart = () => {
   const { storeCart } = useCart();
   const { t } = useTranslation("toast");
@@ -114,4 +130,5 @@ export {
   useAddToCart,
   useApplyCoupon,
   useClearCart,
+  useDebouncedUpdateCart,
 };

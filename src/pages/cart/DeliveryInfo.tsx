@@ -7,6 +7,7 @@ import AreaSelection from "src/components/ui/AddressForm/AreaSelection";
 import Alert from "src/components/ui/Alert";
 import PrivacyConsentToggle from "src/components/Cart/DeliveryInfo/PrivacyConsentToggle ";
 import Button from "src/components/ui/Button";
+import { Icon } from "@iconify/react/dist/iconify.js";
 
 import { useEffect } from "react";
 import { Navigate, useNavigate } from "react-router";
@@ -41,7 +42,9 @@ const DeliveryInfo = () => {
     deliveryError,
     handleSelectArea,
     handleInputChange,
-    setDeliveryError
+    setDeliveryError,
+    toggleDeliverWithoutAddress,
+    deliverWithoutAddress,
   } = useAddressFormWithDelivery(initialFormData);
 
   const onSubmit = () => {
@@ -79,6 +82,29 @@ const DeliveryInfo = () => {
   return (
     <div className="flex h-fit w-full flex-col gap-y-6 lg:w-[62%]">
       <div className="lg:!bg-main-50 space-y-4 rounded-xl bg-white lg:px-4 lg:py-6">
+        <div className="bg-main-50 flex items-start justify-between rounded-xl p-4 lg:bg-white">
+          <div className="flex gap-x-3">
+            <Icon icon="zondicons:location" className="text-main size-6" />
+            <div className="space-y-1">
+              <p className="text-main font-bold">
+                {tCart("deliveryInfo.withoutAddressTitle")}
+              </p>
+              <p className="text-subTitle lg:w-[50%]">
+                {tCart("deliveryInfo.withoutAddressSubTitle")}
+              </p>
+            </div>
+          </div>
+
+          <label className="inline-flex cursor-pointer items-center">
+            <input
+              type="checkbox"
+              onChange={toggleDeliverWithoutAddress}
+              checked={order.withoutAddress||deliverWithoutAddress}
+              className="peer sr-only"
+            />
+            <div className="peer relative h-6 w-11 rounded-full bg-gray-200 peer-checked:bg-green-600 peer-focus:outline-none after:absolute after:start-[2px] after:top-[2px] after:h-5 after:w-5 after:rounded-full after:border after:border-gray-300 after:bg-white after:transition-all after:content-[''] peer-checked:after:translate-x-full peer-checked:after:border-white rtl:peer-checked:after:-translate-x-full"></div>
+          </label>
+        </div>
         <FormInput
           bgColor=" bg-main-50 lg:bg-white"
           type="text"
@@ -86,47 +112,55 @@ const DeliveryInfo = () => {
           required
           label={t("address.form.recipientName")}
           value={formData.recipientName || order.recipientName}
-          // onChange={(e: ChangeEvent<HTMLInputElement>) => updateOrder({ recipientName: e.target.value })}
           onChange={handleInputChange}
           error={formErrors.recipientName}
         />
         <FormInput
           bgColor="bg-main-50 lg:bg-white"
-          type="text"
+          inputmode="tel"
+          type="tel"
           name="recipientPhone"
           required
           label={t("address.form.recipientPhone")}
           value={formData.recipientPhone || order.phoneNumber}
-          // onChange={(e: ChangeEvent<HTMLInputElement>) => updateOrder({ phoneNumber: e.target.value })}
           onChange={handleInputChange}
           error={formErrors.phoneNumber}
         />
 
-        <MapButton onLocationSelected={handleLocationSelection} />
-        <AreaSelection
-          defaultValue={formData.area || order.area}
-          error={formErrors.area}
-          // onAreaSelected={(value) => updateOrder({ area: value })}
-          onAreaSelected={handleSelectArea}
-        />
-        <div className="space-y-1">
-          <div className="">
-            <label className="text-text-main t font-bold">
-              {t("address.form.address")}
-            </label>
-            <textarea
-              value={formData.address || order.fullAddress}
-              name="address"
-              onChange={handleInputChange}
-              // onChange={(e: ChangeEvent<HTMLTextAreaElement>) => updateOrder({ fullAddress: e.target.value })}
-              className={`bg-main-50 placeholder:text-subTitle animate focus:border-main mt-3 h-[100px] w-full rounded-xl border p-3 placeholder:text-sm lg:bg-white ${formErrors.address ? "border-red" : "border-stroke"}`}
-              placeholder={t("address.form.addressPlaceholder")}
-            />
+        {!deliverWithoutAddress && (
+          <MapButton onLocationSelected={handleLocationSelection} />
+        )}
+        {!deliverWithoutAddress && (
+          <AreaSelection
+            disabled={deliverWithoutAddress}
+            defaultValue={formData.area || order.area}
+            error={formErrors.area}
+            onAreaSelected={handleSelectArea}
+          />
+        )}
+        {!deliverWithoutAddress && (
+          <div className="space-y-1">
+            <div className="">
+              <label className="text-text-main t font-bold">
+                {t("address.form.address")}
+              </label>
+              <textarea
+                disabled={deliverWithoutAddress}
+                value={formData.address || order.fullAddress}
+                name="address"
+                onChange={handleInputChange}
+                className={`bg-main-50 placeholder:text-subTitle animate focus:border-main mt-3 h-[100px] w-full rounded-xl border p-3 placeholder:text-sm disabled:cursor-not-allowed lg:bg-white ${formErrors.address ? "border-red" : "border-stroke"} disabled:opacity-40`}
+                placeholder={t("address.form.addressPlaceholder")}
+              />
+            </div>
+            <p className="text-red px-2 text-xs">{formErrors.address}</p>
           </div>
-          <p className="text-red px-2 text-xs">{formErrors.address}</p>
-        </div>
+        )}
         <PrivacyConsentToggle />
-        <DeliveryTime resetDeliveryError={()=>setDeliveryError("")} error={deliveryError} />
+        <DeliveryTime
+          resetDeliveryError={() => setDeliveryError("")}
+          error={deliveryError}
+        />
       </div>
       <Button
         className="!py-3 text-white lg:hidden"

@@ -6,15 +6,15 @@ const DeliveryDateOption = ({
   children,
   onClick,
 }: {
-  isActive: boolean;
+  isActive: boolean | string;
   children: ReactNode;
   onClick?: () => void;
 }) => (
-  <li className="animate  w-full ">
+  <li className="animate w-full">
     <button
       onClick={onClick}
       className={clsx(
-        `border-stroke w-full  peer-checked:border-main hover:border-main animate flex cursor-pointer items-center justify-center rounded-xl border sm:px-9 py-2 text-center`,
+        `border-stroke peer-checked:border-main hover:border-main animate flex w-full cursor-pointer items-center justify-center rounded-xl border py-2 text-center sm:px-9`,
         {
           "!border-main": isActive,
         },

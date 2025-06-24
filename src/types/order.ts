@@ -10,6 +10,7 @@ export interface Order {
   paymentMethod: string;
   useBalance?: boolean;
   message: Message;
+  withoutAddress?: boolean;
 }
 
 export interface Message {

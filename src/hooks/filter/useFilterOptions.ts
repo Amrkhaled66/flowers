@@ -12,7 +12,7 @@ const INITIAL_FILTER_OPTIONS: FilterOptions = {
   category_ids: [],
   occasion_ids: [],
   color_ids: [],
-  price_range: [0, 9999],
+  price_range: [0, Math.max(Number.MAX_SAFE_INTEGER, 100)],
 };
 
 const STRING_ARRAY_KEYS = new Set<keyof FilterOptions>([
@@ -54,16 +54,15 @@ export const useFilterOptions = () => {
 
   const handleOptionChange = (key: string, value: number) => {
     if (!STRING_ARRAY_KEYS.has(key as keyof FilterOptions)) {
-      console.warn(`Invalid filter key: ${key}`);
       return;
     }
 
-    setOptions(prevOptions => {
+    setOptions((prevOptions) => {
       const currentValues = prevOptions[key as keyof FilterOptions];
       const valueExists = currentValues.includes(value);
- 
+
       const newValues = valueExists
-        ? currentValues.filter(item => item !== value)
+        ? currentValues.filter((item) => item !== value)
         : [...currentValues, value];
 
       return {
@@ -71,19 +70,20 @@ export const useFilterOptions = () => {
         [key]: newValues,
       };
     });
-  }
+  };
 
-  const handlePriceRangeChange = useCallback((value: number[]) => {
-    setOptions(prevOptions => {
+  const handlePriceRangeChange = useCallback((min: number, max: number) => {
+    console.log(min, max, "fist");
+    setOptions((prevOptions) => {
       if (
-        prevOptions.price_range[0] === value[0] &&
-        prevOptions.price_range[1] === value[1]
+        prevOptions.price_range[0] === min &&
+        prevOptions.price_range[1] === max
       ) {
         return prevOptions;
       }
       return {
         ...prevOptions,
-        price_range: value,
+        price_range: [min, max],
       };
     });
   }, []);
@@ -92,21 +92,24 @@ export const useFilterOptions = () => {
     setOptions(INITIAL_FILTER_OPTIONS);
   }, []);
 
-  return useMemo(() => ({
-    options,
-    appliedOptions,
-    handleOptionChange,
-    handlePriceRangeChange,
-    resetFilters,
-    setAppliedOptions,
-    setOptions,
-    page,
-    setPage
-  }), [
-    options,
-    appliedOptions,
-    handleOptionChange,
-    handlePriceRangeChange,
-    resetFilters,
-  ]);
+  return useMemo(
+    () => ({
+      options,
+      appliedOptions,
+      handleOptionChange,
+      handlePriceRangeChange,
+      resetFilters,
+      setAppliedOptions,
+      setOptions,
+      page,
+      setPage,
+    }),
+    [
+      options,
+      appliedOptions,
+      handleOptionChange,
+      handlePriceRangeChange,
+      resetFilters,
+    ],
+  );
 };

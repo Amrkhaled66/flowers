@@ -20,7 +20,7 @@ export const useAddressFormWithDelivery = (initialData: Address) => {
   const [deliveryError, setDeliveryError] = useState("");
 
   const { t: tProfile } = useTranslation("profile");
-  const { order } = useOrder();
+  const { order, updateOrder } = useOrder();
 
   const deliveryDate = order.deliveryDate;
   const deliveryTime = order.deliveryTime;
@@ -34,11 +34,24 @@ export const useAddressFormWithDelivery = (initialData: Address) => {
   };
 
   const validateForm = (): boolean => {
-    const baseValid = validateBaseForm();
+    const baseValid = validateBaseForm(order.withoutAddress);
     const deliveryValid = validateDeliveryFields();
     return baseValid && deliveryValid;
   };
 
+  const toggleDeliverWithoutAddress = () => {
+    updateOrder({
+      withoutAddress: !order.withoutAddress,
+    });
+    updateFormDate({
+      area: "",
+      address: "",
+    });
+    updateOrder({
+      area: "",
+      fullAddress: "",
+    });
+  };
   useEffect(() => {
     updateFormDate({
       recipientName: order.recipientName || formData.recipientName,
@@ -59,5 +72,7 @@ export const useAddressFormWithDelivery = (initialData: Address) => {
     deliveryError,
     validateForm,
     setDeliveryError,
+    toggleDeliverWithoutAddress,
+    deliverWithoutAddress: order.withoutAddress,
   };
 };

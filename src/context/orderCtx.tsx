@@ -14,6 +14,7 @@ const defaultOrder: Order = {
   paymentMethod: "",
   useBalance: false,
   message: { to: "", from: "", message: "", url: "" },
+  withoutAddress: false,
 };
 
 const OrderContext = createContext<{

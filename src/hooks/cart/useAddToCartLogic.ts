@@ -1,11 +1,11 @@
-import { useAddToCart, useUpdateCart } from "src/hooks/cart/useCartMutations";
+import { useAddToCart, useDebouncedUpdateCart } from "src/hooks/cart/useCartMutations";
 
 import { useAuthGuard } from "src/hooks/shared/useAuthGuard";
 import { useCart } from "src/context/user/cartCtx"; // or your cart logic location
 
 export const useAddToCartLogic = () => {
   const { mutate: addToCart, isPending: isAddPending } = useAddToCart();
-  const { mutate: updateCart, isPending: isUpdatePending } = useUpdateCart();
+  const { mutate: updateCart, isPending: isUpdatePending } = useDebouncedUpdateCart();
   const { check } = useAuthGuard();
   const { isProductInCart } = useCart();
   const AddToCart = async (

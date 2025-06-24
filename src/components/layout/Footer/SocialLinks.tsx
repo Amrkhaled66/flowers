@@ -39,9 +39,10 @@ const SocialLinks = () => {
         <div className="h-[50px] w-[90px] lg:h-[95px] lg:w-[180px]">
           <img className="size-full object-cover" src={Logo2} alt="Logo" />
         </div>
-        <p className="lg:w-[80%]">
-          Ballora is your go-to e-commerce store for unique and thoughtful
-          gifts.
+        <p className="flex flex-col gap-y-1 lg:w-[80%]">
+          <span>{t("footer.ballora1")}</span>
+          <span>{t("footer.ballora2")}</span>
+          <span>{t("footer.ballora3")}</span>
         </p>
       </div>
       <div className="space-y-7">

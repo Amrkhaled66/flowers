@@ -9,7 +9,11 @@ const initialFormErrors: FormErrors = {
   address: "",
 };
 
-const validateAddressForm = (formData: Address, tProfile:any) => {
+const validateAddressForm = (
+  formData: Address,
+  tProfile: any,
+  deliverWithoutAddress?: boolean,
+) => {
   const errors = { ...initialFormErrors };
   let isValid = true;
 
@@ -24,12 +28,12 @@ const validateAddressForm = (formData: Address, tProfile:any) => {
   if (!formData.recipientPhone.trim()) {
     errors.phoneNumber = tProfile("address.formErrors.phoneNumber.required");
     isValid = false;
-  } else if (
-    validatePhoneNumber(formData.recipientPhone.replace(/\s+/g, ""))
-  ) {
+  } else if (validatePhoneNumber(formData.recipientPhone.replace(/\s+/g, ""))) {
     errors.phoneNumber = tProfile("address.formErrors.phoneNumber.invalid");
     isValid = false;
   }
+
+  if (deliverWithoutAddress) return { errors, isValid };
 
   if (!formData.area) {
     errors.area = tProfile("address.formErrors.area.required");
@@ -46,4 +50,4 @@ const validateAddressForm = (formData: Address, tProfile:any) => {
 
   return { errors, isValid };
 };
-export default validateAddressForm
+export default validateAddressForm;

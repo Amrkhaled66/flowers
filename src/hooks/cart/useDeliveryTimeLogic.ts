@@ -3,17 +3,24 @@ import { useDeliveryTime } from "src/context/DeliveryTimeCtx";
 import { useGetBusyTimes } from "src/hooks/order/useOrderMutation";
 import { useOrder } from "src/context/orderCtx";
 
-import { getTodayAndTomorrow } from "src/helpers/timeHelpers";
-import formatDateToISO from "src/utils/formatDateToISO";
-import { getAvailableTimeSlots } from "src/helpers/timeHelpers";
-import { ENDDEDDELIVERYHOUR } from "src/utils/defaultSettings";
+import {
+  getTodayAndUpcomingDates,
+  timeSlots,
+  getTodayAvailableTimeSlots,
+} from "src/helpers/timeHelpers";
 export const useDeliveryTimeLogic = () => {
   const [openCalendar, setOpenCalendar] = useState(false);
+
   const { updateDeliveryTime, deliveryTime } = useDeliveryTime();
   const { deliverTime, deliveryDate } = deliveryTime;
+
   const { data: busyTimesData, isLoading: busyTimeLoading } = useGetBusyTimes();
-  const { updateOrder } = useOrder();
-  const { today, tomorrow } = getTodayAndTomorrow();
+  const {
+    updateOrder,
+    order: { deliveryDate: orderDeliveryDate },
+  } = useOrder();
+
+  const { nextTomorrow, tomorrow, today } = getTodayAndUpcomingDates();
 
   const busyTimes = useMemo(() => {
     if (busyTimeLoading || !busyTimesData) return [];
@@ -22,10 +29,16 @@ export const useDeliveryTimeLogic = () => {
       .map((time: any) => time.period);
   }, [deliveryDate, busyTimesData]);
 
-  const AvailableTimeSlots = useMemo(
-    () => getAvailableTimeSlots(deliveryDate),
-    [deliveryDate, busyTimesData],
-  );
+  const todayBusyTimes = useMemo(() => {
+    if (busyTimeLoading || !busyTimesData) return [];
+    return busyTimesData
+      .filter((time: any) => time.date === today)
+      .map((time: any) => time.period);
+  }, [today, busyTimesData, busyTimeLoading]);
+
+  const handleSelectTodayDate = () => {
+    updateDeliveryTime("deliveryDate", today);
+  };
 
   const handleDateSelection = (date: string) => {
     setOpenCalendar(false);
@@ -43,29 +56,45 @@ export const useDeliveryTimeLogic = () => {
     setOpenCalendar(false);
   };
 
-  const handleConfirm = () => {
-    updateOrder({ deliveryDate: deliveryDate, deliveryTime: deliverTime });
+  const handleConfirm = (forcedDate?: string) => {
+    updateOrder({
+      deliveryDate: forcedDate || deliveryDate,
+      deliveryTime: deliverTime,
+    });
   };
 
-  const isConfirmDisabled = !(deliverTime && deliveryDate);
+  const todayAvailableTimes = getTodayAvailableTimeSlots();
+  const isMoreThanOnTimeAvailableToday = todayAvailableTimes.length > 1;
+  const noAvailableTimesToday = todayAvailableTimes.length === 0;
+  const isFastedDelivery = deliveryDate === today;
+  const isFastedDeliveryConfirmed = orderDeliveryDate === today;
 
-  const ToadyIsEnd = new Date().getHours() > ENDDEDDELIVERYHOUR;
-  if (deliveryDate === formatDateToISO(new Date())) {
-  }
+  const isConfirmDisabledForFullDeliveryModel =
+    deliveryDate === today || !deliveryDate || !deliverTime;
+  const isConfirmDisabledForFastedDeliveryModel =
+    !todayAvailableTimes.includes(deliverTime);
   return {
-    today,
+    nextTomorrow,
     tomorrow,
     deliveryDate,
     deliverTime,
     busyTimes,
-    AvailableTimeSlots,
     openCalendar,
     setOpenCalendar,
     handleDateSelection,
+    handleSelectTodayDate,
     handleTimeSelection,
     handleCalendarDateSelect,
     handleConfirm,
-    isConfirmDisabled,
-    ToadyIsEnd,
+    isConfirmDisabledForFullDeliveryModel,
+    isConfirmDisabledForFastedDeliveryModel,
+    timeSlots,
+    today,
+    todayBusyTimes,
+    isMoreThanOnTimeAvailableToday,
+    todayAvailableTimes,
+    noAvailableTimesToday,
+    isFastedDelivery,
+    isFastedDeliveryConfirmed,
   };
 };

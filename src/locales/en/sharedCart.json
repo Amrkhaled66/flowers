@@ -37,5 +37,9 @@
     "point": "Point",
     "description": "You can convert the number of points available to you into credit that you can use when purchasing.",
     "redeem": "Redeem"
+  },
+  "deliveryInfo": {
+    "withoutAddressTitle": "Ask The Recipient For Delivery Address",
+    "withoutAddressSubTitle": "we will collect the address from the recipient Delivery time may be impacted if recipient is unreachable"
   }
 }

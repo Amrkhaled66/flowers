@@ -14,3 +14,4 @@ export {default as LayoutEn} from "./Layout.json";
 export {default as DeliveryInfoEn} from "./DeliveryInfo.json";
 export {default as ProductPageEn} from "./ProductPage.json"
 export {default as ToastMessagesEn} from "./toastMessages.json"
+export {default as AddedToCartModelEn} from "./AddedToCartModel.json"

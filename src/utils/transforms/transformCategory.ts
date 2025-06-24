@@ -1,11 +1,14 @@
-const transformBaseItem=(item:any)=>{
-    return {
-        id:item.id,
-        nameEn:item.name_en,
-        nameAr:item.name_ar,
-        slug:item.slug,
-        image:item.image
-    }
-}
+import transformProduct from "./transformProduct";
 
-export default transformBaseItem
+const transformCategory = (item: any) => {
+  return {
+    id: item.id,
+    nameEn: item.name_en,
+    nameAr: item.name_ar,
+    slug: item.slug,
+    image: item.image,
+    products: item?.products?.map(transformProduct),
+  };
+};
+
+export default transformCategory;

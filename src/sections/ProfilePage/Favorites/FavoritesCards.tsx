@@ -4,7 +4,7 @@ const FavoritesCards = ({ products }: { products: Product[] }) => {
   return (
     <div className="grid grid-cols-1 gap-4 sm:grid-cols-3 sm:gap-5 lg:gap-6">
       {products.map((product) => (
-        <ProductCard isFavoriteCard product={product} key={product.id} />
+        <ProductCard  product={product} key={product.id} />
       ))}
     </div>
   );

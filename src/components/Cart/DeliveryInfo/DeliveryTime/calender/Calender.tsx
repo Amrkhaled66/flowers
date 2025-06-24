@@ -1,7 +1,7 @@
 import Calendar from "react-calendar";
 import { isToday, isSameDay } from "date-fns";
 import { Icon } from "@iconify/react/dist/iconify.js";
-
+import formatDateToISO from "src/utils/formatDateToISO";
 import "react-calendar/dist/Calendar.css";
 import "./calender.css";
 const MyCalendar = ({
@@ -13,13 +13,10 @@ const MyCalendar = ({
 }) => {
   return (
     <Calendar
-      minDate={new Date()}
+      minDate={new Date(Date.now() + 86400000)}
       onChange={(date) => {
-        if (!(date instanceof Date)) return
-        const year = date.getFullYear();
-        const month = `${date.getMonth() + 1}`.padStart(2, '0');
-        const day = `${date.getDate()}`.padStart(2, '0');
-        onDateSelect(`${year}-${month}-${day}`);
+        if (!(date instanceof Date)) return;
+        onDateSelect(formatDateToISO(date));
       }}
       value={selectedDate}
       tileClassName={({ date }) => {

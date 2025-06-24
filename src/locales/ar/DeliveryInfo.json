@@ -1,7 +1,7 @@
 {
     "time": {
         "title": "وقت التوصيل",
-        "subTitle":"حدد وقت التوصيل",
+        "subTitle": "حدد وقت التوصيل",
         "model": {
             "title": "وقت التوصيل",
             "deliveryDate": "تاريخ التوصيل",
@@ -9,9 +9,13 @@
             "confirm": "تأكيد",
             "cancel": "إلغاء",
             "today": "اليوم",
+            "nextTomorrow": "بعد الغد",
             "tomorrow": "غدا",
-            "busy":"وقت مشغول"
-        }
+            "busy": "وقت مشغول",
+            "pickDate": "اختر التاريخ"
+        },
+        "deliveryToday": "توصيل اليوم",
+        "fastDelivery": "توصيل سريع"
     },
     "privacy": {
         "toggleText": "البقاء علي سرية معلوماتي الشخصية",

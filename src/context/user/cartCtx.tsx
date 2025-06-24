@@ -1,9 +1,16 @@
-import React, { createContext, useContext, useState, useCallback } from "react";
+import React, {
+  createContext,
+  useContext,
+  useState,
+  useCallback,
+  useMemo,
+} from "react";
 import { CartItem } from "src/types/cart";
 import getMainPrice from "src/utils/getMainPrice";
 import transformProduct from "src/utils/transforms/transformProduct";
 import { FREEDELIVERYBRECKDOWN } from "src/utils/defaultSettings";
 import { useAuth } from "../authCtx";
+
 interface Coupon {
   code: string;
   discount: number;
@@ -24,6 +31,7 @@ interface CartContextType {
   isBalanceUsed: boolean;
   setIsBalanceUsed: (value: boolean) => void;
   getProductQuantity: (id: number) => number;
+  cartProduct: (id: number) => CartItem | undefined;
 }
 
 const CartContext = createContext<CartContextType | undefined>(undefined);
@@ -31,12 +39,14 @@ const CartContext = createContext<CartContextType | undefined>(undefined);
 export const CartProvider: React.FC<{ children: React.ReactNode }> = ({
   children,
 }) => {
-  const [cart, setCart] = useState<CartItem[] | []>([]);
+  const [cart, setCart] = useState<CartItem[]>([]);
   const [coupon, setCoupon] = useState<Coupon | null>(null);
   const [isBalanceUsed, setIsBalanceUsed] = useState(false);
+
   const {
     authData: { user },
   } = useAuth();
+
   const storeCart = useCallback((newCart: CartItem[]) => {
     const modifiedCart = newCart.map((item) => ({
       quantity: item.quantity,
@@ -46,49 +56,72 @@ export const CartProvider: React.FC<{ children: React.ReactNode }> = ({
     setCart(modifiedCart);
   }, []);
 
-  const clearCart = () => {
+  const clearCart = useCallback(() => {
     setCart([]);
     setCoupon(null);
-  };
+  }, []);
 
-  const isProductInCart = (productId: number) => {
-    const item = cart?.find((item: CartItem) => item.product.id === productId);
-    return item ? item.id : false;
-  };
+  const isProductInCart = useCallback(
+    (productId: number) => {
+      const item = cart.find((item) => item.product.id === productId);
+      return item ? item.id : false;
+    },
+    [cart],
+  );
 
-  const applyCoupon = (code: string, discount: number) => {
+  const applyCoupon = useCallback((code: string, discount: number) => {
     setCoupon({ code, discount });
-  };
+  }, []);
 
-  const removeCoupon = () => {
+  const removeCoupon = useCallback(() => {
     setCoupon(null);
-  };
+  }, []);
 
-  const getProductQuantity = (id: number) => {
-    return (
-      cart?.find((item: CartItem) => item.product.id === id)?.quantity || 0
-    );
-  };
+  const getProductQuantity = useCallback(
+    (id: number) => cart.find((item) => item.product.id === id)?.quantity || 0,
+    [cart],
+  );
 
-  const baseTotal = cart?.reduce((total: number, item: CartItem) => {
-    return total + getMainPrice(item.product) * item.quantity;
-  }, 0);
+  const cartProduct = useCallback(
+    (id: number) => cart.find((item) => item.product.id === id),
+    [cart],
+  );
 
-  let cartSubTotal = coupon?.code
-    ? baseTotal - (baseTotal * coupon.discount) / 100
-    : baseTotal;
+  const baseTotal = useMemo(
+    () =>
+      cart.reduce(
+        (total, item) => total + getMainPrice(item.product) * item.quantity,
+        0,
+      ),
+    [cart],
+  );
 
-  cartSubTotal = isBalanceUsed
-    ? cartSubTotal - Number(user?.balance)
-    : cartSubTotal;
+  const cartSubTotal = useMemo(() => {
+    let subtotal = coupon
+      ? baseTotal - (baseTotal * coupon.discount) / 100
+      : baseTotal;
 
-  const cartLength = cart?.reduce((total: number, item: CartItem) => {
-    return total + item.quantity;
-  }, 0);
+    if (isBalanceUsed) {
+      subtotal -= Number(user?.balance || 0);
+    }
 
-  const copounValue = cartSubTotal - baseTotal;
+    return subtotal;
+  }, [baseTotal, coupon, isBalanceUsed, user]);
 
-  const isFreeDelivery = cartSubTotal >= FREEDELIVERYBRECKDOWN;
+  const cartLength = useMemo(
+    () => cart.reduce((total, item) => total + item.quantity, 0),
+    [cart],
+  );
+
+  const copounValue = useMemo(
+    () => baseTotal - cartSubTotal,
+    [baseTotal, cartSubTotal],
+  );
+
+  const isFreeDelivery = useMemo(
+    () => cartSubTotal >= FREEDELIVERYBRECKDOWN,
+    [cartSubTotal],
+  );
 
   return (
     <CartContext.Provider
@@ -103,10 +136,11 @@ export const CartProvider: React.FC<{ children: React.ReactNode }> = ({
         applyCoupon,
         removeCoupon,
         copounValue,
-        isFreeDelivery: isFreeDelivery,
+        isFreeDelivery,
         setIsBalanceUsed,
         isBalanceUsed,
         getProductQuantity,
+        cartProduct,
       }}
     >
       {children}

@@ -21,6 +21,7 @@ import {
   DeliveryInfoEn,
   ProductPageEn,
   ToastMessagesEn,
+  AddedToCartModelEn
 } from "src/locales/en";
 
 import {
@@ -40,6 +41,7 @@ import {
   DeliveryInfoAr,
   ProductPageAr,
   ToastMessagesAr,
+  AddedToCartModelAr
 } from "src/locales/ar";
 
 const resources = {
@@ -60,6 +62,7 @@ const resources = {
     deliveryInfo: DeliveryInfoEn,
     productPage: ProductPageEn,
     toast: ToastMessagesEn,
+    addedToCartModel: AddedToCartModelEn
   },
   ar: {
     home: HomeAr,
@@ -78,6 +81,7 @@ const resources = {
     deliveryInfo: DeliveryInfoAr,
     productPage: ProductPageAr,
     toast: ToastMessagesAr,
+    addedToCartModel: AddedToCartModelAr
   },
 };
 

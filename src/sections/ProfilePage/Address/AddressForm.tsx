@@ -55,7 +55,7 @@ const AddressForm = ({
         error={formErrors.recipientName}
       />
       <FormInput
-        type="text"
+        type="tel"
         name="recipientPhone"
         required
         label={t("address.form.recipientPhone")}

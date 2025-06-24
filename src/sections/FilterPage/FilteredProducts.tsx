@@ -33,7 +33,7 @@ export default function FilteredProducts({
                 <ProductCardSk key={index} />
               ))
             : Products.map((product: Product) => (
-                <ProductCard isFilterCard key={product.id} product={product} />
+                <ProductCard  key={product.id} product={product} />
               ))}
         </div>
       )}
