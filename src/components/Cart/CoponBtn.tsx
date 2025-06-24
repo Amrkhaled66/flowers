@@ -64,7 +64,7 @@ const CoponBtn = () => {
             coupon ? tCartShared("copon.remove") : tCartShared("copon.apply")
           }
           className={clsx(
-            `rounded-xl px-1 py-1 !text-sm font-bold text-white`,
+            `rounded-xl px-3 py-2 !text-sm font-bold text-white`,
             {
               "bg-red-600 text-xs hover:!bg-red-700": coupon,
             },

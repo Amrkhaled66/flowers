@@ -43,7 +43,7 @@ function FormInput<T>({
       </label>
       <div className="w-full space-y-2">
         {type === "tel" ? (
-          <div className="animate flex items-center gap-x-3 rounded-xl">
+          <div className="animate flex items-center gap-x-1 lg:gap-x-3 rounded-xl">
             {/* 🇦🇪 UAE Flag */}
             <div className="border-stroke flex items-center rounded-xl border bg-white p-2.5">
               <span className="text-xl">

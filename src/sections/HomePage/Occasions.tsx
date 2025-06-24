@@ -26,7 +26,7 @@ const Occasions = ({
         {loading ? (
           <CategorySk />
         ) : (
-          <div className="flex flex-wrap items-center gap-3 sm:gap-4 lg:gap-6">
+          <div className="flex flex-wrap items-center justify-center lg:justify-start gap-4 lg:gap-6">
             {transformedOccasions.map((occasion) => (
               <Link key={occasion.id} to={`/filter?occasion_id=${occasion.id}`}>
                 <CategoryCard
