@@ -97,7 +97,7 @@ const Recommendations = ({
                   loading={isAddPending || isUpdatePending}
                   className="!px-0 !py-4 !text-base text-white"
                   icon={<Icon icon="ic:outline-add-shopping-cart" />}
-                  text={`Add Both To Cart ${priceFormatter(
+                  text={`${t("addBoth")} ${priceFormatter(
                     product.afterDiscount + mainProductPrice,
                   )}`}
                   onClick={async () =>

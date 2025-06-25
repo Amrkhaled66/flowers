@@ -9,6 +9,7 @@
     "apply": "Apply Now",
     "confirm": "Confirm",
     "cancel": "Cancel",
+    "okay":"Okay",
     "searchPlaceholder": "Search",
     "balloraPoints": "Ballora Points",
     "chooseGiftNow": "Choose gift now",
@@ -23,6 +24,7 @@
         "btnText": "Verify Now"
     },
     "outOfStock": "This product will be available soon.",
-    "next":"Next",
-    "prev":"Prev"
+    "next": "Next",
+    "prev": "Prev",
+    "paymentError": "Please select a payment method"
 }

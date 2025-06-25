@@ -16,6 +16,7 @@ import Alert from "src/components/ui/Alert";
 const Payment = () => {
   usePageTitle("Payment");
   const { t } = useTranslation("sharedCart");
+  const { t: tShared } = useTranslation("shared");
   const { order } = useOrder();
   const { setConfig } = useOrderSummary();
   const { mutate, isPending } = useSubmitOrder();
@@ -26,10 +27,10 @@ const Payment = () => {
       onClick: () => {
         if (!order.paymentMethod)
           return Alert({
-            title: "Error",
-            text: "Please select a payment method",
+            title: tShared("error"),
+            text: tShared("paymentError"),
             icon: "error",
-            confirmButtonText: "Okay",
+            confirmButtonText: tShared("okay"),
           });
         mutate(
           transformKeysToSnakeCase({
