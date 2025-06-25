@@ -1,14 +1,14 @@
 import axiosInstance from "./axios";
 
 const sendOtp = async (phone_number: string) => {
-  const { data } = await axiosInstance.post("/api/forget-password/send-otp", {
+  const { data } = await axiosInstance.post("/forget-password/send-otp", {
     phone_number,
   });
   return data;
 };
 
 const submitOtp = async (phone_number: string, otp: string) => {
-  const { data } = await axiosInstance.post("/api/forget-password/submit-otp", {
+  const { data } = await axiosInstance.post("/forget-password/submit-otp", {
     phone_number,
     otp,
   });
@@ -21,7 +21,7 @@ const changePassword = async (
   token: string,
 ) => {
   const { data } = await axiosInstance.post(
-    "/api/forget-password/change-password",
+    "/forget-password/change-password",
     {
       new_password,
       confirm_password,

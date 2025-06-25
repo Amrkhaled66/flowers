@@ -1,17 +1,17 @@
 import { axiosPrivate } from "./axios";
 
 const getPoints = async () => {
-  const { data } = await axiosPrivate.get("/api/points");
+  const { data } = await axiosPrivate.get("/points");
   return data;
 };
 
 const getBalance = async () => {
-  const { data } = await axiosPrivate.get("/api/balance");
+  const { data } = await axiosPrivate.get("/balance");
   return data;
 };
 
 const redeemPoints = async () => {
-  const { data } = await axiosPrivate.post("/api/points/redeem");
+  const { data } = await axiosPrivate.post("/points/redeem");
   return data;
 };
 
