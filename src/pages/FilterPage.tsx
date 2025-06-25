@@ -57,7 +57,7 @@ const FilterPage = () => {
     if (fullDataLoading) return;
     handlePriceRangeChange(0, Number(prices.maxPrice));
   }, [fullDataLoading]);
-  console.log(prices, "prices");
+
   return (
     <div className="container flex min-h-dvh flex-col justify-between !py-10">
       <div className="flex h-auto gap-x-6">

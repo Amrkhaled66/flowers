@@ -73,7 +73,6 @@ export const useFilterOptions = () => {
   };
 
   const handlePriceRangeChange = useCallback((min: number, max: number) => {
-    console.log(min, max, "fist");
     setOptions((prevOptions) => {
       if (
         prevOptions.price_range[0] === min &&

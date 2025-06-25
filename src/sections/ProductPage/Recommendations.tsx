@@ -2,13 +2,16 @@ import Product from "src/types/product";
 
 import Slider from "src/components/HomePage/Categories/Slider";
 import { SwiperSlide } from "swiper/react";
-import { useTranslation } from "react-i18next";
 import Button from "src/components/ui/Button";
 import priceFormatter from "src/utils/priceFormatter";
 import { Icon } from "@iconify/react/dist/iconify.js";
 import { getLocalizedName } from "src/utils/getLocalizedName";
+
+import { useTranslation } from "react-i18next";
 import { useAddToCart, useUpdateCart } from "src/hooks/cart/useCartMutations";
 import { useCart } from "src/context/user/cartCtx";
+import { useAuthGuard } from "src/hooks/shared/useAuthGuard";
+
 const RecommendedProduct = ({
   image,
   name,
@@ -50,8 +53,12 @@ const Recommendations = ({
   const { mutate, isPending: isAddPending } = useAddToCart();
   const { mutate: updateCart, isPending: isUpdatePending } = useUpdateCart();
   const { cartProduct } = useCart();
+    const { check } = useAuthGuard();
+  
 
   const handleAddToCart = async (ids: number[]) => {
+    const isAuthenticated = await check();
+    if (!isAuthenticated) return;
     await Promise.all(
       ids.map(async (id) => {
         const existingProduct = cartProduct(id);

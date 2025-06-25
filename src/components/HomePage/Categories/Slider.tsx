@@ -11,6 +11,7 @@ import "swiper/css/navigation";
 // Types
 import Product from "src/types/product";
 import category from "src/types/BaseItem";
+import { useTranslation } from "react-i18next";
 
 // Constants
 const DEFAULT_SLIDES_PER_GROUP = 7;
@@ -43,9 +44,13 @@ const Slider = ({
 }: SliderProps) => {
   const swiperRef = useRef<SwiperType | null>(null);
   const [activeGroup, setActiveGroup] = useState(0);
+  const {
+    i18n: { language },
+  } = useTranslation();
 
   const totalGroups = Math.ceil(items.length / slidesPerGroup);
   const shouldShowNavigation = totalGroups > 1;
+  const isRTL = language === "ar";
 
   const handleSlideChange = (swiper: SwiperType) => {
     const currentGroup = isMenuSlider
@@ -66,7 +71,7 @@ const Slider = ({
   };
 
   useEffect(() => {
-    if (swiperRef.current && targetIndex ) {
+    if (swiperRef.current && targetIndex) {
       swiperRef.current.slideTo(targetIndex, speed || 800);
 
       const newGroup = isMenuSlider
@@ -79,11 +84,18 @@ const Slider = ({
     }
   }, [targetIndex]);
 
+  useEffect(() => {
+    if (swiperRef.current) {
+      swiperRef.current.changeLanguageDirection(isRTL ? "rtl" : "ltr");
+      swiperRef.current.update();
+    }
+  }, [isRTL]);
+
   return (
     <div className="space-y-3">
       <div className="relative">
         <Swiper
-          // dir="ltr"
+          dir={isRTL ? "rtl" : "ltr"}
           speed={speed || 800}
           loop={false}
           modules={[Navigation]}
