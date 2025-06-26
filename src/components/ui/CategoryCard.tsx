@@ -8,19 +8,20 @@ interface CategoryCardProps {
 
 const CategoryCard = ({ img, name, isMenuCard }: CategoryCardProps) => {
   const containerClasses = `
-     text-text-main  space-y-3  
-    ${isMenuCard ? "  text-sm  lg:text-lg" : "text-sm   lg:text-lg"}
+     text-text-main  space-y-3  !h-auto
+    ${isMenuCard ? "w-[84px] lg:w-[150px]" : " w-[104px]  sm:w-[80px]  lg:w-[150px]"} 
   `;
 
   const textClasses = `
-    mx-auto w-fit text-center font-bold  line-clamp-1
-    ${isMenuCard ? " text-sm lg:text-xl" : " "}
+    mx-auto w-full text-center font-bold line-clamp-1
+    whitespace-normal break-words overflow-hidden
+    ${isMenuCard ? "text-sm lg:text-lg" : "text-sm lg:text-lg"}
   `;
 
   return (
     <div className={containerClasses}>
       <div
-        className={`relative mx-auto flex items-center overflow-hidden ${isMenuCard ? "h-[74px] w-[74px] lg:h-[140px] lg:w-[150px]" : "h-[97px] w-[104px] sm:h-[80px] sm:w-[80px] lg:h-[140px] lg:w-[150px]"} `}
+        className={`relative mx-auto flex items-center ${isMenuCard ? "h-[84px] lg:h-[140px]" : "h-[97px] sm:h-[80px] lg:h-[140px]"} `}
       >
         <div className="absolute z-[-1]">
           <img src={bg} alt="bg" />

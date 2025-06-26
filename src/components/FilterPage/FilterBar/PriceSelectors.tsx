@@ -19,8 +19,8 @@ const PriceSelectors = ({
   const priceSlots = getPriceSlots(maxPrice);
   return (
     <BarSection
-      onClick={() => handleToggle("color")}
-      isOpen={openSections.includes("color")}
+      onClick={() => handleToggle("price")}
+      isOpen={openSections.includes("price")}
       title={t("price")}
     >
       <div className="flex flex-wrap gap-x-2 gap-y-4">

@@ -47,6 +47,7 @@ const FilterBar = ({
     "category",
     "occasion",
     "color",
+    "price",
   ]);
   useScrollLock(sidebarOpen);
   const handleToggle = (section: string) => {
@@ -86,7 +87,7 @@ const FilterBar = ({
                 <CheckboxList
                   onOptionChange={onOptionChange}
                   field={"category_ids"}
-                  items={categories}
+                  items={occasions}
                   selectedValues={options.category_ids}
                 />
               </BarSection>
@@ -102,7 +103,7 @@ const FilterBar = ({
               <CheckboxList
                 onOptionChange={onOptionChange}
                 field={"occasion_ids"}
-                items={occasions}
+                items={categories}
                 selectedValues={options.occasion_ids}
               />
             </BarSection>
