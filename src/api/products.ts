@@ -2,7 +2,7 @@ import axiosInstance from "./axios";
 import transformProduct from "src/utils/transforms/transformProduct";
 
 const getProducts = async (filters?: any, page?: number) => {
-  const { data } = await axiosInstance.get(`api/products?page=${page}`, {
+  const { data } = await axiosInstance.get(`/products?page=${page}`, {
     params: filters,
     paramsSerializer: (params) => {
       return Object.entries(params)
@@ -23,7 +23,7 @@ const getProducts = async (filters?: any, page?: number) => {
 };
 
 const getProductById = async (id: string | undefined) => {
-  const { data } = await axiosInstance.get(`api/products/${id}`);
+  const { data } = await axiosInstance.get(`/products/${id}`);
   return data;
 };
 

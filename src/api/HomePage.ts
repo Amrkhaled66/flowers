@@ -1,7 +1,7 @@
 import axiosInstance from "./axios";
 
 const getFullData = async () => {
-  const { data } = await axiosInstance.get("api/full-data");
+  const { data } = await axiosInstance.get("/full-data");
   return data;
 };
 

@@ -3,39 +3,39 @@ import { axiosPrivate } from "src/api/axios";
 import Login from "src/types/auth/Longin";
 
 const login = async (credentials: Login) => {
-  const { data } = await axiosInstance.post("/api/login", credentials);
+  const { data } = await axiosInstance.post("/login", credentials);
   return data;
 };
 
 const register = async (credentials: { email: string; password: string }) => {
-  const { data } = await axiosInstance.post("/api/register", credentials);
+  const { data } = await axiosInstance.post("/register", credentials);
   return data;
 };
 
 const logout = async () => {
-  const { data } = await axiosPrivate.post("/api/logout");
+  const { data } = await axiosPrivate.post("/logout");
   return data;
 };
 
 const requestOtp = async () => {
-  const { data } = await axiosPrivate.get("/api/request-otp");
+  const { data } = await axiosPrivate.get("/request-otp");
   return data;
 };
 
 const verifyOtp = async (otp: string) => {
-  const { data } = await axiosPrivate.post("/api/verify-otp", {
+  const { data } = await axiosPrivate.post("/verify-otp", {
     otp,
   });
   return data;
 };
 
 const changePassword = async (data: any) => {
-  const { data: res } = await axiosPrivate.post("/api/change-password", data);
+  const { data: res } = await axiosPrivate.post("/change-password", data);
   return res;
 };
 
 const deactivateAccount = async () => {
-  const { data } = await axiosPrivate.delete("/api/profile/delete-account");
+  const { data } = await axiosPrivate.delete("/profile/delete-account");
   return data;
 };
 
