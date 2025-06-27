@@ -31,17 +31,6 @@ const SiteMap = memo(() => {
   return (
     <div className="flex flex-1 flex-col justify-between text-left text-white lg:flex-row">
       <SiteMapSection
-        onToggle={() => onActiveList(sectionKeys.categories)}
-        isActive={activeList === sectionKeys.categories}
-        title={t("footer.categoryTitle")}
-      >
-        <DynamicSectionLinks
-          isActive={activeList === sectionKeys.categories}
-          items={categories || []}
-          searchParam="category_id"
-        />
-      </SiteMapSection>
-      <SiteMapSection
         onToggle={() => onActiveList(sectionKeys.occasions)}
         isActive={activeList === sectionKeys.occasions}
         title={t("footer.occasionTitle")}
@@ -50,6 +39,17 @@ const SiteMap = memo(() => {
           isActive={activeList === sectionKeys.occasions}
           items={occasions || []}
           searchParam="occasion_id"
+        />
+      </SiteMapSection>
+      <SiteMapSection
+        onToggle={() => onActiveList(sectionKeys.categories)}
+        isActive={activeList === sectionKeys.categories}
+        title={t("footer.categoryTitle")}
+      >
+        <DynamicSectionLinks
+          isActive={activeList === sectionKeys.categories}
+          items={categories || []}
+          searchParam="category_id"
         />
       </SiteMapSection>
       <SiteMapSection

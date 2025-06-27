@@ -11,7 +11,7 @@ const ProductOverView = ({
   loading = false,
   onShowImagesSlider,
   id,
-  weight,
+  width,
   height,
 }: {
   isOutOfStock: boolean;
@@ -23,7 +23,7 @@ const ProductOverView = ({
   loading?: boolean;
   id: number;
   onShowImagesSlider: () => void;
-  weight: string | undefined;
+  width: string | undefined;
   height: string | undefined;
 }) => {
   return (
@@ -41,7 +41,7 @@ const ProductOverView = ({
         name={name}
         beforeDiscount={beforeDiscount}
         afterDiscount={afterDiscount}
-        weight={weight}
+        width={width}
         height={height}
       />
     </div>

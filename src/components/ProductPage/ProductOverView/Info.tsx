@@ -73,7 +73,7 @@ const Info = ({
   id,
   afterDiscount,
   beforeDiscount,
-  weight,
+  width,
   height,
 }: {
   isOutOfStock: boolean;
@@ -82,7 +82,7 @@ const Info = ({
   id: number;
   afterDiscount: number | undefined;
   beforeDiscount: number | undefined;
-  weight: string | undefined;
+  width: string | undefined;
   height: string | undefined;
 }) => {
   const [quantity, setQuantity] = useState<number>(1);
@@ -231,7 +231,7 @@ const Info = ({
               </div>
             </div>
 
-            {(weight || height) && (
+            {(width || height) && (
               <div className="flex items-center gap-x-2 lg:gap-x-5">
                 <p className=" text-xl lg:text-2xl font-bold">{tProduct("dimensions")}:</p>
                 <div className="flex items-center gap-x-1 lg:gap-x-3">
@@ -274,10 +274,10 @@ const Info = ({
                           {tProduct("height")} : {height}
                         </li>
                       )}
-                      {weight && (
+                      {width && (
                         <li className="flex lg:text-xl">
                           <Icon icon="mdi:dot" className="size-7" />
-                          {tProduct("width")} : {weight}
+                          {tProduct("width")} : {width}
                         </li>
                       )}
                     </ol>

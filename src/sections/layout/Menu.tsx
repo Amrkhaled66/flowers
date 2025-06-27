@@ -76,19 +76,19 @@ const Menu = ({}) => {
             </div>
           ) : (
             <>
-              <MenuSection title={t("categoryTitle")}>
-                <CategoryGrid
-                  toggleMenu={toggleMenu}
-                  searchQuery="category_id"
-                  items={categories}
-                />
-              </MenuSection>
-
               <MenuSection title={t("occasionTitle")}>
                 <CategoryGrid
                   toggleMenu={toggleMenu}
-                  searchQuery={"occasion_id"}
+                  searchQuery="occasion_id"
                   items={occasions}
+                />
+              </MenuSection>
+
+              <MenuSection title={t("categoryTitle")}>
+                <CategoryGrid
+                  toggleMenu={toggleMenu}
+                  searchQuery={"category_id"}
+                  items={categories}
                 />
               </MenuSection>
             </>

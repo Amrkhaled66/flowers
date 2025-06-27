@@ -79,32 +79,30 @@ const FilterBar = ({
           <div className="bg-main-50 space-y-6 rounded-xl p-4">
             <div className="space-y-4">
               <BarSection
-                onClick={() => handleToggle("category")}
-                isOpen={openSections.includes("category")}
-                className="border-b-stroke border-b pb-4"
-                title={t("category")}
+                onClick={() => handleToggle("occasion")}
+                isOpen={openSections.includes("occasion")}
+                title={t("occasion")}
               >
                 <CheckboxList
                   onOptionChange={onOptionChange}
-                  field={"category_ids"}
+                  field={"occasion_ids"}
                   items={occasions}
-                  selectedValues={options.category_ids}
+                  selectedValues={options.occasion_ids}
                 />
               </BarSection>
 
-              {/* <PriceRange prices={prices} handlePriceRangeChange={handlePriceRangeChange} /> */}
             </div>
 
             <BarSection
-              onClick={() => handleToggle("occasion")}
-              isOpen={openSections.includes("occasion")}
-              title={t("occasion")}
+              onClick={() => handleToggle("category")}
+              isOpen={openSections.includes("category")}
+              title={t("category")}
             >
               <CheckboxList
                 onOptionChange={onOptionChange}
-                field={"occasion_ids"}
+                field={"category_ids"}
                 items={categories}
-                selectedValues={options.occasion_ids}
+                selectedValues={options.category_ids}
               />
             </BarSection>
 

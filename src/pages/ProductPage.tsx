@@ -31,6 +31,7 @@ const ProductPage = () => {
     : "";
   usePageTitle(`Product Page - ${product?.nameEn}`);
 
+
   return (
     <div className="h-auto min-h-screen py-6 lg:py-10">
       <div className="container space-y-6 lg:space-y-20">
@@ -47,7 +48,7 @@ const ProductPage = () => {
             afterDiscount={product?.afterDiscount}
             category={product?.categoryId}
             onShowImagesSlider={() => setShowImagesSlider(true)}
-            weight={product?.weight}
+            width={product?.width}
             height={product?.height}
           />
         </div>
