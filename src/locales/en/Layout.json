@@ -5,7 +5,9 @@
     "account": " Sign In",
     "authWelcome": "hello",
     "cart": "cart",
-    "pros": "Express Delivery"
+    "pros1": "Express Delivery",
+    "pros2": "No Location Worries",
+    "pros3": "Premium Flowers & Gifts"
   },
   "cart": {
     "title": "Cart",
@@ -16,8 +18,8 @@
     "empty": "Your Cart is empty"
   },
   "footer": {
-    "categoryTitle":"Celebrate Every Moment",
-    "occasionTitle":"Every Moment Deserves a Gift",
+    "categoryTitle": "Celebrate Every Moment",
+    "occasionTitle": "Every Moment Deserves a Gift",
     "socialMedia": "Social Media",
     "download": "Download App",
     "customerSupport": "Customer Support",
@@ -27,9 +29,9 @@
     "contactUsWithWhatsApp": "Contact Us With What's App",
     "contactUsWithEmail": "Contact Us With Email",
     "faq": "FAQ",
-    "poweredBy":"Powered By",
-    "ballora1":"Ballora is your go-to e-commerce store for unique and thoughtful gifts.",
-    "ballora2":"what makes us Special?",
-    "ballora3":"Our beautiful flower arrangements are crafted from balloons - creative, colorful and unforgettable."
+    "poweredBy": "Powered By",
+    "ballora1": "Ballora is your go-to e-commerce store for unique and thoughtful gifts.",
+    "ballora2": "what makes us Special?",
+    "ballora3": "Our beautiful flower arrangements are crafted from balloons - creative, colorful and unforgettable."
   }
 }

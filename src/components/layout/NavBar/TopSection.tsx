@@ -31,21 +31,19 @@ const TopSection = () => {
               icon={
                 <Icon icon="mdi:truck-check-outline" width="20" height="20" />
               }
-              text={t("navBar.pros")}
-            />
-            <ProsIcon
-              className="hidden md:flex"
-              icon={
-                <Icon icon="mdi:truck-check-outline" width="20" height="20" />
-              }
-              text={t("navBar.pros")}
+              text={t("navBar.pros1")}
             />
             <ProsIcon
               className="hidden lg:flex"
               icon={
-                <Icon icon="mdi:truck-check-outline" width="20" height="20" />
+                <Icon icon="lsicon:location-outline" width="24" height="24" />
               }
-              text={t("navBar.pros")}
+              text={t("navBar.pros2")}
+            />
+            <ProsIcon
+              className="hidden md:flex"
+              icon={<Icon icon="mdi-light:gift" width="24" height="24" />}
+              text={t("navBar.pros3")}
             />
           </div>
           <ChangeLngButton />

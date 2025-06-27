@@ -23,7 +23,7 @@ export default defineConfig({
     },
   },
   server: {
-    port: 5173,
+    port: 3000,
   },
   optimizeDeps: {
     include: ["react-leaflet", "leaflet"],
