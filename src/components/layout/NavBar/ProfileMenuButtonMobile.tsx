@@ -32,7 +32,7 @@ const ProfileUserCard = ({
   user: any;
   onClick: () => void;
 }) => (
-  <Link to="/profile/mydata" onClick={onClick}>
+  <Link to="/profile/userInfo" onClick={onClick}>
     <div className="bg-main-50 border-b-stroke flex items-start justify-between rounded-xl p-3">
       <div className="flex items-start gap-x-3">
         <div className="text-main flex size-[54px] items-center justify-center rounded-full bg-white">

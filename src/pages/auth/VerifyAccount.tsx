@@ -22,9 +22,7 @@ const VerifyAccount = () => {
   const { authData } = useAuth();
   const { t: forgetPasswordTranslation } = useTranslation("forgetPassword");
 
-  const handleChangePhone = () => {
-    navigate("/profile/mydata");
-  };
+
 
   const handleResend = () => {
     requestOtp(undefined, {
@@ -68,7 +66,6 @@ const VerifyAccount = () => {
   return (
     <OtpForm
       otp={otp}
-      handleChangePhone={handleChangePhone}
       setOtp={setOtp}
       error={error}
       onResend={handleResend}

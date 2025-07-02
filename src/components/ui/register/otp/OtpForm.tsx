@@ -17,7 +17,7 @@ const OtpForm = ({
   disabledResend,
 }: {
   children?: React.ReactNode;
-  handleChangePhone: () => void;
+  handleChangePhone?: () => void;
   otp: string[];
   setOtp: React.Dispatch<React.SetStateAction<string[]>>;
   phone: string;
@@ -61,12 +61,14 @@ const OtpForm = ({
               <div className="text-text-main justify-start text-center text-sm font-bold">
                 +{phone}
               </div>
-              <button
-                onClick={handleChangePhone}
-                className="text-main justify-start text-center text-sm font-bold hover:underline"
-              >
-                {forgetPasswordTranslation("submitOtp.change")}
-              </button>
+              {handleChangePhone && (
+                <button
+                  onClick={handleChangePhone}
+                  className="text-main justify-start text-center text-sm font-bold hover:underline"
+                >
+                  {forgetPasswordTranslation("submitOtp.change")}
+                </button>
+              )}
             </div>
           </div>
         </div>

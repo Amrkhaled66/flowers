@@ -6,7 +6,7 @@ const Elements: ProfileSideBar[] = [
     nameEn: "Personal information",
     nameAr: "المعلومات الشخصية",
     icon: <Icon icon="bi:person" width="24" height="24" />,
-    link: "/profile/mydata",
+    link: "/profile/userInfo",
   },
   {
     nameEn: "Change password",

@@ -3,9 +3,9 @@ import { Icon } from "@iconify/react/dist/iconify.js";
 
 type BreadcrumbMatch = UIMatch<
   {
-    breadcrumb: string;
+    breadcrumb: string | (() => string);
   },
-  { breadcrumb: string }
+  { breadcrumb: string | (() => string) }
 >;
 
 const ProfileNav = () => {
@@ -31,7 +31,9 @@ const ProfileNav = () => {
             height="24"
           />
           <Link to={crumb.pathname}>
-            {crumb.breadcrumb}
+            {typeof crumb.breadcrumb === "function"
+              ? crumb.breadcrumb()
+              : crumb.breadcrumb}
           </Link>
         </span>
       ))}

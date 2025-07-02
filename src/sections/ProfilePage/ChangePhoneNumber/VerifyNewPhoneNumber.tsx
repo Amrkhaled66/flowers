@@ -43,7 +43,7 @@ const VerifyNewPhoneNumber = ({
           icon: "success",
           confirmButtonText: "Okay",
         }).then(() => {
-          navigate("/profile/mydata");
+          navigate("/profile/userInfo");
         });
       },
       onError: (err: any) => {

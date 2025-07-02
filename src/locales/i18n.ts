@@ -21,7 +21,8 @@ import {
   DeliveryInfoEn,
   ProductPageEn,
   ToastMessagesEn,
-  AddedToCartModelEn
+  AddedToCartModelEn,
+  profileBreadcrumbsEn,
 } from "src/locales/en";
 
 import {
@@ -41,7 +42,8 @@ import {
   DeliveryInfoAr,
   ProductPageAr,
   ToastMessagesAr,
-  AddedToCartModelAr
+  AddedToCartModelAr,
+  profileBreadcrumbsAr,
 } from "src/locales/ar";
 
 const resources = {
@@ -62,7 +64,8 @@ const resources = {
     deliveryInfo: DeliveryInfoEn,
     productPage: ProductPageEn,
     toast: ToastMessagesEn,
-    addedToCartModel: AddedToCartModelEn
+    addedToCartModel: AddedToCartModelEn,
+    profileBreadcrumbs: profileBreadcrumbsEn,
   },
   ar: {
     home: HomeAr,
@@ -81,7 +84,8 @@ const resources = {
     deliveryInfo: DeliveryInfoAr,
     productPage: ProductPageAr,
     toast: ToastMessagesAr,
-    addedToCartModel: AddedToCartModelAr
+    addedToCartModel: AddedToCartModelAr,
+    profileBreadcrumbs: profileBreadcrumbsAr,
   },
 };
 

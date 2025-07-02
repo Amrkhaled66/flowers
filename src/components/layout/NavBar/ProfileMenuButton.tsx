@@ -33,7 +33,7 @@ const ProfileMenuButton = () => {
       onMouseLeave={onCloseMenu}
       className="relative hidden lg:block"
     >
-      <Link to="/profile/mydata">
+      <Link to="/profile/userInfo">
         <button
           className={`hover:bg-main-100 animate relative flex items-center gap-x-2 rounded-xl p-2 ${openMenu && "bg-main-100"}`}
         >

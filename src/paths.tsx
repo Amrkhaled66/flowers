@@ -7,7 +7,18 @@ import { OrderProvider } from "./context/orderCtx";
 import MessageGiftProvider from "./context/MessageGiftCtx";
 import { DeliveryTimeCtxProvider } from "./context/DeliveryTimeCtx";
 
-import { OnlyGuestUser, ProtectedRoute, VerifiedAccount ,NotVerifiedAccount} from "./middleware";
+import {
+  OnlyGuestUser,
+  ProtectedRoute,
+  VerifiedAccount,
+  NotVerifiedAccount,
+} from "./middleware";
+
+import i18n from "i18next";
+
+const getBreadcrumb = (translationKey: string) => {
+  return () => i18n.t(`profileBreadcrumbs:${translationKey}`);
+};
 
 import {
   HomePage,
@@ -31,7 +42,7 @@ import {
   Payment,
 
   // Profile
-  MyData,
+  UserInfo,
   ChangePhoneNumber,
   ChangePassword,
   Occasions,
@@ -41,7 +52,7 @@ import {
   Points,
   AddNewAddress,
   EditProfile,
-  BalloraBallance
+  BalloraBallance,
 } from "./pages";
 
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
@@ -49,11 +60,11 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 const router = createBrowserRouter([
   {
     path: "/",
-    element:
+    element: (
       <NotVerifiedAccount>
         <MainLayout />
-       </NotVerifiedAccount>
-    ,
+      </NotVerifiedAccount>
+    ),
     children: [
       { index: true, element: <HomePage /> },
       { path: "product/:id", element: <ProductPage /> },
@@ -121,65 +132,64 @@ const router = createBrowserRouter([
         children: [
           {
             index: true,
-            path: "mydata",
-            element: <MyData />,
-            handle: { breadcrumb: "My Data" },
+            path: "userInfo",
+            element: <UserInfo />,
+            handle: { breadcrumb: getBreadcrumb("userInfo") },
           },
           {
             path: "changePhoneNumber",
             element: <ChangePhoneNumber />,
-            handle: { breadcrumb: "Change Phone Number" },
+            handle: { breadcrumb: getBreadcrumb("changePhoneNumber") },
           },
           {
             path: "editProfile",
             element: <EditProfile />,
-            handle: { breadcrumb: "Edit Profile" },
+            handle: { breadcrumb: getBreadcrumb("editProfile") },
           },
           {
             path: "change-password",
             element: <ChangePassword />,
-            handle: { breadcrumb: "Change Password" },
+            handle: { breadcrumb: getBreadcrumb("changePassword") },
           },
           {
             path: "occasions",
             element: <Occasions />,
-            handle: { breadcrumb: "Occasions" },
+            handle: { breadcrumb: getBreadcrumb("occasions") },
           },
           {
             path: "addresses",
-            handle: { breadcrumb: "Address" },
+            handle: { breadcrumb: getBreadcrumb("addresses") },
             children: [
               {
                 index: true,
                 element: <Address />,
               },
-
               {
                 path: "addNewAddress",
                 element: <AddNewAddress />,
-                handle: { breadcrumb: "Add New Address" },
+                handle: { breadcrumb: getBreadcrumb("addNewAddress") },
               },
             ],
           },
           {
             path: "favorites",
             element: <Favorite />,
-            handle: { breadcrumb: "Favorite" },
+            handle: { breadcrumb: getBreadcrumb("favorites") },
           },
           {
             path: "orders",
             element: <MyOrders />,
-            handle: { breadcrumb: "My Orders" },
+            handle: { breadcrumb: getBreadcrumb("orders") },
           },
           {
             path: "points",
             element: <Points />,
-            handle: { breadcrumb: "Points" },
+            handle: { breadcrumb: getBreadcrumb("points") },
           },
           {
             path: "ballance",
             element: <BalloraBallance />,
-            handle: { breadcrumb: "Ballora Ballance" },
+            handle: { breadcrumb: getBreadcrumb("balloraBallance") },
           },
         ],
       },

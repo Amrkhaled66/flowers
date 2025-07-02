@@ -15,3 +15,4 @@ export {default as DeliveryInfoAr} from "./DeliveryInfo.json";
 export {default as ProductPageAr} from "./ProductPage.json"
 export {default as ToastMessagesAr} from "./toastMessages.json"
 export {default as AddedToCartModelAr} from "./AddedToCartModel.json"
+export {default as profileBreadcrumbsAr} from "./profileBreadcrumbs.json";

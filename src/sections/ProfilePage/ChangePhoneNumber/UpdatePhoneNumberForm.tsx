@@ -81,7 +81,7 @@ const UpdatePhoneNumberForm = ({
             text={tShared("continue")}
             className="bg-main hover:bg-main-300 animate !w-full rounded-xl !py-3 text-base leading-7 font-bold text-white"
           />
-          <Link to="/profile/mydata">
+          <Link to="/profile/userInfo">
             <div className="border-main w-full rounded-xl border py-3 text-center text-lg font-bold">
               {tShared("back")}
             </div>

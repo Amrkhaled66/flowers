@@ -13,6 +13,7 @@ import {
   getLocalizedName,
   getLocalizedDescription,
 } from "src/utils/getLocalizedName";
+
 import usePageTitle from "src/hooks/ui/useUpdatePageTitle";
 import Product from "src/types/product";
 

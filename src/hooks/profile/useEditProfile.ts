@@ -46,7 +46,7 @@ const useEditProfile = () => {
         confirmButtonText: "Okay",
       });
       updateUser(data.data);
-      navigate("/profile/myData");
+      navigate("/profile/userInfo");
     },
     onError: (err: any) => {
       Alert({

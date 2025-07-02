@@ -1,4 +1,3 @@
-import ideasArr from "src/data/ideas";
 import IdeaCard from "./IdeaCard";
 import Idea from "src/types/Idea";
 import Slider from "../Categories/Slider";
