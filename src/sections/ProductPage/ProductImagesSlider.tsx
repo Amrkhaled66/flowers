@@ -12,13 +12,13 @@ const ProductImagesSlider = ({
     <div className="fixed inset-0 z-[100000] flex h-screen w-screen items-center justify-center bg-white">
       <button
         onClick={onClose}
-        className="animate absolute top-2 right-2 rounded-full bg-gray-100 p-2 hover:drop-shadow-xl lg:right-[25%]"
+        className="animate absolute top-2 right-2 z-[10000] rounded-full bg-gray-100 p-2 hover:drop-shadow-xl lg:right-[25%]"
       >
         <Icon icon="ion:close" width="20" height="20" />
       </button>
-      <div className="relative w-full  overflow-hidden sm:w-[65%] lg:w-[80%] lg:overflow-visible xl:w-[40%]">
+      <div className="relative !h-full w-full overflow-hidden py-12 sm:w-[65%] lg:w-[80%] lg:overflow-visible xl:w-[40%]">
         <Slider
-          isproductListSlider
+          isImageSlider
           speed={500}
           items={images}
           slidesPerGroup={1}
@@ -26,9 +26,9 @@ const ProductImagesSlider = ({
         >
           {images &&
             images.map((img: string) => (
-              <SwiperSlide key={img}>
+              <SwiperSlide className="!h-full" key={img}>
                 <img
-                  className="!size-full !aspect-square object-contain object-center lg:rounded-xl"
+                  className="!aspect-square !size-full object-contain object-center pt-[60px] lg:rounded-xl"
                   src={img}
                 />
               </SwiperSlide>

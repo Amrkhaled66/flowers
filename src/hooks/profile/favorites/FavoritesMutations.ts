@@ -9,7 +9,7 @@ import { useFavorites } from "src/context/user/favoritesCtx";
 
 const useGetFavorites = () => {
   const { 
-    // isVerified 
+    isVerified ,
 isAuthenticated
    } = useAuth();
   const { storeFavorites } = useFavorites();
@@ -20,7 +20,7 @@ isAuthenticated
       storeFavorites(data.data);
       return data;
     },
-    enabled: isAuthenticated,
+    enabled: isAuthenticated && isVerified,
     retry: 2,
   });
 };

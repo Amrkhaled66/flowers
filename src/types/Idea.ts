@@ -1,7 +1,9 @@
 type idea = {
-  nameEn: string;
-  nameAr: string;
-  img: string;
+  contentEn: string;
+  contentAr: string;
+  image: string;
+  categoryId: number;
+  id: number;
 };
 
 export default idea;

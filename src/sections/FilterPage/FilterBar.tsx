@@ -90,7 +90,6 @@ const FilterBar = ({
                   selectedValues={options.occasion_ids}
                 />
               </BarSection>
-
             </div>
 
             <BarSection
@@ -126,7 +125,10 @@ const FilterBar = ({
             </BarSection>
 
             <button
-              onClick={onSubmit}
+              onClick={() => {
+                onSubmit();
+                closeSidebar();
+              }}
               className="bg-main animate hover:bg-main-300 h-[43px] w-full rounded-xl text-lg font-semibold text-white lg:h-[60px]"
             >
               {t("apply")}

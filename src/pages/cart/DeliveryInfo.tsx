@@ -1,4 +1,3 @@
-import { useAddressFormWithDelivery } from "src/hooks/cart/useAddressFormWithDelivery";
 import FormInput from "src/components/ui/register/FormInput";
 import MapButton from "src/components/ui/AddressForm/MapModel/MapButton";
 import Address from "src/types/UserInfo/Address";
@@ -8,7 +7,9 @@ import Alert from "src/components/ui/Alert";
 import PrivacyConsentToggle from "src/components/Cart/DeliveryInfo/PrivacyConsentToggle ";
 import Button from "src/components/ui/Button";
 import { Icon } from "@iconify/react/dist/iconify.js";
+import formatPhoneNumber from "src/utils/formatPhoneNumber";
 
+import { useAddressFormWithDelivery } from "src/hooks/cart/useAddressFormWithDelivery";
 import { useEffect } from "react";
 import { Navigate, useNavigate } from "react-router";
 import { useOrderSummary } from "src/context/OrderSummaryContext";
@@ -58,7 +59,7 @@ const DeliveryInfo = () => {
       });
     updateOrder({
       recipientName: formData.recipientName,
-      phoneNumber: formData.recipientPhone,
+      phoneNumber: formatPhoneNumber(formData.recipientPhone),
       area: formData.area,
       fullAddress: formData.address,
     });
@@ -99,7 +100,7 @@ const DeliveryInfo = () => {
             <input
               type="checkbox"
               onChange={toggleDeliverWithoutAddress}
-              checked={order.withoutAddress||deliverWithoutAddress}
+              checked={order.withoutAddress || deliverWithoutAddress}
               className="peer sr-only"
             />
             <div className="peer relative h-6 w-11 rounded-full bg-gray-200 peer-checked:bg-green-600 peer-focus:outline-none after:absolute after:start-[2px] after:top-[2px] after:h-5 after:w-5 after:rounded-full after:border after:border-gray-300 after:bg-white after:transition-all after:content-[''] peer-checked:after:translate-x-full peer-checked:after:border-white rtl:peer-checked:after:-translate-x-full"></div>

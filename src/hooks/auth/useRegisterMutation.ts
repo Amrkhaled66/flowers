@@ -3,8 +3,9 @@ import { useMutation } from "@tanstack/react-query";
 
 const useRegister = () => {
   return useMutation({
-    mutationFn: (credentials: { email: string; password: string }) =>
-      register(credentials),
+    mutationFn: (credentials:any) => {
+      return register(credentials);
+    },
   });
 };
 

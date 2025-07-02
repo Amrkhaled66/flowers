@@ -4,6 +4,7 @@ import Button from "src/components/ui/Button";
 import MapButton from "src/components/ui/AddressForm/MapModel/MapButton";
 import Address from "src/types/UserInfo/Address";
 import AreaSelection from "src/components/ui/AddressForm/AreaSelection";
+import formatPhoneNumber from "src/utils/formatPhoneNumber";
 
 import { useMemo } from "react";
 import { useTranslation } from "react-i18next";
@@ -40,7 +41,12 @@ const AddressForm = ({
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (!validateBaseForm()) return;
-    onSubmit(formData);
+    onSubmit({
+      ...formData,
+      recipientPhone: formatPhoneNumber(
+        formData.recipientPhone.replace(/\s+/g, ""),
+      ),
+    });
   };
 
   return (

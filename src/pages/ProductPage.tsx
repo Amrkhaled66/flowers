@@ -57,6 +57,7 @@ const ProductPage = () => {
         <ProductDetails
           loading={isLoading}
           description={localizedDescription}
+          marketingMessage={product?.marketingMessage}
         />
         {product?.recommendedProducts.length > 0 && (
           <Recommendations

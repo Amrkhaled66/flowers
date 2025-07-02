@@ -7,7 +7,7 @@ const login = async (credentials: Login) => {
   return data;
 };
 
-const register = async (credentials: { email: string; password: string }) => {
+const register = async (credentials:any) => {
   const { data } = await axiosInstance.post("/register", credentials);
   return data;
 };

@@ -30,8 +30,8 @@ const RecommendedProduct = ({
       />
     </div>
     <div className="text-center font-bold">
-      <p>{name}</p>
-      <p>{price}</p>
+      <p className="line-clamp-1">{name}</p>
+      <p>{priceFormatter(price)}</p>
     </div>
   </div>
 );
@@ -53,8 +53,7 @@ const Recommendations = ({
   const { mutate, isPending: isAddPending } = useAddToCart();
   const { mutate: updateCart, isPending: isUpdatePending } = useUpdateCart();
   const { cartProduct } = useCart();
-    const { check } = useAuthGuard();
-  
+  const { check } = useAuthGuard();
 
   const handleAddToCart = async (ids: number[]) => {
     const isAuthenticated = await check();
@@ -75,11 +74,13 @@ const Recommendations = ({
     );
   };
 
+  console.log(mainProductPrice);
+
   return (
     <div className="space-y-4 sm:space-y-5 lg:space-y-6 lg:py-10">
       <h2 className="text-2xl font-bold">{t("recommendations")}</h2>
 
-      <Slider slidesPerGroup={1} items={products}>
+      <Slider notDisplayDots slidesPerGroup={1} items={products}>
         {products.map((product) => (
           <>
             <SwiperSlide
@@ -97,7 +98,7 @@ const Recommendations = ({
                   <RecommendedProduct
                     image={mainProductImage}
                     name={mainProductName || ""}
-                    price={product.afterDiscount}
+                    price={mainProductPrice}
                   />
                 </div>
                 <Button

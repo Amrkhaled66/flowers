@@ -7,7 +7,7 @@ import { OrderProvider } from "./context/orderCtx";
 import MessageGiftProvider from "./context/MessageGiftCtx";
 import { DeliveryTimeCtxProvider } from "./context/DeliveryTimeCtx";
 
-import { OnlyGuestUser, ProtectedRoute, VerifiedAccount } from "./middleware";
+import { OnlyGuestUser, ProtectedRoute, VerifiedAccount ,NotVerifiedAccount} from "./middleware";
 
 import {
   HomePage,
@@ -50,9 +50,9 @@ const router = createBrowserRouter([
   {
     path: "/",
     element:
-      // <NotVerifiedAccount>
+      <NotVerifiedAccount>
         <MainLayout />
-      // </NotVerifiedAccount>
+       </NotVerifiedAccount>
     ,
     children: [
       { index: true, element: <HomePage /> },

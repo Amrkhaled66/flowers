@@ -46,8 +46,8 @@ const ProductCardUI = ({
           loading="lazy"
           className={`animate w-full ${isAddedModelCard && "aspect-square"} object-cover`}
         />
-        <div className="space-y-3 p-2 sm:p-3 lg:p-4">
-          <p className="text-text-main line-clamp-4 text-start text-xs font-bold sm:text-xl lg:w-[90%] lg:text-base">
+        <div className="space-y-3 h-[50px]  p-2 sm:p-3 lg:p-4">
+          <p className="text-text-main line-clamp-2 text-start text-xs font-bold sm:text-xl lg:w-[90%] lg:text-base">
             {getLocalizedName(product, language)}
           </p>
         </div>

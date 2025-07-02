@@ -29,6 +29,8 @@ interface SliderProps {
   onChangeSlider?: (index: number) => void;
   speed?: number;
   isproductListSlider?: boolean;
+  notDisplayDots?: boolean;
+  isImageSlider?: boolean;
 }
 
 const Slider = ({
@@ -41,6 +43,8 @@ const Slider = ({
   onChangeSlider,
   speed,
   isproductListSlider,
+  notDisplayDots = false,
+  isImageSlider = false,
 }: SliderProps) => {
   const swiperRef = useRef<SwiperType | null>(null);
   const [activeGroup, setActiveGroup] = useState(0);
@@ -92,8 +96,8 @@ const Slider = ({
   }, [isRTL]);
 
   return (
-    <div className="space-y-3">
-      <div className="relative">
+    <div className={`flex ${isImageSlider && "h-full"} flex-col space-y-3`}>
+      <div className={`relative ${isImageSlider && "h-full"}`}>
         <Swiper
           dir={isRTL ? "rtl" : "ltr"}
           speed={speed || 800}
@@ -123,7 +127,7 @@ const Slider = ({
               spaceBetween: notSpaceBetween ? 0 : 16,
             },
           }}
-          className={`z-[10000] !overflow-visible last:ms-0 lg:w-full lg:!overflow-hidden ${isproductListSlider && "xl:aspect-square"}`}
+          className={`z-[10000] ${isImageSlider && "!h-full"} !overflow-visible last:ms-0 lg:w-full lg:!overflow-hidden ${isproductListSlider && "xl:aspect-square"}`}
         >
           {children}
         </Swiper>
@@ -146,7 +150,7 @@ const Slider = ({
         )}
       </div>
 
-      {shouldShowNavigation && (
+      {shouldShowNavigation && !notDisplayDots && (
         <SliderPoints
           currentIndex={activeGroup}
           onDotClick={handleDotClick}

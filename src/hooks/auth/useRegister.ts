@@ -3,15 +3,16 @@ import {
   validatePassword,
   validatePhoneNumber,
 } from "src/utils/register";
+import formatPhoneNumber from "src/utils/formatPhoneNumber";
 
 import { useState, ChangeEvent, FormEvent } from "react";
 import { useRegister as useRegisterMutation } from "./useRegisterMutation";
 import { useNavigate } from "react-router";
-import { UserRegister,UserRegisterErrors } from "src/types/auth/User";
+import { UserRegister, UserRegisterErrors } from "src/types/auth/User";
 import { useAuth } from "src/context/authCtx";
 import { useTranslation } from "react-i18next";
 
-import Alert from "src/components/ui/Alert";
+// import Alert from "src/components/ui/Alert";
 export default function useRegister() {
   const [formData, setFormData] = useState<UserRegister>({
     first_name: "",
@@ -116,36 +117,41 @@ export default function useRegister() {
 
     if (!validateForm()) return;
 
-    mutate(formData, {
-      onSuccess: (data) => {
-        login(data.user, data.token);
-        Alert({
-          title: "Success",
-          text: "Account created successfully",
-          icon: "success",
-          confirmButtonText: "Okay",
-        }).then(() => {
-          // navigate("/verify-account");
-          navigate("/");
-        });
-      },
+    console.log("Submitting form data:", formData);
+    mutate(
+      { ...formData, phone_number: formatPhoneNumber(formData.phone_number) },
+      {
+        onSuccess: (data) => {
+          login(data.user, data.token);
+          navigate("/verify-account");
+          // Alert({
+          //   title: "Success",
+          //   text: "Account created successfully",
+          //   icon: "success",
+          //   confirmButtonText: "Okay",
+          // }).then(() => {
+          //  ;
+          //   // navigate("/");
+          // });
+        },
 
-      onError: (err: any) => {
-        const formattedErrors: { [key: string]: string } = {};
+        onError: (err: any) => {
+          const formattedErrors: { [key: string]: string } = {};
 
-        Object.entries(err.response.data.errors).forEach(
-          ([field, messages]) => {
-            formattedErrors[field] = (messages as string[])[0];
-          },
-        );
-        if (err.response.status === 400)
-          setErrors((prev) => ({
-            ...prev,
-            ...formattedErrors,
-          }));
-        return;
+          Object.entries(err.response.data.errors).forEach(
+            ([field, messages]) => {
+              formattedErrors[field] = (messages as string[])[0];
+            },
+          );
+          if (err.response.status === 400)
+            setErrors((prev) => ({
+              ...prev,
+              ...formattedErrors,
+            }));
+          return;
+        },
       },
-    });
+    );
   };
 
   return {

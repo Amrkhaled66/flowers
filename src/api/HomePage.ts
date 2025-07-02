@@ -5,5 +5,9 @@ const getFullData = async () => {
   return data;
 };
 
+const getPinnedCategories = async () => {
+  const { data } = await axiosInstance.get("/pin-categories");
+  return data;
+};
 
-export { getFullData, };
+export { getFullData, getPinnedCategories };

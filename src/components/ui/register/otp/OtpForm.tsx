@@ -14,6 +14,7 @@ const OtpForm = ({
   isSendOtpPending,
   onResend,
   isChangePhoneNumberForm,
+  disabledResend,
 }: {
   children?: React.ReactNode;
   handleChangePhone: () => void;
@@ -24,12 +25,13 @@ const OtpForm = ({
   isSendOtpPending: boolean;
   onResend: () => void;
   isChangePhoneNumberForm?: boolean;
+  disabledResend?: boolean;
 }) => {
   const { t: forgetPasswordTranslation } = useTranslation("forgetPassword");
 
   return (
     <div
-      className={clsx("flex items-center  justify-center", {
+      className={clsx("flex items-center justify-center", {
         "py-10": !isChangePhoneNumberForm,
       })}
     >
@@ -37,7 +39,7 @@ const OtpForm = ({
         className={clsx(
           "border-stroke inline-flex flex-col items-center justify-start gap-5 rounded-xl bg-zinc-100 p-4 lg:p-8",
           {
-            "border lg:w-[646px] w-[90%]": !isChangePhoneNumberForm,
+            "w-[90%] border lg:w-[646px]": !isChangePhoneNumberForm,
           },
           {
             "w-full": isChangePhoneNumberForm,
@@ -71,10 +73,12 @@ const OtpForm = ({
         <div className="flex flex-col items-center justify-start gap-8 self-stretch">
           <OtpInput error={error} otp={otp} setOtp={setOtp} />
           {children}
-          <TimerCountDown
-            isSendOtpPending={isSendOtpPending}
-            onResend={onResend}
-          />
+          {!disabledResend && (
+            <TimerCountDown
+              isSendOtpPending={isSendOtpPending}
+              onResend={onResend}
+            />
+          )}
         </div>
       </div>
     </div>

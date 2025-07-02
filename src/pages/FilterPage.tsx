@@ -17,9 +17,9 @@ const FilterPage = () => {
     handleOptionChange,
     handlePriceRangeChange,
     appliedOptions,
-    setAppliedOptions,
     page,
     setPage,
+    applyFilters,
   } = useFilterOptions();
   const { sidebarOpen, closeSidebar, toggleSidebar } = useSidebar();
 
@@ -36,7 +36,7 @@ const FilterPage = () => {
 
   const onApplyFilter = () => {
     if (JSON.stringify(options) === JSON.stringify(appliedOptions)) return;
-    setAppliedOptions(options);
+    applyFilters();
   };
 
   useEffect(() => {
@@ -53,10 +53,10 @@ const FilterPage = () => {
     refetchProducts({ cancelRefetch: true });
   }, [page]);
 
-  useEffect(() => {
-    if (fullDataLoading) return;
-    handlePriceRangeChange(0, Number(prices.maxPrice));
-  }, [fullDataLoading]);
+  // useEffect(() => {
+  //   if (fullDataLoading) return;
+  //   handlePriceRangeChange(0, Number(prices.maxPrice));
+  // }, [fullDataLoading]);
 
   return (
     <div className="container flex min-h-dvh flex-col justify-between !py-10">

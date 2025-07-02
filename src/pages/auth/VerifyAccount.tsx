@@ -15,6 +15,7 @@ const VerifyAccount = () => {
   const [otp, setOtp] = useState<string[]>(Array(4).fill(""));
   const navigate = useNavigate();
   const [error, setError] = useState("");
+  const [disabledResend, setDisabledResend] = useState<boolean>(false);
   const { mutate: requestOtp, isPending: isRequestOtpPending } =
     useRequestOtp();
   const { mutate: verifyOtp, isPending: isVerifyOtpPending } = useVerifyOtp();
@@ -29,7 +30,7 @@ const VerifyAccount = () => {
     requestOtp(undefined, {
       onError: (err: any) => {
         setError(err.response.data.message);
-      }
+      },
     });
   };
 
@@ -56,7 +57,12 @@ const VerifyAccount = () => {
   };
 
   useEffect(() => {
-    requestOtp();
+    requestOtp(undefined, {
+      onError: (err: any) => {
+        if (err.response.status === 400) setDisabledResend(true);
+        setError(err.response.data.message);
+      },
+    });
   }, []);
 
   return (
@@ -68,6 +74,7 @@ const VerifyAccount = () => {
       onResend={handleResend}
       isSendOtpPending={isRequestOtpPending}
       phone={authData.user?.phone_number || ""}
+      disabledResend={disabledResend}
     >
       <Button
         loading={isVerifyOtpPending}
