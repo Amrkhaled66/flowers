@@ -8,6 +8,7 @@ export const reactHotToastImpl = {
         background: "#f86886",
         fontWeight: "bold",
         borderRadius: "10px",
+        color: "#fff",
         padding: "10px 23px",
       },
     }),

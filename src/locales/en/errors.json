@@ -23,6 +23,7 @@
     ,
     "unauthorized":"Please login first",
     "login":"Login",
-    "warning":"Warning"
+    "warning":"Warning",
+    "deleteAccount": "You Can't Delete Your Account ,You have pending orders"
   }
   
