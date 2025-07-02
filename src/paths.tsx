@@ -56,6 +56,7 @@ import {
 } from "./pages";
 
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import CartProvider from "./context/user/cartCtx";
 
 const router = createBrowserRouter([
   {
@@ -222,7 +223,11 @@ const router = createBrowserRouter([
               },
               {
                 path: "payment",
-                element: <Payment />,
+                element: (
+                  <CartProvider>
+                    <Payment />
+                  </CartProvider>
+                ),
               },
             ],
           },

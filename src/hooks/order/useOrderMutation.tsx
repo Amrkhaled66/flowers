@@ -9,6 +9,8 @@ import {
   getOrderById,
 } from "src/api/order";
 import transformReceivedOrder from "src/utils/transforms/transformReceivedOrder";
+import { useOrder } from "src/context/orderCtx";
+import { useCart } from "src/context/user/cartCtx";
 const useGetBusyTimes = () =>
   useQuery({
     queryKey: ["busyTimes"],
@@ -37,13 +39,21 @@ const useGetOrderById = (id: number) =>
 
 const useSubmitOrder = () => {
   const navigate = useNavigate();
+  const {
+    resetOrder,
+  } = useOrder();
+  const { storeCart } = useCart();
   return useMutation({
     mutationFn: submitOrder,
     onSuccess: (data) => {
-      navigate("/success-order", {
-        replace: true,
-        state: { orderId: data.orderId },
-      });
+      storeCart([]);
+      resetOrder();
+      if (data.order_id)
+        navigate("/success-order", {
+          replace: true,
+          state: { orderId: data.order_id },
+        });
+      else window.location.href = data.payment_url;
     },
   });
 };

@@ -16,6 +16,7 @@ const PaymentWays = () => {
   const handleChangeMethod = (name: string) => {
     updateOrder({ paymentMethod: name });
   };
+  
   return (
     <div className="space-y-2 sm:space-y-3 lg:space-y-4">
       <PaymentWay

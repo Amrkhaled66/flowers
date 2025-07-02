@@ -125,7 +125,6 @@ export const useFilterOptions = () => {
   }, []);
 
   const applyFilters = useCallback(() => {
-    console.log("Applying filters:", options);
     setAppliedOptions(options);
     updateURLParams(options);
     setPage(1); 

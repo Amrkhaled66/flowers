@@ -32,6 +32,7 @@ interface CartContextType {
   setIsBalanceUsed: (value: boolean) => void;
   getProductQuantity: (id: number) => number;
   cartProduct: (id: number) => CartItem | undefined;
+  resetCart: () => void;
 }
 
 const CartContext = createContext<CartContextType | undefined>(undefined);
@@ -96,6 +97,12 @@ export const CartProvider: React.FC<{ children: React.ReactNode }> = ({
     [cart],
   );
 
+  const resetCart = useCallback(() => {
+    setCart([]);
+    setCoupon(null);
+    setIsBalanceUsed(false);
+  }, []);
+
   const cartSubTotal = useMemo(() => {
     let subtotal = coupon
       ? baseTotal - (baseTotal * coupon.discount) / 100
@@ -123,6 +130,7 @@ export const CartProvider: React.FC<{ children: React.ReactNode }> = ({
     [cartSubTotal],
   );
 
+
   return (
     <CartContext.Provider
       value={{
@@ -141,6 +149,7 @@ export const CartProvider: React.FC<{ children: React.ReactNode }> = ({
         isBalanceUsed,
         getProductQuantity,
         cartProduct,
+        resetCart
       }}
     >
       {children}

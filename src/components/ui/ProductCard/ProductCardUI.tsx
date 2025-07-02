@@ -36,7 +36,7 @@ const ProductCardUI = ({
   };
 
   return (
-    <div className="border-stroke animate relative flex w-full flex-col justify-between overflow-hidden rounded-2xl border bg-white hover:drop-shadow-xl">
+    <div className="border-stroke animate imgContainer relative flex w-full flex-col justify-between overflow-hidden rounded-2xl border bg-white hover:drop-shadow-md">
       {children}
 
       <Link to={`/product/${product.id}`} className="z-0">
@@ -44,9 +44,9 @@ const ProductCardUI = ({
           src={product.images ? product.images[0] : product.firstImage}
           alt="img"
           loading="lazy"
-          className={`animate w-full ${isAddedModelCard && "aspect-square"} object-cover`}
+          className={`animate min-h-[200px] w-full ${isAddedModelCard && "aspect-square"} object-cover`}
         />
-        <div className="space-y-3 h-[50px]  p-2 sm:p-3 lg:p-4">
+        <div className="h-[50px] space-y-3 p-2 sm:p-3 lg:p-4">
           <p className="text-text-main line-clamp-2 text-start text-xs font-bold sm:text-xl lg:w-[90%] lg:text-base">
             {getLocalizedName(product, language)}
           </p>

@@ -20,6 +20,7 @@ const Payment = () => {
   const { order } = useOrder();
   const { setConfig } = useOrderSummary();
   const { mutate, isPending } = useSubmitOrder();
+  
   useEffect(() => {
     setConfig({
       buttonText: t("orderSummary.placeOrder"),

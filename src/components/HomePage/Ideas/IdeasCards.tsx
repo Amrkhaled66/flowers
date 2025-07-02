@@ -17,7 +17,7 @@ const IdeasCards = ({
   const {
     i18n: { language },
   } = useTranslation("home");
-  console.log("pinnedCategories", pinnedCategories);
+
   return (
     <div className="space-y-5">
       <Slider slidesPerGroup={3}>

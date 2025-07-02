@@ -43,9 +43,10 @@ function FormInput<T>({
       </label>
       <div className="w-full space-y-2">
         {type === "tel" ? (
-          <div className="animate flex items-center gap-x-1 lg:gap-x-3 rounded-xl">
-            {/* 🇦🇪 UAE Flag */}
-            <div className="border-stroke flex items-center rounded-xl border bg-white p-2.5">
+          <div className="animate flex items-center gap-x-1 rounded-xl lg:gap-x-3">
+            <div
+              className={`border-stroke flex items-center rounded-xl border ${bgColor} p-2.5`}
+            >
               <span className="text-xl">
                 <img className="size-7" src={ueaFlag} alt="" />
               </span>
@@ -62,7 +63,7 @@ function FormInput<T>({
               onChange={onChange}
               placeholder={placeholder || "5xxxxxxxx"}
               inputMode={inputmode || "tel"}
-              className={`border-stroke focus:border-main animate flex-1 rounded-xl border bg-white p-2.5`}
+              className={`border-stroke focus:border-main animate flex-1 rounded-xl border ${bgColor} p-2.5`}
             />
           </div>
         ) : (

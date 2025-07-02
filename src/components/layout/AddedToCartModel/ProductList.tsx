@@ -24,9 +24,9 @@ const ProductList = ({ products, isLoading }: Props) => {
       <ProductCardSk />
     </div>
   ) : (
-    <div className="bg-main-50 mb-[90px] grid w-full grid-cols-2 gap-3 !overflow-y-auto rounded-xl py-3 lg:py-4 px-2 sm:grid-cols-3">
+    <div className="bg-main-50 mb-[90px] grid w-full grid-cols-2 gap-3 !overflow-y-auto rounded-xl px-2 py-3 sm:grid-cols-3 lg:py-4">
       {products.map((product) => (
-        <div className="aspect-square">
+        <div key={product.id} className="aspect-square">
           <ProductCard isAddedModelCard key={product.id} product={product} />
         </div>
       ))}

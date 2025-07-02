@@ -8,13 +8,18 @@ import { useLocation } from "react-router";
 import { useOrder } from "src/context/orderCtx";
 import { useCart } from "src/context/user/cartCtx";
 import { useEffect } from "react";
-import { Navigate } from "react-router-dom";
+import { useSearchParams } from "react-router";
+import { Navigate } from "react-router";
 const SuccessOrder = () => {
   const { t } = useTranslation("successOrder");
   const { clearCart } = useCart();
   const { resetOrder } = useOrder();
   const location = useLocation();
-  const orderId = location.state?.orderId;
+  const [searchParams] = useSearchParams();
+ 
+  const paramOrderId = searchParams.get("order_id");
+  const orderId = location.state?.orderId || paramOrderId;
+
 
   useEffect(() => {
     if (!orderId) return;

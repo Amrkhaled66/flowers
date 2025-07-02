@@ -16,7 +16,7 @@ const ShippingBag = () => {
   const { setConfig } = useOrderSummary();
   const { cartLength } = useCart();
   const { t } = useTranslation("sharedCart");
-  
+
   useEffect(() => {
     setConfig({
       buttonText: t("orderSummary.toCheckOut"),

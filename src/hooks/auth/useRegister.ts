@@ -117,7 +117,6 @@ export default function useRegister() {
 
     if (!validateForm()) return;
 
-    console.log("Submitting form data:", formData);
     mutate(
       { ...formData, phone_number: formatPhoneNumber(formData.phone_number) },
       {
