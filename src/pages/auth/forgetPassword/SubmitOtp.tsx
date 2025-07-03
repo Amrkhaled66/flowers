@@ -4,6 +4,7 @@ import { Navigate } from "react-router";
 import { useSubmitOtp } from "src/hooks/auth/useForgetPasswordMutation";
 import { useSendOtp } from "src/hooks/auth/useForgetPasswordMutation";
 import { useTranslation } from "react-i18next";
+import { useNavigate } from "react-router";
 
 import OtpForm from "src/components/ui/register/otp/OtpForm";
 import Button from "src/components/ui/Button";
@@ -11,15 +12,22 @@ import Button from "src/components/ui/Button";
 const SubmitOtp = () => {
   const [otp, setOtp] = useState<string[]>(Array(4).fill(""));
   const [error, setError] = useState("");
-  const { phone, token, setToken, setPhone } = useReset();
+  const { phone, setToken, setPhone } = useReset();
+  const [disabledResend, setDisabledResend] = useState<boolean>(false);
   const { mutate: submitOtp, isPending: submitLoading } = useSubmitOtp();
   const { mutate: sendOtp, isPending: isSendOtpPending } = useSendOtp();
-  if (!phone || token) return <Navigate to="/forgot-password/send-otp" />;
   const { t: forgetPasswordTranslation } = useTranslation("forgetPassword");
+  const { t: tErrors } = useTranslation("errors");
+  const navigate = useNavigate();
 
   const handleResend = () => {
-    sendOtp(phone);
+    sendOtp(phone, {
+      onError: (err: any) => {
+        if (err.response.status === 400) setDisabledResend(true);
+      },
+    });
   };
+
   const handleChangePhone = () => {
     setToken("");
     setPhone("");
@@ -33,13 +41,16 @@ const SubmitOtp = () => {
       {
         onSuccess: (data) => {
           setToken(data.token);
+          navigate("/forgot-password/reset-password");
         },
-        onError: (err: any) => {
-          setError(err.response.data.message);
+        onError: () => {
+          setError(tErrors("invlidOtp"));
         },
       },
     );
   };
+
+  if (!phone) return <Navigate to="/forgot-password/send-otp" />;
 
   return (
     <OtpForm
@@ -47,9 +58,10 @@ const SubmitOtp = () => {
       otp={otp}
       setOtp={setOtp}
       phone={phone}
-      error={error}
+      error={disabledResend ? tErrors("otpLimit") : error}
       onResend={handleResend}
       isSendOtpPending={isSendOtpPending}
+      disabledResend={disabledResend}
     >
       <Button
         loading={submitLoading}

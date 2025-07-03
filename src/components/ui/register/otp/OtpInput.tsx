@@ -66,7 +66,7 @@ export default function OtpInput({
 
   return (
     <div className="space-y-4">
-      <form id="otp-form" className="flex gap-2">
+      <form id="otp-form" className="mx-auto flex w-fit gap-2">
         {otp.map((digit, index) => (
           <input
             key={index}
@@ -84,7 +84,11 @@ export default function OtpInput({
           />
         ))}
       </form>
-      {error && <p className="text-red text-center text-sm">{error}</p>}
+      {error && (
+        <p className="text-red max-w-full text-center text-sm text-wrap">
+          {error}
+        </p>
+      )}
     </div>
   );
 }

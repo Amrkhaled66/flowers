@@ -43,13 +43,17 @@ const DeletionModal = ({
           <div className="space-y-3">
             <button
               onClick={onConfirm}
-              className="border-red text-red w-full rounded-xl border py-3 font-bold"
+              className="border-red hover:bg-red animate text-red w-full rounded-xl border py-3 font-bold hover:text-white"
             >
-              {isPending ? <Loader className="h-6 w-6 border-red" /> : confirmText}
+              {isPending ? (
+                <Loader className="border-red h-6 w-6" />
+              ) : (
+                confirmText
+              )}
             </button>
             <button
               onClick={onClose}
-              className="w-full rounded-xl border border-black py-3 font-bold text-black"
+              className="animate w-full rounded-xl border border-black py-3 font-bold text-black hover:bg-black hover:text-white"
             >
               {cancelText}
             </button>

@@ -7,6 +7,7 @@ import { useReset } from "src/context/resetCtx";
 import { Navigate } from "react-router";
 import { useChangePassword } from "src/hooks/auth/useForgetPasswordMutation";
 import { useTranslation } from "react-i18next";
+import { useNavigate } from "react-router";
 const ResetPassword = () => {
   const { token } = useReset();
   const { mutate, isPending } = useChangePassword();
@@ -17,8 +18,9 @@ const ResetPassword = () => {
   }>({ password: "", confirm_password: "" });
   const { t: tError } = useTranslation("errors");
   const { t: tForget } = useTranslation("forgetPassword");
+  const navigate = useNavigate();
 
-  // if (!token) return <Navigate to="/forgot-password/send-otp" />;
+  if (!token) return <Navigate to="/forgot-password/send-otp" />;
 
   const handleSubmit = (e: FormEvent) => {
     e.preventDefault();
@@ -40,7 +42,7 @@ const ResetPassword = () => {
             icon: "success",
             confirmButtonText: "Okay",
           });
-          return <Navigate to="/signin" />;
+          navigate("/signin");
         },
         onError: (err: any) => setError(err.response.data.message),
       },
@@ -49,7 +51,7 @@ const ResetPassword = () => {
 
   return (
     <div className="flex items-center justify-center py-8">
-      <div className="border-stroke bg-main-50 w-[90%] lg:w-[600px] rounded-xl border  p-4 lg:p-8">
+      <div className="border-stroke bg-main-50 w-[90%] rounded-xl border p-4 lg:w-[600px] lg:p-8">
         <div className="flex flex-col items-center gap-8 text-center">
           <div className="space-y-2">
             <h1 className="text-text-main text-2xl font-bold">

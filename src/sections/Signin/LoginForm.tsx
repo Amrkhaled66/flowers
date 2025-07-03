@@ -41,9 +41,9 @@ const LoginForm = () => {
       </div>
 
       <div>
-        {/* <Link to="/forgot-password/send-otp">
+        <Link to="/forgot-password/send-otp">
           <p className="text-main text-end font-bold">{t("forgotPassword")}</p>
-        </Link> */}
+        </Link>
 
         <button
           disabled={isPending}

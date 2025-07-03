@@ -18,7 +18,7 @@ export { default as DeliveryInfo } from "./cart/DeliveryInfo";
 export { default as Payment } from "./cart/Payment";
 
 // Profile
-export { default as UserInfo } from "./profile/userInfo";
+export { default as UserInfo } from "./profile/UserInfo";
 export { default as ChangePhoneNumber } from "./profile/ChangePhoneNumber";
 export { default as EditProfile } from "./profile/EditProfile";
 export { default as ChangePassword } from "./profile/ChangePassword";

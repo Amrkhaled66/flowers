@@ -6,7 +6,7 @@ export const reactHotToastImpl = {
     toast(msg, {
       style: {
         background: "#f86886",
-        fontWeight: "bold",
+        // fontWeight: "semibold",
         borderRadius: "10px",
         color: "#fff",
         padding: "10px 23px",

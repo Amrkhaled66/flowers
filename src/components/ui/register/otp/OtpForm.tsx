@@ -23,7 +23,7 @@ const OtpForm = ({
   phone: string;
   error: string;
   isSendOtpPending: boolean;
-  onResend: () => void;
+  onResend?: () => void;
   isChangePhoneNumberForm?: boolean;
   disabledResend?: boolean;
 }) => {
@@ -78,7 +78,7 @@ const OtpForm = ({
           {!disabledResend && (
             <TimerCountDown
               isSendOtpPending={isSendOtpPending}
-              onResend={onResend}
+              onResend={onResend || (() => {})}
             />
           )}
         </div>

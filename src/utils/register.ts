@@ -20,9 +20,7 @@ const validatePhoneNumber = (
   phoneNumber: string,
   t?: (key: string) => string,
 ) => {
-// const regex = /^(?:0)?(50|51|52|54|55|56|58)\d{7}$/;
-  const regex = /^(20|0)?1[0125][0-9]{8}$/;
-
+  const regex = /^(50|51|52|54|55|56|58)\d{7}$|^20(10|11|12|15)\d{8}$/;
   if (!phoneNumber.trim()) return t ? t("register.requiredPhone") : PhoneError;
   if (!regex.test(phoneNumber.replace(/\s+/g, "")))
     return t ? t("register.phoneFormat") : requiredPhone;

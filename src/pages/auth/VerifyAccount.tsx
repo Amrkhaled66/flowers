@@ -21,8 +21,7 @@ const VerifyAccount = () => {
   const { mutate: verifyOtp, isPending: isVerifyOtpPending } = useVerifyOtp();
   const { authData } = useAuth();
   const { t: forgetPasswordTranslation } = useTranslation("forgetPassword");
-
-
+  const { t: tErrors } = useTranslation("errors");
 
   const handleResend = () => {
     requestOtp(undefined, {
@@ -48,8 +47,8 @@ const VerifyAccount = () => {
           navigate("/");
         });
       },
-      onError: (err: any) => {
-        setError(err.response.data.message);
+      onError: () => {
+        setError(tErrors("invlidOtp"));
       },
     });
   };
@@ -58,7 +57,6 @@ const VerifyAccount = () => {
     requestOtp(undefined, {
       onError: (err: any) => {
         if (err.response.status === 400) setDisabledResend(true);
-        setError(err.response.data.message);
       },
     });
   }, []);
@@ -67,7 +65,7 @@ const VerifyAccount = () => {
     <OtpForm
       otp={otp}
       setOtp={setOtp}
-      error={error}
+      error={disabledResend ? tErrors("otpLimit") : error}
       onResend={handleResend}
       isSendOtpPending={isRequestOtpPending}
       phone={authData.user?.phone_number || ""}
