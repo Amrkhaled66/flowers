@@ -11,7 +11,7 @@ import {
   OnlyGuestUser,
   ProtectedRoute,
   VerifiedAccount,
-  NotVerifiedAccount,
+  // NotVerifiedAccount,
 } from "./middleware";
 
 import i18n from "i18next";
@@ -62,9 +62,9 @@ const router = createBrowserRouter([
   {
     path: "/",
     element: (
-      <NotVerifiedAccount>
+      // <NotVerifiedAccount>
         <MainLayout />
-      </NotVerifiedAccount>
+      // </NotVerifiedAccount>
     ),
     children: [
       { index: true, element: <HomePage /> },

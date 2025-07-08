@@ -122,7 +122,8 @@ export default function useRegister() {
       {
         onSuccess: (data) => {
           login(data.user, data.token);
-          navigate("/verify-account");
+          navigate("/")
+          // navigate("/verify-account");
           // Alert({
           //   title: "Success",
           //   text: "Account created successfully",

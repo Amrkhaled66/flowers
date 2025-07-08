@@ -17,7 +17,6 @@ import { showToast } from "src/utils/toast";
 
 const useGetCart = () => {
   const {
-     isVerified,
     isAuthenticated,
   } = useAuth();
   const { storeCart } = useCart();
@@ -28,7 +27,7 @@ const useGetCart = () => {
       storeCart(data.data);
       return data;
     },
-    enabled: isAuthenticated && isVerified,
+    enabled: isAuthenticated ,
     refetchOnWindowFocus: true,
     staleTime: 0,
   });
