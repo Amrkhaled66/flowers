@@ -22,8 +22,16 @@ export default defineConfig({
       src: "/src",
     },
   },
+
   server: {
     port: 3000,
+    proxy: {
+      "/api": {
+        target: "https://ballora.am-naguib.com",
+        changeOrigin: true,
+        secure: true,
+      },
+    },
   },
   optimizeDeps: {
     include: ["react-leaflet", "leaflet"],

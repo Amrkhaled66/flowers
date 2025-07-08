@@ -43,7 +43,7 @@ const IdeaCard = ({
           >
             {title}
           </p>
-          <Link to={`/filter?category_id=${categoryId}`}>
+          <Link to={`/filter?category_ids=${categoryId}`}>
             <button className="rounded-xl border border-white bg-transparent px-3 py-1.5">
               {t("ideas.ideasCta")}
             </button>

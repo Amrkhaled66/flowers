@@ -38,7 +38,7 @@ const SiteMap = memo(() => {
         <DynamicSectionLinks
           isActive={activeList === sectionKeys.occasions}
           items={occasions || []}
-          searchParam="occasion_id"
+          searchParam="occasion_ids"
         />
       </SiteMapSection>
       <SiteMapSection
@@ -49,7 +49,7 @@ const SiteMap = memo(() => {
         <DynamicSectionLinks
           isActive={activeList === sectionKeys.categories}
           items={categories || []}
-          searchParam="category_id"
+          searchParam="category_ids"
         />
       </SiteMapSection>
       <SiteMapSection

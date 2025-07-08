@@ -79,7 +79,7 @@ const Menu = ({}) => {
               <MenuSection title={t("occasionTitle")}>
                 <CategoryGrid
                   toggleMenu={toggleMenu}
-                  searchQuery="occasion_id"
+                  searchQuery="occasion_ids"
                   items={occasions}
                 />
               </MenuSection>
@@ -87,7 +87,7 @@ const Menu = ({}) => {
               <MenuSection title={t("categoryTitle")}>
                 <CategoryGrid
                   toggleMenu={toggleMenu}
-                  searchQuery={"category_id"}
+                  searchQuery={"category_ids"}
                   items={categories}
                 />
               </MenuSection>

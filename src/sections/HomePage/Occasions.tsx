@@ -28,7 +28,7 @@ const Occasions = ({
         ) : (
           <div className="flex flex-wrap items-center justify-center lg:justify-start gap-4 lg:gap-6">
             {transformedOccasions.map((occasion) => (
-              <Link key={occasion.id} to={`/filter?occasion_id=${occasion.id}`}>
+              <Link key={occasion.id} to={`/filter?occasion_ids=${occasion.id}`}>
                 <CategoryCard
                   img={occasion.image}
                   name={getLocalizedName(occasion)}

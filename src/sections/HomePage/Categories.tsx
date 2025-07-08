@@ -28,7 +28,7 @@ const Categories = ({
         ) : (
           <div className="flex flex-wrap items-center justify-center gap-4 lg:gap-6">
             {transformedCategory.map((category) => (
-              <Link key={category.id} to={`/filter?category_id=${category.id}`}>
+              <Link key={category.id} to={`/filter?category_ids=${category.id}`}>
                 <CategoryCard
                   img={category.image}
                   name={getLocalizedName(category)}
