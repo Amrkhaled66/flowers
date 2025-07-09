@@ -1,17 +1,27 @@
 import { useTranslation } from "react-i18next";
+import { useConfig } from "src/context/configCtx";
 
 const PrivacyPolicy = () => {
   const { i18n } = useTranslation();
   const isArabic = i18n.language === "ar";
+  const {
+    config: { email },
+  } = useConfig();
 
   return (
-    <div className="max-w-4xl mx-auto px-4 py-10 space-y-6 text-gray-800">
+    <div className="mx-auto max-w-4xl space-y-6 px-4 py-10 text-gray-800">
       {isArabic ? (
         <>
-          <h1 className="text-2xl font-bold">🛡️ سياسة الخصوصية لموقع Ballora.net</h1>
+          <h1 className="text-2xl font-bold">
+            🛡️ سياسة الخصوصية لموقع Ballora.net
+          </h1>
           <p>تاريخ السريان: 7 يوليو 2025</p>
 
-          <p>Ballora.net ("نحن"، "لنا"، أو "الموقع") ملتزمون بحماية خصوصيتك. توضح سياسة الخصوصية هذه كيفية جمعنا لمعلوماتك الشخصية واستخدامها وحمايتها عند استخدامك لموقعنا وخدماتنا.</p>
+          <p>
+            Ballora.net ("نحن"، "لنا"، أو "الموقع") ملتزمون بحماية خصوصيتك. توضح
+            سياسة الخصوصية هذه كيفية جمعنا لمعلوماتك الشخصية واستخدامها وحمايتها
+            عند استخدامك لموقعنا وخدماتنا.
+          </p>
 
           <h2 className="text-xl font-semibold">1. المعلومات التي نجمعها</h2>
           <ul className="list-disc pl-6">
@@ -20,7 +30,9 @@ const PrivacyPolicy = () => {
             <li>رقم الهاتف</li>
             <li>عنوان التوصيل</li>
           </ul>
-          <p>نحن <strong>لا نقوم</strong> بجمع أو تخزين معلومات الدفع مباشرة.</p>
+          <p>
+            نحن <strong>لا نقوم</strong> بجمع أو تخزين معلومات الدفع مباشرة.
+          </p>
 
           <h2 className="text-xl font-semibold">2. كيفية استخدام معلوماتك</h2>
           <ul className="list-disc pl-6">
@@ -46,14 +58,22 @@ const PrivacyPolicy = () => {
             <li>تابي (Tabby)</li>
           </ul>
 
-          <h2 className="text-xl font-semibold">5. ملفات تعريف الارتباط (Cookies)</h2>
-          <p>نحن لا نستخدم الكوكيز لأغراض التحليل أو الإعلانات، فقط للأغراض الوظيفية.</p>
+          <h2 className="text-xl font-semibold">
+            5. ملفات تعريف الارتباط (Cookies)
+          </h2>
+          <p>
+            نحن لا نستخدم الكوكيز لأغراض التحليل أو الإعلانات، فقط للأغراض
+            الوظيفية.
+          </p>
 
           <h2 className="text-xl font-semibold">6. حسابات المستخدمين</h2>
           <p>يتعين إنشاء حساب وتكون مسؤولاً عن سرية بيانات تسجيل الدخول.</p>
 
           <h2 className="text-xl font-semibold">7. الاحتفاظ بالبيانات</h2>
-          <p>نحتفظ بالبيانات فقط للمدة اللازمة لتنفيذ الطلبات والوفاء بالمتطلبات القانونية.</p>
+          <p>
+            نحتفظ بالبيانات فقط للمدة اللازمة لتنفيذ الطلبات والوفاء بالمتطلبات
+            القانونية.
+          </p>
 
           <h2 className="text-xl font-semibold">8. حقوقك</h2>
           <ul className="list-disc pl-6">
@@ -61,21 +81,40 @@ const PrivacyPolicy = () => {
             <li>تصحيح أو حذف البيانات</li>
             <li>سحب الموافقة</li>
           </ul>
-          <p>تواصل معنا عبر: <strong>info@ballora.net</strong></p>
+          <p>
+            تواصل معنا عبر: <a className="underline text-blue-600 ps-2" href={`mailto:${email}`}>{email}</a>
+          </p>
 
-          <h2 className="text-xl font-semibold">9. أحكام خاصة بدولة الإمارات</h2>
-          <p>نحن نعمل حاليًا فقط داخل دولة الإمارات ونلتزم بالقوانين المحلية.</p>
+          <h2 className="text-xl font-semibold">
+            9. أحكام خاصة بدولة الإمارات
+          </h2>
+          <p>
+            نحن نعمل حاليًا فقط داخل دولة الإمارات ونلتزم بالقوانين المحلية.
+          </p>
 
           <h2 className="text-xl font-semibold">10. تواصل معنا</h2>
-          <p>📧 <strong>البريد الإلكتروني:</strong> info@ballora.net</p>
-          <p>📍 <strong>الموقع الإلكتروني:</strong> <a href="https://ballora.net" className="text-blue-600 underline">ballora.net</a></p>
+          <p>
+            📧 <strong>البريد الإلكتروني:</strong> <a className="underline text-blue-600 ps-2" href={`mailto:${email}`}>{email}</a>
+          </p>
+          <p>
+            📍 <strong>الموقع الإلكتروني:</strong>{" "}
+            <a href="https://ballora.net" className="text-blue-600 underline">
+              ballora.net
+            </a>
+          </p>
         </>
       ) : (
         <>
-          <h1 className="text-2xl font-bold">🛡️ Privacy Policy for Ballora.net</h1>
+          <h1 className="text-2xl font-bold">
+            🛡️ Privacy Policy for Ballora.net
+          </h1>
           <p>Effective Date: July 7, 2025</p>
 
-          <p>Ballora.net (“we,” “our,” or “us”) is committed to protecting your privacy. This Privacy Policy explains how we collect, use, and protect your information when you use our website and services.</p>
+          <p>
+            Ballora.net (“we,” “our,” or “us”) is committed to protecting your
+            privacy. This Privacy Policy explains how we collect, use, and
+            protect your information when you use our website and services.
+          </p>
 
           <h2 className="text-xl font-semibold">1. Information We Collect</h2>
           <ul className="list-disc pl-6">
@@ -85,7 +124,9 @@ const PrivacyPolicy = () => {
             <li>Delivery Address</li>
           </ul>
 
-          <h2 className="text-xl font-semibold">2. How We Use Your Information</h2>
+          <h2 className="text-xl font-semibold">
+            2. How We Use Your Information
+          </h2>
           <ul className="list-disc pl-6">
             <li>Process and deliver your orders</li>
             <li>Communicate order updates</li>
@@ -110,13 +151,22 @@ const PrivacyPolicy = () => {
           </ul>
 
           <h2 className="text-xl font-semibold">5. Cookies and Tracking</h2>
-          <p>We do not use cookies for analytics or tracking—only for functional purposes.</p>
+          <p>
+            We do not use cookies for analytics or tracking—only for functional
+            purposes.
+          </p>
 
           <h2 className="text-xl font-semibold">6. User Accounts</h2>
-          <p>Customers must create accounts and are responsible for maintaining login confidentiality.</p>
+          <p>
+            Customers must create accounts and are responsible for maintaining
+            login confidentiality.
+          </p>
 
           <h2 className="text-xl font-semibold">7. Data Retention</h2>
-          <p>We retain data only as needed to fulfill orders and comply with legal obligations.</p>
+          <p>
+            We retain data only as needed to fulfill orders and comply with
+            legal obligations.
+          </p>
 
           <h2 className="text-xl font-semibold">8. Your Rights</h2>
           <ul className="list-disc pl-6">
@@ -124,14 +174,26 @@ const PrivacyPolicy = () => {
             <li>Request corrections or deletions</li>
             <li>Withdraw consent</li>
           </ul>
-          <p>Contact us: <strong>info@ballora.net</strong></p>
+          <p>
+            Contact us:<a className="underline text-blue-600 ps-2" href={`mailto:${email}`}>{email}</a>
+          </p>
 
           <h2 className="text-xl font-semibold">9. UAE-Specific Terms</h2>
-          <p>We currently operate only in the UAE and follow its privacy laws.</p>
+          <p>
+            We currently operate only in the UAE and follow its privacy laws.
+          </p>
 
           <h2 className="text-xl font-semibold">10. Contact Us</h2>
-          <p>📧 <strong>Email:</strong> info@ballora.net</p>
-          <p>📍 <strong>Website:</strong> <a href="https://ballora.net" className="text-blue-600 underline">ballora.net</a></p>
+          <p>
+            📧 <strong>Email:</strong>
+            <a className="underline text-blue-600 pl-2" href={`mailto:${email}`}>{email}</a>
+          </p>
+          <p>
+            📍 <strong>Website:</strong>{" "}
+            <a href="https://ballora.net" className="text-blue-600 underline">
+              ballora.net
+            </a>
+          </p>
         </>
       )}
     </div>
