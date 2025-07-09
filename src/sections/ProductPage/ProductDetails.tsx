@@ -9,7 +9,7 @@ const ProductDetails = ({
   description: string;
   marketingMessage: string;
 }) => {
-  const { t,i18n:{language} } = useTranslation("productPage");
+  const { t } = useTranslation("productPage");
   return (
     <div className="space-y-5 lg:space-y-[36px]">
       <div className="border-b-stroke flex gap-x-6 border-b pb-4 lg:px-0">

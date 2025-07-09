@@ -13,7 +13,6 @@ const MapModel = ({
   onConfirmLocation: (address: string) => void;
 }) => {
   const [address, setAddress] = useState<string>("");
-  const [latLng, setlatLng] = useState<number[]>([]);
   const { t } = useTranslation("profile");
   const { t: tShared } = useTranslation("shared");
 
