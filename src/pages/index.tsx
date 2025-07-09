@@ -7,6 +7,8 @@ export { default as SucessOrder } from "./SucessOrder";
 export { default as TrackOrderPage } from "./TrackOrderPage";
 export { default as InvoicePage } from "./InvoicePage";
 export { default as VerifyAccount } from "./auth/VerifyAccount";
+export { default as Terms } from "./Terms";
+export { default as Privacy } from "./Privacy";
 
 // forget password
 export { default as SendOtp } from "./auth/forgetPassword/SendOtp";

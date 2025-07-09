@@ -113,6 +113,7 @@ const ProfileMenuButtonMobile = () => {
     t,
     i18n: { language },
   } = useTranslation("profile");
+  const { t: tLayout } = useTranslation("layout");
   const {
     authData: { user },
   } = useAuth();
@@ -131,9 +132,9 @@ const ProfileMenuButtonMobile = () => {
       </button>
 
       <div
-        className={`text-text-main fixed end-0 top-0 z-[1000] space-y-5 lg:hidden ${
+        className={`text-text-main fixed end-0 top-0 z-[1000] space-y-5 overflow-auto lg:hidden ${
           open ? "end-0" : "end-full"
-        } animate h-screen w-full rounded-xl bg-white p-4 drop-shadow-xl`}
+        } animate h-screen w-full rounded-xl bg-white p-4 pb-20 drop-shadow-xl`}
       >
         <div className="flex justify-between">
           <h1 className="text-xl font-bold">{t("header")}</h1>
@@ -164,6 +165,24 @@ const ProfileMenuButtonMobile = () => {
               onClick={closeMenu}
             />
           </div>
+
+          <Link onClick={closeMenu} to={`privacy-policy`}>
+            <div className="animate bg-main-50 flex w-full items-center gap-x-3 rounded-xl p-4">
+              <Icon
+                icon="material-symbols-light:privacy-tip-rounded"
+                width="32"
+                height="32"
+              />
+              {tLayout("footer.privacy")}
+            </div>
+          </Link>
+
+          <Link onClick={closeMenu} to={`terms-conditions`}>
+            <div className="animate bg-main-50 flex w-full items-center gap-x-3 rounded-xl p-4">
+              <Icon icon="carbon:document" width="32" height="32" />
+              {tLayout("footer.terms")}
+            </div>
+          </Link>
 
           <LogOutButton />
           <DeleteAccount />

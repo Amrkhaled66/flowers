@@ -32,7 +32,6 @@ const ProductPage = () => {
     : "";
   usePageTitle(`Product Page - ${product?.nameEn}`);
 
-
   return (
     <div className="h-auto min-h-screen py-6 lg:py-10">
       <div className="container space-y-6 lg:space-y-20">
@@ -58,12 +57,16 @@ const ProductPage = () => {
         <ProductDetails
           loading={isLoading}
           description={localizedDescription}
-          marketingMessage={product?.marketingMessage}
+          marketingMessage={
+            language === "ar"
+              ? product?.marketingMessageAr
+              : product?.marketingMessageEn
+          }
         />
         {product?.recommendedProducts.length > 0 && (
           <Recommendations
             mainProductId={product?.id}
-            mainProductName={ getLocalizedName(product as Product)}
+            mainProductName={getLocalizedName(product as Product)}
             mainProductImage={product?.firstImage}
             products={product?.recommendedProducts || []}
             mainProductPrice={product?.afterDiscount || 0}

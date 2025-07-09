@@ -16,6 +16,8 @@ const sectionKeys = {
   support: "support",
 };
 
+import { Link } from "react-router-dom";
+
 const SiteMap = memo(() => {
   const [activeList, setActiveList] = useState<string | null>(null);
   const { data: categories } = useGetCategories();
@@ -77,12 +79,19 @@ const SiteMap = memo(() => {
           >
             {t("footer.contactUsWithEmail")}
           </a>
-          {/* <p className="hover:text-main-100 animate text-sm">
-            {t("footer.faq")}
-          </p>
-          <p className="hover:text-main-100 animate text-sm">
+          <Link
+            to={`privacy-policy`}
+            className="hover:text-main-100 animate text-sm"
+          >
             {t("footer.privacy")}
-          </p> */}
+          </Link>
+          <Link
+            to={`terms-conditions`}
+            className="hover:text-main-100 animate text-sm"
+          >
+            {t("footer.terms")}
+          </Link>
+      
         </div>
       </SiteMapSection>
     </div>

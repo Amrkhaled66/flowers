@@ -7,7 +7,6 @@ import Alert from "src/components/ui/Alert";
 import PrivacyConsentToggle from "src/components/Cart/DeliveryInfo/PrivacyConsentToggle ";
 import Button from "src/components/ui/Button";
 import { Icon } from "@iconify/react/dist/iconify.js";
-import formatPhoneNumber from "src/utils/formatPhoneNumber";
 
 import { useAddressFormWithDelivery } from "src/hooks/cart/useAddressFormWithDelivery";
 import { useEffect } from "react";
@@ -30,6 +29,7 @@ const DeliveryInfo = () => {
   usePageTitle("Delivery Info");
   const { t } = useTranslation("profile");
   const { t: tCart } = useTranslation("sharedCart");
+  const { t: tErrors } = useTranslation("errors");
   const { setConfig } = useOrderSummary();
   const { cartLength } = useCart();
   const { updateOrder, order } = useOrder();
@@ -52,14 +52,14 @@ const DeliveryInfo = () => {
     const isValid = validateForm();
     if (!isValid)
       return Alert({
-        title: "Error",
-        text: "Please fill all the required fields",
+        title: tErrors("error"),
+        text: tErrors("allRequiredFields"),
         icon: "error",
         confirmButtonText: "Okay",
       });
     updateOrder({
       recipientName: formData.recipientName,
-      phoneNumber: formatPhoneNumber(formData.recipientPhone),
+      phoneNumber: formData.recipientPhone,
       area: formData.area,
       fullAddress: formData.address,
     });

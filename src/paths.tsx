@@ -27,6 +27,8 @@ import {
   SucessOrder,
   TrackOrderPage,
   InvoicePage,
+  Terms,
+  Privacy,
   // auth
   SignUpPage,
   SignInPage,
@@ -63,7 +65,7 @@ const router = createBrowserRouter([
     path: "/",
     element: (
       // <NotVerifiedAccount>
-        <MainLayout />
+      <MainLayout />
       // </NotVerifiedAccount>
     ),
     children: [
@@ -244,6 +246,14 @@ const router = createBrowserRouter([
       {
         path: "invoice/:id",
         element: <InvoicePage />,
+      },
+      {
+        path: "privacy-policy",
+        element: <Privacy />,
+      },
+      {
+        path: "terms-conditions",
+        element: <Terms />,
       },
     ],
   },

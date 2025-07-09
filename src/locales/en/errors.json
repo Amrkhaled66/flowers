@@ -26,6 +26,8 @@
     "warning":"Warning",
     "deleteAccount": "You Can't Delete Your Account ,You have pending orders",
     "otpLimit":"You have reached the maximum number of OTP requests. Please try again later.",
-    "invlidOtp":"Invalid OTP"
+    "invlidOtp":"Invalid OTP",
+    "allRequiredFields":"Please fill all the required fields",
+    "error":"Error"
   }
   

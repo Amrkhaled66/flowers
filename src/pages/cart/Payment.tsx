@@ -1,18 +1,21 @@
 import { Icon } from "@iconify/react/dist/iconify.js";
+import { Navigate } from "react-router";
+import Alert from "src/components/ui/Alert";
+import PaymentWays from "src/sections/Cart/payment/PaymentWays";
 
 // import { Elements } from "@stripe/react-stripe-js";
 // import { loadStripe } from "@stripe/stripe-js";
-import { Navigate } from "react-router";
 
-import PaymentWays from "src/sections/Cart/payment/PaymentWays";
 import { useTranslation } from "react-i18next";
 import usePageTitle from "src/hooks/ui/useUpdatePageTitle";
 import { useOrder } from "src/context/orderCtx";
 import { useOrderSummary } from "src/context/OrderSummaryContext";
 import { useEffect } from "react";
 import { useSubmitOrder } from "src/hooks/order/useOrderMutation";
+
 import transformKeysToSnakeCase from "src/utils/transformToSnakeCase";
-import Alert from "src/components/ui/Alert";
+import formatPhoneNumber from "src/utils/formatPhoneNumber";
+
 const Payment = () => {
   usePageTitle("Payment");
   const { t } = useTranslation("sharedCart");
@@ -37,6 +40,7 @@ const Payment = () => {
           transformKeysToSnakeCase({
             ...order,
             deliveryTime: order.deliveryTime.toLowerCase().replace(/\s+/g, ""),
+            phoneNumber: formatPhoneNumber(order.phoneNumber)
           }),
         );
       },

@@ -15,7 +15,8 @@ interface Product {
   categoryId: number;
   occasionId: number;
   recommendedProducts?: Product[];
-  marketing_message?: string | null;
+  marketingMessageAr?: string | null;
+  marketingMessageEn?: string | null;
 }
 
 export default Product;

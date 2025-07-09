@@ -19,7 +19,9 @@ const transformProduct = (product: any) => ({
     : [],
   width: product.width,
   height: product.height,
-  marketingMessage: product.marketing_message,
+  marketingMessageAr: product.marketing_message,
+  marketingMessageEn: product?.marketing_message_ar,
+
 });
 
 export default transformProduct;

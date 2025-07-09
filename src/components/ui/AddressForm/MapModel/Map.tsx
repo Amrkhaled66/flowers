@@ -1,4 +1,4 @@
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 import { Icon } from "@iconify/react/dist/iconify.js";
 import {
   MapContainer,
@@ -40,6 +40,7 @@ const Map = ({
   address: string;
   setAddress: (address: string) => void;
 }) => {
+  console.log(address);
   const mapRef = useRef<HTMLDivElement>(null);
   const [position, setPosition] = useState<LatLng>({
     lat: 25.2048,
@@ -49,12 +50,49 @@ const Map = ({
   const [isFullscreen, toggleFullscreen] = useFullscreen(mapRef);
   const [leafletMap, setLeaFletMap] = useState<L.Map | null>(null);
   const [query, setQuery] = useState<string>("");
+  const lastGeocodedAddress = useRef<string | null>(null);
+
+  useEffect(() => {
+    const geocodeAddress = async () => {
+      if (!address || address === lastGeocodedAddress.current) return;
+
+      try {
+        const res = await fetch(
+          `https://us1.locationiq.com/v1/search.php?key=${import.meta.env.VITE_LOCATIONIQ_API_KEY}&q=${encodeURIComponent(
+            address,
+          )}&countrycodes=ae&format=json`,
+        );
+        const data = await res.json();
+
+        if (data && data[0]) {
+          const newPos = {
+            lat: parseFloat(data[0].lat),
+            lng: parseFloat(data[0].lon),
+          };
+          setPosition(newPos);
+          setQuery(address);
+          lastGeocodedAddress.current = address;
+
+          if (leafletMap) {
+            leafletMap.flyTo(newPos, 13, { animate: true, duration: 1.5 });
+          }
+        }
+      } catch (err) {
+        console.error("Geocoding failed", err);
+      }
+    };
+
+    geocodeAddress();
+  }, [address, leafletMap]);
+
   const fetchReverseGeocode = async (latlng: LatLng) => {
     const res = await fetch(
       `https://us1.locationiq.com/v1/reverse?key=${import.meta.env.VITE_LOCATIONIQ_API_KEY}&lat=${latlng.lat}&lon=${latlng.lng}&format=json&`,
     );
     const data = await res.json();
-    setAddress(data.display_name);
+    if (data.display_name !== address) {
+      setAddress(data.display_name);
+    }
     setQuery(data.display_name);
     setSuggestions([]);
   };
