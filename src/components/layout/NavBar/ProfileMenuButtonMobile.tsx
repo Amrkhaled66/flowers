@@ -135,7 +135,7 @@ const ProfileMenuButtonMobile = () => {
         className={`text-text-main fixed end-0 top-0 z-[1000]   lg:hidden ${open ? "end-0" : "end-full"
           } animate h-screen w-full rounded-xl bg-white  drop-shadow-xl`}
       >
-        <div className="h-[95vh] overflow-auto space-y-5 p-4">
+        <div className="h-[85vh] overflow-auto space-y-5 p-4">
           <div className="flex justify-between">
             <h1 className="text-xl font-bold">{t("header")}</h1>
             <CloseButton onClick={closeMenu} />
