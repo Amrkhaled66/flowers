@@ -53,11 +53,6 @@ const FilterPage = () => {
     refetchProducts({ cancelRefetch: true });
   }, [page]);
 
-  // useEffect(() => {
-  //   if (fullDataLoading) return;
-  //   handlePriceRangeChange(0, Number(prices.maxPrice));
-  // }, [fullDataLoading]);
-
   return (
     <div className="container flex min-h-dvh flex-col justify-between !py-10">
       <div className="flex h-auto gap-x-6">
@@ -94,6 +89,10 @@ const FilterPage = () => {
           }
           handlePageClick={({ selected }: { selected: number }) => {
             setPage(selected + 1);
+            window.scroll({
+              behavior: "smooth",
+              top: 0,
+            });
           }}
         />
       )}
