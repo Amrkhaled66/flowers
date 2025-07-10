@@ -21,11 +21,10 @@ export const generateTimeSlots = () => {
   return slots;
 };
 
-const timeSlots = ["3AM - 6PM", "6PM - 9PM"];
+const timeSlots = ["3PM - 6PM", "6PM - 9PM"];
 const todayTimeSlots = [
   "10AM - 4PM",
   "4PM - 10PM",
-  // "10PM - 11PM",
 ];
 
 const convertTo24Hour = (time: string): number => {

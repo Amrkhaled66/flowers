@@ -3,15 +3,15 @@ import tabby from "src/assets/paymentWays/tabby.png";
 import creditImg from "src/assets/paymentWays/credit.svg";
 import PaymentWay from "src/components/Cart/payment/PaymentWay";
 import { useOrder } from "src/context/orderCtx";
-import { useTranslation } from "react-i18next";
+// import { useTranslation } from "react-i18next";
 const PaymentWays = () => {
   const {
     order: { paymentMethod },
     updateOrder,
   } = useOrder();
-  const {
-    i18n: { language },
-  } = useTranslation();
+  // const {
+  //   i18n: { language },
+  // } = useTranslation();
 
   const handleChangeMethod = (name: string) => {
     updateOrder({ paymentMethod: name });
@@ -34,11 +34,11 @@ const PaymentWays = () => {
         icon={creditImg}
       />
 
-      <PaymentWay
+      {/* <PaymentWay
         onClick={() => handleChangeMethod("cod")}
         name={language === "en" ? "Cash on Delivery" : "الدفع عند الاستلام"}
         isActive={paymentMethod === "cod"}
-      />
+      /> */}
     </div>
   );
 };

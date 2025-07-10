@@ -48,11 +48,11 @@ const DeliveryTime = ({
     isMoreThanOnTimeAvailableToday
       ? () => setActiveModel(0)
       : () => {
-          updateOrder({
-            deliveryDate: formatDateToISO(new Date()),
-            deliveryTime: todayAvailableTimes[0],
-          });
-        },
+        updateOrder({
+          deliveryDate: formatDateToISO(new Date()),
+          deliveryTime: todayAvailableTimes[0],
+        });
+      },
     [isMoreThanOnTimeAvailableToday, todayAvailableTimes],
   );
 
