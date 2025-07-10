@@ -132,59 +132,61 @@ const ProfileMenuButtonMobile = () => {
       </button>
 
       <div
-        className={`text-text-main fixed end-0 top-0 z-[1000] space-y-5 overflow-auto lg:hidden ${open ? "end-0" : "end-full"
-          } animate h-screen w-full rounded-xl bg-white p-4 pb-20 drop-shadow-xl`}
+        className={`text-text-main fixed end-0 top-0 z-[1000]   lg:hidden ${open ? "end-0" : "end-full"
+          } animate h-screen w-full rounded-xl bg-white  drop-shadow-xl`}
       >
-        <div className="flex justify-between">
-          <h1 className="text-xl font-bold">{t("header")}</h1>
-          <CloseButton onClick={closeMenu} />
-        </div>
-
-        <div className="flex flex-col gap-y-4">
-          <ProfileUserCard user={user} onClick={closeMenu} />
-
-          <div className="grid grid-cols-2 gap-4 rounded-xl">
-            {profileElements.map((item) => {
-              if (item.nameEn === "Ballora Ballance" || item.show === false)
-                return null;
-
-              return (
-                <ProfileLinkCard
-                  key={item.nameEn}
-                  icon={item.icon}
-                  label={getLocalizedName(item)}
-                  link={item.link}
-                  onClick={closeMenu}
-                />
-              );
-            })}
-            <BalloraBalanceCard
-              balance={user?.balance || 0}
-              language={language}
-              onClick={closeMenu}
-            />
+        <div className="h-[95vh] overflow-auto space-y-5 p-4">
+          <div className="flex justify-between">
+            <h1 className="text-xl font-bold">{t("header")}</h1>
+            <CloseButton onClick={closeMenu} />
           </div>
 
-          <Link onClick={closeMenu} to={`privacy-policy`}>
-            <div className="animate bg-main-50 flex w-full items-center gap-x-3 rounded-xl p-4">
-              <Icon
-                icon="material-symbols-light:privacy-tip-rounded"
-                width="32"
-                height="32"
+          <div className="flex flex-col gap-y-4">
+            <ProfileUserCard user={user} onClick={closeMenu} />
+
+            <div className="grid grid-cols-2 gap-4 rounded-xl">
+              {profileElements.map((item) => {
+                if (item.nameEn === "Ballora Ballance" || item.show === false)
+                  return null;
+
+                return (
+                  <ProfileLinkCard
+                    key={item.nameEn}
+                    icon={item.icon}
+                    label={getLocalizedName(item)}
+                    link={item.link}
+                    onClick={closeMenu}
+                  />
+                );
+              })}
+              <BalloraBalanceCard
+                balance={user?.balance || 0}
+                language={language}
+                onClick={closeMenu}
               />
-              {tLayout("footer.privacy")}
             </div>
-          </Link>
 
-          <Link onClick={closeMenu} to={`terms-conditions`}>
-            <div className="animate bg-main-50 flex w-full items-center gap-x-3 rounded-xl p-4">
-              <Icon icon="carbon:document" width="32" height="32" />
-              {tLayout("footer.terms")}
-            </div>
-          </Link>
+            <Link onClick={closeMenu} to={`privacy-policy`}>
+              <div className="animate bg-main-50 flex w-full items-center gap-x-3 rounded-xl p-4">
+                <Icon
+                  icon="material-symbols-light:privacy-tip-rounded"
+                  width="32"
+                  height="32"
+                />
+                {tLayout("footer.privacy")}
+              </div>
+            </Link>
 
-          <LogOutButton />
-          <DeleteAccount />
+            <Link onClick={closeMenu} to={`terms-conditions`}>
+              <div className="animate bg-main-50 flex w-full items-center gap-x-3 rounded-xl p-4">
+                <Icon icon="carbon:document" width="32" height="32" />
+                {tLayout("footer.terms")}
+              </div>
+            </Link>
+
+            <LogOutButton />
+            <DeleteAccount />
+          </div>
         </div>
       </div>
     </div>
