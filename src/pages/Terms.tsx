@@ -1,10 +1,12 @@
 import { useTranslation } from "react-i18next";
 import { useConfig } from "src/context/configCtx";
+
+
 const TermsConditions = () => {
   const { i18n } = useTranslation();
   const isArabic = i18n.language === "ar";
   const {
-    config: { whatsapp, email, instagram, phone },
+    config: { email, instagram, phone },
   } = useConfig();
   return (
     <div className="mx-auto max-w-4xl space-y-6 px-4 py-10 text-gray-800">
