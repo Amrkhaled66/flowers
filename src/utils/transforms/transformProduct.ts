@@ -19,8 +19,8 @@ const transformProduct = (product: any) => ({
     : [],
   width: product.width,
   height: product.height,
-  marketingMessageAr: product.marketing_message,
-  marketingMessageEn: product?.marketing_message_ar,
+  marketingMessageAr: product.marketing_message_ar,
+  marketingMessageEn: product?.marketing_message,
 
 });
 
