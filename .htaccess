@@ -7,8 +7,8 @@
   RewriteCond %{REQUEST_FILENAME} -d
   RewriteRule ^ - [L]
 
-  # Rewrite everything else to index.php
-  RewriteRule . /index.php [L]
+  # Rewrite everything else to index.html for React SPA
+  RewriteRule . /index.html [L]
 </IfModule>
 <IfModule LiteSpeed>
   CacheDisable public /

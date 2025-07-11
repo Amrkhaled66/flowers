@@ -7,7 +7,10 @@
     "dev": "vite --mode development",
     "build": "tsc -b && vite build",
     "lint": "eslint .",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "serve": "node index.cjs",
+    "build:production": "NODE_ENV=production npm run build",
+    "start:production": "NODE_ENV=production npm run serve"
   },
   "dependencies": {
     "@headlessui/react": "^2.2.2",
