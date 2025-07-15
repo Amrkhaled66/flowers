@@ -18,8 +18,8 @@ const FilterPage = () => {
     handlePriceRangeChange,
     appliedOptions,
     page,
-    setPage,
     applyFilters,
+    onPageChange
   } = useFilterOptions();
   const { sidebarOpen, closeSidebar, toggleSidebar } = useSidebar();
 
@@ -39,24 +39,17 @@ const FilterPage = () => {
     applyFilters();
   };
 
-  useEffect(() => {
-    if (appliedOptions === null) return;
-    refetchProducts({ cancelRefetch: true });
-  }, [appliedOptions]);
-
-  useEffect(() => {
-    if (appliedOptions === null) return;
-    setPage(1);
-  }, [appliedOptions]);
 
   useEffect(() => {
     refetchProducts({ cancelRefetch: true });
-  }, [page]);
+  }, [JSON.stringify(appliedOptions),page]);
+
 
   return (
     <div className="container flex min-h-dvh flex-col justify-between !py-10">
       <div className="flex h-auto gap-x-6">
         <FilterBar
+
           loading={fullDataLoading}
           onSubmit={onApplyFilter}
           sidebarOpen={sidebarOpen}
@@ -78,17 +71,18 @@ const FilterPage = () => {
 
         <FilteredProducts
           openSidebar={toggleSidebar}
-          loading={productsLoading}
+          loading={productsLoading }
           Products={productsData?.products || []}
         />
       </div>
       {!productsLoading && (
         <Pagination
+          forcePage={page}
           pageCount={
             Math.ceil(productsData?.total / productsData?.perPage) || 0
           }
           handlePageClick={({ selected }: { selected: number }) => {
-            setPage(selected + 1);
+            onPageChange(selected + 1)
             window.scroll({
               behavior: "smooth",
               top: 0,

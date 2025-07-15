@@ -47,7 +47,6 @@ const parsePriceRange = (
   ];
 };
 
-// Helper function to initialize options from URL parameters
 const getInitialOptionsFromURL = (
   searchParams: URLSearchParams,
 ): FilterOptions => {
@@ -62,9 +61,16 @@ const getInitialOptionsFromURL = (
   };
 };
 
+const getInitialPageFromURL = (searchParams: URLSearchParams): number => {
+  const pageParam = parseInt(searchParams.get("page") || "1");
+  return isNaN(pageParam) || pageParam < 1 ? 1 : pageParam;
+};
+
 export const useFilterOptions = () => {
-  const [page, setPage] = useState(1);
   const [searchParams] = useSearchParams();
+  const [page, setPage] = useState(
+    () => getInitialPageFromURL(searchParams),
+  );
 
   const [options, setOptions] = useState<FilterOptions>(() => {
     return getInitialOptionsFromURL(searchParams);
@@ -113,64 +119,78 @@ export const useFilterOptions = () => {
     setOptions(INITIAL_FILTER_OPTIONS);
   }, []);
 
-  const updateURLParams = useCallback((newAppliedOptions: FilterOptions) => {
-    const newSearchParams = new URLSearchParams();
+  const updateURLParams = useCallback(
+    (newAppliedOptions: FilterOptions, currentPage: number) => {
+      const newSearchParams = new URLSearchParams();
 
-    // Add array parameters if they have values
-    if (newAppliedOptions.category_ids.length > 0) {
-      newSearchParams.set(
-        "category_ids",
-        newAppliedOptions.category_ids.join(","),
-      );
-    }
-    if (newAppliedOptions.occasion_ids.length > 0) {
-      newSearchParams.set(
-        "occasion_ids",
-        newAppliedOptions.occasion_ids.join(","),
-      );
-    }
-    if (newAppliedOptions.color_ids.length > 0) {
-      newSearchParams.set("color_ids", newAppliedOptions.color_ids.join(","));
-    }
+      if (newAppliedOptions.category_ids.length > 0) {
+        newSearchParams.set(
+          "category_ids",
+          newAppliedOptions.category_ids.join(","),
+        );
+      }
+      if (newAppliedOptions.occasion_ids.length > 0) {
+        newSearchParams.set(
+          "occasion_ids",
+          newAppliedOptions.occasion_ids.join(","),
+        );
+      }
+      if (newAppliedOptions.color_ids.length > 0) {
+        newSearchParams.set("color_ids", newAppliedOptions.color_ids.join(","));
+      }
 
-    // Add price range if different from initial
-    if (
-      newAppliedOptions.price_range[0] !== INITIAL_FILTER_OPTIONS.price_range[0]
-    ) {
-      newSearchParams.set(
-        "price_min",
-        newAppliedOptions.price_range[0].toString(),
-      );
-    }
-    if (
-      newAppliedOptions.price_range[1] !== INITIAL_FILTER_OPTIONS.price_range[1]
-    ) {
-      newSearchParams.set(
-        "price_max",
-        newAppliedOptions.price_range[1].toString(),
-      );
-    }
+      if (
+        newAppliedOptions.price_range[0] !==
+        INITIAL_FILTER_OPTIONS.price_range[0]
+      ) {
+        newSearchParams.set(
+          "price_min",
+          newAppliedOptions.price_range[0].toString(),
+        );
+      }
+      if (
+        newAppliedOptions.price_range[1] !==
+        INITIAL_FILTER_OPTIONS.price_range[1]
+      ) {
+        newSearchParams.set(
+          "price_max",
+          newAppliedOptions.price_range[1].toString(),
+        );
+      }
 
-    window.history.replaceState(
-      {},
-      "",
-      `${window.location.pathname}?${newSearchParams.toString()}`,
-    );
-  }, []);
+      // Add page to URL
+      if (currentPage > 1) {
+        newSearchParams.set("page", currentPage.toString());
+      }
+
+      window.history.replaceState(
+        {},
+        "",
+        `${window.location.pathname}?${newSearchParams.toString()}`,
+      );
+    },
+    [],
+  );
 
   const applyFilters = useCallback(() => {
     setAppliedOptions(options);
-    updateURLParams(options);
     setPage(1);
+    updateURLParams(options, 1);
   }, [options, updateURLParams]);
 
- useEffect(() => {
-  const initialOptions = getInitialOptionsFromURL(searchParams);
-  setOptions(initialOptions);
-  setAppliedOptions(initialOptions);
-  updateURLParams(initialOptions);
-  setPage(1);
-}, [searchParams.toString(), updateURLParams]);
+  useEffect(() => {
+    const initialOptions = getInitialOptionsFromURL(searchParams);
+    const initialPage = getInitialPageFromURL(searchParams);
+    setOptions(initialOptions);
+    setAppliedOptions(initialOptions);
+    setPage(initialPage);
+    updateURLParams(initialOptions, initialPage);
+  }, [searchParams.toString(), updateURLParams]);
+
+  const onPageChange = (newPage: number) => {
+    setPage(newPage);
+    updateURLParams(appliedOptions, newPage);
+  };
 
   return useMemo(
     () => ({
@@ -184,6 +204,7 @@ export const useFilterOptions = () => {
       setPage,
       applyFilters,
       updateURLParams,
+      onPageChange,
     }),
     [
       options,

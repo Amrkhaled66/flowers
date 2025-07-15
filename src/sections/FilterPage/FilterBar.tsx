@@ -27,6 +27,7 @@ type SidebarProps = {
   loading: boolean;
   colors: { id: number; name: string; code: string }[];
   prices: { maxPrice: string; minPrice: string };
+  
 };
 
 const FilterBar = ({

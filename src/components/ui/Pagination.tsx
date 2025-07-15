@@ -4,12 +4,14 @@ const Pagination = ({
   pageCount,
   handlePageClick,
   forcePage,
+
 }: {
   pageCount: number;
   handlePageClick: ({ selected }: { selected: number }) => void;
   forcePage?: number;
 }) => {
   const { t } = useTranslation("shared");
+
   return (
     <ReactPaginate
       breakLabel="..."
@@ -18,10 +20,10 @@ const Pagination = ({
       pageRangeDisplayed={3}
       marginPagesDisplayed={1}
       pageCount={pageCount}
-      forcePage={forcePage}
+      initialPage={forcePage !== undefined ? forcePage - 1 : undefined}
       previousLabel={t("prev")}
       renderOnZeroPageCount={null}
-      
+
       // Tailwind CSS classes
       containerClassName="flex justify-center mt-8 space-x-2"
       pageClassName="flex items-center justify-center size-10 text-sm cursor-pointer rounded-md animate border border-gray-300 hover:bg-gray-100"

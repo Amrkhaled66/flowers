@@ -58,7 +58,7 @@ const ProductCardUI = ({
           <p className="text-xs text-white sm:text-base">{t("outOfStock")}</p>
         </div>
       ) : (
-        <div className="flex flex-row items-center justify-between px-2 pb-2 sm:px-3 lg:px-4">
+        <div className="flex flex-row items-center justify-between mt-2 px-2 pb-2 sm:px-3 lg:px-4">
           <div className="flex w-full justify-start">
             {product.afterDiscount !== product.beforeDiscount ? (
               <div className="flex flex-col items-start">
